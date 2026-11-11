@@ -4,9 +4,10 @@ import { counted } from './plural.ts'
 export const preferencesCopy = {
   notes: {
     title: 'Preference notes',
-    lead: 'These are working preferences your AI has picked up from your requests. It reads them before starting your next task.',
+    lead: 'What your AI has learned about how you like to work in this project.\nThe more you work together, the less you need to explain.',
+    emptyTitle: 'Nothing learned yet.',
     emptyHint:
-      'No preferences yet. Your AI will record recurring requests as you work. You can also add your own.',
+      'As you work, your AI picks up your preferences from recurring choices.\nJust confirm what it gets right.',
     restore: 'Restore',
     editLabel: 'Edit preference',
     confirm: 'Confirm',
@@ -19,7 +20,7 @@ export const preferencesCopy = {
     statementPlaceholder: 'Add a preference',
     statementLabel: 'Preference',
     add: 'Add',
-    pending: (count: number) => ` ${counted(count, 'unconfirmed preference')}.`,
+    pending: (count: number) => `${counted(count, 'preference')} to confirm`,
     retired: (count: number) => counted(count, 'retired preference'),
     restoreLabel: (statement: string) => `Restore “${statement}”`,
     evidenceLabel: (count: number) => counted(count, 'piece of evidence', 'pieces of evidence'),

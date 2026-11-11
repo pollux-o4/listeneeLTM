@@ -22,15 +22,16 @@ export function PreferenceNotes({ prefs, onPatch }: Props) {
     <div className="pn">
       <header className="pn-head">
         <h1 className="ltm-title">{copy.preferences.notes.title}</h1>
-        <p className="pn-lead">
-          {copy.preferences.notes.lead}
-          {pending > 0 && <strong>{copy.preferences.notes.pending(pending)}</strong>}
-        </p>
+        <p className="pn-lead">{copy.preferences.notes.lead}</p>
+        {pending > 0 && <p className="pn-pending">{copy.preferences.notes.pending(pending)}</p>}
       </header>
 
       {empty && (
         <PixelPanel>
-          <p className="pn-empty">{copy.preferences.notes.emptyHint}</p>
+          <p className="pn-empty">
+            <strong>{copy.preferences.notes.emptyTitle}</strong>
+            {copy.preferences.notes.emptyHint}
+          </p>
         </PixelPanel>
       )}
 

@@ -1,6 +1,6 @@
 .pn {
   display: grid;
-  gap: calc(var(--px) * 6);
+  gap: calc(var(--px) * 8);
   max-width: 820px;
   margin: 0 auto;
 }
@@ -14,16 +14,24 @@
   color: var(--c-muted);
   word-break: keep-all;
 }
-.pn-lead strong {
+.pn-pending {
+  margin: 3px 0 0;
   color: var(--c-text);
+  font-weight: 700;
 }
 .pn-empty {
   margin: 0;
+  display: grid;
+  gap: 3px;
   color: var(--c-muted);
+  word-break: keep-all;
+}
+.pn-empty strong {
+  color: var(--c-text);
 }
 .pn-topic {
   display: grid;
-  gap: 12px;
+  gap: calc(var(--px) * 3);
 }
 .pn-topic h2 {
   margin: 0;
@@ -90,11 +98,15 @@
   display: grid;
   grid-template-columns: 160px minmax(0, 1fr) auto;
   gap: 15px;
-  align-items: center;
-  padding: var(--px) var(--px) calc(var(--px) * 3);
+  align-items: stretch;
+  padding: var(--px) 0 calc(var(--px) * 3);
 }
+/* 입력칸과 버튼의 외곽선(카드와 같은 선)이 같은 높이·왼쪽 끝에 오도록 */
 .pn-new .ltm-input {
   padding: 6px 9px;
+}
+.pn-new .ltm-button {
+  padding-block: 0;
 }
 .pn-retired {
   color: var(--c-muted);

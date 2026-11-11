@@ -69,7 +69,7 @@ export const briefCopy = {
     deliveryTitle: 'To delivery (→)',
     nextTitle: 'Next stage (→)',
     confirmAll: 'Confirm all',
-    emptyHint: 'This stage is required. Ask your AI to fill it in, or add an item below.',
+    emptyHint: 'This stage is required.\nAsk your AI to fill it in, or add an item below.',
     optionalEmptyHint: 'Leave this blank if it doesn’t apply.',
     placeholder: 'Add an item',
     add: 'Add',

@@ -1173,6 +1173,7 @@
     ],
     "preferences.notes.editLabel": ["preferences-notes--editing"],
     "preferences.notes.emptyHint": ["preferences-notes--empty"],
+    "preferences.notes.emptyTitle": ["preferences-notes--empty"],
     "preferences.notes.evidence": [
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
@@ -2150,8 +2151,8 @@
           "en": [2]
         },
         "text": {
-          "ko": " 확인 전 2개.",
-          "en": " 2 unconfirmed preferences."
+          "ko": "확인할 취향 2개",
+          "en": "2 preferences to confirm"
         }
       }
     ],

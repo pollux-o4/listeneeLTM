@@ -1,8 +1,10 @@
 export const preferencesCopy = {
   notes: {
     title: '취향 노트',
-    lead: 'AI가 요청 패턴에서 읽은 판단 기준이에요. 다음 작업은 이 노트를 먼저 읽고 시작해요.',
-    emptyHint: '아직 없어요. 작업하다 보면 AI가 반복되는 요청을 여기에 기록해요. 직접 적어도 돼요.',
+    lead: 'AI가 함께 작업하며 학습한 이 프로젝트의 취향이에요.\n쓸수록 쌓여, 같은 설명을 반복하지 않아도 돼요.',
+    emptyTitle: '아직 학습한 취향이 없어요.',
+    emptyHint:
+      '작업할수록 AI가 반복되는 선택에서 취향을 읽어 여기에 남겨요.\n맞는지 확인만 해 주세요.',
     restore: '다시 적용',
     editLabel: '기준 고치기',
     confirm: '맞아요',
@@ -12,10 +14,10 @@ export const preferencesCopy = {
     manualEvidence: '직접 적음',
     topicPlaceholder: '묶음 (예: 결정)',
     topicLabel: '묶음',
-    statementPlaceholder: '기준 직접 적기',
+    statementPlaceholder: '알려 줄 취향 직접 적기',
     statementLabel: '기준',
     add: '적기',
-    pending: (count: number) => ` 확인 전 ${count}개.`,
+    pending: (count: number) => `확인할 취향 ${count}개`,
     retired: (count: number) => `내려놓은 기준 ${count}`,
     restoreLabel: (statement: string) => `“${statement}” 다시 적용`,
     evidenceLabel: (count: number) => `근거 ${count}개`,

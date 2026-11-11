@@ -65,7 +65,7 @@ export const briefCopy = {
     deliveryTitle: '전달로 (→)',
     nextTitle: '다음 단계 (→)',
     confirmAll: '모두 좋아요',
-    emptyHint: '꼭 있어야 하는 단계예요. AI에게 “채워줘”라고 하거나 아래에 직접 적어 주세요.',
+    emptyHint: '꼭 있어야 하는 단계예요.\nAI에게 “채워줘”라고 하거나 아래에 직접 적어 주세요.',
     optionalEmptyHint: '해당하는 내용이 없으면 비워 둬도 돼요.',
     placeholder: '직접 적기',
     add: '추가',
