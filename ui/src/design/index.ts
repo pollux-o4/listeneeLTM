@@ -3,7 +3,6 @@ import './tokens.css'
 
 export { Mascot } from './Mascot.tsx'
 export {
-  type CopyState,
   InlineEdit,
   Notice,
   type NoticeContent,
@@ -14,9 +13,7 @@ export {
   SpeechBubble,
   useCopy,
   useEditToggle,
-  useReducedMotion,
 } from './primitives/index.tsx'
 export { chest } from './sprites/chest.ts'
-export { defineSprite, type Sprite } from './sprites/define.ts'
 export { icons } from './sprites/icons.ts'
-export { type ListeneeMood, listenee } from './sprites/listenee.ts'
+export type { ListeneeMood } from './sprites/listenee.ts'

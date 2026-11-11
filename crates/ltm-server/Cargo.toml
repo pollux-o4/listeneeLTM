@@ -7,7 +7,6 @@ publish.workspace = true
 
 [dependencies]
 ltm-core.workspace = true
-anyhow.workspace = true
 axum.workspace = true
 mime_guess.workspace = true
 rust-embed.workspace = true

@@ -6,8 +6,7 @@ export { InlineEdit, useEditToggle } from './InlineEdit.tsx'
 export { Notice, type NoticeContent } from './Notice.tsx'
 export { OriginBadge } from './OriginBadge.tsx'
 export { PixelSprite } from './PixelSprite.tsx'
-export { type CopyState, useCopy } from './useCopy.ts'
-export { useReducedMotion }
+export { useCopy } from './useCopy.ts'
 
 type PanelProps = {
   children: ReactNode

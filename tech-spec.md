@@ -12,7 +12,7 @@
 
 | 영역 | 선택 |
 | - | - |
-| 툴체인 | `mise.toml`(rust·node·pnpm), `rust-toolchain.toml` |
+| 툴체인 | `mise.toml`(rust·node·pnpm·품질 도구), `rust-toolchain.toml` |
 | 백엔드 | Rust 2024, cargo workspace |
 | AI 연결 | `ltm` CLI(JSON 출력) + `.ltm/AGENTS.md` 안내, MCP 없음(ADR-0004) |
 | HTTP | `axum` + `tokio`, 127.0.0.1 전용 |
@@ -20,9 +20,12 @@
 | 타입 공유 | `ts-rs` → `ui/src/generated/`(커밋 대상) |
 | UI | React 19 + Vite 8, TypeScript 7 strict |
 | UI 카탈로그 | Storybook 10 (react-vite) |
-| 품질 | `cargo fmt`·`clippy -D warnings`·`cargo test`, Biome, `tsc` |
+| 품질·Rust | `cargo fmt`·`clippy -D warnings`, `cargo-nextest`(테스트), `cargo-machete`(안 쓰는 의존성) |
+| 품질·UI | Biome, `tsc`, `knip`(안 쓰는 export·파일·의존성), 경계·문구 검사 스크립트 |
+| 품질·저장소 | `typos`(오타), `cargo-deny`(취약점·라이선스·출처, `deny.toml`), `gitleaks`(비밀값) |
+| git hook | `lefthook`: 커밋 전 gitleaks·biome·rustfmt·typos(바뀐 파일), push 전 `pnpm check` |
 
-버전은 `Cargo.toml`·`ui/package.json`에서 고정한다. pnpm `minimumReleaseAge` 정책에 막히면 이전 버전을 고른다(예외 등록 금지).
+버전은 `Cargo.toml`·`ui/package.json`·`mise.toml`에서 고정한다. `cargo-deny` 허용 라이선스는 `deny.toml`이 원본이다. pnpm `minimumReleaseAge` 정책에 막히면 이전 버전을 고른다(예외 등록 금지).
 
 ## 구조 (의존 방향 →)
 
@@ -58,12 +61,13 @@ ui (React) ◀── ui/src/generated ◀─────────────
 
 | 명령 | 용도 |
 | - | - |
-| `mise install && pnpm install` | 개발 환경 준비 |
+| `mise install && pnpm install && mise x -- lefthook install` | 개발 환경 준비(git hook 포함) |
 | `pnpm storybook` | 컴포넌트 카탈로그 http://localhost:6016 |
 | `pnpm dev` | Rust API(4318) + Vite UI http://localhost:5173 |
 | `pnpm gen:copy-screens` | 문구별 화면 연결·실제 호출 예시 생성(`pnpm check`에서 누락·변경 검사) |
 | `pnpm gen:types` | Rust 타입·스토리 view·ko/en Markdown → `ui/src/generated` |
-| `pnpm check` | fmt → clippy → cargo test → biome → tsc |
+| `pnpm check` | `check:rust` → `check:ui` → `check:repo` (push 전 hook이 실행) |
+| `pnpm gen:readme-icons` | 제품 스프라이트·토큰 → README 아이콘 `docs/assets/icons` |
 | `pnpm build` | UI 빌드 후 `target/release/ltm` |
 
 ## 코드 규칙

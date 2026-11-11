@@ -526,7 +526,6 @@ dependencies = [
 name = "ltm-server"
 version = "0.0.0"
 dependencies = [
- "anyhow",
  "axum",
  "ltm-core",
  "mime_guess",

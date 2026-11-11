@@ -3,19 +3,20 @@ import { BASE_LOCALE, LOCALES, messages } from '../messages.ts'
 import generated from '../screens.generated.json'
 import type { CopyExample, CopyScreens } from '../screens.types.ts'
 
-export const AREAS: Record<string, { title: string; note: string }> = {
+const AREAS: Record<string, { title: string; note: string }> = {
   app: { title: '앱 셸', note: '상단 바·연결 상태·빈 화면·알림' },
   brief: { title: '지시서', note: '여정 지도·단계·막힘·변경 기록·전달' },
   preferences: { title: '취향 노트', note: '판단 기준 목록과 편집' },
   common: { title: '공통 요소', note: '디자인 시스템 프리미티브·마스코트' },
 }
 
-export const { screens, stories, examples } = generated as CopyScreens
+const { stories } = generated as CopyScreens
+export const { screens, examples } = generated as CopyScreens
 
 export type Row = { key: string; dynamic: boolean; text: Partial<Record<Locale, string>> }
 export type Area = { key: string; title: string; note: string; rows: Row[] }
 
-export function flatten(
+function flatten(
   node: unknown,
   path: string[],
   locale: Locale,
