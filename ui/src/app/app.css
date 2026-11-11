@@ -228,11 +228,16 @@
   .app-main {
     padding: 16px 16px 96px;
   }
-  /* 좁은 화면: 지시서 탭을 둘째 줄로 내려 온전한 폭을 준다. */
+}
+/* 중간 이하 폭: 서랍·노트·테마·언어가 한 줄을 쓰고, 지시서 탭은 둘째 줄로 내려 온전한 폭을 준다. */
+@media (max-width: 900px) {
   .app-bar {
     flex-wrap: wrap;
     gap: 0 6px;
     padding: 0 16px;
+  }
+  .app-logo {
+    margin-right: 6px;
   }
   .app-nav {
     display: contents;

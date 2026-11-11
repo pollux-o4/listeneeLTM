@@ -6,6 +6,7 @@ export const preferencesCopy = {
     emptyHint:
       '작업할수록 AI가 반복되는 선택에서 취향을 읽어 여기에 남겨요.\n맞는지 확인만 해 주세요.',
     restore: '다시 적용',
+    showAll: '전체',
     children: (count: number) => `기준 ${count}`,
     childrenPending: (count: number) => `확인할 것 ${count}`,
     expand: (statement: string) => `“${statement}” 하위 기준 보기`,

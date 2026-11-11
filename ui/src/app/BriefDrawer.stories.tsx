@@ -4,6 +4,7 @@ import { doneView, reviewView, summaryOf, workingView } from '../features/brief/
 import { storyCopy } from '../story-support.ts'
 import { BriefDrawer } from './BriefDrawer.tsx'
 import './app.css'
+import { manyBriefs } from '../story-volume.ts'
 
 const briefs = [
   summaryOf(doneView, { kind: 'learned', count: 3 }),
@@ -24,7 +25,14 @@ const briefs = [
 const meta = {
   title: 'App/BriefDrawer',
   component: BriefDrawer,
-  args: { briefs, briefId: doneView.brief.id, onClose: fn(), onDuplicate: fn() },
+  args: {
+    briefs,
+    briefId: doneView.brief.id,
+    onClose: fn(),
+    onDuplicate: fn(),
+    closing: false,
+    onAnimationEnd: fn(),
+  },
 } satisfies Meta<typeof BriefDrawer>
 export default meta
 
@@ -58,3 +66,22 @@ export const NothingToAnalyze: Story = {
     await expect(canvas.getByText(copy.app.drawer.nothingTodo)).toBeVisible()
   },
 }
+
+/** 데이터 양: 많음(목록 스크롤·긴 제목 말줄임), 하나. */
+export const ManyBriefs: Story = { args: { briefs: manyBriefs(), briefId: 'brief-4' } }
+
+/** 많을 때는 제목으로 찾고, 없으면 그렇다고 알린다. */
+export const SearchMany: Story = {
+  args: { briefs: manyBriefs(), briefId: 'brief-4' },
+  play: async ({ canvasElement }) => {
+    const copy = storyCopy()
+    const canvas = within(canvasElement)
+    const search = canvas.getByRole('searchbox', { name: copy.app.drawer.search })
+    await userEvent.type(search, 'Brief 2')
+    await expect(canvas.getAllByRole('listitem').length).toBeGreaterThan(1)
+    await userEvent.clear(search)
+    await userEvent.type(search, 'zzz')
+    await expect(canvas.getByText(copy.app.drawer.noMatch)).toBeVisible()
+  },
+}
+export const OneBrief: Story = { args: { briefs: manyBriefs(1), briefId: 'brief-1' } }

@@ -3,6 +3,7 @@ import { fn } from 'storybook/test'
 import { doneView, summaryOf, workingView } from '../features/brief/fixtures.ts'
 import { AppBar } from './AppBar.tsx'
 import './app.css'
+import { manyBriefs } from '../story-volume.ts'
 
 const meta = {
   title: 'App/Navigation',
@@ -27,3 +28,6 @@ export const LanguageSelection: Story = {}
 const briefs = [summaryOf(workingView), summaryOf(doneView, { kind: 'learned', count: 3 })]
 export const Dark: Story = { args: { briefs: briefs.slice(0, 1), theme: 'dark' } }
 export const Light: Story = { args: { briefs: briefs.slice(1), theme: 'light' } }
+
+/** 탭이 넘칠 때: 지금 보는 탭이 보이도록 가로 스크롤, 분석 필요 배지. */
+export const ManyBriefs: Story = { args: { briefs: manyBriefs(), briefId: 'brief-24' } }

@@ -52,6 +52,8 @@ export const appCopy = {
     copyTitle: (title: string) => `${title} (copy)`,
     from: (title: string) => `From: ${title}`,
     nothingTodo: 'No briefs need analysis.',
+    search: 'Find by title',
+    noMatch: 'No matching briefs.',
     todoSuffix: ' need analysis',
     learning: {
       unanalyzed: 'Not analyzed',

@@ -7,12 +7,17 @@ import { href } from './route.ts'
 import './drawer.css'
 
 export const DRAWER_ID = 'brief-drawer'
+/** 이보다 많으면 제목 찾기를 보여 준다(적을 때는 목록이 곧 탐색). */
+const SEARCH_FROM = 8
 
 /** AI가 다시 읽어야 하는 지시서(미분석·분석 후 바뀜). 배지와 거르기가 같은 규칙을 쓴다. */
 export const needsAnalysis = (b: BriefSummary) =>
   b.learning.kind === 'unanalyzed' || b.learning.kind === 'stale'
 
 type Props = {
+  /** 닫히는 중: 퇴장 애니메이션 뒤에 호출 측이 뗀다. */
+  closing: boolean
+  onAnimationEnd: React.AnimationEventHandler
   briefs: BriefSummary[]
   briefId: string | undefined
   onClose: () => void
@@ -23,24 +28,44 @@ type Props = {
  * 지시서 서랍(UX-002): 다시 열기·복제·학습 상태. 화면을 막지 않는다(배경 잠금·포커스 가둠 없음).
  * 열면 제목으로 포커스를 옮기고, Esc로 닫는다.
  */
-export function BriefDrawer({ briefs, briefId, onClose, onDuplicate }: Props) {
+export function BriefDrawer({
+  closing,
+  onAnimationEnd,
+  briefs,
+  briefId,
+  onClose,
+  onDuplicate,
+}: Props) {
   const copy = useText()
   const [todoOnly, setTodoOnly] = useState(false)
+  const [query, setQuery] = useState('')
   const heading = useRef<HTMLHeadingElement>(null)
-  const shown = todoOnly ? briefs.filter(needsAnalysis) : briefs
+  const needle = query.trim().toLocaleLowerCase()
+  // 서랍은 최근 고친 것이 위(다시 열기가 주 용도). 탭은 위치가 바뀌지 않게 id 순서를 유지한다.
+  const shown = briefs
+    .filter((b) => !todoOnly || needsAnalysis(b))
+    .filter((b) => !needle || b.title.toLocaleLowerCase().includes(needle))
+    .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
   const titleOf = (id: string) => briefs.find((b) => b.id === id)?.title ?? id
 
   useEffect(() => {
+    if (closing) return
     heading.current?.focus()
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [onClose])
+  }, [onClose, closing])
 
   return (
-    <aside id={DRAWER_ID} className="bd" aria-labelledby={`${DRAWER_ID}-title`}>
+    <aside
+      id={DRAWER_ID}
+      className="bd"
+      data-closing={closing}
+      aria-labelledby={`${DRAWER_ID}-title`}
+      onAnimationEnd={onAnimationEnd}
+    >
       <header className="bd-head">
         <h2 id={`${DRAWER_ID}-title`} className="ltm-title" ref={heading} tabIndex={-1}>
           {copy.app.drawer.title}
@@ -56,7 +81,7 @@ export function BriefDrawer({ briefs, briefId, onClose, onDuplicate }: Props) {
           <button
             key={String(todo)}
             type="button"
-            className="bd-chip"
+            className="ltm-chip"
             aria-pressed={todoOnly === todo}
             onClick={() => setTodoOnly(todo)}
           >
@@ -66,8 +91,18 @@ export function BriefDrawer({ briefs, briefId, onClose, onDuplicate }: Props) {
           </button>
         ))}
       </fieldset>
+      {briefs.length > SEARCH_FROM && (
+        <input
+          type="search"
+          className="ltm-input bd-search"
+          aria-label={copy.app.drawer.search}
+          placeholder={copy.app.drawer.search}
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+      )}
       {shown.length === 0 ? (
-        <p className="bd-empty">{copy.app.drawer.nothingTodo}</p>
+        <p className="bd-empty">{needle ? copy.app.drawer.noMatch : copy.app.drawer.nothingTodo}</p>
       ) : (
         <ul className="bd-list">
           {shown.map((b, i) => (

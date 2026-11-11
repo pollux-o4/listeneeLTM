@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useText } from '../copy/index.ts'
-import { Notice } from '../design/index.ts'
+import { Notice, usePresence } from '../design/index.ts'
 import { AppBar } from './AppBar.tsx'
 import { BriefDrawer } from './BriefDrawer.tsx'
 import { useWorkspaceData } from './data/useWorkspaceData.ts'
@@ -19,6 +19,7 @@ export function App() {
   const data = useWorkspaceData(route, show)
   const { list, prefs, brief, briefId, duplicateBrief } = data
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const drawer = usePresence(drawerOpen)
   const drawerButton = useRef<HTMLButtonElement>(null)
   const closeDrawer = useCallback(() => {
     setDrawerOpen(false)
@@ -50,8 +51,10 @@ export function App() {
         onToggleDrawer={() => (drawerOpen ? closeDrawer() : setDrawerOpen(true))}
         drawerButton={drawerButton}
       />
-      {drawerOpen && (
+      {drawer.mounted && (
         <BriefDrawer
+          closing={drawer.closing}
+          onAnimationEnd={drawer.onAnimationEnd}
           briefs={list.data ?? []}
           briefId={briefId}
           onClose={closeDrawer}

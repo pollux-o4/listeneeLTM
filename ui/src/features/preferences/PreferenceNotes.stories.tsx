@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { expect, fn, userEvent, within } from 'storybook/test'
+import { expect, fn, userEvent, waitFor, within } from 'storybook/test'
 import prefs from '../../generated/fixtures/preferences.json'
 import type { Preferences } from '../../generated/Preferences.ts'
 import { appears, storyCopy } from '../../story-support.ts'
+import { manyPreferences, onePreference } from '../../story-volume.ts'
 import { PreferenceNotes } from './PreferenceNotes.tsx'
 
 const meta = {
@@ -64,7 +65,29 @@ export const PrincipleToggle: Story = {
     await expect(canvas.getByText(child.statement)).toBeVisible()
     await userEvent.click(toggle)
     await expect(toggle).toHaveAttribute('aria-expanded', 'false')
-    await expect(canvas.queryByText(child.statement)).toBeNull()
+    await waitFor(() => expect(canvas.queryByText(child.statement)).toBeNull())
     await expect(canvas.getByText(principle.statement)).toBeVisible()
   },
 }
+
+/** 데이터 양: 묶음 5개·원칙 5개·긴 문장·내려놓은 것 여럿 / 기준 하나. */
+export const ManyNotes: Story = { args: { prefs: manyPreferences() } }
+
+/** 많을 때: 확인할 것만 보기로 확인된 항목·내려놓은 것을 숨긴다. */
+export const PendingOnly: Story = {
+  args: { prefs: manyPreferences() },
+  play: async ({ canvasElement }) => {
+    const copy = storyCopy()
+    const canvas = within(canvasElement)
+    const prefs = manyPreferences()
+    const pending = prefs.items.filter((p) => !p.retired && !p.confirmed).length
+    const confirmedChild = prefs.items.find((p) => p.parent && p.confirmed && !p.retired)
+    if (!confirmedChild) throw new Error('Missing confirmed child fixture')
+    await userEvent.click(
+      canvas.getByRole('button', { name: copy.preferences.notes.pending(pending) }),
+    )
+    await expect(canvas.queryByText(confirmedChild.statement)).toBeNull()
+    await expect(canvas.queryByText(copy.preferences.notes.retired(6))).toBeNull()
+  },
+}
+export const OneNote: Story = { args: { prefs: onePreference() } }

@@ -51,6 +51,8 @@ export const appCopy = {
     copyTitle: (title: string) => `${title} (사본)`,
     from: (title: string) => `원본: ${title}`,
     nothingTodo: '분석할 지시서가 없어요.',
+    search: '제목으로 찾기',
+    noMatch: '맞는 지시서가 없어요.',
     todoSuffix: '개 분석 필요',
     learning: {
       unanalyzed: '미분석',

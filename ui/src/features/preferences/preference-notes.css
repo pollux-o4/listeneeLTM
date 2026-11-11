@@ -14,9 +14,12 @@
   color: var(--c-muted);
   word-break: keep-all;
 }
+.pn-filter {
+  margin-top: 9px;
+  display: flex;
+  gap: 9px;
+}
 .pn-pending {
-  margin: 3px 0 0;
-  color: var(--c-text);
   font-weight: 700;
 }
 .pn-empty {
@@ -190,6 +193,9 @@
   border-left: var(--px) dotted var(--c-accent-soft);
   margin-left: calc(var(--hit) / 2 - 6px);
   padding-left: calc(var(--hit) / 2 + 12px);
+}
+.pn-children[data-closing="true"] {
+  animation: ltm-out var(--dur-fast) ease-in both;
 }
 .pn-children > li {
   animation: ltm-rise var(--dur-base) var(--ease-soft) both;

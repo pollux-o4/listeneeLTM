@@ -12,6 +12,22 @@ export const evidenceCount = ({ note, children }: NoteEntry) =>
   note.evidence.length + children.reduce((sum, c) => sum + c.evidence.length, 0)
 export const strength = (entry: NoteEntry) => Math.min(evidenceCount(entry), STRENGTH_SLOTS.length)
 
+/** 사람이 확인할 것이 있는가(원칙 자신 또는 하위 기준). */
+export const needsConfirm = ({ note, children }: NoteEntry) =>
+  !note.confirmed || children.some((c) => !c.confirmed)
+
+/** 확인할 것만 보기: 확인된 하위 기준은 숨기고, 확인할 것이 없는 항목·묶음은 뺀다. */
+export function onlyPending(topics: ReturnType<typeof groupNotes>['topics']) {
+  return topics
+    .map(({ topic, entries }) => ({
+      topic,
+      entries: entries
+        .filter(needsConfirm)
+        .map((e) => ({ ...e, children: e.children.filter((c) => !c.confirmed) })),
+    }))
+    .filter((t) => t.entries.length > 0)
+}
+
 /** 화면 배치용 묶음: 주제 → 원칙·기준(근거 많은 순) · 내려놓은 것 · 확인 전 개수. */
 export function groupNotes(prefs: Preferences) {
   const active = prefs.items.filter((p) => !p.retired)

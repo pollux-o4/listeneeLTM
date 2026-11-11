@@ -2,83 +2,126 @@
   "screens": {
     "app.drawer.close": [
       "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
       "app-briefdrawer--mixed",
       "app-briefdrawer--nothing-to-analyze",
+      "app-briefdrawer--one-brief",
+      "app-briefdrawer--search-many",
       "app-screens--shell-duplicate"
     ],
     "app.drawer.copyTitle": ["app-screens--shell-duplicate"],
     "app.drawer.duplicate": [
       "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
       "app-briefdrawer--mixed",
       "app-briefdrawer--nothing-to-analyze",
+      "app-briefdrawer--one-brief",
+      "app-briefdrawer--search-many",
       "app-screens--shell-duplicate"
     ],
     "app.drawer.duplicateLabel": [
       "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
       "app-briefdrawer--mixed",
       "app-briefdrawer--nothing-to-analyze",
+      "app-briefdrawer--one-brief",
+      "app-briefdrawer--search-many",
       "app-screens--shell-duplicate"
     ],
     "app.drawer.filterAll": [
       "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
       "app-briefdrawer--mixed",
       "app-briefdrawer--nothing-to-analyze",
+      "app-briefdrawer--one-brief",
+      "app-briefdrawer--search-many",
       "app-screens--shell-duplicate"
     ],
     "app.drawer.filterTodo": [
       "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
       "app-briefdrawer--mixed",
       "app-briefdrawer--nothing-to-analyze",
+      "app-briefdrawer--one-brief",
+      "app-briefdrawer--search-many",
       "app-screens--shell-duplicate"
     ],
-    "app.drawer.from": ["app-briefdrawer--filter-and-duplicate", "app-briefdrawer--mixed"],
+    "app.drawer.from": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--search-many"
+    ],
     "app.drawer.lead": [
       "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
       "app-briefdrawer--mixed",
       "app-briefdrawer--nothing-to-analyze",
+      "app-briefdrawer--one-brief",
+      "app-briefdrawer--search-many",
       "app-screens--shell-duplicate"
     ],
     "app.drawer.learning.learned": [
       "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
       "app-briefdrawer--mixed",
       "app-briefdrawer--nothing-to-analyze",
+      "app-briefdrawer--search-many",
       "app-screens--shell-duplicate"
     ],
     "app.drawer.learning.nothingNew": [
       "app-briefdrawer--filter-and-duplicate",
-      "app-briefdrawer--mixed"
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--search-many"
     ],
     "app.drawer.learning.stale": [
       "app-briefdrawer--filter-and-duplicate",
-      "app-briefdrawer--mixed"
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--search-many"
     ],
     "app.drawer.learning.unanalyzed": [
       "app-briefdrawer--filter-and-duplicate",
-      "app-briefdrawer--mixed"
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--one-brief",
+      "app-briefdrawer--search-many"
     ],
     "app.drawer.learningHint.learned": [
       "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
       "app-briefdrawer--mixed",
       "app-briefdrawer--nothing-to-analyze",
+      "app-briefdrawer--search-many",
       "app-screens--shell-duplicate"
     ],
     "app.drawer.learningHint.nothingNew": [
       "app-briefdrawer--filter-and-duplicate",
-      "app-briefdrawer--mixed"
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--search-many"
     ],
     "app.drawer.learningHint.stale": [
       "app-briefdrawer--filter-and-duplicate",
-      "app-briefdrawer--mixed"
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--search-many"
     ],
     "app.drawer.learningHint.unanalyzed": [
       "app-briefdrawer--filter-and-duplicate",
-      "app-briefdrawer--mixed"
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--one-brief",
+      "app-briefdrawer--search-many"
     ],
+    "app.drawer.noMatch": ["app-briefdrawer--search-many"],
     "app.drawer.nothingTodo": ["app-briefdrawer--nothing-to-analyze"],
     "app.drawer.open": [
       "app-navigation--dark",
       "app-navigation--language-selection",
       "app-navigation--light",
+      "app-navigation--many-briefs",
       "app-screens--disconnected",
       "app-screens--offline-save",
       "app-screens--read-failed",
@@ -89,17 +132,22 @@
       "app-screens--shell-notes",
       "app-screens--shell-welcome"
     ],
+    "app.drawer.search": ["app-briefdrawer--many-briefs", "app-briefdrawer--search-many"],
     "app.drawer.title": [
       "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
       "app-briefdrawer--mixed",
       "app-briefdrawer--nothing-to-analyze",
+      "app-briefdrawer--one-brief",
+      "app-briefdrawer--search-many",
       "app-screens--shell-duplicate"
     ],
-    "app.drawer.todoSuffix": ["app-navigation--dark"],
+    "app.drawer.todoSuffix": ["app-navigation--dark", "app-navigation--many-briefs"],
     "app.navigation.label": [
       "app-navigation--dark",
       "app-navigation--language-selection",
       "app-navigation--light",
+      "app-navigation--many-briefs",
       "app-screens--disconnected",
       "app-screens--offline-save",
       "app-screens--read-failed",
@@ -114,6 +162,7 @@
       "app-navigation--dark",
       "app-navigation--language-selection",
       "app-navigation--light",
+      "app-navigation--many-briefs",
       "app-screens--disconnected",
       "app-screens--offline-save",
       "app-screens--read-failed",
@@ -128,6 +177,7 @@
       "app-navigation--dark",
       "app-navigation--language-selection",
       "app-navigation--light",
+      "app-navigation--many-briefs",
       "app-screens--disconnected",
       "app-screens--offline-save",
       "app-screens--read-failed",
@@ -142,6 +192,7 @@
       "app-navigation--dark",
       "app-navigation--language-selection",
       "app-navigation--light",
+      "app-navigation--many-briefs",
       "app-screens--disconnected",
       "app-screens--offline-save",
       "app-screens--read-failed",
@@ -156,6 +207,7 @@
       "app-navigation--dark",
       "app-navigation--language-selection",
       "app-navigation--light",
+      "app-navigation--many-briefs",
       "app-screens--disconnected",
       "app-screens--offline-save",
       "app-screens--read-failed",
@@ -170,6 +222,7 @@
       "app-navigation--dark",
       "app-navigation--language-selection",
       "app-navigation--light",
+      "app-navigation--many-briefs",
       "app-screens--disconnected",
       "app-screens--offline-save",
       "app-screens--read-failed",
@@ -184,6 +237,7 @@
       "app-navigation--dark",
       "app-navigation--language-selection",
       "app-navigation--light",
+      "app-navigation--many-briefs",
       "app-screens--disconnected",
       "app-screens--offline-save",
       "app-screens--read-failed",
@@ -196,14 +250,19 @@
     ],
     "app.navigation.ready": [
       "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
       "app-briefdrawer--mixed",
       "app-briefdrawer--nothing-to-analyze",
-      "app-navigation--light"
+      "app-briefdrawer--one-brief",
+      "app-briefdrawer--search-many",
+      "app-navigation--light",
+      "app-navigation--many-briefs"
     ],
     "app.navigation.theme.dark": ["app-navigation--dark"],
     "app.navigation.theme.light": ["app-navigation--light"],
     "app.navigation.theme.system": [
       "app-navigation--language-selection",
+      "app-navigation--many-briefs",
       "app-screens--disconnected",
       "app-screens--offline-save",
       "app-screens--read-failed",
@@ -218,6 +277,7 @@
       "app-navigation--dark",
       "app-navigation--language-selection",
       "app-navigation--light",
+      "app-navigation--many-briefs",
       "app-screens--disconnected",
       "app-screens--offline-save",
       "app-screens--read-failed",
@@ -232,6 +292,7 @@
       "app-navigation--dark",
       "app-navigation--language-selection",
       "app-navigation--light",
+      "app-navigation--many-briefs",
       "app-screens--disconnected",
       "app-screens--offline-save",
       "app-screens--read-failed",
@@ -244,8 +305,11 @@
     ],
     "app.navigation.working": [
       "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
       "app-briefdrawer--mixed",
+      "app-briefdrawer--search-many",
       "app-navigation--dark",
+      "app-navigation--many-briefs",
       "app-screens--disconnected",
       "app-screens--offline-save",
       "app-screens--read-failed",
@@ -1231,6 +1295,9 @@
       "design-primitives--origins",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1278,6 +1345,9 @@
       "design-primitives--origins",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1303,6 +1373,8 @@
       "design-primitives--origins",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1311,6 +1383,9 @@
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
       "preferences-notes--empty",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1318,6 +1393,8 @@
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1325,6 +1402,8 @@
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1332,6 +1411,9 @@
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1339,6 +1421,9 @@
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1347,6 +1432,9 @@
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1354,6 +1442,9 @@
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1364,6 +1455,9 @@
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1371,6 +1465,9 @@
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1378,6 +1475,8 @@
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1386,6 +1485,9 @@
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
       "preferences-notes--empty",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1394,6 +1496,9 @@
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1401,6 +1506,8 @@
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1408,6 +1515,8 @@
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1415,6 +1524,9 @@
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1422,6 +1534,8 @@
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1429,6 +1543,19 @@
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.showAll": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1436,6 +1563,9 @@
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1444,6 +1574,9 @@
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
       "preferences-notes--empty",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1452,6 +1585,9 @@
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
       "preferences-notes--empty",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1460,6 +1596,9 @@
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
       "preferences-notes--empty",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1468,6 +1607,9 @@
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
       "preferences-notes--empty",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1476,6 +1618,9 @@
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
       "preferences-notes--empty",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1483,6 +1628,8 @@
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
@@ -1490,6 +1637,8 @@
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--pending-only",
       "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ]
@@ -1499,6 +1648,10 @@
       "title": "App/BriefDrawer",
       "name": "Filter And Duplicate"
     },
+    "app-briefdrawer--many-briefs": {
+      "title": "App/BriefDrawer",
+      "name": "Many Briefs"
+    },
     "app-briefdrawer--mixed": {
       "title": "App/BriefDrawer",
       "name": "Mixed"
@@ -1506,6 +1659,14 @@
     "app-briefdrawer--nothing-to-analyze": {
       "title": "App/BriefDrawer",
       "name": "Nothing To Analyze"
+    },
+    "app-briefdrawer--one-brief": {
+      "title": "App/BriefDrawer",
+      "name": "One Brief"
+    },
+    "app-briefdrawer--search-many": {
+      "title": "App/BriefDrawer",
+      "name": "Search Many"
     },
     "app-navigation--dark": {
       "title": "App/Navigation",
@@ -1518,6 +1679,10 @@
     "app-navigation--light": {
       "title": "App/Navigation",
       "name": "Light"
+    },
+    "app-navigation--many-briefs": {
+      "title": "App/Navigation",
+      "name": "Many Briefs"
     },
     "app-screens--brief-failed": {
       "title": "App/Screens",
@@ -1695,6 +1860,18 @@
       "title": "Preferences/Notes",
       "name": "Empty"
     },
+    "preferences-notes--many-notes": {
+      "title": "Preferences/Notes",
+      "name": "Many Notes"
+    },
+    "preferences-notes--one-note": {
+      "title": "Preferences/Notes",
+      "name": "One Note"
+    },
+    "preferences-notes--pending-only": {
+      "title": "Preferences/Notes",
+      "name": "Pending Only"
+    },
     "preferences-notes--principle-toggle": {
       "title": "Preferences/Notes",
       "name": "Principle Toggle"
@@ -1775,6 +1952,17 @@
           "ko": "원본: HTML 갤러리 제작",
           "en": "From: HTML 갤러리 제작"
         }
+      },
+      {
+        "story": "app-briefdrawer--many-briefs",
+        "args": {
+          "ko": ["Brief 1"],
+          "en": ["Brief 1"]
+        },
+        "text": {
+          "ko": "원본: Brief 1",
+          "en": "From: Brief 1"
+        }
       }
     ],
     "app.drawer.learning.learned": [
@@ -1787,6 +1975,17 @@
         "text": {
           "ko": "배운 것 3",
           "en": "Learned 3"
+        }
+      },
+      {
+        "story": "app-briefdrawer--many-briefs",
+        "args": {
+          "ko": [4],
+          "en": [4]
+        },
+        "text": {
+          "ko": "배운 것 4",
+          "en": "Learned 4"
         }
       },
       {
@@ -2404,6 +2603,28 @@
           "ko": "기준 2",
           "en": "2 preferences"
         }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [4],
+          "en": [4]
+        },
+        "text": {
+          "ko": "기준 4",
+          "en": "4 preferences"
+        }
+      },
+      {
+        "story": "preferences-notes--pending-only",
+        "args": {
+          "ko": [3],
+          "en": [3]
+        },
+        "text": {
+          "ko": "기준 3",
+          "en": "3 preferences"
+        }
       }
     ],
     "preferences.notes.childrenPending": [
@@ -2416,6 +2637,17 @@
         "text": {
           "ko": "확인할 것 2",
           "en": "2 to confirm"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [3],
+          "en": [3]
+        },
+        "text": {
+          "ko": "확인할 것 3",
+          "en": "3 to confirm"
         }
       }
     ],
@@ -2533,6 +2765,28 @@
           "ko": "근거 1",
           "en": "Evidence: 1"
         }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [6],
+          "en": [6]
+        },
+        "text": {
+          "ko": "근거 6",
+          "en": "Evidence: 6"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [5],
+          "en": [5]
+        },
+        "text": {
+          "ko": "근거 5",
+          "en": "Evidence: 5"
+        }
       }
     ],
     "preferences.notes.evidenceLabel": [
@@ -2568,6 +2822,17 @@
           "ko": "근거 1개",
           "en": "1 piece of evidence"
         }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [20],
+          "en": [20]
+        },
+        "text": {
+          "ko": "근거 20개",
+          "en": "20 pieces of evidence"
+        }
       }
     ],
     "preferences.notes.expand": [
@@ -2580,6 +2845,51 @@
         "text": {
           "ko": "“자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다” 하위 기준 보기",
           "en": "Show preferences under “자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다”"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [
+            "Principle for decisions: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ],
+          "en": [
+            "Principle for decisions: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ]
+        },
+        "text": {
+          "ko": "“Principle for decisions: with a deliberately long title that has to wrap or truncate gracefully on narrow screens” 하위 기준 보기",
+          "en": "Show preferences under “Principle for decisions: with a deliberately long title that has to wrap or truncate gracefully on narrow screens”"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [
+            "Principle for docs: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ],
+          "en": [
+            "Principle for docs: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ]
+        },
+        "text": {
+          "ko": "“Principle for docs: with a deliberately long title that has to wrap or truncate gracefully on narrow screens” 하위 기준 보기",
+          "en": "Show preferences under “Principle for docs: with a deliberately long title that has to wrap or truncate gracefully on narrow screens”"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [
+            "Principle for motion: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ],
+          "en": [
+            "Principle for motion: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ]
+        },
+        "text": {
+          "ko": "“Principle for motion: with a deliberately long title that has to wrap or truncate gracefully on narrow screens” 하위 기준 보기",
+          "en": "Show preferences under “Principle for motion: with a deliberately long title that has to wrap or truncate gracefully on narrow screens”"
         }
       }
     ],
@@ -2594,6 +2904,28 @@
           "ko": "확인할 취향 4개",
           "en": "4 preferences to confirm"
         }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [27],
+          "en": [27]
+        },
+        "text": {
+          "ko": "확인할 취향 27개",
+          "en": "27 preferences to confirm"
+        }
+      },
+      {
+        "story": "preferences-notes--one-note",
+        "args": {
+          "ko": [1],
+          "en": [1]
+        },
+        "text": {
+          "ko": "확인할 취향 1개",
+          "en": "1 preference to confirm"
+        }
       }
     ],
     "preferences.notes.restoreLabel": [
@@ -2607,6 +2939,39 @@
           "ko": "“결과물은 작업 흐름과 별개로 다시 볼 수 있어야 한다” 다시 적용",
           "en": "Restore “결과물은 작업 흐름과 별개로 다시 볼 수 있어야 한다”"
         }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": ["retired 0"],
+          "en": ["retired 0"]
+        },
+        "text": {
+          "ko": "“retired 0” 다시 적용",
+          "en": "Restore “retired 0”"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": ["retired 1"],
+          "en": ["retired 1"]
+        },
+        "text": {
+          "ko": "“retired 1” 다시 적용",
+          "en": "Restore “retired 1”"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": ["retired 2"],
+          "en": ["retired 2"]
+        },
+        "text": {
+          "ko": "“retired 2” 다시 적용",
+          "en": "Restore “retired 2”"
+        }
       }
     ],
     "preferences.notes.retired": [
@@ -2619,6 +2984,17 @@
         "text": {
           "ko": "내려놓은 기준 1",
           "en": "1 retired preference"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [6],
+          "en": [6]
+        },
+        "text": {
+          "ko": "내려놓은 기준 6",
+          "en": "6 retired preferences"
         }
       }
     ],
@@ -2678,6 +3054,51 @@
         "text": {
           "ko": "“자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다” 묶음 풀기",
           "en": "Ungroup “자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다”"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [
+            "Principle for decisions: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ],
+          "en": [
+            "Principle for decisions: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ]
+        },
+        "text": {
+          "ko": "“Principle for decisions: with a deliberately long title that has to wrap or truncate gracefully on narrow screens” 묶음 풀기",
+          "en": "Ungroup “Principle for decisions: with a deliberately long title that has to wrap or truncate gracefully on narrow screens”"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [
+            "Principle for docs: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ],
+          "en": [
+            "Principle for docs: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ]
+        },
+        "text": {
+          "ko": "“Principle for docs: with a deliberately long title that has to wrap or truncate gracefully on narrow screens” 묶음 풀기",
+          "en": "Ungroup “Principle for docs: with a deliberately long title that has to wrap or truncate gracefully on narrow screens”"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [
+            "Principle for motion: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ],
+          "en": [
+            "Principle for motion: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ]
+        },
+        "text": {
+          "ko": "“Principle for motion: with a deliberately long title that has to wrap or truncate gracefully on narrow screens” 묶음 풀기",
+          "en": "Ungroup “Principle for motion: with a deliberately long title that has to wrap or truncate gracefully on narrow screens”"
         }
       }
     ]

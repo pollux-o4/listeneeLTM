@@ -177,8 +177,29 @@
     justify-self: stretch;
     padding: 0;
   }
+  /* 말풍선 꼬리는 마스코트 칸 가운데를 아래로 가리킨다(위 줄로 옮겨도 누가 말하는지 보이게).
+     기준은 레일 전체 폭(.qp-say)이고, 말풍선은 최소한 마스코트 칸까지 닿게 늘린다. */
+  .qp-say,
+  .qp-say[data-side] {
+    position: relative;
+    justify-self: stretch;
+  }
+  .qp-say .ltm-bubble {
+    min-width: calc((var(--at) + 1) / var(--n) * 100%);
+    justify-self: start;
+    box-sizing: border-box;
+  }
   .qp-say .ltm-bubble::before {
     display: none;
+  }
+  .qp-say::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: calc((var(--at) + 0.5) / var(--n) * 100% - 3px);
+    width: 6px;
+    height: 6px;
+    background: var(--c-line);
   }
   .qp-tile {
     --px: 1.5px;

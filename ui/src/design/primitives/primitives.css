@@ -257,3 +257,21 @@
     0 calc(var(--px) * 2) 0 var(--px) var(--c-line);
   animation: ltm-rise var(--dur-base) var(--ease-soft) both;
 }
+
+/* 보기 거르기 칩: 눌림 상태는 채움(색 + 모양). */
+.ltm-chip {
+  min-height: var(--hit);
+  padding: 0 9px;
+  font: inherit;
+  font-size: var(--fs-small);
+  color: var(--c-muted);
+  background: none;
+  border: 0;
+  box-shadow: inset 0 0 0 1px var(--c-muted);
+  cursor: pointer;
+}
+.ltm-chip[aria-pressed="true"] {
+  color: var(--c-on-accent);
+  background: var(--c-accent);
+  box-shadow: none;
+}

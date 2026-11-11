@@ -122,6 +122,13 @@ p {
     transform: translateY(calc(var(--px) * 4));
   }
 }
+/* 퇴장: 들어올 때의 반대 방향으로 짧게(usePresence). */
+@keyframes ltm-out {
+  to {
+    opacity: 0;
+    transform: translateY(calc(var(--px) * -2));
+  }
+}
 @keyframes ltm-fade {
   from {
     opacity: 0;
