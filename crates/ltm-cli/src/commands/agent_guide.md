@@ -38,6 +38,10 @@
 - 기록: `{"op":"note","topic":"결정","statement":"자명한 선택은 묻지 말고 정한 뒤 알린다","evidence":"기본값을 묻자 알아서 정하라고 함"}` — 같은 기준을 다시 관찰하면 같은 문장으로 기록해 근거를 쌓는다.
 - `statement`는 다음 작업에 적용할 수 있는 한 문장 기준. 일회성 지시·감정·개인정보는 기록하지 않는다.
 - `evidence`는 관찰을 짧게 요약한다(원문 인용·민감 정보 금지).
-- 사용자가 기준을 부정하면 `{"op":"retire","id":"p3"}`. id는 `ltm pref json`. 내려놓은 기준은 사용자만 다시 적용한다.
+- 사람의 GUI 행동도 근거다: `ltm check` 출력의 `brief.changes`(작성자 포함)에서 사람이 AI 추천과 다르게 고른 갈림길, 고치거나 지운 AI 항목을 보고 반복되는 기준을 기록한다.
+- 기준이 없거나 충돌하고 되돌리기 어려운 선택이면 추측하지 말고 갈림길로 연다. 사람의 선택이 다음 근거가 된다.
+- 현재 요청이 노트와 다르면 현재 요청을 따른다. 한 번의 예외로 노트를 바꾸지 않는다.
+- 작업을 마칠 때 새로 기록하거나 근거가 늘어난 확인 전 기준을 한 줄로 알린다(GUI 취향 노트에서 확인).
+- 사용자가 기준을 부정하면 `{"op":"retire","id":"p3"}`. id는 `ltm pref json`. 내려놓은 기준은 사용자만 다시 적용하며, 다른 문장으로 바꿔 다시 기록하지 않는다.
 
 Issue `code` and change `event` contain codes and values. Explain them to the user in the conversation language. Markdown exports accept `--lang ko|en` (default: ko).
