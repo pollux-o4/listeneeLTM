@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { expect, fn, userEvent, within } from 'storybook/test'
+import { fn, userEvent, within } from 'storybook/test'
 import { useLocale } from '../../copy/index.ts'
 import type { WorkspaceView } from '../../generated/WorkspaceView.ts'
 import { appears, mockClipboard, storyCopy } from '../../story-support.ts'

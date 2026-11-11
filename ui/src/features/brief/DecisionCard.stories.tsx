@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { expect, fn, userEvent, within } from 'storybook/test'
+import { fn, userEvent, within } from 'storybook/test'
 import type { Decision } from '../../generated/Decision.ts'
 import { appears, storyCopy } from '../../story-support.ts'
 import { DecisionCard } from './DecisionCard.tsx'

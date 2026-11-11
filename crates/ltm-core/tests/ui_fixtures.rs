@@ -9,6 +9,23 @@ use ltm_core::{
 const GALLERY_PURPOSE: &str = "작품 200점을 빠르게 훑어보는 개인 갤러리";
 const FIXED_TIME: &str = "1970-01-01T00:00:00.000Z";
 
+/// 생성물이 실행할 때마다 바뀌지 않도록 모든 시각 필드(`updatedAt`·`at`)를 고정한다.
+fn freeze_times(value: &mut serde_json::Value) {
+    match value {
+        serde_json::Value::Object(map) => {
+            for (key, field) in map.iter_mut() {
+                if (key == "updatedAt" || key == "at") && field.is_string() {
+                    *field = FIXED_TIME.into();
+                } else {
+                    freeze_times(field);
+                }
+            }
+        }
+        serde_json::Value::Array(items) => items.iter_mut().for_each(freeze_times),
+        _ => {}
+    }
+}
+
 fn opt(id: &str, label: &str, note: &str, text: &str) -> DecisionOption {
     DecisionOption { id: id.into(), label: label.into(), note: note.into(), text: text.into(), section: None }
 }
@@ -172,16 +189,15 @@ fn export_ui_fixtures() {
         prefs.apply(patch, by).unwrap();
     }
     prefs.apply(PrefPatch::Retire { id: "p5".into() }, Actor::Me).unwrap();
+    let mut prefs = serde_json::to_value(&prefs).unwrap();
+    freeze_times(&mut prefs);
     fs::write(dir.join("preferences.json"), serde_json::to_string_pretty(&prefs).unwrap() + "\n").unwrap();
 
     for (name, brief) in
         [("empty", empty), ("started", started), ("working", working), ("review", review), ("done", done)]
     {
         let mut view = serde_json::to_value(BriefView::from(brief.clone())).unwrap();
-        view["brief"]["updatedAt"] = FIXED_TIME.into();
-        for change in view["brief"]["changes"].as_array_mut().unwrap() {
-            change["at"] = FIXED_TIME.into();
-        }
+        freeze_times(&mut view);
         let snapshot = serde_json::json!({
             "view": view,
             "markdown": {

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { expect, fn, userEvent, within } from 'storybook/test'
+import { fn, userEvent, within } from 'storybook/test'
 import { ApiProvider } from '../api/ApiProvider.tsx'
 import { ApiError, type WorkspaceApi } from '../api/client.ts'
 import type { LiveError } from '../api/useLive.ts'

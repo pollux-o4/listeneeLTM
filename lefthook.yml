@@ -6,7 +6,7 @@ pre-commit:
       run: mise x -- gitleaks git --staged --no-banner -l warn .
     - name: biome
       glob: "*.{ts,tsx,js,mjs,json,css}"
-      run: pnpm exec biome check --no-errors-on-unmatched {staged_files}
+      run: pnpm exec biome check --error-on-warnings --no-errors-on-unmatched {staged_files}
     - name: rustfmt
       glob: "*.rs"
       run: cargo fmt --check
