@@ -128,3 +128,88 @@
     grid-column: 1 / -1;
   }
 }
+/* 원칙(2단 상위): 머리줄은 접혀도 핵심이 보이고, 하위 기준은 들여 쓴다(UX-002). */
+.pn-principle {
+  display: grid;
+  gap: 6px;
+}
+.pn-principle-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.pn-principle-head[data-confirmed="false"] .pn-statement {
+  color: var(--c-muted);
+}
+.pn-principle-statement {
+  font-family: var(--font-pixel-bold);
+}
+.pn-toggle {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: var(--hit);
+  height: var(--hit);
+  margin: -4px 0 -4px -6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--c-text);
+  cursor: pointer;
+}
+/* 픽셀 삼각형. 회전은 transform만 쓴다(UX-001 모션). */
+.pn-chevron {
+  width: 0;
+  height: 0;
+  border-left: 6px solid currentColor;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  transition: transform var(--dur-fast) var(--ease-soft);
+}
+.pn-toggle[aria-expanded="true"] .pn-chevron {
+  transform: rotate(90deg);
+}
+.pn-meta {
+  flex: none;
+  display: flex;
+  gap: 9px;
+  color: var(--c-muted);
+}
+.pn-meta-pending {
+  color: var(--c-text);
+}
+.pn-principle-actions {
+  padding-left: calc(var(--hit) + 6px);
+}
+/* 높이는 애니메이션하지 않고, 하위 항목만 차례로 떠오른다. */
+.pn-children {
+  list-style: none;
+  margin: 0;
+  display: grid;
+  gap: 9px;
+  border-left: var(--px) dotted var(--c-accent-soft);
+  margin-left: calc(var(--hit) / 2 - 6px);
+  padding-left: calc(var(--hit) / 2 + 12px);
+}
+.pn-children > li {
+  animation: ltm-rise var(--dur-base) var(--ease-soft) both;
+  animation-delay: calc(var(--i, 0) * 40ms);
+}
+.pn-card-nested {
+  padding: 9px 12px 3px;
+  background: color-mix(in srgb, var(--c-accent-soft) 22%, transparent);
+}
+.pn-sources {
+  margin: 3px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+@media (max-width: 560px) {
+  .pn-principle-head {
+    flex-wrap: wrap;
+  }
+  .pn-principle-statement {
+    flex-basis: calc(100% - var(--hit) - 60px);
+  }
+}

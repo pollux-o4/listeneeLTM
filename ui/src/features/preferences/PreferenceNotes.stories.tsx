@@ -8,7 +8,7 @@ import { PreferenceNotes } from './PreferenceNotes.tsx'
 const meta = {
   title: 'Preferences/Notes',
   component: PreferenceNotes,
-  args: { onPatch: fn(async () => true) },
+  args: { onPatch: fn(async () => true), briefHref: (id: string) => `#/brief/${id}` },
 } satisfies Meta<typeof PreferenceNotes>
 export default meta
 
@@ -45,5 +45,26 @@ export const AddWithoutTopic: Story = {
     await expect(
       canvas.getByRole('textbox', { name: copy.preferences.notes.statementLabel }),
     ).toHaveValue('')
+  },
+}
+
+/** 원칙은 접어도 문장·개수가 보이고, 펼치면 하위 기준이 나온다(UX-002). */
+export const PrincipleToggle: Story = {
+  args: { prefs: prefs as Preferences },
+  play: async ({ canvasElement }) => {
+    const copy = storyCopy()
+    const canvas = within(canvasElement)
+    const principle = prefs.items.find((p) => prefs.items.some((c) => c.parent === p.id))
+    const child = prefs.items.find((c) => c.parent === principle?.id)
+    if (!principle || !child) throw new Error('Missing principle fixture')
+    const toggle = canvas.getByRole('button', {
+      name: copy.preferences.notes.expand(principle.statement),
+    })
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true')
+    await expect(canvas.getByText(child.statement)).toBeVisible()
+    await userEvent.click(toggle)
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false')
+    await expect(canvas.queryByText(child.statement)).toBeNull()
+    await expect(canvas.getByText(principle.statement)).toBeVisible()
   },
 }

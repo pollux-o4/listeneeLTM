@@ -16,4 +16,12 @@ updatedAt: string, sections: { [key in SectionKey]?: Array<Item> }, decisions: A
 /**
  * 최신이 앞. 길이는 `CHANGE_LOG_LIMIT`로 제한.
  */
-changes: Array<Change>, };
+changes: Array<Change>, 
+/**
+ * AI가 이 지시서에서 취향을 분석한 직후의 revision(ADR-0008). 이후 바뀌면 다시 분석 대상.
+ */
+analyzedRevision?: number, 
+/**
+ * 복제 원본 지시서 id(FLOW-002).
+ */
+derivedFrom?: string, };

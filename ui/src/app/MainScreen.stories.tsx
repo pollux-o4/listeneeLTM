@@ -3,7 +3,7 @@ import { fn, userEvent, within } from 'storybook/test'
 import { ApiProvider } from '../api/ApiProvider.tsx'
 import { ApiError, type WorkspaceApi } from '../api/client.ts'
 import type { LiveError } from '../api/useLive.ts'
-import { workingView } from '../features/brief/fixtures.ts'
+import { summaryOf, workingView } from '../features/brief/fixtures.ts'
 import {
   appears,
   atRoute,
@@ -40,6 +40,7 @@ function data(state: {
     patchBrief: fn(),
     undoBrief: fn(),
     patchPrefs: fn(),
+    duplicateBrief: fn(),
   } as unknown as Data
 }
 
@@ -88,15 +89,7 @@ export const BriefFailed: Story = {
   args: {
     route: { kind: 'brief', id: 'missing' },
     data: data({
-      list: [
-        {
-          id: workingView.brief.id,
-          title: workingView.brief.title,
-          revision: workingView.brief.revision,
-          updatedAt: workingView.brief.updatedAt,
-          ready: workingView.ready,
-        },
-      ],
+      list: [summaryOf(workingView)],
       briefError: { offline: false, status: 500, message: '500' },
     }),
   },
@@ -157,6 +150,27 @@ export const ShellNotes: Story = {
           name: storyCopy().preferences.notes.title,
         }),
     )
+  },
+}
+
+/** 서랍에서 복제하면 새 지시서로 가고, 다시 확인하라는 알림이 뜬다(FLOW-002). */
+export const ShellDuplicate: Story = {
+  render: shellWith(fakeApi()),
+  beforeEach: atRoute('#/brief/'),
+  play: async ({ canvasElement }) => {
+    const copy = storyCopy()
+    const canvas = within(canvasElement)
+    await showsBrief(canvasElement)
+    await userEvent.click(
+      canvas.getByRole('button', { name: new RegExp(`^${copy.app.drawer.open}`) }),
+    )
+    await userEvent.click(
+      await canvas.findByRole('button', {
+        name: copy.app.drawer.duplicateLabel(workingView.brief.title),
+      }),
+    )
+    const title = copy.app.drawer.copyTitle(workingView.brief.title)
+    await appears(async () => await canvas.findByText(copy.app.notice.duplicated(title)))
   },
 }
 

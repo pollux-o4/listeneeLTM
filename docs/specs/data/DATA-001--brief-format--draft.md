@@ -10,11 +10,12 @@
 - 갈림길: 질문, 이유, 선택지(라벨·영향·들어갈 문장·대상 섹션), 추천, 선택과 선택자. 선택하면 그 선택지의 문장이 항목 하나로 들어가고, 다시 고르면 그 항목이 교체된다. 선택지는 2개 이상이고 id(지시서 id와 같은 규칙)가 서로 달라야 하며, 추천은 그중 하나다.
 - `revision`: 변경마다 1씩 증가한다. 변경 기록은 최근 50개까지 남긴다.
 - 변경 기록 한 건: revision, 작성자, 시각, `event`(무슨 변경인지 나타내는 코드와 관련 값: 항목 문장, 질문, 개수 등). 문장으로 만들지 않는다(ADR-0007). 되돌림은 되돌린 변경의 `event`를 담는다.
+- 학습: `analyzedRevision`(AI가 이 지시서에서 취향을 분석한 직후 revision), `derivedFrom`(복제 원본 id). 둘 다 없을 수 있다.
 - id: 소문자·숫자·하이픈, 64자 이하. 파일명으로 쓰이므로 경로를 벗어날 수 없다.
 
 ## 편집 연산 (`BriefPatch`)
 
-setTitle · addItem · editItem · removeItem · confirmItem · confirmSection · ask(`decide`로 추천대로 미리 정하기) · choose · acceptRecommended
+setTitle · addItem · editItem · removeItem · confirmItem · confirmSection · ask(`decide`로 추천대로 미리 정하기) · choose · acceptRecommended · markAnalyzed(분석 끝 표시)
 
 - 연산은 원자적이다. 실패하면 아무것도 바뀌지 않는다.
 - 누가 바꿨는지는 경로로 정한다: CLI는 AI, GUI는 사람.
@@ -29,6 +30,7 @@ setTitle · addItem · editItem · removeItem · confirmItem · confirmSection �
 - 단계 상태 우선순위: fork(열린 갈림길) > empty(필수인데 빔) > review(AI가 쓰거나 정한 것 중 확인 전이 있음) > clear.
 - `current`: fork나 empty인 첫 단계. 막힌 단계가 없으면 단계 수(= 전달).
 - `ready`: fork·empty가 없을 때 true. review는 전달을 막지 않는다.
+- 학습 상태(목록 요약, 취향 노트와 함께 계산): `unanalyzed`(분석 기록 없음) · `stale`(분석 후 바뀜) · `learned`(이 지시서를 출처로 한 활성 노트 수) · `nothingNew`(분석했고 출처 노트 없음).
 - `markdown`: 수신자에게 넘길 최종 지시서. 요청한 언어(`Locale`: `ko` 기본, `en`)로 제목 같은 고정 문구를 쓰고, 항목 내용은 쓴 그대로 둔다. 작성자·확인 여부 같은 사람용 메타는 넣지 않고, 열린 갈림길은 "미결"로 넣는다.
 
 ## 호환성

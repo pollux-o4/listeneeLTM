@@ -1,5 +1,101 @@
 {
   "screens": {
+    "app.drawer.close": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--nothing-to-analyze",
+      "app-screens--shell-duplicate"
+    ],
+    "app.drawer.copyTitle": ["app-screens--shell-duplicate"],
+    "app.drawer.duplicate": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--nothing-to-analyze",
+      "app-screens--shell-duplicate"
+    ],
+    "app.drawer.duplicateLabel": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--nothing-to-analyze",
+      "app-screens--shell-duplicate"
+    ],
+    "app.drawer.filterAll": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--nothing-to-analyze",
+      "app-screens--shell-duplicate"
+    ],
+    "app.drawer.filterTodo": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--nothing-to-analyze",
+      "app-screens--shell-duplicate"
+    ],
+    "app.drawer.from": ["app-briefdrawer--filter-and-duplicate", "app-briefdrawer--mixed"],
+    "app.drawer.lead": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--nothing-to-analyze",
+      "app-screens--shell-duplicate"
+    ],
+    "app.drawer.learning.learned": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--nothing-to-analyze",
+      "app-screens--shell-duplicate"
+    ],
+    "app.drawer.learning.nothingNew": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--mixed"
+    ],
+    "app.drawer.learning.stale": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--mixed"
+    ],
+    "app.drawer.learning.unanalyzed": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--mixed"
+    ],
+    "app.drawer.learningHint.learned": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--nothing-to-analyze",
+      "app-screens--shell-duplicate"
+    ],
+    "app.drawer.learningHint.nothingNew": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--mixed"
+    ],
+    "app.drawer.learningHint.stale": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--mixed"
+    ],
+    "app.drawer.learningHint.unanalyzed": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--mixed"
+    ],
+    "app.drawer.nothingTodo": ["app-briefdrawer--nothing-to-analyze"],
+    "app.drawer.open": [
+      "app-navigation--dark",
+      "app-navigation--language-selection",
+      "app-navigation--light",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "app-screens--shell-notes",
+      "app-screens--shell-welcome"
+    ],
+    "app.drawer.title": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--nothing-to-analyze",
+      "app-screens--shell-duplicate"
+    ],
+    "app.drawer.todoSuffix": ["app-navigation--dark"],
     "app.navigation.label": [
       "app-navigation--dark",
       "app-navigation--language-selection",
@@ -10,6 +106,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "app-screens--shell-notes",
       "app-screens--shell-welcome"
     ],
@@ -23,6 +120,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "app-screens--shell-notes",
       "app-screens--shell-welcome"
     ],
@@ -36,6 +134,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "app-screens--shell-notes",
       "app-screens--shell-welcome"
     ],
@@ -49,6 +148,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "app-screens--shell-notes",
       "app-screens--shell-welcome"
     ],
@@ -62,6 +162,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "app-screens--shell-notes",
       "app-screens--shell-welcome"
     ],
@@ -75,6 +176,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "app-screens--shell-notes",
       "app-screens--shell-welcome"
     ],
@@ -88,10 +190,16 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "app-screens--shell-notes",
       "app-screens--shell-welcome"
     ],
-    "app.navigation.ready": ["app-navigation--light"],
+    "app.navigation.ready": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--nothing-to-analyze",
+      "app-navigation--light"
+    ],
     "app.navigation.theme.dark": ["app-navigation--dark"],
     "app.navigation.theme.light": ["app-navigation--light"],
     "app.navigation.theme.system": [
@@ -102,6 +210,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "app-screens--shell-notes",
       "app-screens--shell-welcome"
     ],
@@ -115,6 +224,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "app-screens--shell-notes",
       "app-screens--shell-welcome"
     ],
@@ -128,10 +238,13 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "app-screens--shell-notes",
       "app-screens--shell-welcome"
     ],
     "app.navigation.working": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--mixed",
       "app-navigation--dark",
       "app-screens--disconnected",
       "app-screens--offline-save",
@@ -139,8 +252,10 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "app-screens--shell-notes"
     ],
+    "app.notice.duplicated": ["app-screens--shell-duplicate"],
     "app.notice.offlineSave": ["app-screens--offline-save", "design-primitives--save-failed"],
     "app.notice.removed": ["app-screens--removed"],
     "app.notice.retry": [
@@ -186,6 +301,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "app-screens--shell-notes",
       "app-screens--shell-welcome"
     ],
@@ -203,6 +319,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "app-screens--shell-notes"
     ],
     "app.shell.name": [
@@ -212,6 +329,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "app-screens--shell-welcome",
       "design-primitives--editing"
     ],
@@ -225,6 +343,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "app-screens--shell-notes",
       "app-screens--shell-welcome"
     ],
@@ -235,6 +354,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
@@ -277,6 +397,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-decisioncard--changing",
       "brief-decisioncard--open",
       "brief-workspace--acceptance",
@@ -292,6 +413,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-decisioncard--changing",
       "brief-decisioncard--open",
       "brief-workspace--acceptance",
@@ -345,6 +467,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
@@ -358,6 +481,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
@@ -371,6 +495,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
@@ -385,6 +510,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
@@ -399,6 +525,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
@@ -412,6 +539,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
@@ -432,6 +560,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-questpath--working",
       "brief-workspace--blocked-delivery",
       "brief-workspace--edit-item",
@@ -463,6 +592,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--edit-item",
@@ -478,6 +608,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--edit-item",
@@ -493,6 +624,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
@@ -512,6 +644,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
@@ -529,6 +662,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
@@ -546,6 +680,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
@@ -565,6 +700,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-questpath--working",
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
@@ -581,6 +717,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-questpath--ready",
       "brief-questpath--working",
       "brief-workspace--add-item",
@@ -602,6 +739,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-questpath--ready",
       "brief-questpath--working",
       "brief-workspace--add-item",
@@ -630,6 +768,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-questpath--ready",
       "brief-questpath--working",
       "brief-workspace--add-item",
@@ -652,6 +791,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-questpath--ready",
       "brief-questpath--working",
       "brief-workspace--acceptance",
@@ -677,6 +817,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-questpath--ready",
       "brief-questpath--working",
       "brief-workspace--add-item",
@@ -706,6 +847,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--acceptance",
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
@@ -725,6 +867,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
@@ -743,6 +886,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
@@ -763,6 +907,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--acceptance",
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
@@ -782,6 +927,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--acceptance",
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
@@ -801,6 +947,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--acceptance",
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
@@ -821,6 +968,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-questpath--ready",
       "brief-questpath--working",
       "brief-workspace--add-item",
@@ -843,6 +991,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
@@ -857,6 +1006,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-questpath--ready",
       "brief-questpath--working",
       "brief-workspace--add-item",
@@ -880,6 +1030,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-questpath--ready",
       "brief-questpath--working",
       "brief-workspace--add-item",
@@ -918,6 +1069,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-questpath--working",
       "brief-workspace--acceptance",
       "brief-workspace--blocked-delivery",
@@ -932,6 +1084,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-questpath--working",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
@@ -949,6 +1102,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
@@ -961,6 +1115,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
@@ -981,6 +1136,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
@@ -1000,6 +1156,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
@@ -1038,6 +1195,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "brief-questpath--working",
       "brief-workspace--blocked-delivery",
       "brief-workspace--edit-item",
@@ -1048,6 +1206,7 @@
       "app-screens--offline-save",
       "app-screens--removed",
       "app-screens--save-rejected",
+      "app-screens--shell-duplicate",
       "design-primitives--save-failed"
     ],
     "common.origin.ai": [
@@ -1057,6 +1216,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "app-screens--shell-notes",
       "brief-decisioncard--changing",
       "brief-decisioncard--decided-by-ai",
@@ -1071,6 +1231,7 @@
       "design-primitives--origins",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
     "common.origin.me": [
@@ -1080,6 +1241,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "app-screens--shell-notes",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
@@ -1093,6 +1255,7 @@
       "design-primitives--origins",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
     "common.origin.unconfirmed": [
@@ -1102,6 +1265,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "app-screens--shell-notes",
       "brief-decisioncard--changing",
       "brief-decisioncard--decided-by-ai",
@@ -1114,6 +1278,7 @@
       "design-primitives--origins",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
     "common.origin.written": [
@@ -1123,6 +1288,7 @@
       "app-screens--removed",
       "app-screens--save-rejected",
       "app-screens--shell",
+      "app-screens--shell-duplicate",
       "app-screens--shell-notes",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
@@ -1137,6 +1303,7 @@
       "design-primitives--origins",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
     "preferences.notes.add": [
@@ -1144,18 +1311,35 @@
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
       "preferences-notes--empty",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.children": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.childrenPending": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
     "preferences.notes.confirm": [
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
     "preferences.notes.confirmLabel": [
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
     "preferences.notes.defaultTopic": ["preferences-notes--add-without-topic"],
@@ -1163,12 +1347,14 @@
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
     "preferences.notes.editAction": [
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
     "preferences.notes.editLabel": ["preferences-notes--editing"],
@@ -1178,12 +1364,21 @@
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
     "preferences.notes.evidenceLabel": [
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.expand": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
     "preferences.notes.lead": [
@@ -1191,6 +1386,7 @@
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
       "preferences-notes--empty",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
     "preferences.notes.manualEvidence": ["preferences-notes--add-without-topic"],
@@ -1198,36 +1394,49 @@
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
     "preferences.notes.restore": [
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
     "preferences.notes.restoreLabel": [
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
     "preferences.notes.retire": [
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
     "preferences.notes.retired": [
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
     "preferences.notes.retireLabel": [
       "app-screens--shell-notes",
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.sources": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
     "preferences.notes.statementLabel": [
@@ -1235,6 +1444,7 @@
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
       "preferences-notes--empty",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
     "preferences.notes.statementPlaceholder": [
@@ -1242,6 +1452,7 @@
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
       "preferences-notes--empty",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
     "preferences.notes.title": [
@@ -1249,6 +1460,7 @@
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
       "preferences-notes--empty",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
     "preferences.notes.topicLabel": [
@@ -1256,6 +1468,7 @@
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
       "preferences-notes--empty",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ],
     "preferences.notes.topicPlaceholder": [
@@ -1263,10 +1476,37 @@
       "preferences-notes--add-without-topic",
       "preferences-notes--editing",
       "preferences-notes--empty",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.ungroup": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.ungroupLabel": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
       "preferences-notes--with-notes"
     ]
   },
   "stories": {
+    "app-briefdrawer--filter-and-duplicate": {
+      "title": "App/BriefDrawer",
+      "name": "Filter And Duplicate"
+    },
+    "app-briefdrawer--mixed": {
+      "title": "App/BriefDrawer",
+      "name": "Mixed"
+    },
+    "app-briefdrawer--nothing-to-analyze": {
+      "title": "App/BriefDrawer",
+      "name": "Nothing To Analyze"
+    },
     "app-navigation--dark": {
       "title": "App/Navigation",
       "name": "Dark"
@@ -1322,6 +1562,10 @@
     "app-screens--shell": {
       "title": "App/Screens",
       "name": "Shell"
+    },
+    "app-screens--shell-duplicate": {
+      "title": "App/Screens",
+      "name": "Shell Duplicate"
     },
     "app-screens--shell-notes": {
       "title": "App/Screens",
@@ -1451,12 +1695,112 @@
       "title": "Preferences/Notes",
       "name": "Empty"
     },
+    "preferences-notes--principle-toggle": {
+      "title": "Preferences/Notes",
+      "name": "Principle Toggle"
+    },
     "preferences-notes--with-notes": {
       "title": "Preferences/Notes",
       "name": "With Notes"
     }
   },
   "examples": {
+    "app.drawer.copyTitle": [
+      {
+        "story": "app-screens--shell-duplicate",
+        "args": {
+          "ko": ["HTML 갤러리 제작"],
+          "en": ["HTML 갤러리 제작"]
+        },
+        "text": {
+          "ko": "HTML 갤러리 제작 (사본)",
+          "en": "HTML 갤러리 제작 (copy)"
+        }
+      }
+    ],
+    "app.drawer.duplicateLabel": [
+      {
+        "story": "app-briefdrawer--mixed",
+        "args": {
+          "ko": ["HTML 갤러리 제작"],
+          "en": ["HTML 갤러리 제작"]
+        },
+        "text": {
+          "ko": "“HTML 갤러리 제작” 복제해서 새로 시작",
+          "en": "Duplicate “HTML 갤러리 제작” to start fresh"
+        }
+      },
+      {
+        "story": "app-briefdrawer--mixed",
+        "args": {
+          "ko": ["Gallery v2"],
+          "en": ["Gallery v2"]
+        },
+        "text": {
+          "ko": "“Gallery v2” 복제해서 새로 시작",
+          "en": "Duplicate “Gallery v2” to start fresh"
+        }
+      },
+      {
+        "story": "app-briefdrawer--mixed",
+        "args": {
+          "ko": ["Gallery v3"],
+          "en": ["Gallery v3"]
+        },
+        "text": {
+          "ko": "“Gallery v3” 복제해서 새로 시작",
+          "en": "Duplicate “Gallery v3” to start fresh"
+        }
+      },
+      {
+        "story": "app-briefdrawer--mixed",
+        "args": {
+          "ko": ["Landing page"],
+          "en": ["Landing page"]
+        },
+        "text": {
+          "ko": "“Landing page” 복제해서 새로 시작",
+          "en": "Duplicate “Landing page” to start fresh"
+        }
+      }
+    ],
+    "app.drawer.from": [
+      {
+        "story": "app-briefdrawer--mixed",
+        "args": {
+          "ko": ["HTML 갤러리 제작"],
+          "en": ["HTML 갤러리 제작"]
+        },
+        "text": {
+          "ko": "원본: HTML 갤러리 제작",
+          "en": "From: HTML 갤러리 제작"
+        }
+      }
+    ],
+    "app.drawer.learning.learned": [
+      {
+        "story": "app-briefdrawer--mixed",
+        "args": {
+          "ko": [3],
+          "en": [3]
+        },
+        "text": {
+          "ko": "배운 것 3",
+          "en": "Learned 3"
+        }
+      },
+      {
+        "story": "app-screens--shell-duplicate",
+        "args": {
+          "ko": [2],
+          "en": [2]
+        },
+        "text": {
+          "ko": "배운 것 2",
+          "en": "Learned 2"
+        }
+      }
+    ],
     "app.navigation.themeLabel": [
       {
         "story": "app-navigation--language-selection",
@@ -1489,6 +1833,19 @@
         "text": {
           "ko": "테마: 밝게. 눌러서 바꾸기",
           "en": "Theme: Light. Select to change"
+        }
+      }
+    ],
+    "app.notice.duplicated": [
+      {
+        "story": "app-screens--shell-duplicate",
+        "args": {
+          "ko": ["HTML 갤러리 제작 (사본)"],
+          "en": ["HTML 갤러리 제작 (copy)"]
+        },
+        "text": {
+          "ko": "“HTML 갤러리 제작 (사본)”(으)로 복제했어요. 항목은 다시 확인해 주세요.",
+          "en": "Duplicated as “HTML 갤러리 제작 (copy)”. Please review its items."
         }
       }
     ],
@@ -2036,7 +2393,44 @@
         }
       }
     ],
+    "preferences.notes.children": [
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": [2],
+          "en": [2]
+        },
+        "text": {
+          "ko": "기준 2",
+          "en": "2 preferences"
+        }
+      }
+    ],
+    "preferences.notes.childrenPending": [
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": [2],
+          "en": [2]
+        },
+        "text": {
+          "ko": "확인할 것 2",
+          "en": "2 to confirm"
+        }
+      }
+    ],
     "preferences.notes.confirmLabel": [
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": ["자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다"],
+          "en": ["자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다"]
+        },
+        "text": {
+          "ko": "“자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다” 맞아요",
+          "en": "Confirm “자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다”"
+        }
+      },
       {
         "story": "app-screens--shell-notes",
         "args": {
@@ -2046,6 +2440,17 @@
         "text": {
           "ko": "“업계 관행으로 자명한 선택은 묻지 말고 정한 뒤 알린다” 맞아요",
           "en": "Confirm “업계 관행으로 자명한 선택은 묻지 말고 정한 뒤 알린다”"
+        }
+      },
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": ["되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다"],
+          "en": ["되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다"]
+        },
+        "text": {
+          "ko": "“되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다” 맞아요",
+          "en": "Confirm “되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다”"
         }
       },
       {
@@ -2070,6 +2475,17 @@
         "text": {
           "ko": "“업계 관행으로 자명한 선택은 묻지 말고 정한 뒤 알린다” 고치기",
           "en": "Edit “업계 관행으로 자명한 선택은 묻지 말고 정한 뒤 알린다”"
+        }
+      },
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": ["되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다"],
+          "en": ["되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다"]
+        },
+        "text": {
+          "ko": "“되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다” 고치기",
+          "en": "Edit “되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다”"
         }
       },
       {
@@ -2123,6 +2539,17 @@
       {
         "story": "app-screens--shell-notes",
         "args": {
+          "ko": [3],
+          "en": [3]
+        },
+        "text": {
+          "ko": "근거 3개",
+          "en": "3 pieces of evidence"
+        }
+      },
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
           "ko": [2],
           "en": [2]
         },
@@ -2143,16 +2570,29 @@
         }
       }
     ],
+    "preferences.notes.expand": [
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": ["자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다"],
+          "en": ["자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다"]
+        },
+        "text": {
+          "ko": "“자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다” 하위 기준 보기",
+          "en": "Show preferences under “자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다”"
+        }
+      }
+    ],
     "preferences.notes.pending": [
       {
         "story": "app-screens--shell-notes",
         "args": {
-          "ko": [2],
-          "en": [2]
+          "ko": [4],
+          "en": [4]
         },
         "text": {
-          "ko": "확인할 취향 2개",
-          "en": "2 preferences to confirm"
+          "ko": "확인할 취향 4개",
+          "en": "4 preferences to confirm"
         }
       }
     ],
@@ -2197,6 +2637,17 @@
       {
         "story": "app-screens--shell-notes",
         "args": {
+          "ko": ["되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다"],
+          "en": ["되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다"]
+        },
+        "text": {
+          "ko": "“되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다” 내려놓기",
+          "en": "Retire “되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다”"
+        }
+      },
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
           "ko": ["어느 단계에서든 되돌아갈 수 있어야 한다"],
           "en": ["어느 단계에서든 되돌아갈 수 있어야 한다"]
         },
@@ -2214,6 +2665,19 @@
         "text": {
           "ko": "“부드러운 모션이되 프레임 저하는 없어야 한다” 내려놓기",
           "en": "Retire “부드러운 모션이되 프레임 저하는 없어야 한다”"
+        }
+      }
+    ],
+    "preferences.notes.ungroupLabel": [
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": ["자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다"],
+          "en": ["자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다"]
+        },
+        "text": {
+          "ko": "“자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다” 묶음 풀기",
+          "en": "Ungroup “자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다”"
         }
       }
     ]

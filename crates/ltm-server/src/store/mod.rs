@@ -65,9 +65,10 @@ impl FileStore {
     /// 나머지 지시서로 가는 길을 막지 않는다(그 파일은 `get`이 경로와 함께 알린다).
     pub fn list(&self) -> Result<Vec<BriefSummary>, StoreError> {
         let mut out = Vec::new();
+        let prefs = self.preferences()?;
         for id in json_stems(&self.root.join("briefs"))? {
             match self.get(&id) {
-                Ok(brief) => out.push(BriefSummary::from(&brief)),
+                Ok(brief) => out.push(BriefSummary::new(&brief, &prefs)),
                 Err(StoreError::Invalid(_) | StoreError::Corrupt { .. }) => {}
                 Err(e) => return Err(e),
             }
@@ -83,6 +84,17 @@ impl FileStore {
             return Err(StoreError::Exists(id.to_owned()));
         }
         let brief = Brief::new(id, title)?;
+        write_json(&self.brief_path(id)?, &brief)?;
+        Ok(brief)
+    }
+
+    /// 기존 지시서를 복제해 새로 시작한다(FLOW-002). 원본은 바뀌지 않는다.
+    pub fn duplicate(&self, from: &str, id: &str, title: &str, by: Actor) -> Result<Brief, StoreError> {
+        let _lock = self.lock()?;
+        if self.brief_path(id)?.exists() {
+            return Err(StoreError::Exists(id.to_owned()));
+        }
+        let brief = self.get(from)?.derive(id, title, by)?;
         write_json(&self.brief_path(id)?, &brief)?;
         Ok(brief)
     }

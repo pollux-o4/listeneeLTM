@@ -2,6 +2,25 @@
   "changes": [
     {
       "at": "1970-01-01T00:00:00.000Z",
+      "by": "ai",
+      "event": {
+        "count": 2,
+        "kind": "noteGrouped",
+        "statement": "자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다"
+      },
+      "revision": 8
+    },
+    {
+      "at": "1970-01-01T00:00:00.000Z",
+      "by": "ai",
+      "event": {
+        "kind": "noteAdded",
+        "statement": "되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다"
+      },
+      "revision": 7
+    },
+    {
+      "at": "1970-01-01T00:00:00.000Z",
       "by": "me",
       "event": {
         "kind": "noteRetired",
@@ -64,7 +83,11 @@
         "구조 선택을 업계 수준으로 맡김"
       ],
       "id": "p1",
+      "parent": "p8",
       "retired": false,
+      "sources": [
+        "gallery"
+      ],
       "statement": "업계 관행으로 자명한 선택은 묻지 말고 정한 뒤 알린다",
       "topic": "결정",
       "updatedAt": "1970-01-01T00:00:00.000Z"
@@ -77,6 +100,9 @@
       ],
       "id": "p3",
       "retired": false,
+      "sources": [
+        "gallery"
+      ],
       "statement": "어느 단계에서든 되돌아갈 수 있어야 한다",
       "topic": "탐색",
       "updatedAt": "1970-01-01T00:00:00.000Z"
@@ -89,6 +115,9 @@
       ],
       "id": "p4",
       "retired": false,
+      "sources": [
+        "gallery"
+      ],
       "statement": "부드러운 모션이되 프레임 저하는 없어야 한다",
       "topic": "화면",
       "updatedAt": "1970-01-01T00:00:00.000Z"
@@ -101,10 +130,40 @@
       ],
       "id": "p5",
       "retired": true,
+      "sources": [
+        "gallery"
+      ],
       "statement": "결과물은 작업 흐름과 별개로 다시 볼 수 있어야 한다",
       "topic": "화면",
       "updatedAt": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "by": "ai",
+      "confirmed": false,
+      "evidence": [
+        "갈림길을 추천대로 일괄 수락"
+      ],
+      "id": "p7",
+      "parent": "p8",
+      "retired": false,
+      "sources": [
+        "gallery"
+      ],
+      "statement": "되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다",
+      "topic": "결정",
+      "updatedAt": "1970-01-01T00:00:00.000Z"
+    },
+    {
+      "by": "ai",
+      "confirmed": false,
+      "evidence": [],
+      "id": "p8",
+      "retired": false,
+      "sources": [],
+      "statement": "자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다",
+      "topic": "결정",
+      "updatedAt": "1970-01-01T00:00:00.000Z"
     }
   ],
-  "revision": 6
+  "revision": 8
 }

@@ -151,6 +151,7 @@ fn export_ui_fixtures() {
         topic: topic.into(),
         statement: statement.into(),
         evidence: evidence.into(),
+        brief: Some("gallery".into()),
     };
     for (by, patch) in [
         (
@@ -189,6 +190,32 @@ fn export_ui_fixtures() {
         prefs.apply(patch, by).unwrap();
     }
     prefs.apply(PrefPatch::Retire { id: "p5".into() }, Actor::Me).unwrap();
+    // 비슷한 기준이 쌓이면 원칙으로 묶인다(ADR-0008): 결정 묶음은 원칙 1개 + 하위 기준 2개.
+    prefs
+        .apply(
+            note(
+                "결정",
+                "되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다",
+                "갈림길을 추천대로 일괄 수락",
+            ),
+            Actor::Ai,
+        )
+        .unwrap();
+    let members = prefs
+        .items
+        .iter()
+        .filter(|p| p.topic == "결정" && p.parent.is_none())
+        .map(|p| p.id.clone())
+        .collect();
+    prefs
+        .apply(
+            PrefPatch::Group {
+                statement: "자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다".into(),
+                members,
+            },
+            Actor::Ai,
+        )
+        .unwrap();
     let mut prefs = serde_json::to_value(&prefs).unwrap();
     freeze_times(&mut prefs);
     fs::write(dir.join("preferences.json"), serde_json::to_string_pretty(&prefs).unwrap() + "\n").unwrap();

@@ -49,6 +49,16 @@ pub(super) async fn create(
     Ok((StatusCode::CREATED, Json(workspace(&store, brief, lang)?)).into_response())
 }
 
+pub(super) async fn duplicate(
+    State(store): State<FileStore>,
+    Path(from): Path<String>,
+    Query(lang): Query<Language>,
+    Json(body): Json<CreateBody>,
+) -> Result<Response, ApiError> {
+    let brief = store.duplicate(&from, &body.id, &body.title, Actor::Me)?;
+    Ok((StatusCode::CREATED, Json(workspace(&store, brief, lang)?)).into_response())
+}
+
 pub(super) async fn read(
     State(store): State<FileStore>,
     Path(id): Path<String>,

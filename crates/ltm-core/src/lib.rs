@@ -16,6 +16,8 @@ pub use model::{
 };
 pub use prefs::{PrefError, PrefPatch, Preference, Preferences};
 pub use render::render_markdown;
-pub use view::{BriefSummary, BriefView, Issue, IssueCode, IssueKind, StageStatus, StageView};
+pub use view::{
+    BriefSummary, BriefView, Issue, IssueCode, IssueKind, LearningStatus, StageStatus, StageView,
+};
 
 pub use locale::Locale;

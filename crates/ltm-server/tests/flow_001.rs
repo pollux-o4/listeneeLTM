@@ -76,8 +76,12 @@ async fn api_maps_errors_to_status() {
 async fn preferences_are_shared_between_ai_and_gui() {
     let root = tempfile::tempdir().unwrap();
     let store = FileStore::new(root.path());
-    let note =
-        ltm_core::PrefPatch::Note { topic: "결정".into(), statement: "S".into(), evidence: "E".into() };
+    let note = ltm_core::PrefPatch::Note {
+        topic: "결정".into(),
+        statement: "S".into(),
+        evidence: "E".into(),
+        brief: None,
+    };
     store.patch_preferences(note, Actor::Ai).unwrap();
     let app = http::router(store.clone());
 
@@ -225,4 +229,27 @@ async fn workspace_markdown_uses_request_language_for_every_endpoint() {
     assert_eq!(undone["markdown"], "# Demo\n\n## Purpose\n- ship\n");
     let (_, read) = call(&app, "GET", "/api/briefs/demo?lang=en", None).await;
     assert_eq!(read["markdown"], undone["markdown"]);
+}
+
+/// FLOW-002·DATA-001: GUI 복제와 목록의 학습 상태.
+#[tokio::test]
+async fn gui_duplicates_a_brief_and_list_shows_learning() {
+    let root = tempfile::tempdir().unwrap();
+    let store = FileStore::new(root.path());
+    store.create("demo", "Demo").unwrap();
+    store.patch("demo", BriefPatch::MarkAnalyzed, Actor::Ai).unwrap();
+    let app = http::router(store.clone());
+
+    let body = json!({"id": "demo-2", "title": "Demo (copy)"});
+    let (status, view) = call(&app, "POST", "/api/briefs/demo/duplicate", Some(body.clone())).await;
+    assert_eq!(status, 201);
+    assert_eq!(view["brief"]["derivedFrom"], "demo");
+    assert_eq!(call(&app, "POST", "/api/briefs/demo/duplicate", Some(body)).await.0, 409);
+    let missing = json!({"id": "x-2", "title": "X"});
+    assert_eq!(call(&app, "POST", "/api/briefs/x/duplicate", Some(missing)).await.0, 404);
+
+    let (_, list) = call(&app, "GET", "/api/briefs", None).await;
+    assert_eq!(list[0]["learning"]["kind"], "nothingNew");
+    assert_eq!(list[1]["learning"]["kind"], "unanalyzed");
+    assert_eq!(list[1]["derivedFrom"], "demo");
 }

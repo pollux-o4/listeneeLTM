@@ -1,5 +1,6 @@
 /** 스토리 데이터: 코어 판정 결과 그대로(`cargo test`가 생성). 손으로 만든 판정 금지. */
 
+import type { BriefSummary } from '../../generated/BriefSummary.ts'
 import type { BriefView } from '../../generated/BriefView.ts'
 import done from '../../generated/fixtures/done.json'
 import empty from '../../generated/fixtures/empty.json'
@@ -24,6 +25,21 @@ export const startedView = ws(started)
 export const workingView = ws(working)
 export const reviewView = ws(review)
 export const doneView = ws(done)
+
+/** 목록 요약 대역. 학습 상태는 스토리마다 정한다. */
+export const summaryOf = (
+  view: WorkspaceView,
+  learning: BriefSummary['learning'] = { kind: 'unanalyzed' },
+  derivedFrom?: string,
+): BriefSummary => ({
+  id: view.brief.id,
+  title: view.brief.title,
+  revision: view.brief.revision,
+  updatedAt: view.brief.updatedAt,
+  ready: view.ready,
+  learning,
+  ...(derivedFrom ? { derivedFrom } : {}),
+})
 
 export function localizedFixture(view: WorkspaceView, locale: Locale): WorkspaceView {
   if (view === emptyView) return { ...view, markdown: empty.markdown[locale] }

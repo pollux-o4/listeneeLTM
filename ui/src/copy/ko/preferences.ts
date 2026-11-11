@@ -6,6 +6,12 @@ export const preferencesCopy = {
     emptyHint:
       '작업할수록 AI가 반복되는 선택에서 취향을 읽어 여기에 남겨요.\n맞는지 확인만 해 주세요.',
     restore: '다시 적용',
+    children: (count: number) => `기준 ${count}`,
+    childrenPending: (count: number) => `확인할 것 ${count}`,
+    expand: (statement: string) => `“${statement}” 하위 기준 보기`,
+    ungroup: '묶음 풀기',
+    ungroupLabel: (statement: string) => `“${statement}” 묶음 풀기`,
+    sources: '나온 지시서',
     editLabel: '기준 고치기',
     confirm: '맞아요',
     edit: '고치기',

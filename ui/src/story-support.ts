@@ -1,7 +1,7 @@
 import { expect, waitFor } from 'storybook/test'
 import type { WorkspaceApi } from './api/client.ts'
 import { matchLocale, messages } from './copy/index.ts'
-import { workingView } from './features/brief/fixtures.ts'
+import { summaryOf, workingView } from './features/brief/fixtures.ts'
 import prefs from './generated/fixtures/preferences.json'
 import type { Preferences } from './generated/Preferences.ts'
 
@@ -27,19 +27,12 @@ export function mockClipboard(fails = false) {
 /** 고정 데이터를 돌려주는 데이터 경계 대역. 필요한 동작만 덮어쓴다. */
 export function fakeApi(overrides: Partial<WorkspaceApi> = {}): WorkspaceApi {
   return {
-    briefs: async () => [
-      {
-        id: workingView.brief.id,
-        title: workingView.brief.title,
-        revision: workingView.brief.revision,
-        updatedAt: '',
-        ready: workingView.ready,
-      },
-    ],
+    briefs: async () => [summaryOf(workingView, { kind: 'learned', count: 2 })],
     brief: async () => workingView,
     preferences: async () => prefs as Preferences,
     patchBrief: async () => workingView,
     undo: async () => workingView,
+    duplicate: async () => workingView,
     patchPreferences: async () => prefs as Preferences,
     ...overrides,
   }

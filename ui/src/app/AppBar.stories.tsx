@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { fn } from 'storybook/test'
-import { doneView, workingView } from '../features/brief/fixtures.ts'
+import { doneView, summaryOf, workingView } from '../features/brief/fixtures.ts'
 import { AppBar } from './AppBar.tsx'
 import './app.css'
 
@@ -14,6 +14,9 @@ const meta = {
     pendingNotes: 2,
     theme: 'system',
     onNextTheme: fn(),
+    drawerOpen: false,
+    onToggleDrawer: fn(),
+    drawerButton: null,
   },
 } satisfies Meta<typeof AppBar>
 export default meta
@@ -21,12 +24,6 @@ export default meta
 type Story = StoryObj<typeof meta>
 export const LanguageSelection: Story = {}
 
-const briefs = [workingView, doneView].map((view) => ({
-  id: view.brief.id,
-  title: view.brief.title,
-  revision: view.brief.revision,
-  updatedAt: view.brief.updatedAt,
-  ready: view.ready,
-}))
+const briefs = [summaryOf(workingView), summaryOf(doneView, { kind: 'learned', count: 3 })]
 export const Dark: Story = { args: { briefs: briefs.slice(0, 1), theme: 'dark' } }
 export const Light: Story = { args: { briefs: briefs.slice(1), theme: 'light' } }

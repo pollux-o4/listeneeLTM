@@ -1,7 +1,8 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useText } from '../copy/index.ts'
 import { Notice } from '../design/index.ts'
 import { AppBar } from './AppBar.tsx'
+import { BriefDrawer } from './BriefDrawer.tsx'
 import { useWorkspaceData } from './data/useWorkspaceData.ts'
 import { MainScreen } from './MainScreen.tsx'
 import { useRoute } from './route.ts'
@@ -16,7 +17,13 @@ export function App() {
   const { theme, next } = useTheme()
   const { notice, show, close } = useNotice()
   const data = useWorkspaceData(route, show)
-  const { list, prefs, brief, briefId } = data
+  const { list, prefs, brief, briefId, duplicateBrief } = data
+  const [drawerOpen, setDrawerOpen] = useState(false)
+  const drawerButton = useRef<HTMLButtonElement>(null)
+  const closeDrawer = useCallback(() => {
+    setDrawerOpen(false)
+    drawerButton.current?.focus()
+  }, [])
 
   const pendingNotes = prefs.data?.items.filter((p) => !p.retired && !p.confirmed).length ?? 0
   const errors = [list.error, brief.error, prefs.error].filter((e) => e !== undefined)
@@ -39,7 +46,18 @@ export function App() {
         pendingNotes={pendingNotes}
         theme={theme}
         onNextTheme={next}
+        drawerOpen={drawerOpen}
+        onToggleDrawer={() => (drawerOpen ? closeDrawer() : setDrawerOpen(true))}
+        drawerButton={drawerButton}
       />
+      {drawerOpen && (
+        <BriefDrawer
+          briefs={list.data ?? []}
+          briefId={briefId}
+          onClose={closeDrawer}
+          onDuplicate={duplicateBrief}
+        />
+      )}
 
       {errors.length > 0 && !neverConnected && (brief.data || route.kind === 'notes') && (
         <p className="app-banner" role="status">

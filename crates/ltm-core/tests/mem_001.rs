@@ -2,7 +2,12 @@
 use ltm_core::{Actor, PrefError, PrefPatch, Preferences};
 
 fn note(statement: &str, evidence: &str) -> PrefPatch {
-    PrefPatch::Note { topic: "결정".into(), statement: statement.into(), evidence: evidence.into() }
+    PrefPatch::Note {
+        topic: "결정".into(),
+        statement: statement.into(),
+        evidence: evidence.into(),
+        brief: None,
+    }
 }
 
 #[test]
@@ -80,6 +85,7 @@ fn sentences_fold_newlines_before_matching_and_storing() {
                 topic: " 판단\r\n 기준 ".into(),
                 statement: " 먼저\n 확인 ".into(),
                 evidence: " 반복\r 요청 ".into(),
+                brief: None,
             },
             Actor::Ai,
         )
@@ -90,6 +96,7 @@ fn sentences_fold_newlines_before_matching_and_storing() {
                 topic: "판단 기준".into(),
                 statement: "먼저 확인".into(),
                 evidence: "반복 요청".into(),
+                brief: None,
             },
             Actor::Ai,
         )
@@ -100,7 +107,9 @@ fn sentences_fold_newlines_before_matching_and_storing() {
     assert_eq!(prefs.items[0].evidence, ["반복 요청"]);
     let id = prefs.items[0].id.clone();
     prefs.apply(PrefPatch::Edit { id: id.clone(), statement: " 나중\r\n 확인 ".into() }, Actor::Me).unwrap();
-    prefs.apply(PrefPatch::Reinforce { id, evidence: " 추가\n 근거 ".into() }, Actor::Ai).unwrap();
+    prefs
+        .apply(PrefPatch::Reinforce { id, evidence: " 추가\n 근거 ".into(), brief: None }, Actor::Ai)
+        .unwrap();
     assert_eq!(prefs.items[0].statement, "나중 확인");
     assert_eq!(prefs.items[0].evidence[1], "추가 근거");
     let before = prefs.clone();
@@ -116,7 +125,12 @@ fn preference_markdown_locales_preserve_user_text() {
     assert_eq!(prefs.render_markdown(Locale::En), "# Preference notes\n\n(No entries)\n");
     prefs
         .apply(
-            PrefPatch::Note { topic: "주제".into(), statement: "문장".into(), evidence: "근거".into() },
+            PrefPatch::Note {
+                topic: "주제".into(),
+                statement: "문장".into(),
+                evidence: "근거".into(),
+                brief: None,
+            },
             Actor::Ai,
         )
         .unwrap();
@@ -126,4 +140,61 @@ fn preference_markdown_locales_preserve_user_text() {
         prefs.render_markdown(Locale::En),
         "# Preference notes\n\n## 주제\n- 문장 (unconfirmed) · Evidence: 1\n"
     );
+}
+
+fn note_in(topic: &str, statement: &str, brief: &str) -> PrefPatch {
+    PrefPatch::Note {
+        topic: topic.into(),
+        statement: statement.into(),
+        evidence: "e".into(),
+        brief: Some(brief.into()),
+    }
+}
+
+#[test]
+fn sources_record_which_briefs_taught_a_preference() {
+    let mut p = Preferences::default();
+    p.apply(note_in("결정", "A", "gallery"), Actor::Ai).unwrap();
+    p.apply(note_in("결정", "A", "shop"), Actor::Ai).unwrap();
+    p.apply(note_in("결정", "A", "gallery"), Actor::Ai).unwrap();
+    assert_eq!(p.items[0].sources, ["shop", "gallery"]);
+    let bad = PrefPatch::Note {
+        topic: "t".into(),
+        statement: "s".into(),
+        evidence: "e".into(),
+        brief: Some("../x".into()),
+    };
+    assert!(matches!(p.apply(bad, Actor::Ai), Err(PrefError::InvalidBrief(_))));
+}
+
+#[test]
+fn principles_group_two_levels_within_a_topic() {
+    let mut p = Preferences::default();
+    for s in ["A", "B", "C"] {
+        p.apply(note_in("결정", s, "gallery"), Actor::Ai).unwrap();
+    }
+    p.apply(note_in("화면", "D", "gallery"), Actor::Ai).unwrap();
+    let ids: Vec<String> = p.items.iter().map(|i| i.id.clone()).collect();
+    let group = |members: &[&String]| PrefPatch::Group {
+        statement: "자명한 것은 정한다".into(),
+        members: members.iter().map(|s| (*s).clone()).collect(),
+    };
+
+    assert!(matches!(p.apply(group(&[&ids[0]]), Actor::Ai), Err(PrefError::InvalidGroup(_))));
+    assert!(matches!(p.apply(group(&[&ids[0], &ids[3]]), Actor::Ai), Err(PrefError::InvalidGroup(_))));
+
+    p.apply(group(&[&ids[0], &ids[1]]), Actor::Ai).unwrap();
+    let principle = p.items.last().unwrap().clone();
+    assert!(!principle.confirmed && principle.topic == "결정");
+    assert_eq!(p.items.iter().filter(|i| i.parent.as_ref() == Some(&principle.id)).count(), 2);
+    // 2단 고정: 하위 기준이나 원칙은 다시 묶을 수 없다.
+    assert!(matches!(p.apply(group(&[&ids[0], &ids[2]]), Actor::Ai), Err(PrefError::InvalidGroup(_))));
+    assert!(matches!(p.apply(group(&[&principle.id, &ids[2]]), Actor::Ai), Err(PrefError::InvalidGroup(_))));
+
+    let md = p.render_markdown(ltm_core::Locale::Ko);
+    assert!(md.contains("- 자명한 것은 정한다 (확인 전) · 근거 2\n  - A"), "{md}");
+
+    p.apply(PrefPatch::Ungroup { id: principle.id.clone() }, Actor::Me).unwrap();
+    assert!(p.items.iter().all(|i| i.parent.is_none()));
+    assert!(p.items.iter().find(|i| i.id == principle.id).unwrap().retired);
 }

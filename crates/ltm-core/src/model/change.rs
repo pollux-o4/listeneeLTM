@@ -24,6 +24,10 @@ pub enum ChangeEvent {
     NoteConfirmed { statement: String },
     NoteRetired { statement: String },
     NoteRestored { statement: String },
+    NoteGrouped { statement: String, count: u32 },
+    NoteUngrouped { statement: String },
+    Analyzed {},
+    Derived { from: String },
     Legacy { summary: String },
 }
 

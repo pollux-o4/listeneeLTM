@@ -18,6 +18,7 @@ pub fn router(store: FileStore) -> Router {
         .route("/api/briefs", get(handlers::list).post(handlers::create))
         .route("/api/briefs/{id}", get(handlers::read).patch(handlers::patch))
         .route("/api/briefs/{id}/undo", post(handlers::undo))
+        .route("/api/briefs/{id}/duplicate", post(handlers::duplicate))
         .route("/api/preferences", get(handlers::prefs).patch(handlers::patch_prefs))
         .route("/api/{*rest}", axum::routing::any(handlers::unknown_api))
         .fallback(assets::serve)

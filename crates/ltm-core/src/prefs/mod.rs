@@ -19,6 +19,13 @@ pub struct Preference {
     pub statement: String,
     /// 근거: 관찰된 요청을 짧게 요약(원문 인용 아님). 최신이 뒤.
     pub evidence: Vec<String>,
+    /// 근거가 나온 지시서 id(최근 것만). 지시서의 학습 상태와 출처 추적에 쓴다.
+    #[serde(default)]
+    pub sources: Vec<String>,
+    /// 상위 원칙 id. 원칙 = 하위 기준을 가진 항목(2단, ADR-0008).
+    #[ts(optional)]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub parent: Option<String>,
     pub by: Actor,
     pub confirmed: bool,
     /// 더 이상 적용하지 않음. 이력 보존을 위해 지우지 않는다.
@@ -45,11 +52,27 @@ pub enum PrefPatch {
         topic: String,
         statement: String,
         evidence: String,
+        /// 근거가 나온 지시서 id
+        #[ts(optional)]
+        #[serde(default)]
+        brief: Option<String>,
     },
     /// 기존 기준에 근거 추가
     Reinforce {
         id: String,
         evidence: String,
+        #[ts(optional)]
+        #[serde(default)]
+        brief: Option<String>,
+    },
+    /// 같은 묶음의 기준 여럿을 아우르는 원칙을 만든다. 하위 기준은 그대로 남는다.
+    Group {
+        statement: String,
+        members: Vec<String>,
+    },
+    /// 원칙을 내려놓고 하위 기준을 최상위로 되돌린다.
+    Ungroup {
+        id: String,
     },
     Edit {
         id: String,
@@ -74,6 +97,10 @@ pub enum PrefError {
     EmptyText,
     #[error("nothing to change")]
     NoOp,
+    #[error("cannot group: {0}")]
+    InvalidGroup(&'static str),
+    #[error("invalid brief id: {0}")]
+    InvalidBrief(String),
 }
 
 impl From<BriefError> for PrefError {

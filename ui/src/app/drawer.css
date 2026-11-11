@@ -1,0 +1,160 @@
+/* 지시서 서랍: 오른쪽 옆 패널. 들어올 때 transform·opacity만 움직인다(UX-001 모션). */
+.bd {
+  position: fixed;
+  z-index: 9;
+  top: var(--bar-h, 49px);
+  right: 0;
+  bottom: 0;
+  width: min(380px, 100vw);
+  box-sizing: border-box;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 18px calc(var(--px) * 6) 24px;
+  background: var(--c-surface);
+  box-shadow: calc(var(--px) * -1) 0 0 var(--c-line);
+  animation: bd-in var(--dur-base) var(--ease-soft) both;
+}
+@keyframes bd-in {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+}
+.bd-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bd-head h2 {
+  margin: 0;
+  font-weight: 400;
+}
+.bd-head h2:focus {
+  outline: none;
+}
+.bd-lead,
+.bd-empty {
+  margin: 0;
+  color: var(--c-muted);
+}
+.bd-filter {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: flex;
+  gap: 9px;
+}
+.bd-chip {
+  min-height: var(--hit);
+  padding: 0 9px;
+  font: inherit;
+  font-size: var(--fs-small);
+  color: var(--c-muted);
+  background: none;
+  border: 0;
+  box-shadow: inset 0 0 0 1px var(--c-muted);
+  cursor: pointer;
+}
+.bd-chip[aria-pressed="true"] {
+  color: var(--c-on-accent);
+  background: var(--c-accent);
+  box-shadow: none;
+}
+.bd-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 3px;
+}
+/* 행: 제목(열기) / 상태 줄 · 오른쪽 복제 */
+.bd-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 12px;
+  align-items: center;
+  padding: 9px 0;
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--c-line) 40%, transparent);
+  animation: ltm-rise var(--dur-base) var(--ease-soft) both;
+  animation-delay: calc(var(--i, 0) * 30ms);
+}
+.bd-open {
+  grid-column: 1;
+  display: grid;
+  grid-template-columns: 15px minmax(0, 1fr);
+  justify-items: start;
+  align-items: center;
+  gap: 9px;
+  min-height: var(--hit);
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+  color: var(--c-text);
+  text-decoration: none;
+}
+.bd-open[aria-current="page"] .bd-title {
+  text-decoration: underline;
+  text-decoration-color: var(--c-accent);
+  text-decoration-thickness: var(--px);
+  text-underline-offset: 6px;
+}
+.bd-open .app-dot {
+  justify-self: center;
+}
+.bd-title {
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bd-meta {
+  grid-column: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  padding-left: 24px;
+  font-size: var(--fs-small);
+  color: var(--c-muted);
+}
+.bd-duplicate {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+/* 도장: 미분석 = 점선, 다시 분석 = ↻ 실선, 배운 것 = 채움, 새것 없음 = 흐린 글자 */
+.bd-stamp {
+  padding: 0 6px;
+  line-height: 20px;
+  color: var(--c-muted);
+  text-decoration: none;
+}
+.bd-stamp[data-kind="unanalyzed"] {
+  outline: 1px dashed var(--c-muted);
+}
+.bd-stamp[data-kind="stale"] {
+  color: var(--c-text);
+  outline: 1px solid var(--c-glow);
+}
+.bd-stamp[data-kind="stale"]::before {
+  content: "↻ ";
+}
+.bd-stamp[data-kind="learned"] {
+  color: var(--c-on-accent);
+  background: var(--c-accent);
+}
+.bd-stamp[data-kind="learned"]:hover {
+  text-decoration: underline;
+}
+.app-drawer-toggle[aria-expanded="true"] {
+  color: var(--c-text);
+}
+/* 좁은 화면: 앱 바가 여러 줄로 접혀 높이가 달라지므로, 서랍이 화면 전체를 쓰고 자체 닫기 버튼을 둔다. */
+@media (max-width: 560px) {
+  .bd {
+    top: 0;
+    z-index: 11;
+  }
+}

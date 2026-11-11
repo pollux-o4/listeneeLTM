@@ -21,8 +21,13 @@ struct Cli {
 enum Command {
     /// 프로젝트에 LTM을 연결한다: `.ltm/` 생성, AI 안내 등록
     Init,
-    /// 새 지시서를 만든다
-    New { id: String, title: String },
+    /// 새 지시서를 만든다. `--from <id>`면 그 지시서를 복제해 시작한다
+    New {
+        id: String,
+        title: String,
+        #[arg(long)]
+        from: Option<String>,
+    },
     /// 지시서 목록 (JSON)
     List,
     /// 지시서와 판정(단계 상태·막힘·확인 전) (JSON)
@@ -57,7 +62,7 @@ async fn main() -> anyhow::Result<()> {
     let store = FileStore::new(&cli.project);
     match cli.command {
         Command::Init => commands::init::run(&cli.project),
-        Command::New { id, title } => commands::brief::new(&store, &id, &title),
+        Command::New { id, title, from } => commands::brief::new(&store, &id, &title, from.as_deref()),
         Command::List => commands::brief::list(&store),
         Command::Check { id } => commands::brief::check(&store, &id),
         Command::Set { id, patch } => commands::brief::set(&store, &id, &patch),

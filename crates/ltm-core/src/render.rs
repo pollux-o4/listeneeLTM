@@ -31,20 +31,34 @@ impl Preferences {
     /// AI가 작업 전에 읽는 요약: 활성 항목만, topic별, 확인 전은 표시. 근거는 개수만.
     pub fn render_markdown(&self, locale: Locale) -> String {
         let text = locale::text(locale);
-        let mut active: Vec<&Preference> = self.items.iter().filter(|p| !p.retired).collect();
+        let active: Vec<&Preference> = self.items.iter().filter(|p| !p.retired).collect();
         if active.is_empty() {
             return text.empty_preferences.to_owned();
         }
-        active.sort_by(|a, b| a.topic.cmp(&b.topic).then(b.evidence.len().cmp(&a.evidence.len())));
+        // 위에서 아래로: 묶음 → 원칙(또는 홀로 선 기준) → 하위 기준(ADR-0008).
+        let children = |id: &str| -> Vec<&Preference> {
+            active.iter().filter(|c| c.parent.as_deref() == Some(id)).copied().collect()
+        };
+        let weight = |p: &Preference| {
+            p.evidence.len() + children(&p.id).iter().map(|c| c.evidence.len()).sum::<usize>()
+        };
+        let mut top: Vec<&Preference> = active.iter().filter(|p| p.parent.is_none()).copied().collect();
+        top.sort_by(|a, b| a.topic.cmp(&b.topic).then(weight(b).cmp(&weight(a))));
+        let line = |p: &Preference, indent: &str| {
+            let mark = if p.confirmed { "" } else { text.unconfirmed };
+            format!("{indent}- {}{mark} · {} {}\n", p.statement, text.evidence, weight(p))
+        };
         let mut out = String::from(text.preferences_title);
         let mut topic = "";
-        for p in active {
+        for p in top {
             if p.topic != topic {
                 topic = &p.topic;
                 out.push_str(&format!("\n## {topic}\n"));
             }
-            let mark = if p.confirmed { "" } else { text.unconfirmed };
-            out.push_str(&format!("- {}{mark} · {} {}\n", p.statement, text.evidence, p.evidence.len()));
+            out.push_str(&line(p, ""));
+            for c in children(&p.id) {
+                out.push_str(&line(c, "  "));
+            }
         }
         out
     }

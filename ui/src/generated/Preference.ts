@@ -13,7 +13,15 @@ statement: string,
 /**
  * 근거: 관찰된 요청을 짧게 요약(원문 인용 아님). 최신이 뒤.
  */
-evidence: Array<string>, by: Actor, confirmed: boolean, 
+evidence: Array<string>, 
+/**
+ * 근거가 나온 지시서 id(최근 것만). 지시서의 학습 상태와 출처 추적에 쓴다.
+ */
+sources: Array<string>, 
+/**
+ * 상위 원칙 id. 원칙 = 하위 기준을 가진 항목(2단, ADR-0008).
+ */
+parent?: string, by: Actor, confirmed: boolean, 
 /**
  * 더 이상 적용하지 않음. 이력 보존을 위해 지우지 않는다.
  */

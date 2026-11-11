@@ -41,6 +41,8 @@ pub enum BriefPatch {
     },
     /// 열린 갈림길을 모두 추천대로 정한다.
     AcceptRecommended,
+    /// AI가 이 지시서에서 취향 분석을 마쳤다(학습 상태, ADR-0008).
+    MarkAnalyzed,
 }
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, TS)]
@@ -112,6 +114,11 @@ impl Brief {
             BriefPatch::Ask { decision } => decisions::ask(self, decision, by),
             BriefPatch::Choose { decision, option } => decisions::choose(self, &decision, &option, by),
             BriefPatch::AcceptRecommended => decisions::accept_recommended(self, by),
+            BriefPatch::MarkAnalyzed => {
+                // 적용 후 revision을 기록해, 이후 변경이 있으면 다시 분석 대상이 된다.
+                self.analyzed_revision = Some(self.revision + 1);
+                Ok(ChangeEvent::Analyzed {})
+            }
         }
     }
 }

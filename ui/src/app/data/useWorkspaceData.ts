@@ -4,9 +4,10 @@ import { useLive } from '../../api/useLive.ts'
 import { useLocale, useText } from '../../copy/index.ts'
 import type { NoticeContent } from '../../design/index.ts'
 import type { BriefPatch } from '../../generated/BriefPatch.ts'
+import type { BriefSummary } from '../../generated/BriefSummary.ts'
 import type { PrefPatch } from '../../generated/PrefPatch.ts'
 import type { WorkspaceView } from '../../generated/WorkspaceView.ts'
-import type { Route } from '../route.ts'
+import { href, type Route } from '../route.ts'
 import {
   briefIsStale,
   briefVersion,
@@ -60,5 +61,26 @@ export function useWorkspaceData(route: Route, notify: (n: NoticeContent) => voi
 
   const patchPrefs = (p: PrefPatch) => write(() => api.patchPreferences(p), prefsTarget)
 
-  return { list, prefs, brief, briefId, patchBrief, undoBrief, patchPrefs }
+  /** 복제해 새로 시작(FLOW-002): 비어 있는 `<원본>-N` id로 만들고 그 지시서로 간다. */
+  const duplicateBrief = async (from: BriefSummary) => {
+    const taken = new Set((list.data ?? []).map((b) => b.id))
+    const base = from.id.slice(0, 60)
+    let n = 2
+    while (taken.has(`${base}-${n}`)) n++
+    const id = `${base}-${n}`
+    const title = copy.app.drawer.copyTitle(from.title)
+    let created = false
+    const run = async () => {
+      const view = await api.duplicate(from.id, id, title, locale)
+      created = true
+      return view
+    }
+    const ok = await write(run, { set: () => {}, refresh: list.refresh })
+    if (ok && created) {
+      window.location.hash = href({ kind: 'brief', id })
+      notify({ text: copy.app.notice.duplicated(title) })
+    }
+  }
+
+  return { list, prefs, brief, briefId, patchBrief, undoBrief, patchPrefs, duplicateBrief }
 }

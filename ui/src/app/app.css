@@ -261,3 +261,20 @@
   padding: calc(2 * var(--px));
   flex-shrink: 0;
 }
+/* 서랍 열기: 픽셀 목록 아이콘 */
+.app-drawer-toggle {
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.app-drawer-icon {
+  width: 12px;
+  height: 10px;
+  background: linear-gradient(
+    currentColor 0 2px,
+    transparent 2px 4px,
+    currentColor 4px 6px,
+    transparent 6px 8px,
+    currentColor 8px 10px
+  );
+}

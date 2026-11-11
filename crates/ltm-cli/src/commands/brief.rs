@@ -8,8 +8,12 @@ fn print(value: &impl Serialize) -> anyhow::Result<()> {
     Ok(())
 }
 
-pub fn new(store: &FileStore, id: &str, title: &str) -> anyhow::Result<()> {
-    print(&BriefView::from(store.create(id, title)?))
+pub fn new(store: &FileStore, id: &str, title: &str, from: Option<&str>) -> anyhow::Result<()> {
+    let brief = match from {
+        Some(from) => store.duplicate(from, id, title, Actor::Ai)?,
+        None => store.create(id, title)?,
+    };
+    print(&BriefView::from(brief))
 }
 
 pub fn list(store: &FileStore) -> anyhow::Result<()> {

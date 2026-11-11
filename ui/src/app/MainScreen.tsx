@@ -25,7 +25,14 @@ export function MainScreen({ route, data }: { route: Route; data: Data }) {
     )
 
   if (route.kind === 'notes') {
-    if (prefs.data) return <PreferenceNotes prefs={prefs.data} onPatch={patchPrefs} />
+    if (prefs.data)
+      return (
+        <PreferenceNotes
+          prefs={prefs.data}
+          onPatch={patchPrefs}
+          briefHref={(id) => href({ kind: 'brief', id })}
+        />
+      )
     if (prefs.error)
       return (
         <Empty title={copy.app.screen.notesError}>

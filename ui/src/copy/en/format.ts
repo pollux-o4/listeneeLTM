@@ -49,6 +49,14 @@ export function change(event: ChangeEvent): string {
       return `Retired preference: ${event.statement}`
     case 'noteRestored':
       return `Restored preference: ${event.statement}`
+    case 'noteGrouped':
+      return `Grouped ${event.count} preferences under "${event.statement}"`
+    case 'noteUngrouped':
+      return `Ungrouped "${event.statement}"`
+    case 'analyzed':
+      return 'Analyzed for preferences'
+    case 'derived':
+      return `Duplicated from "${event.from}"`
     case 'legacy':
       return event.summary
   }

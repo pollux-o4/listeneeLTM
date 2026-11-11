@@ -27,6 +27,14 @@ pub struct Brief {
     /// 최신이 앞. 길이는 `CHANGE_LOG_LIMIT`로 제한.
     #[serde(default)]
     pub changes: Vec<Change>,
+    /// AI가 이 지시서에서 취향을 분석한 직후의 revision(ADR-0008). 이후 바뀌면 다시 분석 대상.
+    #[ts(optional, type = "number")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub analyzed_revision: Option<u64>,
+    /// 복제 원본 지시서 id(FLOW-002).
+    #[ts(optional)]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub derived_from: Option<String>,
 }
 
 #[derive(Debug, thiserror::Error, PartialEq)]
@@ -48,7 +56,30 @@ impl Brief {
             sections: SECTION_KEYS.into_iter().map(|k| (k, Vec::new())).collect(),
             decisions: Vec::new(),
             changes: Vec::new(),
+            analyzed_revision: None,
+            derived_from: None,
         })
+    }
+
+    /// 복제해 새로 시작한다(FLOW-002): 내용·갈림길은 가져가고, 항목은 새 맥락에서 다시 보도록 확인 전으로,
+    /// 기록·분석 버전은 비운다.
+    pub fn derive(&self, id: &str, title: &str, by: Actor) -> Result<Self, BriefError> {
+        let mut next = Self::new(id, title)?;
+        next.sections = self.sections.clone();
+        for item in next.sections.values_mut().flatten() {
+            item.confirmed = false;
+        }
+        next.decisions = self.decisions.clone();
+        next.derived_from = Some(self.id.clone());
+        next.revision = 1;
+        record(
+            &mut next.changes,
+            1,
+            by,
+            ChangeEvent::Derived { from: self.id.clone() },
+            next.updated_at.clone(),
+        );
+        Ok(next)
     }
 
     /// 스냅샷의 내용으로 되돌리되 현재 revision과 갱신 시각을 이어간다.

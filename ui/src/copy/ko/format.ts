@@ -49,6 +49,14 @@ export function change(event: ChangeEvent): string {
       return `"${event.statement}" 내려놓음`
     case 'noteRestored':
       return `"${event.statement}" 다시 적용`
+    case 'noteGrouped':
+      return `기준 ${event.count}개를 "${event.statement}"(으)로 묶음`
+    case 'noteUngrouped':
+      return `"${event.statement}" 묶음 풀기`
+    case 'analyzed':
+      return '취향 분석 완료'
+    case 'derived':
+      return `"${event.from}"에서 복제`
     case 'legacy':
       return event.summary
   }

@@ -2,11 +2,15 @@ import { useEffect, useRef } from 'react'
 import { useLocale, useText } from '../copy/index.ts'
 import { icons, PixelSprite } from '../design/index.ts'
 import type { BriefSummary } from '../generated/BriefSummary.ts'
+import { DRAWER_ID, needsAnalysis } from './BriefDrawer.tsx'
 import { href, type Route } from './route.ts'
 import type { Theme } from './theme.ts'
 
 type Props = {
   briefs: BriefSummary[]
+  drawerOpen: boolean
+  onToggleDrawer: () => void
+  drawerButton: React.Ref<HTMLButtonElement>
   briefId: string | undefined
   route: Route
   pendingNotes: number
@@ -15,10 +19,21 @@ type Props = {
 }
 
 /** 상단 이동: 지시서들 · 취향 노트 · 테마. 어디서든 한 번에 갈 수 있다(비차단 이동). */
-export function AppBar({ briefs, briefId, route, pendingNotes, theme, onNextTheme }: Props) {
+export function AppBar({
+  briefs,
+  briefId,
+  route,
+  pendingNotes,
+  theme,
+  onNextTheme,
+  drawerOpen,
+  onToggleDrawer,
+  drawerButton,
+}: Props) {
   const copy = useText()
   const { locale, setLocale } = useLocale()
   const tabs = useRef<HTMLDivElement>(null)
+  const todo = briefs.filter(needsAnalysis).length
   // 지시서가 많아 탭이 넘칠 때도 지금 보는 지시서의 탭이 보이게 한다.
   // biome-ignore lint/correctness/useExhaustiveDependencies: 보는 지시서나 탭 수가 바뀔 때 다시 맞춘다
   useEffect(() => {
@@ -33,6 +48,23 @@ export function AppBar({ briefs, briefId, route, pendingNotes, theme, onNextThem
         {copy.app.navigation.name}
       </a>
       <nav className="app-nav" aria-label={copy.app.navigation.label}>
+        <button
+          type="button"
+          ref={drawerButton}
+          className="app-tab app-drawer-toggle"
+          aria-expanded={drawerOpen}
+          aria-controls={DRAWER_ID}
+          onClick={onToggleDrawer}
+        >
+          <span className="app-drawer-icon" aria-hidden />
+          {copy.app.drawer.open}
+          {todo > 0 && (
+            <span className="app-count">
+              {todo}
+              <span className="sr-only">{copy.app.drawer.todoSuffix}</span>
+            </span>
+          )}
+        </button>
         <div className="app-tabs" ref={tabs}>
           {briefs.map((b) => (
             <a

@@ -5,4 +5,4 @@ import type { SectionKey } from "./SectionKey";
 /**
  * AI(CLI·파일)와 사람(GUI)이 공유하는 편집 연산. 누가 했는지는 적용 시 `Actor`로 받는다.
  */
-export type BriefPatch = { "op": "setTitle", value: string, } | { "op": "addItem", section: SectionKey, text: string, } | { "op": "editItem", id: string, text: string, } | { "op": "removeItem", id: string, } | { "op": "confirmItem", id: string, } | { "op": "confirmSection", section: SectionKey, } | { "op": "ask", decision: NewDecision, } | { "op": "choose", decision: string, option: string, } | { "op": "acceptRecommended" };
+export type BriefPatch = { "op": "setTitle", value: string, } | { "op": "addItem", section: SectionKey, text: string, } | { "op": "editItem", id: string, text: string, } | { "op": "removeItem", id: string, } | { "op": "confirmItem", id: string, } | { "op": "confirmSection", section: SectionKey, } | { "op": "ask", decision: NewDecision, } | { "op": "choose", decision: string, option: string, } | { "op": "acceptRecommended" } | { "op": "markAnalyzed" };
