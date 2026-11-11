@@ -1,0 +1,203 @@
+.qp {
+  --tile: 48px;
+  display: grid;
+  gap: calc(var(--px) * 2);
+}
+/* 마스코트 레일: 길과 같은 칸 나눔. 마스코트 칸 하나 = 단계 한 칸이라 translateX(%)가 정확히 한 칸씩 움직인다. */
+.qp-rail {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--n), 1fr);
+  align-items: center;
+  min-height: 102px;
+}
+.qp-walker {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: calc(100% / var(--n));
+  display: grid;
+  justify-items: center;
+  pointer-events: none;
+  transform: translateX(calc(var(--at) * 100%));
+  transition: transform var(--dur-slow) var(--ease-spring);
+  will-change: transform;
+}
+.qp-say {
+  grid-row: 1;
+  min-width: 0;
+  padding: 0 calc(var(--px) * 2);
+  animation: ltm-fade var(--dur-base) var(--ease-soft) both;
+}
+.qp-say[data-side="after"] {
+  justify-self: start;
+}
+.qp-say[data-side="before"] {
+  justify-self: end;
+}
+.qp-list {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--n), 1fr);
+}
+.qp-list::before {
+  content: "";
+  position: absolute;
+  left: calc(50% / var(--n));
+  right: calc(50% / var(--n));
+  top: calc(var(--tile) / 2 - var(--px));
+  height: calc(var(--px) * 2);
+  background: repeating-linear-gradient(90deg, var(--c-line) 0 9px, transparent 9px 18px);
+  opacity: 0.55;
+}
+.qp-node {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 9px;
+  width: 100%;
+  padding: 0 0 6px;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.qp-node:focus-visible {
+  outline: none;
+}
+.qp-node:focus-visible .qp-tile,
+.qp-node:focus-visible .qp-chest {
+  outline: var(--px) dashed var(--c-accent);
+  outline-offset: calc(var(--px) * 3);
+}
+.qp-tile,
+.qp-chest {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--tile);
+  height: var(--tile);
+  transition: transform var(--dur-base) var(--ease-spring);
+}
+.qp-tile {
+  font-family: var(--font-pixel-bold);
+  font-size: var(--fs-pixel-lg);
+  line-height: 1;
+  background: var(--c-surface);
+  box-shadow:
+    0 0 0 var(--px) var(--c-line),
+    0 calc(var(--px) * 2) 0 var(--px) var(--c-line);
+}
+.qp-node:hover .qp-tile,
+.qp-node:hover .qp-chest {
+  transform: translateY(calc(var(--px) * -1));
+}
+/* 펼친 단계: 들림 + 아래 표식(모양으로도 구분) */
+.qp-node[aria-current="step"] .qp-tile,
+.qp-node[aria-current="step"] .qp-chest {
+  transform: translateY(calc(var(--px) * -2));
+}
+.qp-name {
+  position: relative;
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+  line-height: 18px;
+  padding: 0 6px;
+  word-break: keep-all;
+}
+.qp-node[aria-current="step"] .qp-name {
+  font-family: var(--font-pixel-bold);
+  color: var(--c-on-accent);
+  background: var(--c-accent);
+}
+.qp-node[data-status="clear"] .qp-tile {
+  background: var(--c-ok);
+  color: var(--c-on-bright);
+}
+.qp-node[data-status="review"] .qp-tile {
+  background: color-mix(in srgb, var(--c-ok) 35%, var(--c-surface));
+}
+.qp-node[data-status="fork"] .qp-tile {
+  background: var(--c-accent);
+  color: var(--c-on-accent);
+}
+.qp-node[data-status="empty"] .qp-tile {
+  color: var(--c-warn);
+  box-shadow:
+    0 0 0 var(--px) var(--c-warn),
+    0 calc(var(--px) * 2) 0 var(--px) var(--c-warn);
+}
+.qp-count {
+  position: absolute;
+  top: -9px;
+  right: -9px;
+  min-width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+  padding: 0 3px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+  color: var(--c-on-bright);
+  background: var(--c-glow);
+  box-shadow: 0 0 0 2px var(--c-line);
+}
+.qp-goal[data-status="locked"] .qp-chest {
+  opacity: 0.7;
+}
+.qp-goal[data-status="clear"] .qp-chest svg {
+  filter: drop-shadow(0 0 8px var(--c-glow));
+  animation: qp-bob 1s var(--ease-soft) infinite alternate;
+}
+@keyframes qp-bob {
+  to {
+    transform: translateY(calc(var(--px) * -2));
+  }
+}
+@media (max-width: 720px) {
+  .qp {
+    --tile: 36px;
+  }
+  /* 좁은 화면: 말풍선은 위에 한 줄로, 마스코트는 한 단계 작게(도트 크기를 줄여 번지지 않게). */
+  .qp-rail {
+    grid-template-rows: auto 66px;
+    align-items: start;
+  }
+  .qp-walker {
+    --px: 2px;
+  }
+  .qp-say {
+    /* biome-ignore lint/complexity/noImportantStyles: 인라인 grid-column(마스코트 옆 배치)을 좁은 화면에서 덮는다 */
+    grid-column: 1 / -1 !important;
+    justify-self: stretch;
+    padding: 0;
+  }
+  .qp-say .ltm-bubble::before {
+    display: none;
+  }
+  .qp-tile {
+    --px: 1.5px;
+    font-size: var(--fs-pixel);
+    box-shadow:
+      0 0 0 3px var(--c-line),
+      0 6px 0 3px var(--c-line);
+  }
+  .qp-node[data-status="empty"] .qp-tile {
+    box-shadow:
+      0 0 0 3px var(--c-warn),
+      0 6px 0 3px var(--c-warn);
+  }
+  .qp-chest svg {
+    scale: 0.75;
+  }
+  .qp-name {
+    padding: 0 2px;
+    line-height: 15px;
+    text-align: center;
+  }
+}

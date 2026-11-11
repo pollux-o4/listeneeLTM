@@ -1,0 +1,97 @@
+import type { Messages } from '../types.ts'
+import { change, issue } from './format.ts'
+import { counted } from './plural.ts'
+
+export const briefCopy = {
+  change,
+  issue,
+  narration: {
+    initial: 'Ask your AI to fill in the brief. You’ll see it here as it takes shape.',
+    complete: 'Ready! Pick up your brief from the chest.',
+    fork: (label: string, count: number) => `${counted(count, 'decision')} to make in “${label}”.`,
+    empty: (label: string) =>
+      `The “${label}” stage is empty. Ask your AI to fill it in, or write it yourself.`,
+    review: (count: number) =>
+      `Ready to deliver. Take a look at the ${counted(count, 'unconfirmed item')} first.`,
+  },
+  paper: {
+    label: 'Brief preview',
+    complete: 'Complete',
+    draft: 'Draft',
+    recipientHint: 'As your recipient will see it',
+    copy: 'Copy',
+    copyDraft: 'Copy draft',
+    openStage: 'Open this stage',
+    recentChanges: 'Recent changes',
+  },
+  delivery: {
+    ready: 'Ready to deliver',
+    reviewHint: 'You can deliver this now. A quick review of the items below may help.',
+    readyHint: 'Pass this straight to your recipient.',
+    blockedHint: 'Select an item below to open its stage. You can still copy the draft.',
+    blockingPrefix: 'Blocked: ',
+    reviewPrefix: 'Review: ',
+    copy: 'Copy brief',
+    copyDraft: 'Copy draft',
+    terminalPrefix: 'In your terminal: ',
+    exportCommand: (id: string) => `ltm export ${id}`,
+    blocked: (count: number) => `${counted(count, 'issue')} blocking delivery`,
+  },
+  item: {
+    editLabel: 'Edit item',
+    confirm: 'Confirm',
+    edit: 'Edit',
+    remove: 'Remove',
+    confirmLabel: (text: string) => `Confirm “${text}”`,
+    editAction: (text: string) => `Edit “${text}”`,
+    removeLabel: (text: string) => `Remove “${text}”`,
+  },
+  decision: {
+    confirm: 'Confirm',
+    change: 'Change',
+    recommended: 'Recommended',
+    sentencePrefix: 'Text added to the brief: ',
+    keep: 'Keep current choice',
+    confirmLabel: (question: string, label: string) => `Confirm “${label}” for “${question}”`,
+    changeLabel: (question: string) => `Change decision for “${question}”`,
+  },
+  stage: {
+    purpose: { label: 'Purpose', hint: 'Why this work is needed' },
+    scopeIn: { label: 'In scope', hint: 'What is included' },
+    scopeOut: { label: 'Out of scope', hint: 'What is excluded' },
+    constraints: { label: 'Constraints', hint: 'Conditions that must be met' },
+    acceptance: { label: 'Acceptance criteria', hint: 'How completion is verified' },
+    optional: ' · Optional',
+    previous: 'Previous stage',
+    previousTitle: 'Previous stage (←)',
+    delivery: 'To delivery',
+    next: 'Next stage',
+    deliveryTitle: 'To delivery (→)',
+    nextTitle: 'Next stage (→)',
+    confirmAll: 'Confirm all',
+    emptyHint: 'This stage is required. Ask your AI to fill it in, or add an item below.',
+    optionalEmptyHint: 'Leave this blank if it doesn’t apply.',
+    placeholder: 'Add an item',
+    add: 'Add',
+    reviewHint: (count: number) => `${counted(count, 'unconfirmed item')}.`,
+    inputLabel: (label: string) => `Add an item to ${label}`,
+  },
+  workspace: {
+    editTitleLabel: 'Edit brief title',
+    editTitle: 'Edit title',
+    undoTitle: 'Undo (Ctrl+Z)',
+    undo: 'Undo',
+    acceptRecommended: (count: number) =>
+      `Accept recommended for ${counted(count, 'remaining decision')}`,
+  },
+  path: {
+    label: 'Stages',
+    ready: 'Delivery: brief complete',
+    blocked: 'Delivery: some stages are blocked (draft available)',
+    delivery: 'Delivery',
+    stageLabel: (step: number, label: string, status: string, unconfirmed: number) =>
+      `Stage ${step}, ${label}: ${status}${unconfirmed > 0 ? `, ${counted(unconfirmed, 'unconfirmed item')}` : ''}`,
+  },
+  copyResult: { copied: 'Copied', failed: 'Couldn’t copy. Select the text and copy it manually.' },
+  status: { fork: 'Decision needed', empty: 'Empty', review: 'Unconfirmed', clear: 'Complete' },
+} as const satisfies Messages['brief']

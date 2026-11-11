@@ -1,0 +1,26 @@
+{
+  "name": "listenee-ltm-workspace",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.19.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "storybook": "pnpm --filter @listenee-ltm/ui storybook",
+    "dev": "pnpm run \"/^dev:/\"",
+    "dev:api": "cargo run -q -p ltm-cli -- ui --project .",
+    "dev:ui": "pnpm --filter @listenee-ltm/ui dev",
+    "build:ui": "pnpm --filter @listenee-ltm/ui build",
+    "build": "pnpm build:ui && cargo build --release -p ltm-cli",
+    "gen:types": "cargo test -q -p ltm-core",
+    "check": "cargo fmt --check && cargo clippy --all-targets -q -- -D warnings && cargo test -q && biome check . && tsc -p ui && node ui/scripts/check-boundaries.mjs && node ui/scripts/check-copy.mjs && node ui/scripts/check-formatters.mjs && pnpm --filter @listenee-ltm/ui check:copy-screens",
+    "format": "cargo fmt && biome check --write .",
+    "prototype": "pnpm --filter @listenee-ltm/ui exec vite --open /prototype/pixel-ui/",
+    "gen:copy-screens": "pnpm --filter @listenee-ltm/ui gen:copy-screens"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.6.6",
+    "typescript": "7.0.2"
+  }
+}

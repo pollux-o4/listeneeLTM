@@ -1,0 +1,26 @@
+[package]
+name = "ltm-server"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+ltm-core.workspace = true
+anyhow.workspace = true
+axum.workspace = true
+mime_guess.workspace = true
+rust-embed.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+ts-rs.workspace = true
+tokio.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
+ltm-core.workspace = true
+tower = { version = "0.5", features = ["util"] }
+
+[lints]
+workspace = true

@@ -1,0 +1,62 @@
+.ps {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  translate: -50% 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  font:
+    13px / 1 system-ui,
+    sans-serif;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.35);
+}
+.ps button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 6px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.ps button:hover,
+.ps button[aria-pressed="true"] {
+  background: #333;
+}
+.ps-label {
+  min-width: 150px;
+  text-align: center;
+  font-weight: 600;
+}
+.ps-label small {
+  font-weight: 400;
+  opacity: 0.7;
+}
+.ps-sep {
+  width: 1px;
+  height: 18px;
+  background: #444;
+}
+.ps-state {
+  position: fixed;
+  right: 16px;
+  bottom: 72px;
+  z-index: 100;
+  max-height: 60vh;
+  width: 360px;
+  overflow: auto;
+  margin: 0;
+  padding: 12px;
+  border-radius: 8px;
+  background: #111e;
+  color: #cfe;
+  font:
+    11px / 1.5 ui-monospace,
+    monospace;
+}

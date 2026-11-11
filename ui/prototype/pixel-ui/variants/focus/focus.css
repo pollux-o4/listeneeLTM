@@ -1,0 +1,161 @@
+.fc {
+  font-family: var(--font-body);
+  background: var(--c-bg);
+  color: var(--c-text);
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(320px, 1fr);
+}
+.fc-stage {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 24px;
+  padding: calc(var(--px) * 10) calc(var(--px) * 12) 110px;
+}
+.fc-progress {
+  display: grid;
+  gap: 6px;
+  max-width: 320px;
+}
+.fc-card {
+  align-self: center;
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+  max-width: 560px;
+  animation: fc-in var(--dur-slow) var(--ease-soft) both;
+}
+@keyframes fc-in {
+  from {
+    opacity: 0;
+    transform: translateX(calc(var(--px) * 12));
+    filter: blur(2px);
+  }
+}
+.fc-q {
+  font-family: var(--font-pixel-bold);
+  font-size: 26px;
+  line-height: 1.4;
+  margin: 0;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.fc-why {
+  margin: 0;
+  color: var(--c-muted);
+  line-height: 1.7;
+}
+.fc-opts {
+  display: grid;
+  width: 100%;
+  gap: 10px;
+  margin-top: 8px;
+}
+.fc-opt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 18px;
+  font: inherit;
+  color: inherit;
+  background: var(--c-surface);
+  border: 0;
+  cursor: pointer;
+  box-shadow: 0 0 0 var(--px) var(--c-line);
+  transition:
+    transform var(--dur-base) var(--ease-soft),
+    background var(--dur-base) var(--ease-soft);
+}
+.fc-opt:hover,
+.fc-opt:focus-visible {
+  transform: translateX(calc(var(--px) * 3));
+  background: var(--c-accent-soft);
+  outline: none;
+}
+.fc-opt[data-recommended="true"] {
+  box-shadow:
+    0 0 0 var(--px) var(--c-line),
+    calc(var(--px) * -3) 0 0 0 var(--c-glow);
+}
+.fc-opt[data-recommended="true"] .fc-opt-label::after {
+  content: " · 추천";
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: var(--c-glow);
+}
+.fc-opt-label {
+  font-family: var(--font-pixel-bold);
+}
+.fc-opt-note {
+  font-size: 13px;
+  color: var(--c-muted);
+}
+.fc-skip {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  background: none;
+  border: 0;
+  color: var(--c-accent);
+  cursor: pointer;
+}
+.fc-skip:disabled {
+  opacity: 0.3;
+}
+.fc-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+.fc-ticker {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--c-muted);
+}
+.fc-ticker li:first-child {
+  animation: px-rise var(--dur-base) var(--ease-soft) both;
+}
+.fc-paper {
+  background: var(--c-surface);
+  box-shadow: inset calc(var(--px) * 1) 0 0 var(--c-line);
+  padding: calc(var(--px) * 10) calc(var(--px) * 8) 110px;
+  /* 줄 노트 */
+  background-image: repeating-linear-gradient(
+    transparent 0 25px,
+    color-mix(in srgb, var(--c-accent-soft) 50%, transparent) 25px 26px
+  );
+  background-position: 0 calc(var(--px) * 10 + 22px);
+}
+.fc-paper-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.fc-paper pre {
+  margin: 0;
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  line-height: 26px;
+  white-space: pre-wrap;
+}
+.fc-line {
+  transition:
+    background var(--dur-slow) var(--ease-soft),
+    color var(--dur-slow) var(--ease-soft);
+}
+.fc-line[data-heading="true"] {
+  font-family: var(--font-pixel-bold);
+  color: var(--c-accent);
+}
+.fc-line[data-fresh="true"] {
+  background: color-mix(in srgb, var(--c-glow) 45%, transparent);
+}
+@media (max-width: 900px) {
+  .fc {
+    grid-template-columns: 1fr;
+  }
+}

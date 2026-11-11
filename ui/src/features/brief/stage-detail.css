@@ -1,0 +1,308 @@
+.sd {
+  display: grid;
+  gap: 18px;
+}
+.sd-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+/* 길의 타일과 같은 표식: 지금 펼친 단계의 상태를 모양·색·글자로 다시 보여준다. */
+.sd-status {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  font-family: var(--font-pixel-bold);
+  font-size: var(--fs-pixel-lg);
+  line-height: 1;
+  background: var(--c-surface);
+  box-shadow: 0 0 0 var(--px) var(--c-line);
+}
+.sd-status[data-status="clear"] {
+  background: var(--c-ok);
+  color: var(--c-on-bright);
+}
+.sd-status[data-status="review"] {
+  background: color-mix(in srgb, var(--c-ok) 35%, var(--c-surface));
+}
+.sd-status[data-status="fork"] {
+  background: var(--c-accent);
+  color: var(--c-on-accent);
+}
+.sd-status[data-status="empty"] {
+  color: var(--c-warn);
+  box-shadow: 0 0 0 var(--px) var(--c-warn);
+}
+.sd-title {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  display: grid;
+  font-weight: 400;
+  word-break: keep-all;
+}
+.sd-nav {
+  display: flex;
+  gap: 12px;
+  padding-bottom: calc(var(--px) * 2);
+}
+
+/* 갈림길 */
+.dc {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  display: grid;
+  gap: 12px;
+}
+.dc-q {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-weight: 600;
+  padding: 0;
+  word-break: keep-all;
+}
+.dc-q span {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+  color: var(--c-accent);
+}
+.dc-why {
+  margin: 0;
+  font-size: var(--fs-small);
+  color: var(--c-muted);
+}
+.dc-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+  gap: 12px;
+}
+.dc-option {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  text-align: left;
+  padding: 12px;
+  font: inherit;
+  color: inherit;
+  background: var(--c-bg);
+  border: 0;
+  cursor: pointer;
+  box-shadow: 0 0 0 var(--px) var(--c-line);
+  transition: transform var(--dur-base) var(--ease-spring);
+}
+.dc-option:hover {
+  transform: translateY(calc(var(--px) * -1));
+}
+.dc-option:focus-visible {
+  outline-offset: calc(var(--px) * 2);
+}
+.dc-option[data-recommended="true"] {
+  box-shadow:
+    0 0 0 var(--px) var(--c-line),
+    inset 0 0 0 var(--px) var(--c-glow);
+}
+.dc-option[aria-pressed="true"] {
+  background: var(--c-accent-soft);
+}
+.dc-option-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 8px;
+}
+.dc-option em {
+  flex: none;
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+  line-height: 18px;
+  font-style: normal;
+  color: var(--c-on-bright);
+  background: var(--c-glow);
+  padding: 0 6px;
+}
+.dc-note,
+.dc-text {
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: var(--c-muted);
+}
+.dc-option[aria-pressed="true"] .dc-note,
+.dc-option[aria-pressed="true"] .dc-text {
+  color: var(--c-text);
+}
+.dc-keep {
+  justify-self: start;
+}
+.dc-decided {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 6px 6px 12px;
+  background: color-mix(in srgb, var(--c-accent-soft) 35%, transparent);
+  animation: ltm-rise var(--dur-base) var(--ease-soft) both;
+}
+.dc-decided-text {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+}
+
+/* 항목 */
+.sd-review {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0 12px;
+  padding-left: 6px;
+  border-left: var(--px) dotted var(--c-muted);
+}
+.sd-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+.ir {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 36px;
+  padding: 2px 0 2px 6px;
+  /* 항목이 수백 개여도 화면 밖 줄은 그리지 않는다. */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 40px;
+}
+.ir[data-fresh="true"] {
+  animation: ltm-rise var(--dur-base) var(--ease-soft) both;
+}
+.ir:hover,
+.ir:focus-within {
+  background: color-mix(in srgb, var(--c-accent-soft) 35%, transparent);
+}
+.ir-text {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+/* 확인 전: 흐린 글자 + 점선 배지(한글에는 기울임꼴이 없어 기울이지 않는다). */
+.ir[data-confirmed="false"] .ir-text {
+  color: var(--c-muted);
+}
+.ir-input {
+  flex: 1;
+}
+.ir-actions {
+  flex: none;
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+.ir-actions .ltm-link {
+  margin-right: 6px;
+}
+.sd-empty {
+  margin: 0;
+  color: var(--c-muted);
+}
+.sd-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+}
+.sd-add {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 6px;
+  border-bottom: var(--px) dotted var(--c-muted);
+}
+.sd-add:focus-within {
+  border-bottom: var(--px) solid var(--c-accent);
+}
+.sd-add-plus {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+  color: var(--c-muted);
+}
+.sd-add input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  color: var(--c-text);
+  background: transparent;
+  border: 0;
+  padding: 6px 0;
+}
+.sd-add input::placeholder {
+  color: var(--c-muted);
+  opacity: 1;
+}
+/* 입력 중 표시는 줄(밑줄 색)이 맡는다. */
+.sd-add input:focus-visible {
+  outline: none;
+}
+
+/* 전달 */
+.dp-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+.dp-list .ltm-link {
+  gap: 9px;
+  white-space: normal;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  color: var(--c-text);
+}
+.dp-list .ltm-link > span[aria-hidden] {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+}
+.dp-list li[data-kind="blocking"] .ltm-link > span[aria-hidden] {
+  color: var(--c-warn);
+}
+.dp-list li[data-kind="review"] .ltm-link > span[aria-hidden] {
+  color: var(--c-muted);
+}
+.dp-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  padding-bottom: calc(var(--px) * 2);
+}
+.dp-foot code {
+  font: inherit;
+  color: var(--c-text);
+}
+@media (max-width: 480px) {
+  .ir {
+    flex-wrap: wrap;
+  }
+  .ir-text,
+  .ir-input {
+    flex-basis: calc(100% - 48px);
+  }
+  .ir-actions {
+    margin-left: auto;
+  }
+  .dc-decided {
+    flex-wrap: wrap;
+  }
+  .dc-decided-text {
+    flex-basis: calc(100% - 48px);
+  }
+}

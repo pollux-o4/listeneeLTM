@@ -1,0 +1,179 @@
+/* 픽셀 형태 + 부드러운 움직임. 값은 모두 토큰. */
+
+.px-panel {
+  --notch: var(--px);
+  position: relative;
+  background: var(--c-surface);
+  color: var(--c-text);
+  padding: calc(var(--px) * 6);
+  /* 계단 모서리 */
+  clip-path: polygon(
+    0 calc(var(--notch) * 2),
+    var(--notch) calc(var(--notch) * 2),
+    var(--notch) var(--notch),
+    calc(var(--notch) * 2) var(--notch),
+    calc(var(--notch) * 2) 0,
+    calc(100% - var(--notch) * 2) 0,
+    calc(100% - var(--notch) * 2) var(--notch),
+    calc(100% - var(--notch)) var(--notch),
+    calc(100% - var(--notch)) calc(var(--notch) * 2),
+    100% calc(var(--notch) * 2),
+    100% calc(100% - var(--notch) * 2),
+    calc(100% - var(--notch)) calc(100% - var(--notch) * 2),
+    calc(100% - var(--notch)) calc(100% - var(--notch)),
+    calc(100% - var(--notch) * 2) calc(100% - var(--notch)),
+    calc(100% - var(--notch) * 2) 100%,
+    calc(var(--notch) * 2) 100%,
+    calc(var(--notch) * 2) calc(100% - var(--notch)),
+    var(--notch) calc(100% - var(--notch)),
+    var(--notch) calc(100% - var(--notch) * 2),
+    0 calc(100% - var(--notch) * 2)
+  );
+  box-shadow:
+    inset 0 0 0 var(--px) var(--c-line),
+    inset 0 calc(var(--px) * -2) 0 var(--px) var(--c-shadow);
+}
+
+.px-panel[data-tone="accent"] {
+  background: var(--c-accent-soft);
+}
+
+.px-enter {
+  animation: px-rise var(--dur-slow) var(--ease-soft) both;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+
+@keyframes px-rise {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--px) * 4));
+  }
+}
+
+.px-title {
+  font-family: var(--font-pixel-bold);
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.px-label {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: var(--c-muted);
+}
+
+.px-button {
+  font-family: var(--font-pixel-bold);
+  font-size: 12px;
+  color: var(--c-text);
+  background: var(--c-surface);
+  border: 0;
+  padding: calc(var(--px) * 3) calc(var(--px) * 5);
+  cursor: pointer;
+  box-shadow:
+    0 0 0 var(--px) var(--c-line),
+    0 calc(var(--px) * 2) 0 var(--px) var(--c-line);
+  transition:
+    transform var(--dur-fast) var(--ease-soft),
+    box-shadow var(--dur-fast) var(--ease-soft),
+    background var(--dur-base) var(--ease-soft);
+}
+.px-button:hover {
+  background: var(--c-accent-soft);
+  transform: translateY(calc(var(--px) * -1));
+  box-shadow:
+    0 0 0 var(--px) var(--c-line),
+    0 calc(var(--px) * 3) 0 var(--px) var(--c-line);
+}
+.px-button:active {
+  transform: translateY(calc(var(--px) * 2));
+  box-shadow: 0 0 0 var(--px) var(--c-line);
+}
+.px-button:focus-visible {
+  outline: var(--px) dashed var(--c-accent);
+  outline-offset: calc(var(--px) * 3);
+}
+
+.px-meter {
+  display: grid;
+  grid-template-columns: repeat(var(--segments), 1fr);
+  gap: var(--px);
+  padding: var(--px);
+  box-shadow: inset 0 0 0 var(--px) var(--c-line);
+}
+.px-meter > span {
+  height: calc(var(--px) * 4);
+  background: var(--c-surface);
+  transition: background var(--dur-base) var(--ease-soft);
+  transition-delay: calc(var(--i) * 40ms);
+}
+.px-meter > span[data-on="true"] {
+  background: var(--c-glow);
+  box-shadow: 0 0 calc(var(--px) * 3) var(--c-glow);
+}
+.px-meter[data-full="true"] > span {
+  background: var(--c-ok);
+  box-shadow: none;
+}
+
+.px-bubble {
+  position: relative;
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  line-height: 1.6;
+  background: var(--c-surface);
+  color: var(--c-text);
+  padding: calc(var(--px) * 3) calc(var(--px) * 5);
+  box-shadow: 0 0 0 var(--px) var(--c-line);
+  min-height: 1.6em;
+}
+.px-bubble::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--px) * -3);
+  top: calc(var(--px) * 4);
+  width: calc(var(--px) * 2);
+  height: calc(var(--px) * 2);
+  background: var(--c-line);
+  box-shadow: calc(var(--px) * 1) 0 0 var(--c-line);
+}
+.px-caret {
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  vertical-align: -0.15em;
+  background: var(--c-accent);
+  animation: px-caret 1s steps(1) infinite;
+}
+@keyframes px-caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+.px-float {
+  animation: px-float 2.4s var(--ease-soft) infinite alternate;
+}
+@keyframes px-float {
+  to {
+    transform: translateY(calc(var(--px) * -2));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .px-enter,
+  .px-float,
+  .px-caret {
+    animation: none;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

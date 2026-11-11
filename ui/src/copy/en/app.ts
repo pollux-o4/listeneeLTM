@@ -1,0 +1,51 @@
+import type { Messages } from '../types.ts'
+
+export const appCopy = {
+  shell: {
+    notesTitle: 'Preference notes',
+    skipToContent: 'Skip to content',
+    offline: 'Connection lost. Viewing last saved state. Reconnecting automatically.',
+    name: 'Listen to Me',
+    readFailed: (message: string | undefined) => `Couldn’t load latest state: ${message}`,
+    documentTitle: (title: string) => `${title} · Listen to Me`,
+  },
+  navigation: {
+    language: 'Language',
+    languages: { ko: '한국어', en: 'English' },
+    theme: { system: 'System', dark: 'Dark', light: 'Light' },
+    label: 'Briefs and notes',
+    ready: ' (ready to deliver)',
+    working: ' (in progress)',
+    notes: 'Preference notes',
+    pendingSuffix: ' unconfirmed',
+    themeTitle: 'Change theme',
+    name: 'Listen to Me',
+    themeLabel: (label: string) => `Theme: ${label}. Select to change`,
+  },
+  screen: {
+    askAi: 'Let’s write a task brief with LTM',
+    offlineTitle: 'Can’t connect to the LTM server',
+    terminalPrefix: 'Make sure ',
+    command: 'ltm ui',
+    terminalSuffix: ' is running in your terminal. This page will connect automatically.',
+    notesError: 'Couldn’t load preference notes',
+    missingTitle: 'Brief not found',
+    briefError: 'Couldn’t load this brief',
+    missingHint: 'It may have been deleted or moved.',
+    openOther: 'Open another brief',
+    emptyTitle: 'No briefs yet',
+    emptyHint: 'Tell your AI the following. Your brief will appear here.',
+    copied: 'Copied',
+    copyFailed: 'Copy failed',
+    copyHint: 'Click to copy',
+    loading: 'Loading…',
+  },
+  notice: {
+    offlineSave: 'Couldn’t save because the server is unreachable.',
+    retry: 'Try again',
+    removed: 'Item removed.',
+    undo: 'Undo',
+    saveFailed: (message?: string) =>
+      `Couldn’t save${message === undefined ? '' : ` (${message})`}.`,
+  },
+} as const satisfies Messages['app']

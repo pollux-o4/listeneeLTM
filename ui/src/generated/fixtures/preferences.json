@@ -1,0 +1,110 @@
+{
+  "revision": 6,
+  "items": [
+    {
+      "id": "p1",
+      "topic": "결정",
+      "statement": "업계 관행으로 자명한 선택은 묻지 말고 정한 뒤 알린다",
+      "evidence": [
+        "기본값을 묻자 \"알아서 정해\"라고 답함",
+        "구조 선택을 업계 수준으로 맡김"
+      ],
+      "by": "ai",
+      "confirmed": false,
+      "retired": false,
+      "updatedAt": "2026-11-11T22:56:34.179Z"
+    },
+    {
+      "id": "p3",
+      "topic": "탐색",
+      "statement": "어느 단계에서든 되돌아갈 수 있어야 한다",
+      "evidence": [
+        "한 흐름에 갇히는 화면을 문제로 지적"
+      ],
+      "by": "me",
+      "confirmed": true,
+      "retired": false,
+      "updatedAt": "2026-11-11T22:56:34.179Z"
+    },
+    {
+      "id": "p4",
+      "topic": "화면",
+      "statement": "부드러운 모션이되 프레임 저하는 없어야 한다",
+      "evidence": [
+        "모션과 60fps 유지를 함께 요구"
+      ],
+      "by": "ai",
+      "confirmed": false,
+      "retired": false,
+      "updatedAt": "2026-11-11T22:56:34.179Z"
+    },
+    {
+      "id": "p5",
+      "topic": "화면",
+      "statement": "결과물은 작업 흐름과 별개로 다시 볼 수 있어야 한다",
+      "evidence": [
+        "결과를 갤러리·별도 화면에서 보길 원함"
+      ],
+      "by": "ai",
+      "confirmed": false,
+      "retired": true,
+      "updatedAt": "2026-11-11T22:56:34.179Z"
+    }
+  ],
+  "changes": [
+    {
+      "revision": 6,
+      "by": "me",
+      "event": {
+        "kind": "noteRetired",
+        "statement": "결과물은 작업 흐름과 별개로 다시 볼 수 있어야 한다"
+      },
+      "at": "2026-11-11T22:56:34.179Z"
+    },
+    {
+      "revision": 5,
+      "by": "ai",
+      "event": {
+        "kind": "noteAdded",
+        "statement": "결과물은 작업 흐름과 별개로 다시 볼 수 있어야 한다"
+      },
+      "at": "2026-11-11T22:56:34.179Z"
+    },
+    {
+      "revision": 4,
+      "by": "ai",
+      "event": {
+        "kind": "noteAdded",
+        "statement": "부드러운 모션이되 프레임 저하는 없어야 한다"
+      },
+      "at": "2026-11-11T22:56:34.179Z"
+    },
+    {
+      "revision": 3,
+      "by": "me",
+      "event": {
+        "kind": "noteAdded",
+        "statement": "어느 단계에서든 되돌아갈 수 있어야 한다"
+      },
+      "at": "2026-11-11T22:56:34.179Z"
+    },
+    {
+      "revision": 2,
+      "by": "ai",
+      "event": {
+        "kind": "noteReinforced",
+        "statement": "업계 관행으로 자명한 선택은 묻지 말고 정한 뒤 알린다"
+      },
+      "at": "2026-11-11T22:56:34.179Z"
+    },
+    {
+      "revision": 1,
+      "by": "ai",
+      "event": {
+        "kind": "noteAdded",
+        "statement": "업계 관행으로 자명한 선택은 묻지 말고 정한 뒤 알린다"
+      },
+      "at": "2026-11-11T22:56:34.179Z"
+    }
+  ]
+}

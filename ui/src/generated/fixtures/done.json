@@ -1,0 +1,290 @@
+{
+  "markdown": {
+    "en": "# HTML 갤러리 제작\n\n## Purpose\n- 작품 200점을 빠르게 훑어보는 개인 갤러리\n\n## In scope\n- 반응형 격자 레이아웃\n- 키보드로 작품 넘기기\n- 작품 확대 보기\n\n## Out of scope\n- 로그인·댓글\n\n## Constraints\n- 이미지는 정적 호스팅, 빌드 시 최적화\n\n## Acceptance criteria\n- Lighthouse 접근성 95 이상 · 첫 화면 1초 내 표시\n",
+    "ko": "# HTML 갤러리 제작\n\n## 목적\n- 작품 200점을 빠르게 훑어보는 개인 갤러리\n\n## 포함 범위\n- 반응형 격자 레이아웃\n- 키보드로 작품 넘기기\n- 작품 확대 보기\n\n## 제외 범위\n- 로그인·댓글\n\n## 제약\n- 이미지는 정적 호스팅, 빌드 시 최적화\n\n## 완료 기준\n- Lighthouse 접근성 95 이상 · 첫 화면 1초 내 표시\n"
+  },
+  "view": {
+    "brief": {
+      "changes": [
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "me",
+          "event": {
+            "count": 1,
+            "kind": "confirmSection"
+          },
+          "revision": 12
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "me",
+          "event": {
+            "count": 1,
+            "kind": "confirmSection"
+          },
+          "revision": 11
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "me",
+          "event": {
+            "count": 1,
+            "kind": "confirmSection"
+          },
+          "revision": 10
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "me",
+          "event": {
+            "count": 1,
+            "kind": "confirmSection"
+          },
+          "revision": 9
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "me",
+          "event": {
+            "count": 2,
+            "kind": "acceptRecommended"
+          },
+          "revision": 8
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "ai",
+          "event": {
+            "kind": "ask",
+            "question": "확대 보기를 넣을까요?"
+          },
+          "revision": 7
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "ai",
+          "event": {
+            "kind": "ask",
+            "question": "어느 정도면 \"다 됐다\"고 볼까요?"
+          },
+          "revision": 6
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "ai",
+          "event": {
+            "kind": "decideRecommended",
+            "question": "이미지를 어디에 둘까요?"
+          },
+          "revision": 5
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "ai",
+          "event": {
+            "kind": "addItem",
+            "text": "로그인·댓글"
+          },
+          "revision": 4
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "me",
+          "event": {
+            "kind": "addItem",
+            "text": "키보드로 작품 넘기기"
+          },
+          "revision": 3
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "ai",
+          "event": {
+            "kind": "addItem",
+            "text": "반응형 격자 레이아웃"
+          },
+          "revision": 2
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "ai",
+          "event": {
+            "kind": "addItem",
+            "text": "작품 200점을 빠르게 훑어보는 개인 갤러리"
+          },
+          "revision": 1
+        }
+      ],
+      "decisions": [
+        {
+          "chosen": "static",
+          "chosenBy": "ai",
+          "id": "image-host",
+          "options": [
+            {
+              "id": "static",
+              "label": "정적 호스팅",
+              "note": "무료 · 빌드 때 최적화",
+              "text": "이미지는 정적 호스팅, 빌드 시 최적화"
+            },
+            {
+              "id": "cdn",
+              "label": "이미지 CDN",
+              "note": "빠름 · 월 비용",
+              "text": "이미지는 CDN으로 제공"
+            }
+          ],
+          "question": "이미지를 어디에 둘까요?",
+          "recommended": "static",
+          "section": "constraints",
+          "why": "프로젝트에 서버 코드가 없어 정적 호스팅이 가장 단순하고 무료예요."
+        },
+        {
+          "chosen": "measured",
+          "chosenBy": "me",
+          "id": "done-bar",
+          "options": [
+            {
+              "id": "measured",
+              "label": "측정 기준",
+              "note": "접근성 95 · 첫 화면 1초",
+              "text": "Lighthouse 접근성 95 이상 · 첫 화면 1초 내 표시"
+            },
+            {
+              "id": "manual",
+              "label": "눈으로 확인",
+              "note": "빠르지만 주관적",
+              "text": "주요 브라우저에서 눈으로 확인"
+            }
+          ],
+          "question": "어느 정도면 \"다 됐다\"고 볼까요?",
+          "recommended": "measured",
+          "section": "acceptance",
+          "why": "완료 기준이 없으면 수신자가 언제 멈출지 몰라요. 갤러리는 첫 화면 속도와 접근성이 핵심이에요."
+        },
+        {
+          "chosen": "yes",
+          "chosenBy": "me",
+          "id": "zoom",
+          "options": [
+            {
+              "id": "yes",
+              "label": "넣기",
+              "note": "+ 하루",
+              "text": "작품 확대 보기"
+            },
+            {
+              "id": "later",
+              "label": "다음 버전",
+              "note": "제외 범위로",
+              "section": "scopeOut",
+              "text": "확대 보기(다음 버전)"
+            }
+          ],
+          "question": "확대 보기를 넣을까요?",
+          "recommended": "yes",
+          "section": "scopeIn",
+          "why": "감상에 자주 쓰이지만 범위가 하루 정도 늘어나요."
+        }
+      ],
+      "id": "gallery",
+      "revision": 12,
+      "sections": {
+        "acceptance": [
+          {
+            "by": "me",
+            "confirmed": true,
+            "id": "decision-done-bar",
+            "text": "Lighthouse 접근성 95 이상 · 첫 화면 1초 내 표시"
+          }
+        ],
+        "constraints": [
+          {
+            "by": "ai",
+            "confirmed": true,
+            "id": "decision-image-host",
+            "text": "이미지는 정적 호스팅, 빌드 시 최적화"
+          }
+        ],
+        "purpose": [
+          {
+            "by": "ai",
+            "confirmed": true,
+            "id": "i1-0",
+            "text": "작품 200점을 빠르게 훑어보는 개인 갤러리"
+          }
+        ],
+        "scopeIn": [
+          {
+            "by": "ai",
+            "confirmed": true,
+            "id": "i2-0",
+            "text": "반응형 격자 레이아웃"
+          },
+          {
+            "by": "me",
+            "confirmed": true,
+            "id": "i3-0",
+            "text": "키보드로 작품 넘기기"
+          },
+          {
+            "by": "me",
+            "confirmed": true,
+            "id": "decision-zoom",
+            "text": "작품 확대 보기"
+          }
+        ],
+        "scopeOut": [
+          {
+            "by": "ai",
+            "confirmed": true,
+            "id": "i4-0",
+            "text": "로그인·댓글"
+          }
+        ]
+      },
+      "title": "HTML 갤러리 제작",
+      "updatedAt": "1970-01-01T00:00:00.000Z"
+    },
+    "current": 5,
+    "issues": [],
+    "ready": true,
+    "stages": [
+      {
+        "openDecisions": 0,
+        "required": true,
+        "section": "purpose",
+        "status": "clear",
+        "unconfirmed": 0
+      },
+      {
+        "openDecisions": 0,
+        "required": true,
+        "section": "scopeIn",
+        "status": "clear",
+        "unconfirmed": 0
+      },
+      {
+        "openDecisions": 0,
+        "required": false,
+        "section": "scopeOut",
+        "status": "clear",
+        "unconfirmed": 0
+      },
+      {
+        "openDecisions": 0,
+        "required": false,
+        "section": "constraints",
+        "status": "clear",
+        "unconfirmed": 0
+      },
+      {
+        "openDecisions": 0,
+        "required": true,
+        "section": "acceptance",
+        "status": "clear",
+        "unconfirmed": 0
+      }
+    ]
+  }
+}

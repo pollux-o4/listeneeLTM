@@ -1,0 +1,208 @@
+.qm {
+  font-family: var(--font-body);
+  min-height: 100vh;
+  color: var(--c-text);
+  padding: calc(var(--px) * 8) calc(var(--px) * 10) 110px;
+  display: grid;
+  gap: calc(var(--px) * 8);
+  align-content: start;
+  /* 밤하늘 위 픽셀 별 */
+  background:
+    radial-gradient(var(--c-accent-soft) 1.5px, transparent 1.6px) 0 0 / 36px 36px,
+    radial-gradient(var(--c-shadow) 1px, transparent 1.1px) 18px 18px / 36px 36px,
+    var(--c-bg);
+}
+.qm-head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  align-items: center;
+}
+.qm-head h1 {
+  font-size: 20px;
+}
+.qm-path {
+  --step: calc((100% - 0px) / var(--n));
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 112px 0 0;
+  display: grid;
+  grid-template-columns: repeat(var(--n), 1fr);
+}
+/* 점선 길 */
+.qm-path::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--step) / 2);
+  right: calc(var(--step) / 2);
+  top: calc(112px + 26px);
+  height: calc(var(--px) * 2);
+  background: repeating-linear-gradient(90deg, var(--c-line) 0 9px, transparent 9px 18px);
+  opacity: 0.6;
+}
+.qm-walker {
+  position: absolute;
+  top: 0;
+  left: calc(var(--step) * var(--at) + var(--step) / 2);
+  translate: -50% 0;
+  transition: left var(--dur-slow) var(--ease-spring);
+}
+.qm-node {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  width: 100%;
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+.qm-tile {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  font-family: var(--font-pixel-bold);
+  font-size: 20px;
+  background: var(--c-surface);
+  box-shadow:
+    0 0 0 var(--px) var(--c-line),
+    0 calc(var(--px) * 2) 0 var(--px) var(--c-line);
+  transition:
+    transform var(--dur-base) var(--ease-spring),
+    background var(--dur-base) var(--ease-soft);
+}
+.qm-node:hover .qm-tile {
+  transform: translateY(calc(var(--px) * -2));
+}
+.qm-node[aria-current="step"] .qm-tile {
+  transform: translateY(calc(var(--px) * -2)) scale(1.08);
+  box-shadow:
+    0 0 0 var(--px) var(--c-line),
+    0 calc(var(--px) * 2) 0 var(--px) var(--c-line),
+    0 0 0 calc(var(--px) * 3) var(--c-accent);
+}
+.qm-node[data-state="clear"] .qm-tile {
+  background: var(--c-ok);
+  color: var(--p-ink);
+}
+.qm-node[data-state="fork"] .qm-tile {
+  background: var(--c-accent);
+  color: var(--p-paper);
+  animation: qm-bob 1.4s var(--ease-soft) infinite alternate;
+}
+.qm-node[data-state="empty"] .qm-tile {
+  color: var(--c-warn);
+}
+@keyframes qm-bob {
+  to {
+    translate: 0 calc(var(--px) * -2);
+  }
+}
+.qm-name {
+  font-family: var(--font-pixel);
+  font-size: 13px;
+}
+.qm-goal {
+  cursor: default;
+  min-height: 52px;
+}
+.qm-goal[data-state="clear"] svg {
+  filter: drop-shadow(0 0 10px var(--c-glow));
+  animation: qm-bob 1s var(--ease-soft) infinite alternate;
+}
+.qm-detail-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.qm-fork {
+  margin-bottom: 20px;
+}
+.qm-q {
+  font-family: var(--font-pixel-bold);
+  margin: 0 0 12px;
+}
+.qm-paths {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+.qm-pathcard {
+  display: grid;
+  gap: 6px;
+  text-align: left;
+  padding: 14px;
+  font: inherit;
+  color: inherit;
+  background: var(--c-bg);
+  border: 0;
+  cursor: pointer;
+  box-shadow: 0 0 0 var(--px) var(--c-line);
+  transition:
+    transform var(--dur-base) var(--ease-spring),
+    box-shadow var(--dur-base) var(--ease-soft);
+}
+.qm-pathcard:hover,
+.qm-pathcard:focus-visible {
+  transform: translateY(calc(var(--px) * -2));
+  box-shadow:
+    0 0 0 var(--px) var(--c-line),
+    0 calc(var(--px) * 3) 0 var(--px) var(--c-accent);
+  outline: none;
+}
+.qm-pathcard[data-recommended="true"] {
+  box-shadow:
+    0 0 0 var(--px) var(--c-line),
+    inset 0 0 0 var(--px) var(--c-glow);
+}
+.qm-pathcard span {
+  font-size: 13px;
+  color: var(--c-muted);
+}
+.qm-pathcard em {
+  font-style: normal;
+  color: var(--c-glow);
+}
+.qm-why {
+  font-size: 13px;
+  color: var(--c-muted);
+  line-height: 1.6;
+}
+.qm-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+.qm-items li {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  animation: px-rise var(--dur-base) var(--ease-soft) both;
+}
+.qm-ok {
+  margin-left: auto;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  background: none;
+  border: 0;
+  color: var(--c-accent);
+  cursor: pointer;
+}
+.qm-empty {
+  color: var(--c-muted);
+}
+.qm-loot pre {
+  margin: 0;
+  white-space: pre-wrap;
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  line-height: 1.7;
+}

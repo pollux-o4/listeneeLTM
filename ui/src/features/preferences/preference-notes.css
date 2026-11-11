@@ -1,0 +1,118 @@
+.pn {
+  display: grid;
+  gap: calc(var(--px) * 6);
+  max-width: 820px;
+  margin: 0 auto;
+}
+.pn-head h1 {
+  font-size: var(--fs-pixel-lg);
+  line-height: 36px;
+  font-weight: 400;
+}
+.pn-lead {
+  margin: 6px 0 0;
+  color: var(--c-muted);
+  word-break: keep-all;
+}
+.pn-lead strong {
+  color: var(--c-text);
+}
+.pn-empty {
+  margin: 0;
+  color: var(--c-muted);
+}
+.pn-topic {
+  display: grid;
+  gap: 12px;
+}
+.pn-topic h2 {
+  margin: 0;
+  font-weight: 400;
+}
+.pn-card {
+  display: grid;
+  gap: 6px;
+}
+.pn-card-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.pn-statement {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+/* 확인 전: 흐린 글자 + 점선 배지 */
+.pn-card-main[data-confirmed="false"] .pn-statement {
+  color: var(--c-muted);
+}
+.pn-strength {
+  flex: none;
+  display: flex;
+  gap: 2px;
+}
+.pn-strength i {
+  width: calc(var(--px) * 2);
+  height: calc(var(--px) * 4);
+  box-sizing: border-box;
+  border: 1px solid var(--c-accent);
+}
+.pn-strength i[data-on="true"] {
+  background: var(--c-accent);
+}
+.pn-edit {
+  flex: 1;
+}
+.pn-evidence {
+  font-size: var(--fs-small);
+  color: var(--c-muted);
+}
+.pn-evidence summary,
+.pn-retired summary {
+  cursor: pointer;
+  min-height: var(--hit);
+  display: inline-flex;
+  align-items: center;
+}
+.pn-evidence ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.pn-actions {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  padding-bottom: calc(var(--px) * 2);
+}
+.pn-new {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr) auto;
+  gap: 15px;
+  align-items: center;
+  padding: var(--px) var(--px) calc(var(--px) * 3);
+}
+.pn-new .ltm-input {
+  padding: 6px 9px;
+}
+.pn-retired {
+  color: var(--c-muted);
+}
+.pn-retired-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.pn-retired-row > span {
+  text-decoration: line-through;
+}
+@media (max-width: 560px) {
+  .pn-new {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .pn-new input:first-child {
+    grid-column: 1 / -1;
+  }
+}

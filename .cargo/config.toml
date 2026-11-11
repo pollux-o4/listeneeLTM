@@ -1,0 +1,3 @@
+[env]
+# ts-rs 바인딩 출력 위치 (cargo test 시 생성)
+TS_RS_EXPORT_DIR = { value = "ui/src/generated", relative = true }

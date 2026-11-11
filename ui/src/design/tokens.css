@@ -1,0 +1,141 @@
+/*
+ * Listen to Me 디자인 토큰. 원시값(--p-*) → 의미값(--c-*) 2단계, 컴포넌트는 의미값만 쓴다.
+ * 형태는 픽셀(--px 배수·계단 모서리), 움직임은 부드럽게(감속 곡선). 대비: 텍스트 4.5:1 이상(두 테마).
+ */
+/* 픽셀 글꼴: Galmuri11(OFL) 두 굵기만 woff2로 포함한다(패키지 CSS 전체는 10종×2형식이라 번들이 40MB가 된다). */
+@font-face {
+  font-family: "Galmuri11";
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../node_modules/galmuri/dist/Galmuri11.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Galmuri11 Bold";
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../node_modules/galmuri/dist/Galmuri11-Bold.woff2") format("woff2");
+}
+
+:root {
+  /* 원시 팔레트 'Dusk Ear' */
+  --p-ink: #1d1b2f;
+  --p-night: #2c2a47;
+  --p-plum: #4b3d6b;
+  --p-violet: #7466a8;
+  --p-mist: #b9acd8;
+  --p-cream: #f6ecd8;
+  --p-paper: #fffaf0;
+  --p-peach: #f4b08a;
+  --p-coral: #e2735e;
+  --p-honey: #f6ca66;
+  --p-moss: #82b47c;
+  --p-teal: #4d9c9c;
+  --p-sky: #92cfe3;
+  --p-rose: #e9a0b8;
+  --p-dust: #d8cbb4;
+  --p-stone: #8e8496;
+
+  --px: 3px;
+
+  /*
+   * 글자 크기. 픽셀 글꼴은 12px 격자로 그려져 있어 12·24px에서만 또렷하다(그 밖의 크기는 번진다).
+   * 사람이 쓴 문장(항목·기준)은 본문 글꼴로 읽기 쉽게 둔다.
+   */
+  --fs-pixel: 12px;
+  --fs-pixel-lg: 24px;
+  --fs-body: 15px;
+  --fs-small: 13px;
+
+  /* 누를 수 있는 것의 최소 크기 */
+  --hit: 28px;
+
+  /* 모션: transform·opacity에만 쓴다(60fps). */
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 140ms;
+  --dur-base: 280ms;
+  --dur-slow: 560ms;
+
+  --font-pixel: "Galmuri11", monospace;
+  --font-pixel-bold: "Galmuri11 Bold", "Galmuri11", monospace;
+  --font-body: system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* 의미값: light-dark(밝은 테마, 어두운 테마). 테마는 color-scheme 하나로 정해진다. */
+  color-scheme: light dark;
+  --c-bg: light-dark(var(--p-cream), var(--p-ink));
+  --c-surface: light-dark(var(--p-paper), var(--p-night));
+  --c-line: light-dark(var(--p-ink), var(--p-mist));
+  --c-text: light-dark(var(--p-ink), var(--p-cream));
+  --c-muted: light-dark(#675d73, #a89fb2);
+  --c-accent: light-dark(#5f5196, var(--p-sky));
+  --c-accent-soft: light-dark(var(--p-mist), var(--p-plum));
+  --c-on-accent: light-dark(var(--p-paper), var(--p-ink));
+  --c-ok: var(--p-moss);
+  --c-warn: light-dark(#b8452f, var(--p-peach));
+  --c-glow: var(--p-honey);
+  --c-shadow: light-dark(var(--p-dust), #131222);
+  /* 밝은 색 면(--c-ok·--c-glow) 위의 글자 */
+  --c-on-bright: var(--p-ink);
+}
+[data-theme="light"] {
+  color-scheme: light;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  /* 한국어는 낱말 단위로 줄을 바꾸고, 너무 긴 낱말만 중간에서 끊는다. */
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+/* 포커스는 어디서나 같은 모양으로 보인다. */
+:focus-visible {
+  outline: var(--px) dashed var(--c-accent);
+  outline-offset: var(--px);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@keyframes ltm-rise {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--px) * 4));
+  }
+}
+@keyframes ltm-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+/* 동작 줄이기: 모든 컴포넌트에 일괄 적용하는 접근성 우선 규칙이라 !important로 덮는다. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    /* biome-ignore lint/complexity/noImportantStyles: 접근성 전역 덮어쓰기 */
+    animation-duration: 1ms !important;
+    /* biome-ignore lint/complexity/noImportantStyles: 접근성 전역 덮어쓰기 */
+    animation-delay: 0ms !important;
+    /* biome-ignore lint/complexity/noImportantStyles: 접근성 전역 덮어쓰기 */
+    animation-iteration-count: 1 !important;
+    /* biome-ignore lint/complexity/noImportantStyles: 접근성 전역 덮어쓰기 */
+    transition-duration: 1ms !important;
+  }
+}

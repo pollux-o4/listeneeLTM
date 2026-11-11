@@ -1,0 +1,263 @@
+.app {
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      color-mix(in srgb, var(--c-accent-soft) 70%, transparent) 1.5px,
+      transparent 1.6px
+    )
+    0 0 / 36px 36px,
+    var(--c-bg);
+}
+.app-skip {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: 30;
+  padding: 6px 12px;
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+  color: var(--c-on-accent);
+  background: var(--c-accent);
+  transform: translateY(-200%);
+}
+.app-skip:focus {
+  transform: none;
+}
+.app-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 6px calc(var(--px) * 8);
+  background: var(--c-bg);
+  box-shadow: 0 var(--px) 0 var(--c-line);
+}
+.app-logo {
+  font-family: var(--font-pixel-bold);
+  font-size: var(--fs-pixel);
+  color: var(--c-text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.app-nav {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+/* 지시서 탭만 가로 스크롤, 취향 노트는 항상 보인다. 넘치는 쪽 가장자리는 흐려 더 있음을 알린다. */
+.app-tabs {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-padding: 0 24px;
+  mask-image: linear-gradient(90deg, transparent, #000 12px, #000 calc(100% - 12px), transparent);
+  padding: 0 12px;
+}
+.app-tab {
+  position: relative;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 240px;
+  min-height: 36px;
+  padding: 0 9px;
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+  color: var(--c-muted);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.app-tab-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.app-tab:hover {
+  color: var(--c-text);
+}
+.app-tab:focus-visible {
+  outline-offset: calc(var(--px) * -1);
+}
+.app-tab[aria-current="page"] {
+  color: var(--c-text);
+}
+/* 선택 밑줄: scaleX 전환(합성 레이어) */
+.app-tab::after {
+  content: "";
+  position: absolute;
+  left: 9px;
+  right: 9px;
+  bottom: 3px;
+  height: var(--px);
+  background: var(--c-accent);
+  transform: scaleX(0);
+  transition: transform var(--dur-base) var(--ease-soft);
+}
+.app-tab[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+/* 진행 중: 빈 네모 / 전달 가능: 채운 네모 + ✓ (색에만 기대지 않는다) */
+.app-dot {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  font-size: var(--fs-pixel);
+  line-height: 1;
+  border: 2px solid var(--c-muted);
+}
+.app-dot[data-ready="true"] {
+  width: 15px;
+  height: 15px;
+  border: 0;
+  color: var(--c-on-bright);
+  background: var(--c-ok);
+}
+.app-count {
+  min-width: 18px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  color: var(--c-on-bright);
+  background: var(--c-glow);
+}
+.app-theme {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 6px;
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+  color: var(--c-muted);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.app-theme:hover {
+  color: var(--c-text);
+}
+/* 자동: 반반 / 어둡게: 채움 / 밝게: 비움 */
+.app-theme-swatch {
+  width: 12px;
+  height: 12px;
+  box-sizing: border-box;
+  border: 2px solid currentColor;
+  background: linear-gradient(90deg, currentColor 50%, transparent 50%);
+}
+.app-theme-swatch[data-theme-choice="dark"] {
+  background: currentColor;
+}
+.app-theme-swatch[data-theme-choice="light"] {
+  background: none;
+}
+.app-banner {
+  margin: 0;
+  padding: 6px calc(var(--px) * 8);
+  font-size: var(--fs-small);
+  color: var(--c-on-bright);
+  background: var(--c-glow);
+  animation: ltm-rise var(--dur-base) var(--ease-soft) both;
+}
+.app-main {
+  padding: calc(var(--px) * 8) calc(var(--px) * 10) 96px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.app-main:focus {
+  outline: none;
+}
+.app-empty {
+  max-width: 520px;
+  margin: 10vh auto 0;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  text-align: center;
+  word-break: keep-all;
+}
+.app-empty-title {
+  margin: 0;
+  font-family: var(--font-pixel-bold);
+  font-size: var(--fs-pixel-lg);
+  line-height: 36px;
+  font-weight: 400;
+}
+.app-empty p {
+  margin: 0;
+  color: var(--c-muted);
+}
+.app-empty code {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+  color: var(--c-text);
+  background: var(--c-bg);
+  padding: 2px 6px;
+}
+.app-phrase {
+  display: grid;
+  gap: 2px;
+  justify-items: center;
+  padding: 10px 18px;
+  font: inherit;
+  color: var(--c-text);
+  background: var(--c-bg);
+  border: 0;
+  cursor: pointer;
+  box-shadow: 0 0 0 var(--px) var(--c-line);
+}
+.app-loading {
+  margin: 20vh 0 0;
+  text-align: center;
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+  color: var(--c-muted);
+  animation: ltm-fade var(--dur-base) 500ms both;
+}
+@media (max-width: 640px) {
+  .app-main {
+    padding: 16px 16px 96px;
+  }
+  /* 좁은 화면: 지시서 탭을 둘째 줄로 내려 온전한 폭을 준다. */
+  .app-bar {
+    flex-wrap: wrap;
+    gap: 0 6px;
+    padding: 0 16px;
+  }
+  .app-nav {
+    display: contents;
+  }
+  .app-tab-notes {
+    margin-left: auto;
+  }
+  .app-tabs {
+    order: 3;
+    flex-basis: 100%;
+    margin: 0 -12px;
+  }
+  .app-tab {
+    max-width: 200px;
+  }
+}
+
+.app-language {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+  min-height: 36px;
+  color: var(--c-text);
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: 0;
+  padding: calc(2 * var(--px));
+  flex-shrink: 0;
+}
