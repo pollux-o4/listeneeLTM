@@ -31,7 +31,7 @@ export const briefCopy = {
     reviewCount: (count: number) => `${count} to review`,
     reviewed: 'Reviewed',
     openStage: 'Open stage',
-    aiLine: 'Written by AI · not reviewed',
+    unconfirmedLine: 'Not reviewed',
     copied: 'Copied. Paste it into your AI’s chat.',
     copyCommand: 'Copy command',
     previewMore: (lines: number) => `See all · ${counted(lines, 'more line')}`,

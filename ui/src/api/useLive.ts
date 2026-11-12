@@ -4,9 +4,12 @@ import { ApiError } from './client.ts'
 /** 읽기 실패: 서버에 닿지 못했는지(offline), 서버가 거절했는지(status)를 구분한다. */
 export type LiveError = { offline: boolean; status?: number; message: string }
 
-type Live<T> = {
+export type ReadState<T> = {
   data: T | undefined
   error: LiveError | undefined
+}
+
+type Live<T> = ReadState<T> & {
   /** 쓰기 응답 등 새 값을 즉시 반영 */
   set: (value: T) => void
   /** 지금 다시 읽기 */

@@ -1,5 +1,7 @@
+import '../stage/stage.css'
+import './delivery.css'
 import { useRef, useState } from 'react'
-import { useText } from '../../copy/index.ts'
+import { useText } from '../../../copy/index.ts'
 import {
   icons,
   PixelButton,
@@ -7,10 +9,10 @@ import {
   PixelSprite,
   useCopy,
   useFlip,
-} from '../../design/index.ts'
-import type { BriefPatch } from '../../generated/BriefPatch.ts'
-import type { SectionKey } from '../../generated/SectionKey.ts'
-import type { WorkspaceView } from '../../generated/WorkspaceView.ts'
+} from '../../../design/index.ts'
+import type { BriefPatch } from '../../../generated/BriefPatch.ts'
+import type { SectionKey } from '../../../generated/SectionKey.ts'
+import type { WorkspaceView } from '../../../generated/WorkspaceView.ts'
 import { DeliveryPreview } from './DeliveryPreview.tsx'
 import { ReviewGroup } from './ReviewGroup.tsx'
 
@@ -31,7 +33,7 @@ function useReviewSections(view: WorkspaceView): SectionKey[] {
   return view.stages.map((s) => s.section).filter((s) => seen.includes(s))
 }
 
-/** 전달: 막힘이 있으면 막힌 곳 목록, 없으면 복사. 확인 전 AI 항목은 권고로 이 자리에서 확인한다. 초안은 언제든 복사할 수 있다. */
+/** 전달: 막힘이 있으면 막힌 곳 목록, 없으면 복사. 확인 전 항목은 권고로 이 자리에서 확인한다. 초안은 언제든 복사할 수 있다. */
 export function DeliveryPanel({ view, onOpenStage, onPatch, draftOpen, onShowDraft }: Props) {
   const copy = useText()
   const brief = useCopy()
@@ -85,7 +87,7 @@ export function DeliveryPanel({ view, onOpenStage, onPatch, draftOpen, onShowDra
             <ReviewGroup
               key={section}
               label={copy.brief.stage[section].label}
-              items={(view.brief.sections[section] ?? []).filter((i) => i.by === 'ai')}
+              items={view.brief.sections[section] ?? []}
               onOpenStage={() => onOpenStage(section)}
               onPatch={onPatch}
             />

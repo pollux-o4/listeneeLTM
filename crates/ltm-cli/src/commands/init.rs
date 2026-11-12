@@ -1,5 +1,6 @@
 mod files;
 
+use ltm_server::FileStore;
 use std::{fs, path::Path};
 
 const GUIDE: &str = include_str!("agent_guide.md");
@@ -10,9 +11,7 @@ const POINTER: &str = "<!-- ltm -->\n과업지시서·프롬프트 작성 요청
 pub fn run(project: &Path) -> anyhow::Result<()> {
     fs::create_dir_all(project.join(".ltm/briefs"))?;
     // 저장소 쓰기와 같은 잠금을 유지해 여러 init의 읽기·추가·교체를 직렬화한다.
-    let lock =
-        fs::OpenOptions::new().create(true).truncate(false).write(true).open(project.join(".ltm/.lock"))?;
-    lock.lock()?;
+    let _lock = FileStore::new(project).lock_project()?;
     files::create_if_missing(&project.join(GUIDE_PATH), GUIDE)?;
     // 지시서·취향 노트는 커밋해 다음 작업자와 공유하고, 되돌리기 스냅샷만 제외한다.
     files::append_if(&project.join(".ltm/.gitignore"), true, "history/\n", |current| {

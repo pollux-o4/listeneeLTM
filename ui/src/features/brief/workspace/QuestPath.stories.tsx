@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { fn } from 'storybook/test'
-import { useText } from '../../copy/index.ts'
-import { doneView, workingView } from './fixtures.ts'
+import { useText } from '../../../copy/index.ts'
+import { doneView, workingView } from '../fixtures.ts'
 import { narrate } from './narration.ts'
 import { QuestPath } from './QuestPath.tsx'
 

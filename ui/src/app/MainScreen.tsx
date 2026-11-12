@@ -1,15 +1,28 @@
+import type { ReadState } from '../api/useLive.ts'
 import { useText } from '../copy/index.ts'
 import { Mascot, PixelPanel } from '../design/index.ts'
 import { BriefWorkspace } from '../features/brief/BriefWorkspace.tsx'
 import { PreferenceNotes } from '../features/preferences/PreferenceNotes.tsx'
-import type { useWorkspaceData } from './data/useWorkspaceData.ts'
+import type { BriefPatch } from '../generated/BriefPatch.ts'
+import type { BriefSummary } from '../generated/BriefSummary.ts'
+import type { Preferences } from '../generated/Preferences.ts'
+import type { PrefPatch } from '../generated/PrefPatch.ts'
+import type { WorkspaceView } from '../generated/WorkspaceView.ts'
 import { href, type Route } from './route.ts'
 import { WelcomeAsk } from './Welcome.tsx'
 
-type Data = ReturnType<typeof useWorkspaceData>
+/** 화면이 소비하는 읽기 상태와 쓰기만 받는다. 연결·폴링 구현은 호출 측이 맡는다. */
+export type ScreenData = {
+  list: ReadState<BriefSummary[]>
+  prefs: ReadState<Preferences>
+  brief: ReadState<WorkspaceView>
+  patchBrief: (patch: BriefPatch) => Promise<boolean>
+  undoBrief: () => void
+  patchPrefs: (patch: PrefPatch) => Promise<boolean>
+}
 
 /** 본문 화면 선택: 경로와 데이터 상태(연결 전·불러오는 중·없음·오류)에 맞는 한 화면. */
-export function MainScreen({ route, data }: { route: Route; data: Data }) {
+export function MainScreen({ route, data }: { route: Route; data: ScreenData }) {
   const copy = useText()
   const { list, prefs, brief, patchBrief, undoBrief, patchPrefs } = data
   const briefs = list.data ?? []

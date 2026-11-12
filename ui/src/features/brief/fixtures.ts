@@ -3,6 +3,8 @@
 import type { BriefSummary } from '../../generated/BriefSummary.ts'
 import type { BriefView } from '../../generated/BriefView.ts'
 import asked from '../../generated/fixtures/asked.json'
+import copied from '../../generated/fixtures/copied.json'
+import crossSection from '../../generated/fixtures/cross-section.json'
 import done from '../../generated/fixtures/done.json'
 import empty from '../../generated/fixtures/empty.json'
 import review from '../../generated/fixtures/review.json'
@@ -27,6 +29,8 @@ export const workingView = ws(working)
 export const reviewView = ws(review)
 export const doneView = ws(done)
 export const askedView = ws(asked)
+export const crossSectionView = ws(crossSection)
+export const copiedView = ws(copied)
 
 /** 목록 요약 대역. 학습 상태는 스토리마다 정한다. */
 export const summaryOf = (
@@ -48,6 +52,8 @@ export function localizedFixture(view: WorkspaceView, locale: Locale): Workspace
   if (view === startedView) return { ...view, markdown: started.markdown[locale] }
   if (view === reviewView) return { ...view, markdown: review.markdown[locale] }
   if (view === doneView) return { ...view, markdown: done.markdown[locale] }
+  if (view === copiedView) return { ...view, markdown: copied.markdown[locale] }
+  if (view === crossSectionView) return { ...view, markdown: crossSection.markdown[locale] }
   if (view === askedView) return { ...view, markdown: asked.markdown[locale] }
   return { ...view, markdown: working.markdown[locale] }
 }

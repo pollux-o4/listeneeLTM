@@ -423,6 +423,7 @@
       "app-screens--confirmed-all",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
+      "brief-workspace--copied-review",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
       "brief-workspace--draft-open",
@@ -434,6 +435,7 @@
       "app-screens--confirmed-all",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
+      "brief-workspace--copied-review",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
       "brief-workspace--draft-open",
@@ -447,6 +449,7 @@
       "brief-decisioncard--changing-locks-another",
       "brief-decisioncard--decided-by-ai",
       "brief-workspace--constraints",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--request-replied",
       "brief-workspace--review-stage"
     ],
@@ -457,6 +460,7 @@
       "brief-decisioncard--changing-locks-another",
       "brief-decisioncard--decided-by-ai",
       "brief-workspace--constraints",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--request-replied",
       "brief-workspace--review-stage"
     ],
@@ -464,12 +468,14 @@
       "brief-decisioncard--changing",
       "brief-decisioncard--decided-by-ai",
       "brief-workspace--constraints",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--request-replied"
     ],
     "brief.decision.confirmLabel": [
       "brief-decisioncard--changing",
       "brief-decisioncard--decided-by-ai",
       "brief-workspace--constraints",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--request-replied"
     ],
     "brief.decision.impactPrefix": [
@@ -487,6 +493,7 @@
       "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
+      "brief-workspace--request-on-item",
       "brief-workspace--requests",
       "brief-workspace--requests-copied",
       "brief-workspace--working"
@@ -554,9 +561,11 @@
       "app-screens--shell-duplicate",
       "brief-decisioncard--waiting",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
+      "brief-workspace--request-on-item",
       "brief-workspace--requests",
       "brief-workspace--requests-copied",
       "brief-workspace--working"
@@ -575,15 +584,10 @@
       "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
+      "brief-workspace--request-on-item",
       "brief-workspace--requests",
       "brief-workspace--requests-copied",
       "brief-workspace--working"
-    ],
-    "brief.delivery.aiLine": [
-      "app-screens--confirmed-all",
-      "brief-workspace--blocked-delivery",
-      "brief-workspace--review",
-      "brief-workspace--review-in-delivery"
     ],
     "brief.delivery.blocked": ["brief-workspace--blocked-delivery"],
     "brief.delivery.blockedHint": ["brief-workspace--blocked-delivery"],
@@ -592,6 +596,7 @@
     "brief.delivery.copy": [
       "app-screens--confirmed-all",
       "brief-workspace--copied",
+      "brief-workspace--copied-review",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
       "brief-workspace--draft-open",
@@ -603,6 +608,7 @@
       "app-screens--confirmed-all",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
+      "brief-workspace--copied-review",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
       "brief-workspace--draft-open",
@@ -615,6 +621,7 @@
       "app-screens--confirmed-all",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
+      "brief-workspace--copied-review",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
       "brief-workspace--draft-open",
@@ -622,11 +629,15 @@
       "brief-workspace--review",
       "brief-workspace--review-in-delivery"
     ],
-    "brief.delivery.openStage": ["brief-workspace--review-in-delivery"],
+    "brief.delivery.openStage": [
+      "brief-workspace--copied-review",
+      "brief-workspace--review-in-delivery"
+    ],
     "brief.delivery.previewLabel": [
       "app-screens--confirmed-all",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
+      "brief-workspace--copied-review",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
       "brief-workspace--draft-open",
@@ -638,6 +649,7 @@
       "app-screens--confirmed-all",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
+      "brief-workspace--copied-review",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
       "brief-workspace--draft-open",
@@ -648,6 +660,7 @@
     "brief.delivery.ready": [
       "app-screens--confirmed-all",
       "brief-workspace--copied",
+      "brief-workspace--copied-review",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
       "brief-workspace--draft-open",
@@ -665,18 +678,21 @@
     "brief.delivery.reviewCount": [
       "app-screens--confirmed-all",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--copied-review",
       "brief-workspace--review",
       "brief-workspace--review-in-delivery"
     ],
     "brief.delivery.reviewed": ["brief-workspace--review-in-delivery"],
     "brief.delivery.reviewHint": [
       "app-screens--confirmed-all",
+      "brief-workspace--copied-review",
       "brief-workspace--review",
       "brief-workspace--review-in-delivery"
     ],
     "brief.delivery.reviewPrefix": [
       "app-screens--confirmed-all",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--copied-review",
       "brief-workspace--review",
       "brief-workspace--review-in-delivery"
     ],
@@ -684,10 +700,18 @@
       "app-screens--confirmed-all",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
+      "brief-workspace--copied-review",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
       "brief-workspace--draft-open",
       "brief-workspace--paper-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery"
+    ],
+    "brief.delivery.unconfirmedLine": [
+      "app-screens--confirmed-all",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied-review",
       "brief-workspace--review",
       "brief-workspace--review-in-delivery"
     ],
@@ -703,6 +727,8 @@
       "app-screens--shell",
       "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--detail-empty",
       "brief-workspace--details-all",
       "brief-workspace--draft-toggle",
@@ -728,6 +754,8 @@
       "app-screens--shell",
       "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--detail-empty",
       "brief-workspace--details-all",
       "brief-workspace--draft-toggle",
@@ -753,6 +781,8 @@
       "app-screens--shell",
       "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--detail-empty",
       "brief-workspace--details-all",
       "brief-workspace--draft-toggle",
@@ -779,6 +809,8 @@
       "app-screens--shell",
       "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--detail-empty",
       "brief-workspace--details-all",
       "brief-workspace--draft-toggle",
@@ -815,6 +847,8 @@
       "app-screens--shell",
       "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--details-all",
       "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
@@ -840,6 +874,8 @@
       "app-screens--shell",
       "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--detail-empty",
       "brief-workspace--details-all",
       "brief-workspace--draft-toggle",
@@ -865,6 +901,8 @@
       "app-screens--shell",
       "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--detail-empty",
       "brief-workspace--details-all",
       "brief-workspace--draft-toggle",
@@ -918,6 +956,7 @@
     ],
     "brief.narration.review": [
       "app-screens--confirmed-all",
+      "brief-workspace--copied-review",
       "brief-workspace--review",
       "brief-workspace--review-in-delivery"
     ],
@@ -981,6 +1020,7 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
+      "brief-workspace--copied-review",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
       "brief-workspace--draft-open",
@@ -1011,6 +1051,7 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
+      "brief-workspace--copied-review",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
       "brief-workspace--draft-open",
@@ -1030,6 +1071,7 @@
       "app-screens--confirmed-all",
       "brief-questpath--ready",
       "brief-workspace--copied",
+      "brief-workspace--copied-review",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
       "brief-workspace--draft-open",
@@ -1052,6 +1094,7 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
+      "brief-workspace--copied-review",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
       "brief-workspace--draft-open",
@@ -1088,6 +1131,8 @@
       "brief-workspace--acceptance",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--detail-empty",
       "brief-workspace--details-all",
       "brief-workspace--draft-toggle",
@@ -1122,6 +1167,8 @@
       "brief-workspace--acceptance",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--detail-empty",
       "brief-workspace--details-all",
       "brief-workspace--draft-toggle",
@@ -1174,6 +1221,8 @@
       "brief-workspace--acceptance",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--detail-empty",
       "brief-workspace--details-all",
       "brief-workspace--draft-toggle",
@@ -1222,6 +1271,7 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
+      "brief-workspace--copied-review",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
       "brief-workspace--draft-open",
@@ -1259,6 +1309,7 @@
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
       "brief-workspace--copied",
+      "brief-workspace--copied-review",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
       "brief-workspace--draft-open",
@@ -1297,6 +1348,7 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--detail-empty",
       "brief-workspace--details-all",
       "brief-workspace--draft-toggle",
@@ -1327,6 +1379,7 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--detail-empty",
       "brief-workspace--details-all",
       "brief-workspace--draft-toggle",
@@ -1357,6 +1410,7 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--detail-empty",
       "brief-workspace--details-all",
       "brief-workspace--draft-toggle",
@@ -1394,6 +1448,7 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--detail-empty",
       "brief-workspace--details-all",
       "brief-workspace--draft-toggle",
@@ -1425,6 +1480,7 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--detail-empty",
       "brief-workspace--details-all",
       "brief-workspace--draft-toggle",
@@ -1456,6 +1512,7 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--detail-empty",
       "brief-workspace--details-all",
       "brief-workspace--draft-toggle",
@@ -1496,6 +1553,7 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
+      "brief-workspace--copied-review",
       "brief-workspace--copy-failed",
       "brief-workspace--detail-empty",
       "brief-workspace--details-all",
@@ -1527,6 +1585,7 @@
       "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--detail-empty",
       "brief-workspace--details-all",
       "brief-workspace--draft-toggle",
@@ -1552,6 +1611,7 @@
       "app-screens--shell",
       "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
@@ -1577,7 +1637,9 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
+      "brief-workspace--copied-review",
       "brief-workspace--copy-failed",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--done",
       "brief-workspace--draft-open",
       "brief-workspace--draft-toggle",
@@ -1610,6 +1672,7 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
+      "brief-workspace--copied-review",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
       "brief-workspace--draft-open",
@@ -1700,6 +1763,8 @@
       "brief-questpath--working",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--detail-empty",
       "brief-workspace--details-all",
       "brief-workspace--draft-toggle",
@@ -1746,6 +1811,7 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
+      "brief-workspace--copied-review",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
       "brief-workspace--draft-open",
@@ -1780,6 +1846,7 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
+      "brief-workspace--copied-review",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
       "brief-workspace--draft-open",
@@ -1808,6 +1875,7 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
+      "brief-workspace--copied-review",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
       "brief-workspace--draft-open",
@@ -1837,6 +1905,7 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
+      "brief-workspace--copied-review",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
       "brief-workspace--draft-open",
@@ -1888,6 +1957,7 @@
     ],
     "common.mascot.listening": [
       "app-screens--confirmed-all",
+      "brief-workspace--copied-review",
       "brief-workspace--review",
       "brief-workspace--review-in-delivery",
       "brief-workspace--started"
@@ -1934,6 +2004,8 @@
       "brief-decisioncard--decided-by-ai",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--detail-empty",
       "brief-workspace--details-all",
       "brief-workspace--draft-toggle",
@@ -1970,6 +2042,8 @@
       "app-screens--shell-notes",
       "brief-decisioncard--changing-locks-another",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--draft-open",
       "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
@@ -2002,6 +2076,8 @@
       "brief-decisioncard--decided-by-ai",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--detail-empty",
       "brief-workspace--details-all",
       "brief-workspace--draft-toggle",
@@ -2038,6 +2114,7 @@
       "app-screens--shell-notes",
       "brief-decisioncard--changing-locks-another",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--cross-section-decision",
       "brief-workspace--draft-open",
       "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
@@ -2504,9 +2581,17 @@
       "title": "Brief/Workspace",
       "name": "Copied"
     },
+    "brief-workspace--copied-review": {
+      "title": "Brief/Workspace",
+      "name": "Copied Review"
+    },
     "brief-workspace--copy-failed": {
       "title": "Brief/Workspace",
       "name": "Copy Failed"
+    },
+    "brief-workspace--cross-section-decision": {
+      "title": "Brief/Workspace",
+      "name": "Cross Section Decision"
     },
     "brief-workspace--detail-empty": {
       "title": "Brief/Workspace",
@@ -3001,6 +3086,17 @@
           "ko": "“이미지를 어디에 둘까요?” 정적 호스팅(으)로 확인",
           "en": "Confirm “정적 호스팅” for “이미지를 어디에 둘까요?”"
         }
+      },
+      {
+        "story": "brief-workspace--cross-section-decision",
+        "args": {
+          "ko": ["확대 보기를 넣을까요?", "다음 버전"],
+          "en": ["확대 보기를 넣을까요?", "다음 버전"]
+        },
+        "text": {
+          "ko": "“확대 보기를 넣을까요?” 다음 버전(으)로 확인",
+          "en": "Confirm “다음 버전” for “확대 보기를 넣을까요?”"
+        }
       }
     ],
     "brief.decision.sleeps": [
@@ -3066,6 +3162,17 @@
           "ko": "ltm export gallery",
           "en": "ltm export gallery"
         }
+      },
+      {
+        "story": "brief-workspace--copied-review",
+        "args": {
+          "ko": ["gallery-copy"],
+          "en": ["gallery-copy"]
+        },
+        "text": {
+          "ko": "ltm export gallery-copy",
+          "en": "ltm export gallery-copy"
+        }
       }
     ],
     "brief.delivery.previewMore": [
@@ -3124,6 +3231,17 @@
         "text": {
           "ko": "확인 전 2",
           "en": "2 to review"
+        }
+      },
+      {
+        "story": "brief-workspace--copied-review",
+        "args": {
+          "ko": [5],
+          "en": [5]
+        },
+        "text": {
+          "ko": "확인 전 5",
+          "en": "5 to review"
         }
       }
     ],
@@ -3207,6 +3325,17 @@
         "text": {
           "ko": "“작품 200점을 빠르게 훑어보는 개인 갤러리” 확인",
           "en": "Confirm “작품 200점을 빠르게 훑어보는 개인 갤러리”"
+        }
+      },
+      {
+        "story": "brief-workspace--copied-review",
+        "args": {
+          "ko": ["키보드로 작품 넘기기"],
+          "en": ["키보드로 작품 넘기기"]
+        },
+        "text": {
+          "ko": "“키보드로 작품 넘기기” 확인",
+          "en": "Confirm “키보드로 작품 넘기기”"
         }
       }
     ],
@@ -3336,8 +3465,19 @@
           "en": [5]
         },
         "text": {
-          "ko": "전달할 수 있어요. AI가 쓴 5개는 한 번 봐 주세요.",
+          "ko": "전달할 수 있어요. 확인 전인 5개는 한 번 봐 주세요.",
           "en": "Ready to deliver. Take a look at the 5 unconfirmed items first."
+        }
+      },
+      {
+        "story": "brief-workspace--copied-review",
+        "args": {
+          "ko": [9],
+          "en": [9]
+        },
+        "text": {
+          "ko": "전달할 수 있어요. 확인 전인 9개는 한 번 봐 주세요.",
+          "en": "Ready to deliver. Take a look at the 9 unconfirmed items first."
         }
       }
     ],
@@ -3552,7 +3692,7 @@
           "en": [1]
         },
         "text": {
-          "ko": "AI가 쓴 1개가 확인 전이에요. 맞으면 ♥를 눌러요.",
+          "ko": "1개가 확인 전이에요. 맞으면 ♥를 눌러요.",
           "en": "1 unconfirmed item. Tap ♥ if it looks right."
         }
       },
@@ -3563,7 +3703,7 @@
           "en": [2]
         },
         "text": {
-          "ko": "AI가 쓴 2개가 확인 전이에요. 맞으면 ♥를 눌러요.",
+          "ko": "2개가 확인 전이에요. 맞으면 ♥를 눌러요.",
           "en": "2 unconfirmed items. Tap ♥ if it looks right."
         }
       }

@@ -1,7 +1,7 @@
-import { useText } from '../../copy/index.ts'
-import { icons, OriginBadge, PixelSprite } from '../../design/index.ts'
-import type { BriefPatch } from '../../generated/BriefPatch.ts'
-import type { Request } from '../../generated/Request.ts'
+import { useText } from '../../../copy/index.ts'
+import { icons, OriginBadge, PixelSprite } from '../../../design/index.ts'
+import type { BriefPatch } from '../../../generated/BriefPatch.ts'
+import type { Request } from '../../../generated/Request.ts'
 
 /** 요청 한 건의 상태: 적어 둠 → AI가 맡음(처리 중) → 답함(DATA-001). */
 export type RequestState = 'noted' | 'working' | 'replied'

@@ -1,7 +1,7 @@
-import { useText } from '../../copy/index.ts'
-import { icons, OriginBadge, PixelSprite, useCopy } from '../../design/index.ts'
-import type { Change } from '../../generated/Change.ts'
-import { useFirstSeen } from './useFirstSeen.ts'
+import { useText } from '../../../copy/index.ts'
+import { icons, OriginBadge, PixelSprite, useCopy } from '../../../design/index.ts'
+import type { Change } from '../../../generated/Change.ts'
+import { useFirstSeen } from '../stage/useFirstSeen.ts'
 import './brief-paper.css'
 
 type Props = {

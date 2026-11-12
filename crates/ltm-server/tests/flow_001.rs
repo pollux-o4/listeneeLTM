@@ -265,3 +265,19 @@ async fn gui_duplicates_a_brief_and_list_shows_learning() {
     assert_eq!(list[1]["learning"]["kind"], "unanalyzed");
     assert_eq!(list[1]["derivedFrom"], "demo");
 }
+
+#[tokio::test]
+async fn flow_002_gui_uses_storage_assigned_copy_id() {
+    let root = tempfile::tempdir().unwrap();
+    let store = FileStore::new(root.path());
+    store.create("demo", "Demo").unwrap();
+    let app = http::router(store);
+    for expected in ["demo-2", "demo-3"] {
+        let (status, view) =
+            call(&app, "POST", "/api/briefs/demo/duplicate", Some(json!({ "title": "Copy" }))).await;
+        assert_eq!(status, 201);
+        assert_eq!(view["brief"]["id"], expected);
+        assert_eq!(view["brief"]["derivedFrom"], "demo");
+        assert!(view["decisionItems"].is_object());
+    }
+}

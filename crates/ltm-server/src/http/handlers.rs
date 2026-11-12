@@ -19,6 +19,12 @@ pub(super) struct CreateBody {
 }
 
 #[derive(Deserialize)]
+pub(super) struct DuplicateBody {
+    id: Option<String>,
+    title: String,
+}
+
+#[derive(Deserialize)]
 pub(super) struct Language {
     lang: Option<String>,
 }
@@ -53,9 +59,12 @@ pub(super) async fn duplicate(
     State(store): State<FileStore>,
     Path(from): Path<String>,
     Query(lang): Query<Language>,
-    Json(body): Json<CreateBody>,
+    Json(body): Json<DuplicateBody>,
 ) -> Result<Response, ApiError> {
-    let brief = store.duplicate(&from, &body.id, &body.title, Actor::Me)?;
+    let brief = match body.id {
+        Some(id) => store.duplicate(&from, &id, &body.title, Actor::Me)?,
+        None => store.duplicate_next(&from, &body.title, Actor::Me)?,
+    };
     Ok((StatusCode::CREATED, Json(workspace(&store, brief, lang)?)).into_response())
 }
 

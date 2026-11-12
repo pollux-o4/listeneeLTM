@@ -1,9 +1,10 @@
+import './items.css'
 import { type CSSProperties, useState } from 'react'
 
 /** 좋아요 파편 방향(도). */
 const BURST = [0, 60, 120, 180, 240, 300]
 
-import { useText } from '../../copy/index.ts'
+import { useText } from '../../../../copy/index.ts'
 import {
   InlineEdit,
   icons,
@@ -11,12 +12,12 @@ import {
   PixelSprite,
   useEditToggle,
   usePresence,
-} from '../../design/index.ts'
-import type { BriefPatch } from '../../generated/BriefPatch.ts'
-import type { Item } from '../../generated/Item.ts'
-import type { Request } from '../../generated/Request.ts'
+} from '../../../../design/index.ts'
+import type { BriefPatch } from '../../../../generated/BriefPatch.ts'
+import type { Item } from '../../../../generated/Item.ts'
+import type { Request } from '../../../../generated/Request.ts'
+import { RequestThread } from '../../requests/RequestThread.tsx'
 import { ItemDetail } from './ItemDetail.tsx'
-import { RequestThread } from './RequestThread.tsx'
 
 type Props = {
   item: Item

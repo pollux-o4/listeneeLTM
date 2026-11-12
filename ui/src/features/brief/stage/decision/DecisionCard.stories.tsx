@@ -1,12 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, fn, userEvent, within } from 'storybook/test'
-import type { Decision } from '../../generated/Decision.ts'
-import { appears, storyCopy } from '../../story-support.ts'
+import type { Decision } from '../../../../generated/Decision.ts'
+import { appears, storyCopy } from '../../../../story-support.ts'
+import { doneView, workingView } from '../../fixtures.ts'
 import { DecisionCard } from './DecisionCard.tsx'
-import { doneView, workingView } from './fixtures.ts'
 
 const pick = (id: string) => workingView.brief.decisions.find((d) => d.id === id) as Decision
-const derived = workingView.brief.sections.constraints?.find((i) => i.id === 'decision-image-host')
+const derived = workingView.brief.sections.constraints?.find(
+  (i) => i.id === workingView.decisionItems['image-host'],
+)
 
 const meta = {
   title: 'Brief/DecisionCard',

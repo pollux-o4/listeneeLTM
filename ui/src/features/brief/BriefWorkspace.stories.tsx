@@ -8,6 +8,8 @@ import { appears, mockClipboard, storyCopy } from '../../story-support.ts'
 import { BriefWorkspace } from './BriefWorkspace.tsx'
 import {
   askedView,
+  copiedView,
+  crossSectionView,
   doneView,
   emptyView,
   localizedFixture,
@@ -15,7 +17,7 @@ import {
   startedView,
   workingView,
 } from './fixtures.ts'
-import { StageDetail } from './StageDetail.tsx'
+import { StageDetail } from './stage/StageDetail.tsx'
 
 const meta = {
   title: 'Brief/Workspace',
@@ -52,6 +54,9 @@ function stageStory(view: WorkspaceView, index: number): Story {
     render: (args) => (
       <StageDetail
         brief={view.brief}
+        decisionItems={view.decisionItems}
+        dormant={view.dormant}
+        impacts={view.impacts}
         stage={stage}
         index={index}
         total={view.stages.length}
@@ -84,7 +89,7 @@ export const EditItem: Story = {
     const copy = storyCopy()
     const canvas = within(canvasElement)
     const item = workingView.brief.sections.scopeIn?.find(
-      (item) => !item.id.startsWith('decision-'),
+      (item) => !Object.values(workingView.decisionItems).includes(item.id),
     )
     if (!item) throw new Error('Missing editable fixture item')
     await userEvent.click(
@@ -137,7 +142,7 @@ function confirmIn(view: WorkspaceView, p: BriefPatch): WorkspaceView {
   return { ...view, brief: { ...view.brief, sections }, issues }
 }
 
-/** 전달 단계: 확인 전 AI 항목을 단계별로 펼쳐 그 자리에서 확인한다. 다 확인한 묶음은 '확인함'으로 남는다. */
+/** 전달 단계: 확인 전 항목을 단계별로 펼쳐 그 자리에서 확인한다. 다 확인한 묶음은 '확인함'으로 남는다. */
 export const ReviewInDelivery: Story = {
   args: { view: reviewView },
   render: function ReviewInDeliveryStory(args) {
@@ -263,6 +268,9 @@ export const DetailsAll: Story = {
     return (
       <StageDetail
         brief={reviewView.brief}
+        decisionItems={reviewView.decisionItems}
+        dormant={reviewView.dormant}
+        impacts={reviewView.impacts}
         stage={stage}
         index={0}
         total={reviewView.stages.length}
@@ -295,6 +303,9 @@ export const UndoNearItems: Story = {
     return (
       <StageDetail
         brief={reviewView.brief}
+        decisionItems={reviewView.decisionItems}
+        dormant={reviewView.dormant}
+        impacts={reviewView.impacts}
         stage={stage}
         index={0}
         total={reviewView.stages.length}
@@ -326,6 +337,9 @@ export const DetailEmpty: Story = {
     return (
       <StageDetail
         brief={{ ...reviewView.brief, sections }}
+        decisionItems={reviewView.decisionItems}
+        dormant={reviewView.dormant}
+        impacts={reviewView.impacts}
         stage={stage}
         index={0}
         total={reviewView.stages.length}
@@ -408,5 +422,47 @@ export const RequestsCopied: Story = {
     const c = within(canvasElement)
     await appears(async () => c.getByText(copy.waiting(1)))
     await expect(c.getByText(copy.working(1))).toBeVisible()
+  },
+}
+
+/** 다른 섹션에 문장이 들어간 선택도 질문 곁에서 코어 항목 id로 확인한다. */
+export const CrossSectionDecision: Story = {
+  ...stageStory(crossSectionView, 1),
+  play: async ({ args, canvasElement }) => {
+    const copy = storyCopy()
+    const decision = crossSectionView.brief.decisions.find((decision) => decision.id === 'zoom')
+    const chosen = decision?.options.find((option) => option.id === decision.chosen)
+    if (!decision || !chosen) throw new Error('Missing cross-section decision fixture')
+    await userEvent.click(
+      within(canvasElement).getByRole('button', {
+        name: copy.brief.decision.confirmLabel(decision.question, chosen.label),
+      }),
+    )
+    await expect(args.onPatch).toHaveBeenCalledWith({
+      op: 'confirmItem',
+      id: crossSectionView.decisionItems[decision.id],
+    })
+  },
+}
+
+/** 복제본은 원래 사람이 쓴 항목도 코어의 확인 전 개수에 맞게 보여 준다. */
+export const CopiedReview: Story = {
+  args: { view: copiedView },
+  play: async ({ args, canvasElement }) => {
+    const copy = storyCopy()
+    const canvas = within(canvasElement)
+    const stage = copiedView.stages.find((stage) => stage.section === 'scopeIn')
+    const human = copiedView.brief.sections.scopeIn?.find(
+      (item) => item.by === 'me' && !item.confirmed,
+    )
+    if (!stage || !human) throw new Error('Missing copied human item fixture')
+    const group = canvas.getByRole('button', {
+      name: `${copy.brief.stage.scopeIn.label} ${copy.brief.delivery.reviewCount(stage.unconfirmed)}`,
+    })
+    await userEvent.click(group)
+    const confirm = canvas.getByRole('button', { name: copy.brief.item.confirmLabel(human.text) })
+    await expect(confirm).toBeVisible()
+    await userEvent.click(confirm)
+    await expect(args.onPatch).toHaveBeenCalledWith({ op: 'confirmItem', id: human.id })
   },
 }

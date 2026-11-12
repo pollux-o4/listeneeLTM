@@ -67,25 +67,17 @@ export function useWorkspaceData(route: Route, notify: (n: NoticeContent) => voi
 
   const patchPrefs = (p: PrefPatch) => write(() => api.patchPreferences(p), prefsTarget)
 
-  /** 복제해 새로 시작(FLOW-002): 비어 있는 `<원본>-N` id로 만들고 그 지시서로 간다. */
+  /** 복제해 새로 시작(FLOW-002): 저장소가 선택한 id로 이동한다. */
   const duplicateBrief = async (from: BriefSummary) => {
-    const taken = new Set((list.data ?? []).map((b) => b.id))
-    const base = from.id.slice(0, 60)
-    let n = 2
-    while (taken.has(`${base}-${n}`)) n++
-    const id = `${base}-${n}`
     const title = copy.app.drawer.copyTitle(from.title)
-    let created = false
-    const run = async () => {
-      const view = await api.duplicate(from.id, id, title, locale)
-      created = true
-      return view
-    }
-    const ok = await write(run, { set: () => {}, refresh: list.refresh })
-    if (ok && created) {
-      window.location.hash = href({ kind: 'brief', id })
-      notify({ text: copy.app.notice.duplicated(title) })
-    }
+    const ok = await write(() => api.duplicate(from.id, title, locale), {
+      set: (view) => {
+        window.location.hash = href({ kind: 'brief', id: view.brief.id })
+        notify({ text: copy.app.notice.duplicated(title) })
+      },
+      refresh: list.refresh,
+    })
+    return ok
   }
 
   return { list, prefs, brief, briefId, patchBrief, undoBrief, patchPrefs, duplicateBrief }

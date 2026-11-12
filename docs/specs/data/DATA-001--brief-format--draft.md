@@ -21,17 +21,18 @@ setTitle · addItem · editItem · removeItem · confirmItem · confirmSection �
 - 연산은 원자적이다. 실패하면 아무것도 바뀌지 않는다.
 - 누가 바꿨는지는 경로로 정한다: CLI는 AI, GUI는 사람.
 - 쓰기는 `.ltm/.lock` 파일 잠금 안에서 읽고-고치고-쓴다. AI와 사람이 거의 동시에 써도 연산이 차례로 적용돼 어느 쪽 변경도 사라지지 않는다.
-- 읽을 수 없는 파일(손상·규칙을 벗어난 이름)은 목록에서 빠지고 다른 지시서를 가리지 않는다. 직접 열면 파일 경로와 함께 오류를 알리며, 파일은 건드리지 않는다.
+- 파일명과 본문의 지시서 id는 일치해야 한다. 읽을 수 없는 파일(손상·id 불일치·규칙을 벗어난 이름)은 목록에서 빠지고 다른 지시서를 가리지 않는다. 직접 열면 파일 경로와 함께 오류를 알리며, 파일은 건드리지 않는다.
 - 되돌리기: 적용 직전 상태를 `.ltm/history/<id>/<revision>.json`에 최근 50개까지 남긴다. 되돌려도 revision은 계속 증가한다.
 
 ## 판정 (`BriefView`)
 
 - 판정은 코드와 값만 낸다. 단계는 섹션 키, 막힘은 `IssueCode`(`emptyStage`·`openDecision`(질문)·`unconfirmed`(개수))로 나타낸다. 이름·문장은 끝단(GUI·Markdown)이 언어에 맞게 만든다(ADR-0007).
 
-- 단계 상태 우선순위: fork(살아 있는 열린 갈림길) > empty(필수인데 빔) > review(AI가 쓰거나 정한 것 중 확인 전이 있음) > clear.
+- 단계 상태 우선순위: fork(살아 있는 열린 갈림길) > empty(필수인데 빔) > review(작성자와 관계없이 확인 전 항목이 있음) > clear.
 - `current`: fork나 empty인 첫 단계. 막힌 단계가 없으면 단계 수(= 전달).
 - `ready`: fork·empty가 없을 때 true. review는 전달을 막지 않는다.
 - 학습 상태(목록 요약, 취향 노트와 함께 계산): `unanalyzed`(분석 기록 없음) · `stale`(분석 후 바뀜) · `learned`(이 지시서를 출처로 한 활성 노트 수) · `nothingNew`(분석했고 출처 노트 없음).
+- `decisionItems`: 모든 갈림길 id와 그 선택이 만드는 항목 id의 대응. 항목 id 규칙은 코어가 만들고 GUI는 이 대응을 사용한다. 선택지의 대상 섹션이 달라도 같은 항목을 확인·편집한다. 저장 형식은 바꾸지 않는다.
 - `dormant`: 조건이 맞지 않아 잠든 갈림길 id 목록.
 - `impacts`: 고르면 다른 갈림길이 잠들거나 깨어나는 선택지마다 (갈림길, 선택지, 잠드는 id, 깨어나는 id). 지금 고른 선택지는 넣지 않는다.
 - `selfReviewDue`: AI가 쓴 항목이 있고 `ready`이며 `reviewedRevision`이 없을 때 true. 한 번 표시하면 다시 오지 않는다.

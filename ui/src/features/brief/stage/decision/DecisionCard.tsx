@@ -1,17 +1,14 @@
+import './decision.css'
 import { useEffect, useRef, useState } from 'react'
-import { useText } from '../../copy/index.ts'
-import { OriginBadge, PixelSprite, stageIcons, useEditToggle } from '../../design/index.ts'
-import type { BriefPatch } from '../../generated/BriefPatch.ts'
-import type { Decision } from '../../generated/Decision.ts'
-import type { Item } from '../../generated/Item.ts'
-import type { Request } from '../../generated/Request.ts'
-import { RequestThread } from './RequestThread.tsx'
+import { useText } from '../../../../copy/index.ts'
+import { OriginBadge, PixelSprite, stageIcons, useEditToggle } from '../../../../design/index.ts'
+import type { BriefPatch } from '../../../../generated/BriefPatch.ts'
+import type { Decision } from '../../../../generated/Decision.ts'
+import type { Item } from '../../../../generated/Item.ts'
+import type { Request } from '../../../../generated/Request.ts'
+import { RequestThread } from '../../requests/RequestThread.tsx'
 
-/** 잠든 갈림길이 기다리는 앞 선택: 그 질문과, 골라야 깨어나는 선택지 이름들. */
-export type Waiting = { question: string; labels: string[] }
-
-/** 선택지를 고르면 다른 갈림길에 생기는 변화: 잠드는 질문(정해 둔 답이 있으면 그 이름)과 새로 열리는 질문. */
-export type Effect = { sleeps: { question: string; dropped?: string }[]; wakes: string[] }
+import type { Effect, Waiting } from '../stageContent.ts'
 
 type Props = {
   decision: Decision

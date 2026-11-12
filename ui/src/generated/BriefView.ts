@@ -27,4 +27,8 @@ dormant: Array<string>,
 /**
  * 고르면 다른 갈림길이 잠들거나 깨어나는 선택지들(UX-001 갈림길 의존: 고르기 전에 보인다).
  */
-impacts: Array<OptionImpact>, };
+impacts: Array<OptionImpact>, 
+/**
+ * 갈림길에서 파생된 항목 id. UI는 이 도메인 id를 사용한다.
+ */
+decisionItems: { [key in string]: string }, };

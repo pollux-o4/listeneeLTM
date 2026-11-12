@@ -1,0 +1,371 @@
+/* AI에게 남긴 요청(UX-001 AI에게 묻기): 항목·갈림길 바로 아래, 차분한 안내 줄. */
+.rq {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 6px;
+  margin: 8px 0 0;
+}
+/* 항목 아래에서는 글 칸에 맞춰 붙여, 어느 줄의 요청인지 한눈에 보이게 한다. */
+.ir > .rq {
+  grid-column: 2 / 3;
+}
+/* 정한 갈림길 아래에서는 그 줄에 붙이고(부모 간격 상쇄), 배지 다음 글 시작점에 맞춘다. */
+.dc-decided + .rq,
+.dc-notice + .rq {
+  margin: -6px 0 0;
+  padding-inline-start: calc(12px + var(--badge-w, 28px) + 12px);
+}
+/* 쌓인 요청을 한 번에 보내는 띠: 화면 아래에 떠 있는 행동 막대(게임 HUD처럼). */
+.rt {
+  position: sticky;
+  bottom: 16px;
+  z-index: 5;
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 10px 14px;
+  border: 2px solid var(--c-accent);
+  background: var(--c-surface);
+  box-shadow: 0 6px 0 var(--c-shadow);
+  animation: ltm-rise var(--dur-base) var(--ease-soft) both;
+}
+.rt-state {
+  min-width: 0;
+}
+/* 복사 전 요청이 있으면 복사 단추가 천천히 숨 쉬며 부른다. 복사하면 멈춘다. */
+.rt[data-uncopied="true"] .rt-send {
+  animation: rt-call 2.4s var(--ease-soft) infinite;
+}
+@keyframes rt-call {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--c-accent) 0%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--c-accent) 30%, transparent);
+  }
+}
+.rt-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 20px;
+  margin: 0;
+}
+.rq-ask {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 14px;
+  border-left: 3px solid var(--c-accent);
+  background: color-mix(in srgb, var(--c-accent-soft) 25%, transparent);
+  animation: ltm-rise var(--dur-base) var(--ease-soft) both;
+}
+.rq-ask-icon,
+.rt-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--c-accent);
+}
+.rq-ask .rq-input {
+  flex: 1;
+  min-width: 0;
+  max-width: 100%;
+}
+/* 아이콘은 입력 줄(첫 줄)에 맞춘다: 키캡 줄 사이에 떠 있지 않게. */
+.rq-ask-icon {
+  padding-top: 3px;
+}
+.rt-photo {
+  display: inline-flex;
+  margin-left: auto;
+  color: var(--c-muted);
+  cursor: help;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rq-ask {
+    animation: none;
+  }
+}
+
+/*
+ * 새로 켜진 곳 알리기(UX-001 AI에게 묻기): 새 요청·새 답 줄이 세 번 천천히 숨 쉬듯 밝아졌다 가라앉는다.
+ * 게임의 '새 퀘스트' 표시처럼 시선을 끌되, 끝나면 조용히 남아 읽기를 방해하지 않는다.
+ */
+.rqt[data-new="true"] .rqt-msg:last-child {
+  animation: rq-breathe 2.4s var(--ease-soft) both;
+}
+/* 끝 칸에 배경을 두지 않아, 다 숨 쉰 뒤 말풍선은 제 배경(내 말: 없음, AI 말: 색)으로 돌아간다. */
+@keyframes rq-breathe {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+    background: transparent;
+  }
+  12% {
+    opacity: 1;
+    transform: none;
+    background: color-mix(in srgb, var(--c-accent) 26%, transparent);
+  }
+  30%,
+  66% {
+    background: color-mix(in srgb, var(--c-accent) 8%, transparent);
+  }
+  48%,
+  84% {
+    background: color-mix(in srgb, var(--c-accent) 20%, transparent);
+  }
+}
+@keyframes rq-tag-pop {
+  0% {
+    transform: scale(0.6);
+  }
+  60% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: none;
+  }
+}
+/* 띠: 요청 수가 바뀌면 숫자가 튀어 오른다. */
+.rt-count b {
+  display: inline-block;
+  animation: rq-tag-pop 0.5s var(--ease-soft) 0.15s both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rqt[data-new="true"] .rqt-msg:last-child,
+  .rqt[data-new="true"] .rqt-status,
+  .rt,
+  .rt-count b,
+  .rt[data-uncopied="true"] .rt-send {
+    animation: none;
+  }
+  /* 움직임 없이도 복사 전 상태는 굵은 테두리로 남긴다. */
+  .rt[data-uncopied="true"] .rt-send {
+    outline: 3px solid var(--c-accent);
+    outline-offset: 2px;
+  }
+  /* 움직임 없이도 새로 켜진 곳은 색으로 남긴다. */
+  .rqt[data-new="true"] .rqt-msg:last-child {
+    background: color-mix(in srgb, var(--c-accent) 10%, transparent);
+  }
+}
+
+/* ② 붙여 넣기 걸음: 복사 직전엔 흐리게(다음 할 일), 복사하면 밝아져 지금 할 일이 넘어갔음을 보인다. */
+.rt-step {
+  color: var(--c-muted);
+}
+.rt-paste {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+  color: var(--c-muted);
+  transition: color var(--dur-base) var(--ease-soft);
+}
+.rt-paste[data-now="true"] {
+  color: var(--c-accent);
+  animation: rq-tag-pop 0.5s var(--ease-soft) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rt-paste[data-now="true"] {
+    animation: none;
+  }
+}
+
+/* 처리 중: 줄은 점선 테두리가 흐르듯, 막대는 도트 세 개가 차례로 깜빡인다(기다림이 멈춘 게 아님을 보인다). */
+.rt-working {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--c-accent);
+}
+.rt-dots {
+  display: inline-flex;
+  gap: 3px;
+}
+.rt-dots i {
+  width: 4px;
+  height: 4px;
+  background: currentColor;
+  animation: rt-dot 1.2s steps(2, jump-none) infinite;
+}
+.rt-dots i:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.rt-dots i:nth-child(3) {
+  animation-delay: 0.4s;
+}
+@keyframes rt-dot {
+  0%,
+  60%,
+  100% {
+    opacity: 0.25;
+  }
+  30% {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rt-dots i {
+    animation: none;
+    opacity: 0.8;
+  }
+}
+
+/*
+ * 요청 흔적(UX-001 AI에게 묻기): 말 묶음 왼쪽의 도트 흔적 선과 말마다의 점이 진행을 보인다.
+ * 내 말은 테두리, AI 말은 색 배경·굵은 왼선으로 한 칸 들여 갈린다.
+ */
+.rq-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+.rqt {
+  --rail: 7px;
+  position: relative;
+  padding-inline-start: 24px;
+}
+.rqt-msgs {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+.rqt-msg {
+  --indent: 0px;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: baseline;
+  gap: 6px 12px;
+  margin-inline-start: var(--indent);
+  padding: 10px 14px;
+  animation: ltm-rise var(--dur-base) var(--ease-soft) both;
+}
+/* 흔적 선: 각 말의 점에서 다음 말의 점까지 이어 그려, 말 길이와 관계없이 마지막 점에서 끝난다. */
+.rqt-msg:not(:last-child)::after,
+.rqt[data-state="noted"] .rqt-msg::after {
+  content: "";
+  position: absolute;
+  top: 25px;
+  bottom: -25px;
+  left: calc(var(--rail) - 24px - var(--indent));
+  width: 2px;
+  background: repeating-linear-gradient(to bottom, var(--c-line) 0 3px, transparent 3px 6px);
+}
+/* 아직 AI가 맡지 않음: 선이 아래로 열린 채 흐려진다(이어질 자리). */
+.rqt[data-state="noted"] .rqt-msg::after {
+  bottom: auto;
+  height: 22px;
+  mask-image: linear-gradient(to bottom, #000, transparent);
+}
+/* 말마다의 점: 흔적 선 위에 놓인다. */
+.rqt-msg::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: calc(var(--rail) - 4px - 24px - var(--indent));
+  width: 10px;
+  height: 10px;
+  background: var(--c-accent);
+}
+.rqt-msg[data-by="me"] {
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--c-line) 70%, transparent);
+}
+.rqt-msg[data-by="me"]::before {
+  background: var(--c-surface);
+  box-shadow: inset 0 0 0 2px var(--c-text);
+}
+.rqt-msg[data-by="ai"] {
+  --indent: 20px;
+  background: color-mix(in srgb, var(--c-accent-soft) 32%, transparent);
+  box-shadow: inset 3px 0 0 var(--c-accent);
+}
+/* 처리 중: AI 자리는 내용 크기만큼, 점은 빈 채로 숨 쉰다. */
+.rqt-msg[data-pending="true"] {
+  grid-template-columns: auto auto;
+  justify-self: start;
+  align-items: center;
+  color: var(--c-accent);
+}
+.rqt-msg[data-pending="true"]::before {
+  top: 50%;
+  translate: 0 -50%;
+  background: var(--c-surface);
+  box-shadow: inset 0 0 0 2px var(--c-accent);
+  animation: rqt-now 1.8s var(--ease-soft) infinite;
+}
+@keyframes rqt-now {
+  50% {
+    box-shadow:
+      inset 0 0 0 2px var(--c-accent),
+      0 0 0 4px color-mix(in srgb, var(--c-accent) 25%, transparent);
+  }
+}
+.rqt-text {
+  margin: 0;
+  min-width: 0;
+  color: var(--c-text);
+  font-size: var(--fs-small);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.rqt-status {
+  white-space: nowrap;
+  color: var(--c-muted);
+}
+.rqt[data-state="working"] .rqt-status {
+  color: var(--c-accent);
+}
+.rqt-acts {
+  display: inline-flex;
+  gap: 4px;
+  align-self: center;
+}
+/* 확인한 흔적: 흐리게 한 줄로 접혀 읽을 거리에서 물러난다. */
+.rqt[data-state="acknowledged"] {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 14px;
+  opacity: 0.6;
+  transition: opacity var(--dur-base) var(--ease-soft);
+}
+.rqt[data-state="acknowledged"]:hover,
+.rqt[data-state="acknowledged"]:focus-within {
+  opacity: 1;
+}
+.rqt-done {
+  display: inline-flex;
+  color: var(--c-ok);
+}
+.rqt-folded {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--fs-small);
+}
+/* 좁은 폭: 상태·도구는 글 아래 줄로 내려 글이 한 칸 폭을 온전히 쓴다. */
+@media (max-width: 560px) {
+  .rqt-msg {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .rqt-status,
+  .rqt-act,
+  .rqt-acts {
+    grid-column: 2;
+    justify-self: start;
+  }
+  .rqt-msg[data-by="ai"] {
+    --indent: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rqt-msg[data-pending="true"]::before {
+    animation: none;
+  }
+}

@@ -8,7 +8,7 @@ export const briefCopy = {
     complete: '완성! 상자에서 지시서를 가져가세요.',
     fork: (label: string, count: number) => `“${label}”에서 정할 게 ${count}개 있어요.`,
     empty: (label: string) => `“${label}” 단계가 비어 있어요. AI에게 맡기거나 직접 적어 주세요.`,
-    review: (count: number) => `전달할 수 있어요. AI가 쓴 ${count}개는 한 번 봐 주세요.`,
+    review: (count: number) => `전달할 수 있어요. 확인 전인 ${count}개는 한 번 봐 주세요.`,
   },
   paper: {
     label: '지시서 미리보기',
@@ -26,7 +26,7 @@ export const briefCopy = {
     reviewCount: (count: number) => `확인 전 ${count}`,
     reviewed: '확인함',
     openStage: '단계로 가기',
-    aiLine: 'AI 작성 · 확인 전',
+    unconfirmedLine: '확인 전',
     copied: '복사했어요. AI 작업창에 붙여넣으면 돼요.',
     copyCommand: '명령 복사',
     previewMore: (lines: number) => `전체 보기 · ${lines}줄 더`,
@@ -118,7 +118,7 @@ export const briefCopy = {
     optionalEmptyHint: '해당하는 내용이 없으면 비워 둬도 돼요.',
     placeholder: '직접 적기',
     add: '추가',
-    reviewHint: (count: number) => `AI가 쓴 ${count}개가 확인 전이에요. 맞으면 ♥를 눌러요.`,
+    reviewHint: (count: number) => `${count}개가 확인 전이에요. 맞으면 ♥를 눌러요.`,
     inputLabel: (label: string) => `${label}에 직접 적기`,
   },
   workspace: {

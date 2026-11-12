@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { fn, userEvent, within } from 'storybook/test'
+import { expect, fn, userEvent, within } from 'storybook/test'
 import { ApiProvider } from '../api/ApiProvider.tsx'
 import { ApiError, type WorkspaceApi } from '../api/client.ts'
 import type { LiveError } from '../api/useLive.ts'
@@ -13,11 +13,10 @@ import {
   switchableApi,
 } from '../story-support.ts'
 import { App } from './App.tsx'
-import type { useWorkspaceData } from './data/useWorkspaceData.ts'
-import { MainScreen } from './MainScreen.tsx'
+import { MainScreen, type ScreenData } from './MainScreen.tsx'
 import './app.css'
 
-type Data = ReturnType<typeof useWorkspaceData>
+type Data = ScreenData
 
 /** 화면 상태만 보이도록 데이터 연결을 고정값으로 대신한다. */
 function data(state: {
@@ -29,19 +28,15 @@ function data(state: {
   const live = <T,>(value: T | undefined, error?: LiveError) => ({
     data: value,
     error,
-    set: fn(),
-    refresh: fn(),
   })
   return {
     list: live(state.list, state.listError),
     prefs: live(undefined, state.prefsError),
     brief: live(undefined, state.briefError),
-    briefId: state.briefError ? 'missing' : undefined,
-    patchBrief: fn(),
+    patchBrief: fn(async () => false),
     undoBrief: fn(),
-    patchPrefs: fn(),
-    duplicateBrief: fn(),
-  } as unknown as Data
+    patchPrefs: fn(async () => false),
+  }
 }
 
 const meta = {
@@ -198,6 +193,7 @@ export const ShellDuplicate: Story = {
     )
     const title = copy.app.drawer.copyTitle(workingView.brief.title)
     await appears(async () => await canvas.findByText(copy.app.notice.duplicated(title)))
+    await expect(window.location.hash).toBe(`#/brief/${workingView.brief.id}`)
   },
 }
 
@@ -295,7 +291,7 @@ export const Removed: Story = {
     const copy = storyCopy()
     const canvas = within(canvasElement)
     const item = workingView.brief.sections.scopeIn?.find(
-      (item) => !item.id.startsWith('decision-'),
+      (item) => !Object.values(workingView.decisionItems).includes(item.id),
     )
     if (!item) throw new Error('Missing removable fixture item')
     await userEvent.click(
@@ -319,7 +315,7 @@ export const Confirmed: Story = {
     const copy = storyCopy()
     const canvas = within(canvasElement)
     const item = workingView.brief.sections.scopeIn?.find(
-      (item) => !item.confirmed && !item.id.startsWith('decision-'),
+      (item) => !item.confirmed && !Object.values(workingView.decisionItems).includes(item.id),
     )
     if (!item) throw new Error('Missing unconfirmed fixture item')
     await userEvent.click(

@@ -10,13 +10,13 @@ import {
 } from '../../design/index.ts'
 import type { BriefPatch } from '../../generated/BriefPatch.ts'
 import type { WorkspaceView } from '../../generated/WorkspaceView.ts'
-import { BriefPaper } from './BriefPaper.tsx'
-import { DeliveryPanel } from './DeliveryPanel.tsx'
-import { narrate } from './narration.ts'
-import { QuestPath } from './QuestPath.tsx'
-import { RequestTray } from './RequestTray.tsx'
-import { StageDetail } from './StageDetail.tsx'
-import './workspace.css'
+import { DeliveryPanel } from './delivery/DeliveryPanel.tsx'
+import { RequestTray } from './requests/RequestTray.tsx'
+import { StageDetail } from './stage/StageDetail.tsx'
+import { BriefPaper } from './workspace/BriefPaper.tsx'
+import { narrate } from './workspace/narration.ts'
+import { QuestPath } from './workspace/QuestPath.tsx'
+import './workspace/workspace.css'
 
 type Props = {
   view: WorkspaceView
@@ -164,6 +164,7 @@ export function BriefWorkspace({ view, onPatch, onUndo }: Props) {
             onPatch={onPatch}
             dormant={view.dormant}
             impacts={view.impacts}
+            decisionItems={view.decisionItems}
           />
         ) : (
           <DeliveryPanel

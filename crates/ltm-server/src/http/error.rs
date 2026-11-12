@@ -25,9 +25,10 @@ impl IntoResponse for ApiError {
             | StoreError::Patch(PatchError::NoOp)
             | StoreError::Pref(PrefError::NoOp) => StatusCode::CONFLICT,
             StoreError::Invalid(_) | StoreError::Patch(_) | StoreError::Pref(_) => StatusCode::BAD_REQUEST,
-            StoreError::Io(_) | StoreError::Corrupt { .. } | StoreError::Encode(_) => {
-                StatusCode::INTERNAL_SERVER_ERROR
-            }
+            StoreError::Io(_)
+            | StoreError::Corrupt { .. }
+            | StoreError::IdentityMismatch { .. }
+            | StoreError::Encode(_) => StatusCode::INTERNAL_SERVER_ERROR,
         };
         (status, Json(json!({ "error": self.0.to_string() }))).into_response()
     }

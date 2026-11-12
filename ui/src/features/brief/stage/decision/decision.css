@@ -1,0 +1,159 @@
+/* 갈림길 */
+.dc {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  display: grid;
+  gap: 12px;
+}
+.dc-q {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-weight: 600;
+  padding: 0;
+  word-break: keep-all;
+}
+.dc-q span {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+  color: var(--c-accent);
+}
+.dc-why {
+  margin: 0;
+  font-size: var(--fs-small);
+  color: var(--c-muted);
+}
+.dc-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+  gap: 12px;
+}
+.dc-option {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  text-align: left;
+  padding: 12px;
+  font: inherit;
+  color: inherit;
+  background: var(--c-bg);
+  border: 0;
+  cursor: pointer;
+  box-shadow: 0 0 0 var(--px) var(--c-line);
+  transition: transform var(--dur-base) var(--ease-spring);
+}
+.dc-option:hover {
+  transform: translateY(calc(var(--px) * -1));
+}
+.dc-option:focus-visible {
+  outline-offset: calc(var(--px) * 2);
+}
+.dc-option[data-recommended="true"] {
+  box-shadow:
+    0 0 0 var(--px) var(--c-line),
+    inset 0 0 0 var(--px) var(--c-glow);
+}
+.dc-option[aria-pressed="true"] {
+  background: var(--c-accent-soft);
+}
+.dc-option-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 8px;
+}
+.dc-option em {
+  flex: none;
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+  line-height: 18px;
+  font-style: normal;
+  color: var(--c-on-bright);
+  background: var(--c-glow);
+  padding: 0 6px;
+}
+.dc-note,
+.dc-text {
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: var(--c-muted);
+}
+.dc-option[aria-pressed="true"] .dc-note,
+.dc-option[aria-pressed="true"] .dc-text {
+  color: var(--c-text);
+}
+.dc-keep {
+  justify-self: start;
+}
+.dc-decided {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 6px 6px 12px;
+  background: color-mix(in srgb, var(--c-accent-soft) 35%, transparent);
+  animation: ltm-rise var(--dur-base) var(--ease-soft) both;
+}
+.dc-decided-text {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+}
+@media (max-width: 480px) {
+  .dc-decided {
+    flex-wrap: wrap;
+  }
+  .dc-decided-text {
+    flex-basis: calc(100% - 48px);
+  }
+}
+
+/* 잠든 갈림길(UX-001 갈림길 의존): 앞 선택을 기다린다. 흐리고 잠겨 있어 고를 수 없음을 모양으로도 알린다. */
+.dc-dormant {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 12px;
+  border: 2px dashed var(--c-line);
+  color: var(--c-muted);
+  animation: ltm-rise var(--dur-base) var(--ease-soft) both;
+}
+.dc-dormant-lock {
+  display: inline-flex;
+  filter: grayscale(1);
+  opacity: 0.7;
+}
+.dc-dormant-q {
+  opacity: 0.75;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dc-dormant {
+    animation: none;
+  }
+}
+
+/* 선택지의 영향 미리 보기와 고른 뒤 알림(UX-001 갈림길 의존). 막힘이 아니라 안내라 차분한 색. */
+.dc-impact {
+  color: var(--c-accent);
+  font-size: 0.9em;
+}
+.dc-notice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  margin: 4px 0 0;
+  padding: 4px 12px;
+  border-left: 3px solid var(--c-accent);
+  animation: ltm-rise var(--dur-base) var(--ease-soft) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dc-notice {
+    animation: none;
+  }
+}
+.dc-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}

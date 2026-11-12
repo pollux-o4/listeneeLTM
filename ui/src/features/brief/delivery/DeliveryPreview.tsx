@@ -1,5 +1,6 @@
-import { useText } from '../../copy/index.ts'
-import type { Brief } from '../../generated/Brief.ts'
+import './delivery.css'
+import { useText } from '../../../copy/index.ts'
+import type { Brief } from '../../../generated/Brief.ts'
 
 type Props = {
   markdown: string
@@ -11,7 +12,7 @@ type Props = {
 /** 미리보기 줄 수: 무엇이 복사되는지 알아볼 만큼만. CSS의 --dp-lines와 같은 값이다. */
 const PREVIEW_LINES = 7
 
-/** 확인 전 AI 항목의 제목들. 지시서 줄이 이 제목으로 끝나면 AI 줄로 표시한다(판정 원본은 코어, 여기선 표시만). */
+/** 확인 전 항목의 제목들. 지시서 줄이 이 제목으로 끝나면 확인 전 줄로 표시한다(판정 원본은 코어, 여기선 표시만). */
 function pendingTexts(brief: Brief): string[] {
   return Object.values(brief.sections)
     .flat()
@@ -19,7 +20,7 @@ function pendingTexts(brief: Brief): string[] {
     .map((i) => i?.text ?? '')
 }
 
-/** 복사 버튼 위 미리보기: 첫 줄들을 종이로 보이고, 확인 전 AI 줄을 표시하고, 남은 분량을 알린다. */
+/** 복사 버튼 위 미리보기: 첫 줄들을 종이로 보이고, 확인 전 줄을 표시하고, 남은 분량을 알린다. */
 export function DeliveryPreview({ markdown, brief, draftOpen, onShowDraft }: Props) {
   const copy = useText()
   const lines = markdown.trimEnd().split('\n')
@@ -47,8 +48,8 @@ export function DeliveryPreview({ markdown, brief, draftOpen, onShowDraft }: Pro
         {shown.map((line, n) => (
           // 줄 내용이 같을 수 있어 순번을 키로 쓴다(미리보기는 재정렬되지 않는다).
           // biome-ignore lint/suspicious/noArrayIndexKey: 위 이유
-          <span key={n} className="dp-line" data-ai={marks[n] || undefined}>
-            {marks[n] && <span className="sr-only">{copy.brief.delivery.aiLine}: </span>}
+          <span key={n} className="dp-line" data-unconfirmed={marks[n] || undefined}>
+            {marks[n] && <span className="sr-only">{copy.brief.delivery.unconfirmedLine}: </span>}
             {line || ' '}
             {'\n'}
           </span>

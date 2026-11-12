@@ -1,10 +1,11 @@
-import { useText } from '../../copy/index.ts'
-import { InlineEdit, icons, PixelSprite } from '../../design/index.ts'
-import type { BriefPatch } from '../../generated/BriefPatch.ts'
-import type { Request } from '../../generated/Request.ts'
-import type { RequestTarget } from '../../generated/RequestTarget.ts'
+import './requests.css'
+import { useText } from '../../../copy/index.ts'
+import { InlineEdit, icons, PixelSprite } from '../../../design/index.ts'
+import type { BriefPatch } from '../../../generated/BriefPatch.ts'
+import type { Request } from '../../../generated/Request.ts'
+import type { RequestTarget } from '../../../generated/RequestTarget.ts'
+import { useFirstSeen } from '../stage/useFirstSeen.ts'
 import { RequestTrail, requestState } from './RequestTrail.tsx'
-import { useFirstSeen } from './useFirstSeen.ts'
 
 type Props = {
   target: RequestTarget

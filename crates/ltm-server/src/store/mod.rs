@@ -1,16 +1,14 @@
+mod brief;
 mod files;
 mod history;
+mod preferences;
 
-use files::{json_stems, read_json, write_json};
 use std::{
     io,
     path::{Path, PathBuf},
 };
 
-use ltm_core::{
-    Actor, Brief, BriefError, BriefPatch, BriefSummary, PatchError, PrefError, PrefPatch, Preferences,
-    validate_id,
-};
+use ltm_core::{BriefError, PatchError, PrefError};
 
 #[derive(Debug, thiserror::Error)]
 pub enum StoreError {
@@ -22,6 +20,8 @@ pub enum StoreError {
     NotFound(String),
     #[error("brief already exists: {0}")]
     Exists(String),
+    #[error("brief id in {path} does not match the file name: found `{found}`")]
+    IdentityMismatch { path: String, found: String },
     #[error(transparent)]
     Pref(#[from] PrefError),
     #[error("nothing to undo")]
@@ -50,85 +50,5 @@ pub struct FileStore {
 impl FileStore {
     pub fn new(project_root: impl AsRef<Path>) -> Self {
         Self { root: project_root.as_ref().join(".ltm") }
-    }
-
-    fn brief_path(&self, id: &str) -> Result<PathBuf, StoreError> {
-        validate_id(id)?;
-        Ok(self.root.join("briefs").join(format!("{id}.json")))
-    }
-
-    pub fn get(&self, id: &str) -> Result<Brief, StoreError> {
-        read_json(&self.brief_path(id)?)?.ok_or_else(|| StoreError::NotFound(id.to_owned()))
-    }
-
-    /// 읽을 수 있는 지시서만 나열한다. 손상됐거나 이름이 규칙을 벗어난 파일 하나가
-    /// 나머지 지시서로 가는 길을 막지 않는다(그 파일은 `get`이 경로와 함께 알린다).
-    pub fn list(&self) -> Result<Vec<BriefSummary>, StoreError> {
-        let mut out = Vec::new();
-        let prefs = self.preferences()?;
-        for id in json_stems(&self.root.join("briefs"))? {
-            match self.get(&id) {
-                Ok(brief) => out.push(BriefSummary::new(&brief, &prefs)),
-                Err(StoreError::Invalid(_) | StoreError::Corrupt { .. }) => {}
-                Err(e) => return Err(e),
-            }
-        }
-        // 안정된 순서: 편집해도 탭 위치가 바뀌지 않는다.
-        out.sort_by(|a, b| a.id.cmp(&b.id));
-        Ok(out)
-    }
-
-    pub fn create(&self, id: &str, title: &str) -> Result<Brief, StoreError> {
-        let _lock = self.lock()?;
-        if self.brief_path(id)?.exists() {
-            return Err(StoreError::Exists(id.to_owned()));
-        }
-        let brief = Brief::new(id, title)?;
-        write_json(&self.brief_path(id)?, &brief)?;
-        Ok(brief)
-    }
-
-    /// 기존 지시서를 복제해 새로 시작한다(FLOW-002). 원본은 바뀌지 않는다.
-    pub fn duplicate(&self, from: &str, id: &str, title: &str, by: Actor) -> Result<Brief, StoreError> {
-        let _lock = self.lock()?;
-        if self.brief_path(id)?.exists() {
-            return Err(StoreError::Exists(id.to_owned()));
-        }
-        let brief = self.get(from)?.derive(id, title, by)?;
-        write_json(&self.brief_path(id)?, &brief)?;
-        Ok(brief)
-    }
-
-    pub fn patch(&self, id: &str, patch: BriefPatch, by: Actor) -> Result<Brief, StoreError> {
-        let _lock = self.lock()?;
-        let before = self.get(id)?;
-        let mut after = before.clone();
-        after.apply(patch, by)?;
-        self.push_history(&before)?;
-        write_json(&self.brief_path(id)?, &after)?;
-        Ok(after)
-    }
-
-    /// 직전 변경을 되돌린다. revision은 계속 증가해 GUI가 변화를 감지한다.
-    pub fn undo(&self, id: &str, by: Actor) -> Result<Brief, StoreError> {
-        let _lock = self.lock()?;
-        let mut restored = self.get(id)?;
-        let (revision, snapshot) = self.latest_history(id)?;
-        restored.undo_to(snapshot, by);
-        write_json(&self.brief_path(id)?, &restored)?;
-        self.remove_history(id, revision)?;
-        Ok(restored)
-    }
-
-    pub fn preferences(&self) -> Result<Preferences, StoreError> {
-        Ok(read_json(&self.root.join("preferences.json"))?.unwrap_or_default())
-    }
-
-    pub fn patch_preferences(&self, patch: PrefPatch, by: Actor) -> Result<Preferences, StoreError> {
-        let _lock = self.lock()?;
-        let mut prefs = self.preferences()?;
-        prefs.apply(patch, by)?;
-        write_json(&self.root.join("preferences.json"), &prefs)?;
-        Ok(prefs)
     }
 }

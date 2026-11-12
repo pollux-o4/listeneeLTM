@@ -3,8 +3,8 @@
 use std::{fs, path::PathBuf};
 
 use ltm_core::{
-    Actor, Brief, BriefPatch, BriefView, DecisionOption, DecisionWhen, NewDecision, PrefPatch, Preferences,
-    RequestTarget, SectionKey,
+    Actor, Brief, BriefPatch, BriefSummary, BriefView, DecisionOption, DecisionWhen, NewDecision, PrefPatch,
+    Preferences, RequestTarget, SectionKey,
 };
 
 const GALLERY_PURPOSE: &str = "작품 200점을 빠르게 훑어보는 개인 갤러리";
@@ -167,6 +167,13 @@ fn export_ui_fixtures() {
         apply(&mut done, Actor::Me, BriefPatch::ConfirmSection { section: s });
     }
 
+    let mut cross_section = gallery();
+    apply(
+        &mut cross_section,
+        Actor::Ai,
+        BriefPatch::Choose { decision: "zoom".into(), option: "later".into() },
+    );
+
     let mut started = Brief::new("new-brief", "새 지시서").unwrap();
     apply(
         &mut started,
@@ -190,6 +197,7 @@ fn export_ui_fixtures() {
             detail: Some("- 쉬운 풀이\n- [기술 구현 방법]".into()),
         },
     );
+    let copied = review.derive("gallery-copy", "HTML 갤러리 제작 (사본)", Actor::Me).unwrap();
 
     // 사람이 남긴 요청: 열린 것 하나, AI가 답한 것 하나, 자리가 사라진 답 하나(UX-001 AI에게 묻기).
     let mut asked = gallery();
@@ -303,8 +311,10 @@ fn export_ui_fixtures() {
         ("started", started),
         ("working", working),
         ("review", review),
+        ("copied", copied),
         ("done", done),
         ("asked", asked),
+        ("cross-section", cross_section),
     ] {
         let mut view = serde_json::to_value(BriefView::from(brief.clone())).unwrap();
         freeze_times(&mut view);
@@ -317,5 +327,14 @@ fn export_ui_fixtures() {
         });
         let json = serde_json::to_string_pretty(&snapshot).unwrap();
         fs::write(dir.join(format!("{name}.json")), json + "\n").unwrap();
+    }
+}
+
+#[test]
+fn summary_ready_matches_full_view_across_fixture_states() {
+    let mut done = gallery();
+    apply(&mut done, Actor::Me, BriefPatch::AcceptRecommended);
+    for brief in [Brief::new("empty", "Empty").unwrap(), gallery(), done] {
+        assert_eq!(BriefSummary::new(&brief, &Preferences::default()).ready, BriefView::from(brief).ready,);
     }
 }

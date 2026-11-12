@@ -1,5 +1,5 @@
 import type { AnimationEvent, CSSProperties } from 'react'
-import { useText } from '../../copy/index.ts'
+import { useText } from '../../../../copy/index.ts'
 
 /** 자세히 = 설명(`- 일상어`) + 기술(`- [전문 지식]`). 비어 있어도 칸은 남겨 '없음'으로 보인다. */
 const INLINE_TECH = /(\[[^\]]*\])/

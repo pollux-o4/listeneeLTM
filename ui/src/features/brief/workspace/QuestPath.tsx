@@ -1,8 +1,14 @@
 import type { CSSProperties } from 'react'
-import { useText } from '../../copy/index.ts'
-import { chest, type ListeneeMood, Mascot, PixelSprite, SpeechBubble } from '../../design/index.ts'
-import type { StageView } from '../../generated/StageView.ts'
-import { StageIcon, StatusMark } from './status.tsx'
+import { useText } from '../../../copy/index.ts'
+import {
+  chest,
+  type ListeneeMood,
+  Mascot,
+  PixelSprite,
+  SpeechBubble,
+} from '../../../design/index.ts'
+import type { StageView } from '../../../generated/StageView.ts'
+import { StageIcon, StatusMark } from '../status.tsx'
 import './quest-path.css'
 
 type Props = {

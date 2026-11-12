@@ -1,6 +1,6 @@
-import type { Messages } from '../../copy/index.ts'
-import type { ListeneeMood } from '../../design/index.ts'
-import type { BriefView } from '../../generated/BriefView.ts'
+import type { Messages } from '../../../copy/index.ts'
+import type { ListeneeMood } from '../../../design/index.ts'
+import type { BriefView } from '../../../generated/BriefView.ts'
 
 /** 마스코트 말풍선과 표정: 판정 결과를 사람 말로 옮긴다(판정 자체는 코어). */
 export function narrate(view: BriefView, copy: Messages): { mood: ListeneeMood; say: string } {

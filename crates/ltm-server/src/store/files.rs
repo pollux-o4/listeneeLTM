@@ -7,7 +7,7 @@ use std::{
 
 impl FileStore {
     /// 쓰기 구간 잠금. 반환값이 사라질 때 풀린다.
-    pub(super) fn lock(&self) -> Result<fs::File, StoreError> {
+    pub fn lock_project(&self) -> Result<fs::File, StoreError> {
         fs::create_dir_all(&self.root)?;
         let file =
             fs::OpenOptions::new().create(true).truncate(false).write(true).open(self.root.join(".lock"))?;

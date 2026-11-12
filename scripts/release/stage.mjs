@@ -3,30 +3,10 @@ import { chmod, copyFile, cp, mkdir, readFile, stat, writeFile } from 'node:fs/p
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import platforms from '../../npm/listenee-ltm/platforms.json' with { type: 'json' }
+import { releaseVersion } from './version.mjs'
 
 const source = new URL('../../npm/listenee-ltm/', import.meta.url)
 const template = JSON.parse(await readFile(new URL('package.json', source), 'utf8'))
-
-export async function releaseVersion(tag) {
-  const cargo = await readFile(new URL('../../Cargo.toml', import.meta.url), 'utf8')
-  const section = cargo.split('[workspace.package]')[1]?.split(/^\[/m)[0]
-  const version = section?.match(/^version\s*=\s*"([^"]+)"/m)?.[1]
-  assert.match(version ?? '', /^\d+\.\d+\.\d+$/, 'Expected a stable Cargo workspace version')
-  if (tag) assert.equal(tag, `v${version}`, 'Release tag must match Cargo workspace version')
-  const shell = await readFile(new URL('../install/install.sh', import.meta.url), 'utf8')
-  const powershell = await readFile(new URL('../install/install.ps1', import.meta.url), 'utf8')
-  assert.equal(
-    shell.match(/^version=\$\{LTM_VERSION:-([^}]+)\}/m)?.[1],
-    version,
-    'install.sh default version must match Cargo',
-  )
-  assert.equal(
-    powershell.match(/\[string\]\$Version\s*=\s*'([^']+)'/)?.[1],
-    version,
-    'install.ps1 default version must match Cargo',
-  )
-  return version
-}
 
 export async function stage(version, binariesDir, outputDir) {
   assert.match(version, /^\d+\.\d+\.\d+$/)

@@ -159,6 +159,7 @@ fn option_can_route_its_text_to_another_section() {
         Actor::Ai,
     )
     .unwrap();
+    assert_eq!(BriefView::from(b.clone()).decision_items["zoom"], "decision-zoom");
     b.apply(BriefPatch::Choose { decision: "zoom".into(), option: "later".into() }, Actor::Me).unwrap();
     assert!(b.items(SectionKey::ScopeIn).is_empty());
     assert_eq!(b.items(SectionKey::ScopeOut)[0].text, "zoom later");

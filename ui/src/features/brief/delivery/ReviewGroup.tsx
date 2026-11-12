@@ -1,9 +1,9 @@
 import { useId, useState } from 'react'
-import { useText } from '../../copy/index.ts'
-import { icons, PixelSprite, usePresence } from '../../design/index.ts'
-import type { BriefPatch } from '../../generated/BriefPatch.ts'
-import type { Item } from '../../generated/Item.ts'
-import { ItemRow } from './ItemRow.tsx'
+import { useText } from '../../../copy/index.ts'
+import { icons, PixelSprite, usePresence } from '../../../design/index.ts'
+import type { BriefPatch } from '../../../generated/BriefPatch.ts'
+import type { Item } from '../../../generated/Item.ts'
+import { ItemRow } from '../stage/item/ItemRow.tsx'
 
 type Props = {
   label: string
@@ -13,7 +13,7 @@ type Props = {
   onPatch: (p: BriefPatch) => void
 }
 
-/** 확인할 AI 항목들의 id. 확인한 줄도 이 자리에 남겨(♥ 반응·되돌아보기) 목록이 갑자기 줄지 않게 한다. */
+/** 확인할 항목들의 id. 확인한 줄도 이 자리에 남겨(♥ 반응·되돌아보기) 목록이 갑자기 줄지 않게 한다. */
 function useReviewIds(items: Item[]): string[] {
   const pending = items.filter((i) => !i.confirmed).map((i) => i.id)
   const [ids, setIds] = useState(pending)

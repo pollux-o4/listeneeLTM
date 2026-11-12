@@ -33,7 +33,7 @@ jobs:
           node --input-type=module <<'NODE'
           import { appendFileSync } from 'node:fs'
           import platforms from './npm/listenee-ltm/platforms.json' with { type: 'json' }
-          import { releaseVersion } from './scripts/release/stage.mjs'
+          import { releaseVersion } from './scripts/release/version.mjs'
           const tag = process.env.GITHUB_REF_TYPE === 'tag' ? process.env.GITHUB_REF_NAME : undefined
           const version = await releaseVersion(tag)
           appendFileSync(process.env.GITHUB_OUTPUT, `version=${version}\nmatrix=${JSON.stringify({ include: platforms })}\n`)

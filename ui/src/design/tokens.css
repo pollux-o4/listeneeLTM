@@ -135,6 +135,24 @@ p {
   }
 }
 
+@keyframes ltm-reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+@keyframes ltm-reveal-out {
+  to {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+@keyframes ltm-heart {
+  50% {
+    transform: scale(1.25);
+  }
+}
+
 /* 동작 줄이기: 모든 컴포넌트에 일괄 적용하는 접근성 우선 규칙이라 !important로 덮는다. */
 @media (prefers-reduced-motion: reduce) {
   *,

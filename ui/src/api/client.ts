@@ -34,7 +34,7 @@ export type WorkspaceApi = {
   brief: (id: string, locale: Locale) => Promise<WorkspaceView>
   patchBrief: (id: string, patch: BriefPatch, locale: Locale) => Promise<WorkspaceView>
   undo: (id: string, locale: Locale) => Promise<WorkspaceView>
-  duplicate: (from: string, id: string, title: string, locale: Locale) => Promise<WorkspaceView>
+  duplicate: (from: string, title: string, locale: Locale) => Promise<WorkspaceView>
   preferences: () => Promise<Preferences>
   patchPreferences: (patch: PrefPatch) => Promise<Preferences>
 }
@@ -51,10 +51,10 @@ export const httpApi: WorkspaceApi = {
     ),
   undo: (id: string, locale: Locale) =>
     request<WorkspaceView>(`/briefs/${encodeURIComponent(id)}/undo?lang=${locale}`, json('POST')),
-  duplicate: (from: string, id: string, title: string, locale: Locale) =>
+  duplicate: (from: string, title: string, locale: Locale) =>
     request<WorkspaceView>(
       `/briefs/${encodeURIComponent(from)}/duplicate?lang=${locale}`,
-      json('POST', { id, title }),
+      json('POST', { title }),
     ),
   preferences: () => request<Preferences>('/preferences'),
   patchPreferences: (patch: PrefPatch) =>

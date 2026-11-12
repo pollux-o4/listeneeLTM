@@ -38,14 +38,14 @@ ui (React) ◀── ui/src/generated ◀─────────────
 
 | 단위 | 책임 | 하위 관심사 |
 | - | - | - |
-| `ltm-core` | 도메인. I/O·문장 없음(코드+값, ADR-0007). 판정·조립의 유일한 원본 | `model/`(DATA-001: 섹션·항목·갈림길·변경 기록·문장 정규화), `edit/`(BriefPatch 디스패치 → 연산별 `items`·`decisions`), `view`(단계 판정·막힘 코드), `render/`(최종 Markdown, 언어별 고정 문구), `prefs/`(취향 노트, MEM-001) |
-| `ltm-server` | 저장과 GUI 어댑터 | `store`(`mod` 저장소 API·`history` 되돌리기 스냅샷·`files` 원자 쓰기·잠금), `http/`(라우팅·`guard` 루프백 검사·`handlers`·`error` 상태 코드, 쓰기 = 사람), `assets`(내장 UI) |
+| `ltm-core` | 도메인. I/O·문장 없음(코드+값, ADR-0007). 판정·조립의 유일한 원본 | `model/`(DATA-001: 섹션·항목·갈림길·변경 기록·문장 정규화), `edit/`(BriefPatch 디스패치 → 연산별 `items`·`decisions`), `view/`(공개 판정·파생 항목 대응, `stages` 단계·막힘 원본, `impacts` 선택 영향, `summary` 목록·학습), `render/`(최종 Markdown, 언어별 고정 문구), `prefs/`(취향 노트, MEM-001) |
+| `ltm-server` | 저장과 GUI 어댑터 | `store`(`mod` 저장소·오류 표면, `brief` 지시서 저장, `preferences` 노트 저장, `history` 스냅샷, `files` 원자 쓰기·공유 프로젝트 잠금), `http/`(라우팅·`guard` 루프백 검사·`handlers`·`error` 상태 코드, 쓰기 = 사람), `assets`(내장 UI) |
 | `ltm-cli` | AI용 명령(쓰기 = AI) | `commands/`: `init`(AI 안내 등록), `brief`(new·list·check·set·undo·export), `pref`(show·json·set), `ui` |
-| `ui` | Listen to Me GUI(표현·문장 끝단) | `app/`(셸·라우팅·테마·화면 선택 `MainScreen`, `data/` 데이터 연결·쓰기 정책 `useWriter`), `features/brief`(여정 지도), `features/preferences`(취향 노트), `design/`(토큰·스프라이트·프리미티브), `copy/`(언어별 문구·언어 선택·카탈로그), `api/`(데이터 경계 포트 `WorkspaceApi`·HTTP 구현·`ApiProvider` 주입·`useLive`) |
+| `ui` | Listen to Me GUI(표현·문장 끝단) | `app/`(셸·라우팅·테마·화면 선택 `MainScreen`, `data/` 데이터 연결·쓰기 정책 `useWriter`), `features/brief`(`BriefWorkspace` 공개 화면, `stage/` 단계·갈림길·항목과 코어 결과 연결, `delivery/` 전달·확인, `requests/` AI 요청, `workspace/` 여정·초안), `features/preferences`(취향 노트), `design/`(토큰·스프라이트·프리미티브), `copy/`(언어별 문구·언어 선택·카탈로그), `api/`(데이터 경계 포트 `WorkspaceApi`·HTTP 구현·`ApiProvider` 주입·`useLive`) |
 
 - 규칙
   - AI(CLI)와 GUI(HTTP)는 같은 `BriefPatch`·`FileStore`를 쓴다. 누가 바꿨는지는 경로로 정한다.
-  - 단계 판정·막힘·최종 지시서는 코어 `BriefView`가 계산한다. UI는 다시 계산하지 않는다.
+  - 단계 판정·막힘·최종 지시서는 코어 `BriefView`가 계산한다. UI는 다시 계산하지 않는다. 갈림길 파생 항목 id도 코어의 `decisionItems` 대응을 사용한다.
   - UI 모듈 경계의 원본은 `ui/scripts/check-boundaries.mjs` 규칙 표다(`pnpm check`가 강제). 요약: `app` → 기능 → `design`·`copy` → `generated`. 기능끼리, 기능 → `app`·`api`는 금지(데이터는 `app`이 props로 준다). `design`·`copy`는 공개 입구(`index.ts`)로만 가져온다.
   - 화면은 데이터 경계를 `useApi()`로만 쓴다. 스토리·테스트는 `ApiProvider`로 대역을 주입하고 전역 객체를 바꾸지 않는다.
 
