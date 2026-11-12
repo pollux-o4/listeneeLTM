@@ -17,9 +17,9 @@ export const appCopy = {
     working: ' (진행 중)',
     notes: '취향 노트',
     pendingSuffix: '개 확인 전',
-    themeTitle: '테마 바꾸기',
     name: 'Listen to Me',
-    themeLabel: (label: string) => `테마: ${label}. 눌러서 바꾸기`,
+    settings: '설정',
+    themeHeading: '테마',
   },
   screen: {
     askAiWith: (task: string, details: readonly string[]) =>
@@ -87,6 +87,8 @@ export const appCopy = {
     offlineSave: '서버에 닿지 못해 저장하지 못했어요.',
     retry: '다시 시도',
     removed: '항목을 뺐어요.',
+    confirmed: '좋아요로 확인했어요.',
+    confirmedAll: '이 단계를 모두 좋아요로 확인했어요.',
     undo: '되돌리기',
     saveFailed: (message?: string) =>
       `저장하지 못했어요${message === undefined ? '' : ` (${message})`}.`,

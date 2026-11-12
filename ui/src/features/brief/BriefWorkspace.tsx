@@ -14,6 +14,7 @@ import { BriefPaper } from './BriefPaper.tsx'
 import { DeliveryPanel } from './DeliveryPanel.tsx'
 import { narrate } from './narration.ts'
 import { QuestPath } from './QuestPath.tsx'
+import { RequestTray } from './RequestTray.tsx'
 import { StageDetail } from './StageDetail.tsx'
 import './workspace.css'
 
@@ -161,11 +162,16 @@ export function BriefWorkspace({ view, onPatch, onUndo }: Props) {
             onUndo={view.canUndo ? onUndo : undefined}
             onMove={move}
             onPatch={onPatch}
+            dormant={view.dormant}
+            impacts={view.impacts}
           />
         ) : (
           <DeliveryPanel
             view={view}
             onOpenStage={(section) => openWhere((s) => s.section === section)}
+            onPatch={onPatch}
+            draftOpen={draftOpen}
+            onShowDraft={() => setDraftOpen(true)}
           />
         )}
         {draft.mounted && (
@@ -181,10 +187,13 @@ export function BriefWorkspace({ view, onPatch, onUndo }: Props) {
               ready={view.ready}
               changes={view.brief.changes}
               onHeading={(label) => openWhere((s) => copy.brief.stage[s.section].label === label)}
+              onClose={() => setDraftOpen(false)}
             />
           </div>
         )}
       </div>
+      {/* 화면 아래에 떠 있는 모아 보내기: 어디까지 내려가 있어도 보낼 곳이 보인다. */}
+      <RequestTray brief={view.brief} onPatch={onPatch} />
     </div>
   )
 }

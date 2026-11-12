@@ -2,7 +2,9 @@ use serde::{Deserialize, Serialize};
 use ts_rs::TS;
 
 // 계약: DATA-001
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize, TS)]
+#[derive(
+    Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize, TS, schemars::JsonSchema,
+)]
 #[serde(rename_all = "camelCase")]
 #[ts(export)]
 pub enum SectionKey {

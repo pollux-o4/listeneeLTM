@@ -14,4 +14,5 @@ export const commonCopy = {
     unconfirmed: ' (unconfirmed)',
   },
   notice: { close: 'Dismiss notification' },
+  edit: { save: 'Save', cancel: 'Cancel' },
 } as const satisfies Messages['common']

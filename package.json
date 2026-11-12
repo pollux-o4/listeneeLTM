@@ -9,7 +9,7 @@
   "scripts": {
     "storybook": "pnpm --filter @listenee-ltm/ui storybook",
     "dev": "pnpm run \"/^dev:/\"",
-    "dev:api": "cargo run -q -p ltm-cli -- ui --project .",
+    "dev:api": "cargo run -q -p ltm-cli -- ui --project . --port 4319",
     "dev:ui": "pnpm --filter @listenee-ltm/ui dev",
     "build:ui": "pnpm --filter @listenee-ltm/ui build",
     "build": "pnpm build:ui && cargo build --release -p ltm-cli",

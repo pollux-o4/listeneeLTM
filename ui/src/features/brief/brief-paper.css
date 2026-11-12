@@ -1,16 +1,27 @@
 .bp {
   position: sticky;
-  top: 60px;
+  top: calc(var(--bar-h, 49px) + 12px);
   display: grid;
   gap: 6px;
   align-content: start;
   min-width: 0;
 }
 .bp-bar {
+  /* 세로로 길게 쌓인 화면에서도 복사·접기가 늘 손 닿는 곳에 있다. */
+  position: sticky;
+  top: var(--bar-h, 49px);
+  z-index: 2;
+  padding: 6px 0;
+  background: var(--c-bg);
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 12px;
+}
+.bp-tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 .bp-bar p {
   margin: 0;

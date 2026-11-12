@@ -2,6 +2,7 @@
 import type { Change } from "./Change";
 import type { Decision } from "./Decision";
 import type { Item } from "./Item";
+import type { Request } from "./Request";
 import type { SectionKey } from "./SectionKey";
 
 export type Brief = { id: string, title: string, 
@@ -14,6 +15,10 @@ revision: number,
  */
 updatedAt: string, sections: { [key in SectionKey]?: Array<Item> }, decisions: Array<Decision>, 
 /**
+ * 사람이 AI에게 남긴 요청(DATA-001). 처리해도 사람이 닫을 때까지 남는다.
+ */
+requests: Array<Request>, 
+/**
  * 최신이 앞. 길이는 `CHANGE_LOG_LIMIT`로 제한.
  */
 changes: Array<Change>, 
@@ -21,6 +26,10 @@ changes: Array<Change>,
  * AI가 이 지시서에서 취향을 분석한 직후의 revision(ADR-0008). 이후 바뀌면 다시 분석 대상.
  */
 analyzedRevision?: number, 
+/**
+ * AI가 첫 작성 뒤 제품 기준으로 자기 리뷰·개선을 마친 revision(FLOW-001). 한 번만 한다.
+ */
+reviewedRevision?: number, 
 /**
  * 복제 원본 지시서 id(FLOW-002).
  */

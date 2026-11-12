@@ -18,6 +18,7 @@
       ],
       "decisions": [],
       "id": "new-brief",
+      "requests": [],
       "revision": 1,
       "sections": {
         "acceptance": [],
@@ -38,6 +39,8 @@
       "updatedAt": "1970-01-01T00:00:00.000Z"
     },
     "current": 1,
+    "dormant": [],
+    "impacts": [],
     "issues": [
       {
         "code": {
@@ -63,6 +66,7 @@
       }
     ],
     "ready": false,
+    "selfReviewDue": false,
     "stages": [
       {
         "openDecisions": 0,

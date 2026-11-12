@@ -62,6 +62,52 @@ pub struct BriefView {
     /// 막힘 없음 → 전달 가능
     pub ready: bool,
     pub issues: Vec<Issue>,
+    /// 첫 작성을 마쳐 막힘이 없고, AI가 자기 리뷰를 아직 안 했다 → 제품 기준으로 리뷰·개선 1회(FLOW-001).
+    pub self_review_due: bool,
+    /// 조건이 맞지 않아 잠든 갈림길 id(DATA-001). 흐리게·잠금으로 보인다.
+    pub dormant: Vec<String>,
+    /// 고르면 다른 갈림길이 잠들거나 깨어나는 선택지들(UX-001 갈림길 의존: 고르기 전에 보인다).
+    pub impacts: Vec<OptionImpact>,
+}
+
+/// 선택지 하나를 골랐을 때 다른 갈림길에 생기는 변화.
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, TS)]
+#[serde(rename_all = "camelCase")]
+#[ts(export)]
+pub struct OptionImpact {
+    pub decision: String,
+    pub option: String,
+    pub sleeps: Vec<String>,
+    pub wakes: Vec<String>,
+}
+
+/// 실제 선택을 사본에 적용해 살아 있는 갈림길의 차이를 잰다. 규칙을 두 번 쓰지 않으려고 같은 연산을 쓴다.
+fn impacts(brief: &Brief) -> Vec<OptionImpact> {
+    let alive = |b: &Brief| -> Vec<String> {
+        b.decisions.iter().filter(|d| b.decision_alive(&d.id)).map(|d| d.id.clone()).collect()
+    };
+    let before = alive(brief);
+    let mut out = Vec::new();
+    for d in brief
+        .decisions
+        .iter()
+        .filter(|d| brief.decisions.iter().any(|c| c.when.as_ref().is_some_and(|w| w.decision == d.id)))
+    {
+        for o in d.options.iter().filter(|o| d.chosen.as_deref() != Some(&o.id)) {
+            let mut next = brief.clone();
+            let patch = crate::BriefPatch::Choose { decision: d.id.clone(), option: o.id.clone() };
+            if next.apply(patch, crate::model::Actor::Me).is_err() {
+                continue;
+            }
+            let after = alive(&next);
+            let sleeps: Vec<String> = before.iter().filter(|id| !after.contains(id)).cloned().collect();
+            let wakes: Vec<String> = after.iter().filter(|id| !before.contains(id)).cloned().collect();
+            if !sleeps.is_empty() || !wakes.is_empty() {
+                out.push(OptionImpact { decision: d.id.clone(), option: o.id.clone(), sleeps, wakes });
+            }
+        }
+    }
+    out
 }
 
 /// 목록용 요약.
@@ -104,9 +150,14 @@ impl LearningStatus {
     }
 }
 
+/// 사람이 정해야 할 갈림길: 열려 있고 살아 있는 것. 잠든 갈림길은 막힘이 아니다.
+pub(crate) fn open_alive(brief: &Brief) -> impl Iterator<Item = &crate::model::Decision> {
+    brief.decisions.iter().filter(|d| d.chosen.is_none() && brief.decision_alive(&d.id))
+}
+
 fn stage(brief: &Brief, key: SectionKey) -> StageView {
     let items = brief.items(key);
-    let open = brief.decisions.iter().filter(|d| d.section == key && d.chosen.is_none()).count() as u32;
+    let open = open_alive(brief).filter(|d| d.section == key).count() as u32;
     let unconfirmed = items.iter().filter(|i| !i.confirmed).count() as u32;
     let status = if open > 0 {
         StageStatus::Fork
@@ -128,7 +179,7 @@ fn issues(brief: &Brief, stages: &[StageView]) -> Vec<Issue> {
                 out.push(Issue { kind: IssueKind::Blocking, section: s.section, code: IssueCode::EmptyStage })
             }
             StageStatus::Fork => {
-                for d in brief.decisions.iter().filter(|d| d.section == s.section && d.chosen.is_none()) {
+                for d in open_alive(brief).filter(|d| d.section == s.section) {
                     out.push(Issue {
                         kind: IssueKind::Blocking,
                         section: s.section,
@@ -156,7 +207,12 @@ impl From<Brief> for BriefView {
         let current = stages.iter().position(|s| blocked(&s)).unwrap_or(stages.len()) as u32;
         let ready = !stages.iter().any(|s| blocked(&s));
         let issues = issues(&brief, &stages);
-        Self { brief, stages, current, ready, issues }
+        let wrote = brief.sections.values().flatten().any(|i| i.by == crate::model::Actor::Ai);
+        let self_review_due = ready && wrote && brief.reviewed_revision.is_none();
+        let dormant =
+            brief.decisions.iter().filter(|d| !brief.decision_alive(&d.id)).map(|d| d.id.clone()).collect();
+        let impacts = impacts(&brief);
+        Self { brief, stages, current, ready, issues, self_review_due, dormant, impacts }
     }
 }
 

@@ -14,12 +14,17 @@
    - (2·3 공통) 어디에 무엇을 쓰는가. 어기면 `ltm set`이 저장하지 않고 사유와 고치는 방법을 돌려주니, 그대로 고쳐 다시 보낸다.
      - 항목 `text`·질문·선택지 `label`·`text`: 한 뜻의 짧은 한 문장("~를 ~하게 한다", 40자 이내). 괄호·화살표·백틱·풀어 쓰지 않은 영문 약어(AI 제외)를 쓰지 않는다. 다른 뜻이면 항목을 나눈다.
      - `detail`(항목): 모든 항목에 설명과 기술을 채운다. 설명은 일상어 `- 줄`(풀이·조건), 기술은 전체를 `[ ]`로 싼 `- [줄]`(무엇을 어떻게 구현하는지, 명령어·약어 허용). 예: `"- 개발하며 계속 갱신해요\n- [mise run tasks에 refresh를 붙여 빌드 후 이전 서버를 닫고 다시 띄운다]"`. 줄당 100자 이내, 최대 6줄, 정말 없는 칸만 비운다(화면에 '없음'으로 보인다). `why`·`note`: 일상어 한두 문장. 사람이 궁금할 때만 펼쳐 보고, 최종 지시서에는 제목 아래에 함께 들어간다. 수신자에게 꼭 필요한 조건은 여기에 넣는다.
+     - 앞 갈림길의 선택에 따라서만 의미 있는 갈림길에는 `"when":{"decision":"<앞 갈림길 id>","options":["<선택지 id>"]}`를 붙인다(앞 갈림길을 먼저 만든다). 조건이 맞지 않으면 화면에 잠금으로 보이고 막힘이 아니며, LTM이 문장 넣고 빼기를 맞춘다. 서로 배타인 선택은 갈림길 하나의 선택지로 만든다.
      - 질문은 "이걸 정하면 무엇이 달라지는가"로 묻고, `note`에는 결과·비용·되돌리기 쉬운지를 쓴다. 사람이 판단할 수 없는 기술 선택은 `"decide": true`로 정하고 한 줄로 알린다.
 4. `ltm check <id>`의 `ready`가 true가 될 때까지 막힘(`issues`의 `blocking`)을 해소한다.
+   - 출력에 `selfReview`가 있으면 사용자에게 끝났다고 말하기 전에 그 지시를 따른다: `standard`(제품 한 줄)에 비춰 지시서를 적대적으로 리뷰하고 한 번 고친 뒤 `markReviewed`로 표시한다. 사용자에게 묻지 않고, 고친 점을 한 줄로 알린다.
+4-1. 사용자가 "LTM 요청 봐 줘"처럼 말하면 `ltm check <id>`의 `requests` 지시대로 열린 요청(`brief.requests`)을 처리한다. 먼저 `takeRequests`로 맡았음을 표시하고(사용자 화면에 '처리 중'), 묻는 말엔 답하고, 고칠 것은 고친 뒤 `resolveRequest`로 한 줄 답을 남긴다.
 5. 지시서 작업을 마치면 아래 취향 노트 규칙대로 분석하고 `ltm set <id> '{"op":"markAnalyzed"}'`로 표시한다. 배운 것이 없어도 표시한다(목록의 학습 상태: `unanalyzed`·`stale`이면 다시 분석).
 6. 사용자에게 `ltm ui`(http://127.0.0.1:4318)에서 보고 고칠 수 있다고 알린다. 최종본은 `ltm export <id>`(막힘이 남아 있으면 stderr에 초안임을 알린다).
 
 ## 편집: `ltm set <id> '<JSON>'`
+
+형식의 원본은 `ltm schema`(JSON Schema)다. 아래 표는 자주 쓰는 예시다.
 
 섹션: `purpose`(목적) · `scopeIn`(포함 범위) · `scopeOut`(제외 범위) · `constraints`(제약) · `acceptance`(완료 기준)
 
@@ -30,7 +35,7 @@
 | ask | `{"op":"ask","decision":{"id":"image-host","section":"constraints","question":"이미지를 어디에 둘까?","why":"비용·속도를 정한다","recommended":"static","decide":true,"options":[{"id":"static","label":"정적 호스팅","note":"무료","text":"이미지는 정적 호스팅"},{"id":"cdn","label":"CDN","note":"월 비용","text":"이미지는 CDN"}]}}` (선택지에 `"section":"scopeOut"`처럼 문장이 들어갈 섹션을 따로 지정할 수 있다) |
 | choose | `{"op":"choose","decision":"image-host","option":"cdn"}` |
 | setTitle | `{"op":"setTitle","value":"..."}` |
-| markAnalyzed | `{"op":"markAnalyzed"}` |
+| markAnalyzed / markReviewed | `{"op":"markAnalyzed"}` · `{"op":"markReviewed"}` |
 
 - 문장은 한 줄로 쓴다(줄바꿈은 한 칸으로 접힌다). 여러 내용은 항목을 나눠 적는다.
 - 갈림길 선택지는 2개 이상, id는 서로 다르게(소문자·숫자·하이픈), `label`과 `text`는 비우지 않는다.

@@ -1,5 +1,5 @@
 import { useText } from '../../copy/index.ts'
-import { OriginBadge, useCopy } from '../../design/index.ts'
+import { icons, OriginBadge, PixelSprite, useCopy } from '../../design/index.ts'
 import type { Change } from '../../generated/Change.ts'
 import { useFirstSeen } from './useFirstSeen.ts'
 import './brief-paper.css'
@@ -9,6 +9,8 @@ type Props = {
   ready: boolean
   changes: Change[]
   onHeading: (label: string) => void
+  /** 길어진 초안 어디서든 접을 수 있게 붙어 다니는 막대에 둔다. */
+  onClose?: () => void
 }
 
 /**
@@ -16,7 +18,7 @@ type Props = {
  * 어느 단계에 있든 보이고 복사할 수 있다(미완성이면 "초안"). 새로 생긴 줄은 잠시 빛난다.
  * 제목을 누르면 그 단계로 이동해 전체 훑어보기 역할을 한다.
  */
-export function BriefPaper({ markdown, ready, changes, onHeading }: Props) {
+export function BriefPaper({ markdown, ready, changes, onHeading, onClose }: Props) {
   const copy = useText()
   const lines = keyed(markdown.trimEnd().split('\n'))
   const isFresh = useFirstSeen(lines.map((l) => l.key))
@@ -31,9 +33,22 @@ export function BriefPaper({ markdown, ready, changes, onHeading }: Props) {
           </span>
           {copy.brief.paper.recipientHint}
         </p>
-        <button type="button" className="ltm-link" onClick={() => copyText(markdown)}>
-          {ready ? copy.brief.paper.copy : copy.brief.paper.copyDraft}
-        </button>
+        <span className="bp-tools">
+          <button type="button" className="ltm-link" onClick={() => copyText(markdown)}>
+            {ready ? copy.brief.paper.copy : copy.brief.paper.copyDraft}
+          </button>
+          {onClose && (
+            <button
+              type="button"
+              className="ltm-icon"
+              aria-label={copy.brief.workspace.hideDraft}
+              title={copy.brief.workspace.hideDraft}
+              onClick={onClose}
+            >
+              <PixelSprite sprite={icons.cross} scale={2 / 3} tint="currentColor" />
+            </button>
+          )}
+        </span>
       </div>
       <p className="sr-only" aria-live="polite">
         {state === 'idle' ? '' : copy.brief.copyResult[state]}

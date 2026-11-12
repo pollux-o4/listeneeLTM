@@ -11,5 +11,5 @@ cargo-deny = "0.20.2"
 "github:nextest-rs/nextest" = { version = "cargo-nextest-0.9.150", bin = "cargo-nextest" }
 
 [tasks.refresh]
-description = "실사용 ltm 갱신: 빌드 후 샌드박스 프로젝트에서 다시 띄우기 (포트 LTM_PORT, 기본 4320)"
+description = "실사용 ltm 갱신: 빌드 후 샌드박스 프로젝트에서 다시 띄우기 (포트 LTM_PORT, 기본 4318)"
 run = "bash scripts/refresh.sh"

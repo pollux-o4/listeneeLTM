@@ -14,4 +14,5 @@ export const commonCopy = {
   notice: {
     close: '알림 닫기',
   },
+  edit: { save: '저장', cancel: '취소' },
 } as const

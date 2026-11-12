@@ -55,6 +55,18 @@ export function change(event: ChangeEvent): string {
       return `Ungrouped "${event.statement}"`
     case 'analyzed':
       return 'Analyzed for preferences'
+    case 'reviewed':
+      return 'Self-reviewed'
+    case 'requestAdded':
+      return `Asked AI: "${event.text}"`
+    case 'requestsTaken':
+      return `AI picked up ${event.count} request${event.count === 1 ? '' : 's'}`
+    case 'requestResolved':
+      return `AI replied: "${event.text}"`
+    case 'requestAcknowledged':
+      return `Checked AI reply: "${event.text}"`
+    case 'requestRemoved':
+      return `Removed request: "${event.text}"`
     case 'derived':
       return `Duplicated from "${event.from}"`
     case 'legacy':

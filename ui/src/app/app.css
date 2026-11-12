@@ -130,24 +130,111 @@
   color: var(--c-on-bright);
   background: var(--c-glow);
 }
-.app-theme {
+.app-settings {
+  position: relative;
   flex: none;
+}
+.app-settings-toggle {
+  min-width: 36px;
+  min-height: 36px;
+  color: var(--c-muted);
+}
+.app-settings-toggle:hover,
+.app-settings-toggle[aria-expanded="true"] {
+  color: var(--c-text);
+}
+/* 톱니는 한 칸(45°)씩 딸깍 돈다: 도트 그림이 흐려지지 않게 중간 각도 없이 steps로. */
+.app-settings-toggle svg {
+  transition: transform var(--dur-base) steps(2, jump-none);
+}
+.app-settings-toggle:hover svg {
+  transform: rotate(45deg);
+}
+.app-settings-toggle[aria-expanded="true"] svg {
+  transform: rotate(90deg);
+}
+.app-settings-panel {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 6px);
+  right: 0;
+  display: grid;
+  gap: 12px;
+  width: max-content;
+  padding: 12px;
+  background: var(--c-surface);
+  box-shadow:
+    0 0 0 var(--px) var(--c-line),
+    calc(var(--px) * 2) calc(var(--px) * 2) 0 var(--px) var(--c-shadow);
+  /* 톱니에서 펼쳐지듯: 오른쪽 위 모서리를 기준으로 커지고, 닫힐 땐 그 자리로 접힌다. */
+  transform-origin: top right;
+  animation: app-settings-in var(--dur-base) var(--ease-spring) both;
+}
+.app-settings-panel[data-closing="true"] {
+  pointer-events: none;
+  animation: app-settings-out var(--dur-fast) ease-in both;
+}
+.app-settings-panel fieldset + fieldset {
+  animation-delay: 110ms;
+}
+@keyframes app-settings-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(calc(var(--px) * -2));
+  }
+}
+@keyframes app-settings-out {
+  to {
+    opacity: 0;
+    transform: scale(0.96) translateY(calc(var(--px) * -2));
+  }
+}
+.app-settings-panel fieldset {
+  animation: ltm-rise var(--dur-base) var(--ease-soft) 60ms both;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.app-settings-panel legend {
+  float: left;
+  width: 100%;
+  margin-bottom: 6px;
+  padding: 0;
+}
+.app-choice {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  min-height: 36px;
-  padding: 0 6px;
+  min-height: 32px;
+  padding: 0 9px;
   font-family: var(--font-pixel);
   font-size: var(--fs-pixel);
-  color: var(--c-muted);
-  background: none;
+  color: var(--c-text);
+  background: var(--c-bg);
   border: 0;
   cursor: pointer;
+  box-shadow: 0 0 0 1px var(--c-line);
 }
-.app-theme:hover {
-  color: var(--c-text);
+.app-choice {
+  transition:
+    transform var(--dur-fast) var(--ease-spring),
+    background-color var(--dur-base) var(--ease-soft),
+    color var(--dur-base) var(--ease-soft);
 }
-/* 자동: 반반 / 어둡게: 채움 / 밝게: 비움 */
+.app-choice:hover {
+  transform: translateY(calc(var(--px) * -1));
+}
+.app-choice:active {
+  transform: translateY(var(--px));
+  transition-duration: 40ms;
+}
+.app-choice[aria-pressed="true"] {
+  color: var(--c-on-accent);
+  background: var(--c-accent);
+}
 .app-theme-swatch {
   width: 12px;
   height: 12px;
@@ -329,17 +416,6 @@
   }
 }
 
-.app-language {
-  font-family: var(--font-pixel);
-  font-size: var(--fs-pixel);
-  min-height: 36px;
-  color: var(--c-text);
-  background: var(--c-surface);
-  border: 1px solid var(--c-line);
-  border-radius: 0;
-  padding: calc(2 * var(--px));
-  flex-shrink: 0;
-}
 /* 서랍 열기: 픽셀 목록 아이콘 */
 .app-drawer-toggle {
   border: 0;

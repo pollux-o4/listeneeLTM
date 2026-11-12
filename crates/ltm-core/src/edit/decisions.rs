@@ -29,6 +29,14 @@ pub(super) fn ask(brief: &mut Brief, decision: NewDecision, by: Actor) -> Result
     {
         return Err(PatchError::InvalidDecision);
     }
+    if let Some(when) = &decision.when {
+        let parent = brief.decisions.iter().find(|p| p.id == when.decision);
+        let valid = parent
+            .is_some_and(|p| !when.options.is_empty() && when.options.iter().all(|o| p.option(o).is_some()));
+        if !valid {
+            return Err(PatchError::InvalidCondition);
+        }
+    }
     let question = sentence(&decision.question)?;
     check("question", Kind::Headline, &question, by)?;
     check("why", Kind::Detail, &decision.why, by)?;
@@ -44,8 +52,10 @@ pub(super) fn ask(brief: &mut Brief, decision: NewDecision, by: Actor) -> Result
         recommended: decision.recommended,
         chosen: None,
         chosen_by: None,
+        when: decision.when,
     });
-    if decide {
+    // shortcut: 잠든 채 만든 갈림길의 `decide`는 버려져 깨어나면 열린 채로 묻는다, 미리 정하기를 기억할 필요가 보이면 저장 검토
+    if decide && brief.decision_alive(&id) {
         choose(brief, &id, &recommended, by)?;
         Ok(ChangeEvent::DecideRecommended { question })
     } else {
@@ -60,6 +70,9 @@ pub(super) fn choose(
     option: &str,
     by: Actor,
 ) -> Result<ChangeEvent, PatchError> {
+    if !brief.decision_alive(decision) && brief.decisions.iter().any(|d| d.id == decision) {
+        return Err(PatchError::DormantDecision(decision.to_owned()));
+    }
     let found = brief
         .decisions
         .iter_mut()
@@ -84,21 +97,59 @@ pub(super) fn choose(
         by,
         confirmed: by == Actor::Me,
     });
+    sync_dependents(brief, decision);
     Ok(ChangeEvent::Choose { question, label: selected.label })
 }
 
+/// 선택이 바뀐 갈림길에 기대는 갈림길들의 항목을 맞춘다: 잠들면 빼고, 살아나면 남은 선택의 항목을 돌려놓는다.
+/// 조건은 먼저 있던 갈림길만 가리키므로 목록 순서대로 한 번 훑으면 손자까지 닿는다.
+fn sync_dependents(brief: &mut Brief, changed: &str) {
+    let mut touched = vec![changed.to_owned()];
+    for i in 0..brief.decisions.len() {
+        let d = &brief.decisions[i];
+        let Some(when) = &d.when else { continue };
+        if !touched.contains(&when.decision) {
+            continue;
+        }
+        touched.push(d.id.clone());
+        let item_id = d.item_id();
+        let restore = brief.decision_alive(&d.id).then(|| {
+            let option = d.chosen.as_ref().and_then(|c| d.option(c))?;
+            let by = d.chosen_by.unwrap_or(Actor::Ai);
+            Some((option.section.unwrap_or(d.section), option.text.clone(), by))
+        });
+        let present = brief.sections.values().flatten().any(|item| item.id == item_id);
+        match restore.flatten() {
+            Some((section, text, by)) if !present => brief.sections.entry(section).or_default().push(Item {
+                id: item_id,
+                text,
+                detail: None,
+                by,
+                confirmed: by == Actor::Me,
+            }),
+            Some(_) => {}
+            None => {
+                for items in brief.sections.values_mut() {
+                    items.retain(|item| item.id != item_id);
+                }
+            }
+        }
+    }
+}
+
 pub(super) fn accept_recommended(brief: &mut Brief, by: Actor) -> Result<ChangeEvent, PatchError> {
-    let open: Vec<(String, String)> = brief
-        .decisions
-        .iter()
-        .filter(|decision| decision.chosen.is_none())
-        .map(|decision| (decision.id.clone(), decision.recommended.clone()))
-        .collect();
-    if open.is_empty() {
+    // 추천을 고르면 뒤 갈림길이 살아날 수 있어, 살아 있는 열린 갈림길이 없을 때까지 순서대로 고른다.
+    let mut count = 0u32;
+    for i in 0..brief.decisions.len() {
+        let d = &brief.decisions[i];
+        if d.chosen.is_none() && brief.decision_alive(&d.id) {
+            let (id, option) = (d.id.clone(), d.recommended.clone());
+            choose(brief, &id, &option, by)?;
+            count += 1;
+        }
+    }
+    if count == 0 {
         return Err(PatchError::NoOp);
     }
-    for (decision, option) in &open {
-        choose(brief, decision, option, by)?;
-    }
-    Ok(ChangeEvent::AcceptRecommended { count: open.len() as u32 })
+    Ok(ChangeEvent::AcceptRecommended { count })
 }

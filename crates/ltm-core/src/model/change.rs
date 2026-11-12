@@ -27,6 +27,12 @@ pub enum ChangeEvent {
     NoteGrouped { statement: String, count: u32 },
     NoteUngrouped { statement: String },
     Analyzed {},
+    Reviewed {},
+    RequestAdded { text: String },
+    RequestsTaken { count: u32 },
+    RequestResolved { text: String },
+    RequestAcknowledged { text: String },
+    RequestRemoved { text: String },
     Derived { from: String },
     Legacy { summary: String },
 }

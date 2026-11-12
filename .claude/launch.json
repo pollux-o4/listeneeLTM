@@ -11,13 +11,13 @@
       "name": "app",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["dev"],
-      "port": 5173
+      "port": 4320
     },
     {
       "name": "prototype",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter", "@listenee-ltm/ui", "exec", "vite"],
-      "port": 5173
+      "port": 4320
     }
   ]
 }

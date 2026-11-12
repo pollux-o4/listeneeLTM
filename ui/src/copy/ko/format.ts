@@ -55,6 +55,18 @@ export function change(event: ChangeEvent): string {
       return `"${event.statement}" 묶음 풀기`
     case 'analyzed':
       return '취향 분석 완료'
+    case 'reviewed':
+      return '자기 리뷰 완료'
+    case 'requestAdded':
+      return `AI에게 요청: "${event.text}"`
+    case 'requestsTaken':
+      return `AI가 요청 ${event.count}개를 맡음`
+    case 'requestResolved':
+      return `AI가 답함: "${event.text}"`
+    case 'requestAcknowledged':
+      return `AI 답 확인: "${event.text}"`
+    case 'requestRemoved':
+      return `요청 지움: "${event.text}"`
     case 'derived':
       return `"${event.from}"에서 복제`
     case 'legacy':

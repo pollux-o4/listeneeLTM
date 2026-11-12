@@ -3,7 +3,7 @@ use ts_rs::TS;
 
 use super::{Actor, SectionKey};
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, TS)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, TS, schemars::JsonSchema)]
 #[serde(rename_all = "camelCase")]
 #[ts(export)]
 pub struct DecisionOption {
@@ -18,6 +18,15 @@ pub struct DecisionOption {
     #[ts(optional)]
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub section: Option<SectionKey>,
+}
+
+/// 갈림길의 조건: 앞 갈림길 `decision`이 `options` 중 하나로 정해졌을 때만 묻는다(DATA-001).
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, TS, schemars::JsonSchema)]
+#[serde(rename_all = "camelCase")]
+#[ts(export)]
+pub struct DecisionWhen {
+    pub decision: String,
+    pub options: Vec<String>,
 }
 
 /// 갈림길. `chosen`이 없으면 열린 결정, AI가 정했으면 `chosen_by = Ai`로 바꿀 수 있게 남는다.
@@ -38,6 +47,10 @@ pub struct Decision {
     #[ts(optional)]
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub chosen_by: Option<Actor>,
+    /// 있으면 이 조건이 맞을 때만 살아 있다. 없으면 늘 살아 있다.
+    #[ts(optional)]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub when: Option<DecisionWhen>,
 }
 
 impl Decision {

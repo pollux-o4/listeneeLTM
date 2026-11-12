@@ -18,6 +18,7 @@ fn ask(id: &str, decide: bool) -> BriefPatch {
             options: vec![opt("a", "use A"), opt("b", "use B")],
             recommended: "a".into(),
             decide: Some(decide),
+            when: None,
         },
     }
 }
@@ -152,6 +153,7 @@ fn option_can_route_its_text_to_another_section() {
                 options: vec![opt("yes", "zoom"), later],
                 recommended: "yes".into(),
                 decide: None,
+                when: None,
             },
         },
         Actor::Ai,
@@ -185,6 +187,7 @@ fn rejects_empty_titles_and_malformed_options() {
             options,
             recommended: "a".into(),
             decide: None,
+            when: None,
         },
     };
     let dup = b.apply(ask_with(vec![opt("a", "A"), opt("a", "B")]), Actor::Ai);
@@ -366,4 +369,153 @@ mod style_gate {
     fn headline_still_rejects_brackets() {
         assert!(matches!(add(Actor::Ai, "설치한다 [CI]", None), Err(PatchError::Style { .. })));
     }
+}
+
+/// FLOW-001 자기 리뷰: AI가 쓰고 막힘이 없으면 한 번 리뷰할 때가 되고, 표시하면 다시 오지 않는다.
+#[test]
+fn self_review_due_once_after_first_draft() {
+    let mut b = Brief::new("r", "t").unwrap();
+    assert!(!BriefView::from(b.clone()).self_review_due, "빈 지시서는 리뷰할 게 없다");
+    for s in [SectionKey::Purpose, SectionKey::ScopeIn, SectionKey::Acceptance] {
+        b.apply(add_ai(s, "무엇을 한다"), Actor::Ai).unwrap();
+    }
+    assert!(BriefView::from(b.clone()).self_review_due);
+    b.apply(BriefPatch::MarkReviewed, Actor::Ai).unwrap();
+    b.apply(add_ai(SectionKey::ScopeIn, "더 한다"), Actor::Ai).unwrap();
+    assert!(!BriefView::from(b).self_review_due, "리뷰는 첫 작성 뒤 한 번만");
+}
+
+fn egg(id: &str, options: [(&str, &str); 2], when: Option<(&str, &str)>) -> BriefPatch {
+    BriefPatch::Ask {
+        decision: NewDecision {
+            id: id.into(),
+            section: SectionKey::ScopeIn,
+            question: format!("{id}?"),
+            why: String::new(),
+            options: options.iter().map(|(o, t)| opt(o, t)).collect(),
+            recommended: options[0].0.into(),
+            decide: None,
+            when: when.map(|(d, o)| ltm_core::DecisionWhen { decision: d.into(), options: vec![o.into()] }),
+        },
+    }
+}
+
+/// DATA-001 갈림길 의존: 조건이 맞을 때만 살아 있고, 잠들면 막힘·항목에서 빠지고, 살아나면 선택이 돌아온다.
+#[test]
+fn dependent_decision_sleeps_and_wakes_with_its_condition() {
+    let mut b = Brief::new("egg", "달걀").unwrap();
+    b.apply(egg("use", [("fry", "후라이를 한다"), ("ramen", "라면에 넣는다")], None), Actor::Ai).unwrap();
+    b.apply(
+        egg("noodle", [("spicy", "매운 라면"), ("mild", "순한 라면")], Some(("use", "ramen"))),
+        Actor::Ai,
+    )
+    .unwrap();
+    let v = BriefView::from(b.clone());
+    assert_eq!(v.dormant, vec!["noodle".to_string()]);
+    assert_eq!(v.stages[1].open_decisions, 1, "잠든 갈림길은 막힘으로 세지 않는다");
+    assert_eq!(
+        b.clone().apply(BriefPatch::Choose { decision: "noodle".into(), option: "spicy".into() }, Actor::Me),
+        Err(PatchError::DormantDecision("noodle".into()))
+    );
+
+    let choose = |b: &mut Brief, d: &str, o: &str| {
+        b.apply(BriefPatch::Choose { decision: d.into(), option: o.into() }, Actor::Me).unwrap()
+    };
+    let texts = |b: &Brief| b.items(SectionKey::ScopeIn).iter().map(|i| i.text.clone()).collect::<Vec<_>>();
+    choose(&mut b, "use", "ramen");
+    choose(&mut b, "noodle", "spicy");
+    assert_eq!(texts(&b), ["라면에 넣는다", "매운 라면"]);
+    choose(&mut b, "use", "fry");
+    assert_eq!(texts(&b), ["후라이를 한다"], "잠들면 그 선택의 문장이 빠진다");
+    assert!(
+        BriefView::from(b.clone()).stages.iter().all(|s| s.status != StageStatus::Fork),
+        "잠든 갈림길은 막지 않는다"
+    );
+    assert!(!ltm_core::render_markdown(&b, ltm_core::Locale::Ko).contains("noodle?"));
+    choose(&mut b, "use", "ramen");
+    assert_eq!(texts(&b), ["라면에 넣는다", "매운 라면"], "다시 살아나면 이전 선택이 돌아온다");
+}
+
+#[test]
+fn condition_must_point_to_existing_choice_and_accept_wakes_in_order() {
+    let mut b = Brief::new("c", "t").unwrap();
+    assert_eq!(
+        b.apply(egg("x", [("a", "에이"), ("b", "비")], Some(("missing", "a"))), Actor::Ai),
+        Err(PatchError::InvalidCondition)
+    );
+    b.apply(egg("use", [("ramen", "라면"), ("fry", "후라이")], None), Actor::Ai).unwrap();
+    assert_eq!(
+        b.apply(egg("x", [("a", "에이"), ("b", "비")], Some(("use", "nope"))), Actor::Ai),
+        Err(PatchError::InvalidCondition)
+    );
+    b.apply(egg("noodle", [("spicy", "매운"), ("mild", "순한")], Some(("use", "ramen"))), Actor::Ai).unwrap();
+    b.apply(BriefPatch::AcceptRecommended, Actor::Me).unwrap();
+    assert!(b.decisions.iter().all(|d| d.chosen.is_some()), "추천으로 살아난 갈림길도 이어서 정한다");
+}
+
+/// UX-001 갈림길 의존: 다른 갈림길을 잠그거나 여는 선택지는 고르기 전에 그 영향이 보인다.
+#[test]
+fn impacts_preview_what_a_choice_sleeps_or_wakes() {
+    let mut b = Brief::new("egg", "달걀").unwrap();
+    b.apply(egg("use", [("fry", "후라이를 한다"), ("ramen", "라면에 넣는다")], None), Actor::Ai).unwrap();
+    b.apply(
+        egg("noodle", [("spicy", "매운 라면"), ("mild", "순한 라면")], Some(("use", "ramen"))),
+        Actor::Ai,
+    )
+    .unwrap();
+    let pairs = |b: &Brief| {
+        BriefView::from(b.clone())
+            .impacts
+            .into_iter()
+            .map(|i| (i.option, i.sleeps, i.wakes))
+            .collect::<Vec<_>>()
+    };
+    let noodle = vec!["noodle".to_string()];
+    assert_eq!(pairs(&b), [("ramen".into(), vec![], noodle.clone())], "후라이는 아무것도 바꾸지 않는다");
+    b.apply(BriefPatch::Choose { decision: "use".into(), option: "ramen".into() }, Actor::Me).unwrap();
+    assert_eq!(pairs(&b), [("fry".into(), noodle, vec![])], "지금 고른 선택지는 넣지 않는다");
+}
+
+/// DATA-001 요청: 있는 자리에만 남고, AI가 답하면 처리되며, 대상이 사라져도 남고, 지울 수 있다.
+#[test]
+fn requests_round_trip_between_person_and_ai() {
+    use ltm_core::RequestTarget;
+    let mut b = Brief::new("q", "t").unwrap();
+    b.apply(add_ai(SectionKey::ScopeIn, "모든 운영체제에 설치한다"), Actor::Ai).unwrap();
+    let item = b.items(SectionKey::ScopeIn)[0].id.clone();
+    let ask = |id: &str| BriefPatch::Request {
+        target: RequestTarget::Item { id: id.into() },
+        text: "왜 셋 다예요?".into(),
+    };
+    assert_eq!(b.apply(ask("nope"), Actor::Me), Err(PatchError::UnknownItem("nope".into())));
+    b.apply(ask(&item), Actor::Me).unwrap();
+    let id = b.requests[0].id.clone();
+    b.apply(BriefPatch::TakeRequests, Actor::Ai).unwrap();
+    assert!(b.requests[0].taken, "맡으면 처리 중");
+    assert_eq!(
+        b.clone().apply(BriefPatch::TakeRequests, Actor::Ai),
+        Err(PatchError::NoOp),
+        "맡을 것이 없으면 바뀌지 않는다"
+    );
+    b.apply(BriefPatch::RemoveItem { id: item }, Actor::Ai).unwrap();
+    b.apply(
+        BriefPatch::ResolveRequest {
+            id: id.clone(), reply: "윈도우 사용자가 많아서 넣었어요".into()
+        },
+        Actor::Ai,
+    )
+    .unwrap();
+    assert_eq!(
+        b.requests[0].reply.as_deref(),
+        Some("윈도우 사용자가 많아서 넣었어요"),
+        "대상이 사라져도 답은 남는다"
+    );
+    b.apply(BriefPatch::AcknowledgeRequest { id: id.clone() }, Actor::Me).unwrap();
+    assert!(b.requests[0].acknowledged);
+    assert_eq!(
+        b.clone().apply(BriefPatch::AcknowledgeRequest { id: id.clone() }, Actor::Me),
+        Err(PatchError::NoOp)
+    );
+    b.apply(BriefPatch::RemoveRequest { id }, Actor::Me).unwrap();
+    assert!(b.requests.is_empty());
 }

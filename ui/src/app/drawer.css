@@ -150,10 +150,14 @@
 .app-drawer-toggle[aria-expanded="true"] {
   color: var(--c-text);
 }
-/* 좁은 화면: 앱 바가 여러 줄로 접혀 높이가 달라지므로, 서랍이 화면 전체를 쓰고 자체 닫기 버튼을 둔다. */
-@media (max-width: 560px) {
+/* 중간 이하 폭: 앱 바가 두 줄로 접혀 높이가 달라지고, 옆 패널이 본문을 반쯤 가려 어색하다.
+   서랍이 화면 전체를 덮고 자체 닫기 버튼을 쓴다. */
+@media (max-width: 900px) {
   .bd {
     top: 0;
     z-index: 11;
+    width: 100vw;
+    padding-inline: 16px;
+    box-shadow: none;
   }
 }

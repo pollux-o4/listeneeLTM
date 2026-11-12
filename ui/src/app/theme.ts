@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
-export type Theme = 'system' | 'light' | 'dark'
+export const THEMES = ['system', 'light', 'dark'] as const
+export type Theme = (typeof THEMES)[number]
 const KEY = 'ltm.theme'
 
 const read = (): Theme => {
@@ -26,6 +27,5 @@ export function useTheme() {
       // 저장 불가 환경에서도 현재 세션 테마는 유지된다.
     }
   }, [theme])
-  const next = () => setTheme((t) => (t === 'system' ? 'dark' : t === 'dark' ? 'light' : 'system'))
-  return { theme, next }
+  return { theme, setTheme }
 }

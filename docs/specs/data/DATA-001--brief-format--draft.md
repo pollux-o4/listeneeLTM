@@ -7,15 +7,16 @@
 - 지시서 = 제목 + 섹션 5개(목적·포함 범위·제외 범위·제약·완료 기준) + 갈림길 목록 + 변경 기록. 필수 섹션은 목적·포함 범위·완료 기준이다.
 - 항목: 문장(제목), 선택적 자세히(풀이·조건. 설명은 `- 일상어`, 기술은 `- [전문 지식]` 한 줄씩(최대 6줄), 전문 용어는 `[ ]` 안에만. 최종 지시서에는 제목 아래에 들어간다), 작성자(AI·나), 확인 여부. 사람이 쓴 항목은 처음부터 확인된 상태다.
 - 문장(제목·항목·질문·선택지 라벨과 문장)은 한 줄이다. 줄바꿈은 한 칸으로 접고, 비어 있으면 거부한다. 최종 Markdown의 목록·제목 구조를 지키기 위해서다. AI가 쓰는 문장은 길이·기호·약어 형식 관문을 통과해야 저장된다(UX-001, 사람의 입력은 제외).
-- 갈림길: 질문, 이유, 선택지(라벨·영향·들어갈 문장·대상 섹션), 추천, 선택과 선택자. 선택하면 그 선택지의 문장이 항목 하나로 들어가고, 다시 고르면 그 항목이 교체된다. 선택지는 2개 이상이고 id(지시서 id와 같은 규칙)가 서로 달라야 하며, 추천은 그중 하나다.
+- 갈림길: 질문, 이유, 선택지(라벨·영향·들어갈 문장·대상 섹션), 추천, 선택과 선택자. 선택하면 그 선택지의 문장이 항목 하나로 들어가고, 다시 고르면 그 항목이 교체된다. 선택지는 2개 이상이고 id(지시서 id와 같은 규칙)가 서로 달라야 하며, 추천은 그중 하나다. 선택적 조건 `when`(앞 갈림길 id와 그 선택지 id 목록)이 있으면 그 갈림길이 그중 하나로 정해지고 그 자신도 살아 있을 때만 살아 있다(조건은 이미 있는 갈림길·선택지만 가리킬 수 있어 순환이 없다). 잠든 갈림길은 고를 수 없고(거부), 막힘·미결로 세지 않으며, 그 선택의 항목은 빠진다. 다시 살아나면 남아 있던 선택의 항목이 돌아온다.
+- 요청: 사람이 항목·갈림길에 남긴 AI에게 할 말. id, 대상(`item`·`decision`과 id), 문장, 맡음(AI가 처리를 시작하면 true), 답(AI가 처리하면 채워짐). 확인함(사람이 답을 봤다고 표시, 선택). 상태는 적어 둠 → 맡음(처리 중) → 답함 → (확인함) 순이며, 답하면 맡음도 true다. 확인은 답한 요청에만 할 수 있다. 대상은 만들 때 있어야 하고, 대상이 나중에 사라져도 요청은 남는다(답을 볼 수 있게).
 - `revision`: 변경마다 1씩 증가한다. 변경 기록은 최근 50개까지 남긴다.
 - 변경 기록 한 건: revision, 작성자, 시각, `event`(무슨 변경인지 나타내는 코드와 관련 값: 항목 문장, 질문, 개수 등). 문장으로 만들지 않는다(ADR-0007). 되돌림은 되돌린 변경의 `event`를 담는다.
-- 학습: `analyzedRevision`(AI가 이 지시서에서 취향을 분석한 직후 revision), `derivedFrom`(복제 원본 id). 둘 다 없을 수 있다.
+- 학습: `analyzedRevision`(AI가 이 지시서에서 취향을 분석한 직후 revision), `derivedFrom`(복제 원본 id). `reviewedRevision`(AI가 첫 작성 뒤 자기 리뷰를 마친 직후 revision, FLOW-001). 모두 없을 수 있다.
 - id: 소문자·숫자·하이픈, 64자 이하. 파일명으로 쓰이므로 경로를 벗어날 수 없다.
 
 ## 편집 연산 (`BriefPatch`)
 
-setTitle · addItem · editItem · removeItem · confirmItem · confirmSection · ask(`decide`로 추천대로 미리 정하기) · choose · acceptRecommended · markAnalyzed(분석 끝 표시)
+setTitle · addItem · editItem · removeItem · confirmItem · confirmSection · ask(`decide`로 추천대로 미리 정하기) · choose · acceptRecommended · markAnalyzed(분석 끝 표시) · markReviewed(자기 리뷰 끝 표시) · request(요청 남기기) · takeRequests(열린 요청을 모두 맡음으로) · resolveRequest(답하고 처리) · acknowledgeRequest(답 확인) · removeRequest(요청 지우기)
 
 - 연산은 원자적이다. 실패하면 아무것도 바뀌지 않는다.
 - 누가 바꿨는지는 경로로 정한다: CLI는 AI, GUI는 사람.
@@ -27,10 +28,13 @@ setTitle · addItem · editItem · removeItem · confirmItem · confirmSection �
 
 - 판정은 코드와 값만 낸다. 단계는 섹션 키, 막힘은 `IssueCode`(`emptyStage`·`openDecision`(질문)·`unconfirmed`(개수))로 나타낸다. 이름·문장은 끝단(GUI·Markdown)이 언어에 맞게 만든다(ADR-0007).
 
-- 단계 상태 우선순위: fork(열린 갈림길) > empty(필수인데 빔) > review(AI가 쓰거나 정한 것 중 확인 전이 있음) > clear.
+- 단계 상태 우선순위: fork(살아 있는 열린 갈림길) > empty(필수인데 빔) > review(AI가 쓰거나 정한 것 중 확인 전이 있음) > clear.
 - `current`: fork나 empty인 첫 단계. 막힌 단계가 없으면 단계 수(= 전달).
 - `ready`: fork·empty가 없을 때 true. review는 전달을 막지 않는다.
 - 학습 상태(목록 요약, 취향 노트와 함께 계산): `unanalyzed`(분석 기록 없음) · `stale`(분석 후 바뀜) · `learned`(이 지시서를 출처로 한 활성 노트 수) · `nothingNew`(분석했고 출처 노트 없음).
+- `dormant`: 조건이 맞지 않아 잠든 갈림길 id 목록.
+- `impacts`: 고르면 다른 갈림길이 잠들거나 깨어나는 선택지마다 (갈림길, 선택지, 잠드는 id, 깨어나는 id). 지금 고른 선택지는 넣지 않는다.
+- `selfReviewDue`: AI가 쓴 항목이 있고 `ready`이며 `reviewedRevision`이 없을 때 true. 한 번 표시하면 다시 오지 않는다.
 - `markdown`: 수신자에게 넘길 최종 지시서. 요청한 언어(`Locale`: `ko` 기본, `en`)로 제목 같은 고정 문구를 쓰고, 항목 내용은 쓴 그대로 둔다. 작성자·확인 여부 같은 사람용 메타는 넣지 않고, 열린 갈림길은 "미결"로 넣는다.
 
 ## 호환성

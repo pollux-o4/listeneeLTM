@@ -43,7 +43,7 @@ pub struct Preferences {
     pub changes: Vec<Change>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, TS)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, TS, schemars::JsonSchema)]
 #[serde(tag = "op", rename_all = "camelCase", rename_all_fields = "camelCase")]
 #[ts(export)]
 pub enum PrefPatch {

@@ -25,8 +25,16 @@ export const briefCopy = {
     recentChanges: 'Recent changes',
   },
   delivery: {
+    previewLabel: 'What gets copied',
     ready: 'Ready to deliver',
-    reviewHint: 'You can deliver this now. A quick review of the items below may help.',
+    reviewHint: 'Review is optional. Expand a stage and tap ♥ on items that look right.',
+    reviewCount: (count: number) => `${count} to review`,
+    reviewed: 'Reviewed',
+    openStage: 'Open stage',
+    aiLine: 'Written by AI · not reviewed',
+    copied: 'Copied. Paste it into your AI’s chat.',
+    copyCommand: 'Copy command',
+    previewMore: (lines: number) => `See all · ${counted(lines, 'more line')}`,
     readyHint: 'Pass this straight to your recipient.',
     blockedHint: 'Select an item below to open its stage. You can still copy the draft.',
     blockingPrefix: 'Blocked: ',
@@ -51,6 +59,30 @@ export const briefCopy = {
     editAction: (text: string) => `Edit “${text}”`,
     removeLabel: (text: string) => `Remove “${text}”`,
   },
+  request: {
+    ask: 'Ask AI',
+    askLabel: (text: string) => `Ask your AI about “${text}” or to change it`,
+    inputLabel: 'Note for your AI (Enter to leave it)',
+    placeholder: 'A question or a fix',
+    leave: 'Leave',
+    state: { noted: 'Noted', working: 'In progress', replied: 'Answered' },
+    waiting: (count: number) => `Paste it and your AI picks it up · ${count} waiting`,
+    working: (count: number) => `Your AI is on it · ${count} left`,
+    acknowledge: 'Got it',
+    acknowledged: 'Checked reply',
+    cancel: 'Remove',
+    dismiss: 'Dismiss',
+    trayLabel: 'Requests for your AI',
+    pending: (count: number) => `${count} request${count === 1 ? '' : 's'} for your AI`,
+    copyAll: '① Copy',
+    pasteStep: '② Paste in your AI chat',
+    paste: 'Now paste it into your AI chat',
+    uncopied: (count: number) => `${count} not copied yet`,
+    copied: 'Copied ✓',
+    message: (title: string, id: string, count: number) =>
+      `Handle the ${count} request${count === 1 ? '' : 's'} I left on LTM brief “${title}” (${id}).`,
+    photoHint: 'Curious about the whole screen? Send your AI a screenshot',
+  },
   decision: {
     confirm: 'Confirm',
     change: 'Change',
@@ -59,6 +91,16 @@ export const briefCopy = {
     keep: 'Keep current choice',
     confirmLabel: (question: string, label: string) => `Confirm “${label}” for “${question}”`,
     changeLabel: (question: string) => `Change decision for “${question}”`,
+    waiting: (question: string, labels: string[]) =>
+      `Asked once you pick ${labels.map((l) => `“${l}”`).join(' or ')} in “${question}”`,
+    changedPrefix: 'Changed: ',
+    impactPrefix: 'If picked: ',
+    sleeps: (question: string, dropped?: string) =>
+      dropped
+        ? `“${question}” locks and your “${dropped}” is set aside (it returns if reopened)`
+        : `“${question}” locks`,
+    wakes: (question: string) => `“${question}” opens to decide`,
+    undo: 'Undo',
   },
   stage: {
     purpose: { label: 'Purpose', hint: 'Why this work is needed' },
@@ -80,7 +122,8 @@ export const briefCopy = {
     optionalEmptyHint: 'Leave this blank if it doesn’t apply.',
     placeholder: 'Add an item',
     add: 'Add',
-    reviewHint: (count: number) => `${counted(count, 'unconfirmed item')}.`,
+    reviewHint: (count: number) =>
+      `${counted(count, 'unconfirmed item')}. Tap ♥ if it looks right.`,
     inputLabel: (label: string) => `Add an item to ${label}`,
   },
   workspace: {

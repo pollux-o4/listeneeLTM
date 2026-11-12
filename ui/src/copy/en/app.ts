@@ -18,9 +18,9 @@ export const appCopy = {
     working: ' (in progress)',
     notes: 'Preference notes',
     pendingSuffix: ' unconfirmed',
-    themeTitle: 'Change theme',
     name: 'Listen to Me',
-    themeLabel: (label: string) => `Theme: ${label}. Select to change`,
+    settings: 'Settings',
+    themeHeading: 'Theme',
   },
   screen: {
     askAiWith: (task: string, details: readonly string[]) =>
@@ -89,6 +89,8 @@ export const appCopy = {
     offlineSave: 'Couldn’t save because the server is unreachable.',
     retry: 'Try again',
     removed: 'Item removed.',
+    confirmed: 'Marked as good.',
+    confirmedAll: 'Marked every item in this stage as good.',
     undo: 'Undo',
     saveFailed: (message?: string) =>
       `Couldn’t save${message === undefined ? '' : ` (${message})`}.`,

@@ -109,6 +109,18 @@
   text-decoration: underline dotted;
   text-underline-offset: 4px;
 }
+/* 누름 감각: 링크·아이콘은 한 칸 눌렸다 돌아온다(버튼과 같은 손맛, transform만). */
+.ltm-link,
+.ltm-icon {
+  transition:
+    transform var(--dur-fast) var(--ease-spring),
+    color var(--dur-fast) ease;
+}
+.ltm-link:active,
+.ltm-icon:active {
+  transform: translateY(var(--px));
+  transition-duration: 40ms;
+}
 
 /* 글리프 하나짜리 버튼(고치기·빼기·닫기) */
 .ltm-icon {
@@ -139,6 +151,84 @@
   border: 0;
   padding: 4px 8px;
   box-shadow: 0 0 0 var(--px) var(--c-line);
+}
+/* 제자리 고치기: 원래 글자 자리에서 밑줄 하나로. 들어올 때 밑줄이 왼쪽에서 그어진다. */
+.ltm-edit {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+.ltm-edit-input {
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  color: var(--c-text);
+  caret-color: var(--c-accent);
+  background: color-mix(in srgb, var(--c-accent-soft) 30%, transparent);
+  border: 0;
+  padding: 0 6px;
+  margin: 0 -6px;
+}
+.ltm-edit-input:focus-visible {
+  outline: none;
+}
+.ltm-edit-input::selection {
+  color: var(--c-on-accent);
+  background: var(--c-accent);
+}
+.ltm-edit-field {
+  position: relative;
+  display: block;
+  min-width: 0;
+}
+.ltm-edit-field::after {
+  content: "";
+  position: absolute;
+  left: -6px;
+  right: -6px;
+  bottom: calc(var(--px) * -1);
+  height: var(--px);
+  background: var(--c-accent);
+  transform-origin: left;
+  animation: ltm-edit-line var(--dur-base) var(--ease-soft) both;
+}
+@keyframes ltm-edit-line {
+  from {
+    transform: scaleX(0);
+  }
+}
+.ltm-edit-keys {
+  display: flex;
+  gap: 12px;
+  animation: ltm-rise var(--dur-base) var(--ease-soft) 80ms both;
+}
+.ltm-edit-keys button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+  color: var(--c-muted);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.ltm-edit-keys button:hover {
+  color: var(--c-text);
+}
+.ltm-edit-keys kbd {
+  min-width: 14px;
+  padding: 0 4px;
+  font: inherit;
+  line-height: 16px;
+  text-align: center;
+  color: var(--c-text);
+  background: var(--c-surface);
+  box-shadow:
+    0 0 0 1px var(--c-line),
+    0 2px 0 1px var(--c-line);
 }
 .ltm-input::placeholder {
   color: var(--c-muted);

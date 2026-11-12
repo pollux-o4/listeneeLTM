@@ -14,7 +14,7 @@ import './app.css'
 export function App() {
   const copy = useText()
   const route = useRoute()
-  const { theme, next } = useTheme()
+  const { theme, setTheme } = useTheme()
   const { notice, show, close } = useNotice()
   const data = useWorkspaceData(route, show)
   const { list, prefs, brief, briefId, duplicateBrief } = data
@@ -46,7 +46,7 @@ export function App() {
         route={route}
         pendingNotes={pendingNotes}
         theme={theme}
-        onNextTheme={next}
+        onTheme={setTheme}
         drawerOpen={drawerOpen}
         onToggleDrawer={() => (drawerOpen ? closeDrawer() : setDrawerOpen(true))}
         drawerButton={drawerButton}

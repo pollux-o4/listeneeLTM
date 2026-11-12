@@ -1,7 +1,7 @@
 import { useCallback, useRef } from 'react'
 import { useApi } from '../../api/ApiProvider.tsx'
 import { useLive } from '../../api/useLive.ts'
-import { useLocale, useText } from '../../copy/index.ts'
+import { type Messages, useLocale, useText } from '../../copy/index.ts'
 import type { NoticeContent } from '../../design/index.ts'
 import type { BriefPatch } from '../../generated/BriefPatch.ts'
 import type { BriefSummary } from '../../generated/BriefSummary.ts'
@@ -18,6 +18,14 @@ import {
 import { useWriter } from './useWriter.ts'
 
 /** 화면이 쓰는 데이터와 쓰기 동작을 묶는다. 다시 읽기 정책은 `liveVersions`, 쓰기 정책은 `useWriter`. */
+/** 되돌릴 수 있게 알리는 패치와 그 문구: 한곳에서 정한다. */
+function undoableNotice(p: BriefPatch, text: Messages['app']['notice']) {
+  if (p.op === 'removeItem') return text.removed
+  if (p.op === 'confirmItem') return text.confirmed
+  if (p.op === 'confirmSection') return text.confirmedAll
+  return undefined
+}
+
 export function useWorkspaceData(route: Route, notify: (n: NoticeContent) => void) {
   const api = useApi()
   const copy = useText()
@@ -50,12 +58,10 @@ export function useWorkspaceData(route: Route, notify: (n: NoticeContent) => voi
   const patchBrief = async (p: BriefPatch) => {
     if (!briefId) return false
     const ok = await write(() => api.patchBrief(briefId, p, locale), briefTarget)
-    // 빼기는 확인을 묻지 않는 대신, 바로 되돌릴 길을 눈앞에 둔다.
-    if (ok && p.op === 'removeItem')
-      notify({
-        text: copy.app.notice.removed,
-        action: { label: copy.app.notice.undo, run: () => void undoBrief() },
-      })
+    // 확인을 묻지 않는 행동(빼기·좋아요)은 결과를 알리고 바로 되돌릴 길을 눈앞에 둔다.
+    const done = ok ? undoableNotice(p, copy.app.notice) : undefined
+    if (done)
+      notify({ text: done, action: { label: copy.app.notice.undo, run: () => void undoBrief() } })
     return ok
   }
 

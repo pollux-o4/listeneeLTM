@@ -3,7 +3,7 @@ import { fn, userEvent, within } from 'storybook/test'
 import { ApiProvider } from '../api/ApiProvider.tsx'
 import { ApiError, type WorkspaceApi } from '../api/client.ts'
 import type { LiveError } from '../api/useLive.ts'
-import { summaryOf, workingView } from '../features/brief/fixtures.ts'
+import { reviewView, summaryOf, workingView } from '../features/brief/fixtures.ts'
 import {
   appears,
   atRoute,
@@ -307,5 +307,45 @@ export const Removed: Story = {
         name: copy.app.notice.undo,
       }),
     )
+  },
+}
+
+/** 좋아요도 확인을 묻지 않는 대신 결과를 알리고 바로 되돌릴 길을 준다. */
+export const Confirmed: Story = {
+  render: shellWith(fakeApi()),
+  beforeEach: atRoute('#/brief/'),
+  play: async ({ canvasElement }) => {
+    await showsBrief(canvasElement)
+    const copy = storyCopy()
+    const canvas = within(canvasElement)
+    const item = workingView.brief.sections.scopeIn?.find(
+      (item) => !item.confirmed && !item.id.startsWith('decision-'),
+    )
+    if (!item) throw new Error('Missing unconfirmed fixture item')
+    await userEvent.click(
+      canvas.getByRole('button', { name: copy.brief.item.confirmLabel(item.text) }),
+    )
+    await appears(async () => await canvas.findByText(copy.app.notice.confirmed))
+  },
+}
+
+export const ConfirmedAll: Story = {
+  // 확인 전 항목이 여럿인 단계가 있는 지시서로 띄운다.
+  render: shellWith(fakeApi({ brief: async () => reviewView, patchBrief: async () => reviewView })),
+  beforeEach: atRoute('#/brief/'),
+  play: async ({ canvasElement }) => {
+    await appears(async () =>
+      within(canvasElement).findByRole('heading', { name: reviewView.brief.title }),
+    )
+    const copy = storyCopy()
+    const canvas = within(canvasElement)
+    // 확인 전 항목이 둘 이상인 단계(길의 숫자 배지)로 가야 '모두 좋아요'가 나온다.
+    const node = [...canvasElement.querySelectorAll<HTMLElement>('.qp-node')].find(
+      (n) => Number(n.querySelector('.status-mark[data-status="review"]')?.textContent) > 1,
+    )
+    if (!node) throw new Error('Missing stage with several unconfirmed items')
+    await userEvent.click(node)
+    await userEvent.click(await canvas.findByRole('button', { name: copy.brief.stage.confirmAll }))
+    await appears(async () => await canvas.findByText(copy.app.notice.confirmedAll))
   },
 }

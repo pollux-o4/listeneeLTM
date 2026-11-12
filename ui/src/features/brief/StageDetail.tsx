@@ -1,12 +1,14 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useText } from '../../copy/index.ts'
-import { PixelButton, PixelPanel } from '../../design/index.ts'
+import { icons, PixelButton, PixelPanel, PixelSprite, useFlip } from '../../design/index.ts'
 import type { Brief } from '../../generated/Brief.ts'
 import type { BriefPatch } from '../../generated/BriefPatch.ts'
+import type { Decision } from '../../generated/Decision.ts'
+import type { OptionImpact } from '../../generated/OptionImpact.ts'
 import type { StageView } from '../../generated/StageView.ts'
-import { DecisionCard } from './DecisionCard.tsx'
+import { DecisionCard, type Effect, type Waiting } from './DecisionCard.tsx'
 import { ItemRow } from './ItemRow.tsx'
-import { StatusGlyph } from './status.tsx'
+import { StageIcon, StatusMark } from './status.tsx'
 import { useFirstSeen } from './useFirstSeen.ts'
 import './stage-detail.css'
 
@@ -23,6 +25,10 @@ type Props = {
   onUndo?: (() => void) | undefined
   onMove: (index: number) => void
   onPatch: (p: BriefPatch) => Promise<boolean>
+  /** 조건이 맞지 않아 잠든 갈림길 id(판정 원본은 코어). */
+  dormant?: string[]
+  /** 고르면 다른 갈림길이 잠들거나 깨어나는 선택지들(판정 원본은 코어). */
+  impacts?: OptionImpact[]
 }
 
 const derivedId = (decisionId: string) => `decision-${decisionId}`
@@ -38,16 +44,48 @@ export function StageDetail({
   onUndo,
   onMove,
   onPatch,
+  dormant = [],
+  impacts = [],
 }: Props) {
   const copy = useText()
   const [text, setText] = useState('')
   const items = brief.sections[stage.section] ?? []
+  // 지금 정할 것 → 정한 것 → 잠든 것 순(지금 할 일 먼저).
+  const rank = (d: Decision) => (dormant.includes(d.id) ? 2 : d.chosen ? 1 : 0)
   const decisions = brief.decisions
     .filter((d) => d.section === stage.section)
-    .sort((a, b) => Number(Boolean(a.chosen)) - Number(Boolean(b.chosen)))
+    .sort((a, b) => rank(a) - rank(b))
+  const byId = (id: string) => brief.decisions.find((x) => x.id === id)
+  const effectsOf = (d: Decision): Record<string, Effect> =>
+    Object.fromEntries(
+      impacts
+        .filter((i) => i.decision === d.id)
+        .map((i) => [
+          i.option,
+          {
+            sleeps: i.sleeps.flatMap((id) => {
+              const s = byId(id)
+              if (!s) return []
+              const dropped = s.options.find((o) => o.id === s.chosen)?.label
+              return [dropped ? { question: s.question, dropped } : { question: s.question }]
+            }),
+            wakes: i.wakes.flatMap((id) => byId(id)?.question ?? []),
+          },
+        ]),
+    )
+  const waitingFor = (d: Decision): Waiting | undefined => {
+    if (!dormant.includes(d.id) || !d.when) return undefined
+    const { decision, options } = d.when
+    const parent = brief.decisions.find((p) => p.id === decision)
+    if (!parent) return undefined
+    const labels = parent.options.filter((o) => options.includes(o.id)).map((o) => o.label)
+    return { question: parent.question, labels }
+  }
   const derived = new Set(brief.decisions.map((d) => derivedId(d.id)))
   const plain = items.filter((i) => !derived.has(i.id))
   const isFresh = useFirstSeen(plain.map((i) => i.id))
+  const list = useRef<HTMLUListElement>(null)
+  useFlip(list)
 
   const add = async () => {
     const next = text.trim()
@@ -64,7 +102,8 @@ export function StageDetail({
           title={copy.brief.status[stage.status]}
         >
           <span aria-hidden>
-            <StatusGlyph status={stage.status} />
+            <StageIcon section={stage.section} status={stage.status} scale={2 / 3} />
+            <StatusMark status={stage.status} unconfirmed={stage.unconfirmed} />
           </span>
           <span className="sr-only">{copy.brief.status[stage.status]}</span>
         </span>
@@ -101,57 +140,76 @@ export function StageDetail({
           key={d.id}
           decision={d}
           derived={items.find((i) => i.id === derivedId(d.id))}
+          waiting={waitingFor(d)}
+          effects={effectsOf(d)}
+          requests={brief.requests.filter(
+            (r) => r.target.kind === 'decision' && r.target.id === d.id,
+          )}
+          onUndo={onUndo}
           onPatch={onPatch}
         />
       ))}
 
-      {stage.unconfirmed > 1 && (
-        <p className="sd-review">
-          <span className="ltm-label">{copy.brief.stage.reviewHint(stage.unconfirmed)}</span>
-          <button
-            type="button"
-            className="ltm-link"
-            onClick={() => onPatch({ op: 'confirmSection', section: stage.section })}
-          >
-            {copy.brief.stage.confirmAll}
-          </button>
-        </p>
-      )}
-
-      {((onToggleAll && plain.length > 0) || onUndo) && (
-        <p className="sd-tools">
-          {onToggleAll && plain.length > 0 && (
-            <button
-              type="button"
-              className="ltm-link"
-              aria-pressed={expandAll}
-              onClick={onToggleAll}
-            >
-              {expandAll ? copy.brief.stage.hideDetails : copy.brief.stage.showDetails}
-            </button>
-          )}
-          {onUndo && (
-            <button
-              type="button"
-              className="ltm-link"
-              title={copy.brief.workspace.undoTitle}
-              onClick={onUndo}
-            >
-              {copy.brief.workspace.undo}
-            </button>
-          )}
-        </p>
+      {(stage.unconfirmed > 0 || plain.length > 0 || onUndo) && (
+        // 단계 전체 조작은 목록 바로 위 한 줄에: 왼쪽은 상태, 오른쪽은 일괄 도구(UX-001 전역·개별 조작).
+        <div className="sd-bar">
+          <span className="ltm-label sd-bar-status">
+            {stage.unconfirmed > 0 && copy.brief.stage.reviewHint(stage.unconfirmed)}
+          </span>
+          <span className="sd-bar-tools">
+            {stage.unconfirmed > 1 && (
+              <button
+                type="button"
+                className="ltm-link sd-confirm-all"
+                onClick={() => onPatch({ op: 'confirmSection', section: stage.section })}
+              >
+                <PixelSprite sprite={icons.heartEmpty} scale={2 / 3} tint="currentColor" />
+                {copy.brief.stage.confirmAll}
+              </button>
+            )}
+            {onToggleAll && plain.length > 0 && (
+              <button
+                type="button"
+                className="ltm-icon"
+                aria-pressed={expandAll}
+                aria-label={expandAll ? copy.brief.stage.hideDetails : copy.brief.stage.showDetails}
+                title={expandAll ? copy.brief.stage.hideDetails : copy.brief.stage.showDetails}
+                onClick={onToggleAll}
+              >
+                <PixelSprite
+                  sprite={expandAll ? icons.collapseAll : icons.expandAll}
+                  scale={2 / 3}
+                  tint="currentColor"
+                />
+              </button>
+            )}
+            {onUndo && (
+              <button
+                type="button"
+                className="ltm-icon"
+                aria-label={copy.brief.workspace.undo}
+                title={copy.brief.workspace.undoTitle}
+                onClick={onUndo}
+              >
+                <PixelSprite sprite={icons.undo} scale={2 / 3} tint="currentColor" />
+              </button>
+            )}
+          </span>
+        </div>
       )}
 
       {plain.length > 0 && (
-        <ul className="sd-items">
-          {plain.map((it) => (
+        <ul className="sd-items" ref={list}>
+          {plain.map((it, i) => (
             <ItemRow
-              key={`${it.id}-${expandAll}`}
+              key={it.id}
+              order={i}
               expandAll={expandAll}
               item={it}
               fresh={isFresh(it.id)}
-              showConfirm={stage.unconfirmed <= 1}
+              requests={brief.requests.filter(
+                (r) => r.target.kind === 'item' && r.target.id === it.id,
+              )}
               onPatch={onPatch}
             />
           ))}

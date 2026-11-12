@@ -11,6 +11,15 @@
           "by": "ai",
           "event": {
             "kind": "ask",
+            "question": "확대는 어떻게 열까요?"
+          },
+          "revision": 8
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "ai",
+          "event": {
+            "kind": "ask",
             "question": "확대 보기를 넣을까요?"
           },
           "revision": 7
@@ -136,10 +145,38 @@
           "recommended": "yes",
           "section": "scopeIn",
           "why": "감상에 자주 쓰이지만 범위가 하루 정도 늘어나요."
+        },
+        {
+          "id": "zoom-open",
+          "options": [
+            {
+              "id": "tap",
+              "label": "작품 누르기",
+              "note": "가장 익숙함",
+              "text": "작품을 누르면 크게 본다"
+            },
+            {
+              "id": "button",
+              "label": "확대 단추",
+              "note": "눈에 잘 띔",
+              "text": "확대 단추로 크게 본다"
+            }
+          ],
+          "question": "확대는 어떻게 열까요?",
+          "recommended": "tap",
+          "section": "scopeIn",
+          "when": {
+            "decision": "zoom",
+            "options": [
+              "yes"
+            ]
+          },
+          "why": "손에 익은 방식이면 설명 없이 바로 써요."
         }
       ],
       "id": "gallery",
-      "revision": 7,
+      "requests": [],
+      "revision": 8,
       "sections": {
         "acceptance": [],
         "constraints": [
@@ -188,6 +225,19 @@
       "updatedAt": "1970-01-01T00:00:00.000Z"
     },
     "current": 1,
+    "dormant": [
+      "zoom-open"
+    ],
+    "impacts": [
+      {
+        "decision": "zoom",
+        "option": "yes",
+        "sleeps": [],
+        "wakes": [
+          "zoom-open"
+        ]
+      }
+    ],
     "issues": [
       {
         "code": {
@@ -239,6 +289,7 @@
       }
     ],
     "ready": false,
+    "selfReviewDue": false,
     "stages": [
       {
         "openDecisions": 0,

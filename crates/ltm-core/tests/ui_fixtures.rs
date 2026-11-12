@@ -3,7 +3,8 @@
 use std::{fs, path::PathBuf};
 
 use ltm_core::{
-    Actor, Brief, BriefPatch, BriefView, DecisionOption, NewDecision, PrefPatch, Preferences, SectionKey,
+    Actor, Brief, BriefPatch, BriefView, DecisionOption, DecisionWhen, NewDecision, PrefPatch, Preferences,
+    RequestTarget, SectionKey,
 };
 
 const GALLERY_PURPOSE: &str = "작품 200점을 빠르게 훑어보는 개인 갤러리";
@@ -65,6 +66,7 @@ fn gallery() -> Brief {
             options,
             recommended: rec.into(),
             decide: Some(decide),
+            when: None,
         },
     };
     apply(
@@ -123,6 +125,31 @@ fn gallery() -> Brief {
             false,
         ),
     );
+    // 앞 갈림길(확대 보기)에서 '넣기'를 골라야 묻는다: 그 전에는 잠금으로 보인다.
+    apply(
+        &mut b,
+        Actor::Ai,
+        BriefPatch::Ask {
+            decision: NewDecision {
+                when: Some(DecisionWhen { decision: "zoom".into(), options: vec!["yes".into()] }),
+                ..match ask(
+                    "zoom-open",
+                    SectionKey::ScopeIn,
+                    "확대는 어떻게 열까요?",
+                    "손에 익은 방식이면 설명 없이 바로 써요.",
+                    vec![
+                        opt("tap", "작품 누르기", "가장 익숙함", "작품을 누르면 크게 본다"),
+                        opt("button", "확대 단추", "눈에 잘 띔", "확대 단추로 크게 본다"),
+                    ],
+                    "tap",
+                    false,
+                ) {
+                    BriefPatch::Ask { decision } => decision,
+                    _ => unreachable!(),
+                }
+            },
+        },
+    );
     b
 }
 
@@ -163,6 +190,39 @@ fn export_ui_fixtures() {
             detail: Some("- 쉬운 풀이\n- [기술 구현 방법]".into()),
         },
     );
+
+    // 사람이 남긴 요청: 열린 것 하나, AI가 답한 것 하나, 자리가 사라진 답 하나(UX-001 AI에게 묻기).
+    let mut asked = gallery();
+    let grid = asked.items(SectionKey::ScopeIn)[0].id.clone();
+    let req = |target: RequestTarget, text: &str| BriefPatch::Request { target, text: text.into() };
+    apply(&mut asked, Actor::Me, req(RequestTarget::Item { id: grid }, "휴대폰에서는 몇 줄로 보여요?"));
+    // AI가 맡아 처리 중인 요청, 그 뒤에 새로 적어 둔 요청(아직 복사 전).
+    apply(&mut asked, Actor::Ai, BriefPatch::TakeRequests);
+    let keys = asked.items(SectionKey::ScopeIn)[1].id.clone();
+    apply(&mut asked, Actor::Me, req(RequestTarget::Item { id: keys }, "방향키 말고 다른 키도 돼요?"));
+    apply(
+        &mut asked,
+        Actor::Me,
+        req(RequestTarget::Decision { id: "image-host".into() }, "나중에 바꾸기 어렵나요?"),
+    );
+    let id = asked.requests[2].id.clone();
+    apply(
+        &mut asked,
+        Actor::Ai,
+        BriefPatch::ResolveRequest {
+            id, reply: "빌드 설정만 바꾸면 돼서 하루 안에 옮길 수 있어요".into()
+        },
+    );
+    let scope_out = asked.items(SectionKey::ScopeOut)[0].id.clone();
+    apply(&mut asked, Actor::Me, req(RequestTarget::Item { id: scope_out.clone() }, "이건 빼 줘"));
+    let id = asked.requests[3].id.clone();
+    apply(&mut asked, Actor::Ai, BriefPatch::RemoveItem { id: scope_out });
+    apply(
+        &mut asked,
+        Actor::Ai,
+        BriefPatch::ResolveRequest { id: id.clone(), reply: "제외 범위에서 뺐어요".into() },
+    );
+    apply(&mut asked, Actor::Me, BriefPatch::AcknowledgeRequest { id });
 
     let mut prefs = Preferences::default();
     let note = |topic: &str, statement: &str, evidence: &str| PrefPatch::Note {
@@ -238,9 +298,14 @@ fn export_ui_fixtures() {
     freeze_times(&mut prefs);
     fs::write(dir.join("preferences.json"), serde_json::to_string_pretty(&prefs).unwrap() + "\n").unwrap();
 
-    for (name, brief) in
-        [("empty", empty), ("started", started), ("working", working), ("review", review), ("done", done)]
-    {
+    for (name, brief) in [
+        ("empty", empty),
+        ("started", started),
+        ("working", working),
+        ("review", review),
+        ("done", done),
+        ("asked", asked),
+    ] {
         let mut view = serde_json::to_value(BriefView::from(brief.clone())).unwrap();
         freeze_times(&mut view);
         let snapshot = serde_json::json!({

@@ -1,0 +1,439 @@
+{
+  "markdown": {
+    "en": "# HTML 갤러리 제작\n\n## Purpose\n- 작품 200점을 빠르게 훑어보는 개인 갤러리\n  - 작품 사진이 많아서 빨리 넘겨 보는 것이 중요해요\n  - [사진은 CDN 캐시로 미리 줄여 내려줘요]\n\n## In scope\n- 반응형 격자 레이아웃\n  - 쉬운 풀이\n  - [기술 구현 방법]\n- 키보드로 작품 넘기기\n\n## Constraints\n- 이미지는 정적 호스팅, 빌드 시 최적화\n\n## Open decisions\n- 어느 정도면 \"다 됐다\"고 볼까요?\n- 확대 보기를 넣을까요?\n",
+    "ko": "# HTML 갤러리 제작\n\n## 목적\n- 작품 200점을 빠르게 훑어보는 개인 갤러리\n  - 작품 사진이 많아서 빨리 넘겨 보는 것이 중요해요\n  - [사진은 CDN 캐시로 미리 줄여 내려줘요]\n\n## 포함 범위\n- 반응형 격자 레이아웃\n  - 쉬운 풀이\n  - [기술 구현 방법]\n- 키보드로 작품 넘기기\n\n## 제약\n- 이미지는 정적 호스팅, 빌드 시 최적화\n\n## 미결\n- 어느 정도면 \"다 됐다\"고 볼까요?\n- 확대 보기를 넣을까요?\n"
+  },
+  "view": {
+    "brief": {
+      "changes": [
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "me",
+          "event": {
+            "kind": "requestAcknowledged",
+            "text": "이건 빼 줘"
+          },
+          "revision": 17
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "ai",
+          "event": {
+            "kind": "requestResolved",
+            "text": "이건 빼 줘"
+          },
+          "revision": 16
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "ai",
+          "event": {
+            "kind": "removeItem",
+            "text": "로그인·댓글"
+          },
+          "revision": 15
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "me",
+          "event": {
+            "kind": "requestAdded",
+            "text": "이건 빼 줘"
+          },
+          "revision": 14
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "ai",
+          "event": {
+            "kind": "requestResolved",
+            "text": "나중에 바꾸기 어렵나요?"
+          },
+          "revision": 13
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "me",
+          "event": {
+            "kind": "requestAdded",
+            "text": "나중에 바꾸기 어렵나요?"
+          },
+          "revision": 12
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "me",
+          "event": {
+            "kind": "requestAdded",
+            "text": "방향키 말고 다른 키도 돼요?"
+          },
+          "revision": 11
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "ai",
+          "event": {
+            "count": 1,
+            "kind": "requestsTaken"
+          },
+          "revision": 10
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "me",
+          "event": {
+            "kind": "requestAdded",
+            "text": "휴대폰에서는 몇 줄로 보여요?"
+          },
+          "revision": 9
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "ai",
+          "event": {
+            "kind": "ask",
+            "question": "확대는 어떻게 열까요?"
+          },
+          "revision": 8
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "ai",
+          "event": {
+            "kind": "ask",
+            "question": "확대 보기를 넣을까요?"
+          },
+          "revision": 7
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "ai",
+          "event": {
+            "kind": "ask",
+            "question": "어느 정도면 \"다 됐다\"고 볼까요?"
+          },
+          "revision": 6
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "ai",
+          "event": {
+            "kind": "decideRecommended",
+            "question": "이미지를 어디에 둘까요?"
+          },
+          "revision": 5
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "ai",
+          "event": {
+            "kind": "addItem",
+            "text": "로그인·댓글"
+          },
+          "revision": 4
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "me",
+          "event": {
+            "kind": "addItem",
+            "text": "키보드로 작품 넘기기"
+          },
+          "revision": 3
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "ai",
+          "event": {
+            "kind": "addItem",
+            "text": "반응형 격자 레이아웃"
+          },
+          "revision": 2
+        },
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "ai",
+          "event": {
+            "kind": "addItem",
+            "text": "작품 200점을 빠르게 훑어보는 개인 갤러리"
+          },
+          "revision": 1
+        }
+      ],
+      "decisions": [
+        {
+          "chosen": "static",
+          "chosenBy": "ai",
+          "id": "image-host",
+          "options": [
+            {
+              "id": "static",
+              "label": "정적 호스팅",
+              "note": "무료 · 빌드 때 최적화",
+              "text": "이미지는 정적 호스팅, 빌드 시 최적화"
+            },
+            {
+              "id": "cdn",
+              "label": "빠른 전송망",
+              "note": "빠름 · 월 비용",
+              "text": "이미지는 빠른 전송망으로 제공"
+            }
+          ],
+          "question": "이미지를 어디에 둘까요?",
+          "recommended": "static",
+          "section": "constraints",
+          "why": "프로젝트에 서버 코드가 없어 정적 호스팅이 가장 단순하고 무료예요."
+        },
+        {
+          "id": "done-bar",
+          "options": [
+            {
+              "id": "measured",
+              "label": "측정 기준",
+              "note": "접근성 95 · 첫 화면 1초",
+              "text": "Lighthouse 접근성 95 이상 · 첫 화면 1초 내 표시"
+            },
+            {
+              "id": "manual",
+              "label": "눈으로 확인",
+              "note": "빠르지만 주관적",
+              "text": "주요 브라우저에서 눈으로 확인"
+            }
+          ],
+          "question": "어느 정도면 \"다 됐다\"고 볼까요?",
+          "recommended": "measured",
+          "section": "acceptance",
+          "why": "완료 기준이 없으면 수신자가 언제 멈출지 몰라요. 갤러리는 첫 화면 속도와 접근성이 핵심이에요."
+        },
+        {
+          "id": "zoom",
+          "options": [
+            {
+              "id": "yes",
+              "label": "넣기",
+              "note": "+ 하루",
+              "text": "작품 확대 보기"
+            },
+            {
+              "id": "later",
+              "label": "다음 버전",
+              "note": "제외 범위로",
+              "section": "scopeOut",
+              "text": "확대 보기는 다음 버전에서 한다"
+            }
+          ],
+          "question": "확대 보기를 넣을까요?",
+          "recommended": "yes",
+          "section": "scopeIn",
+          "why": "감상에 자주 쓰이지만 범위가 하루 정도 늘어나요."
+        },
+        {
+          "id": "zoom-open",
+          "options": [
+            {
+              "id": "tap",
+              "label": "작품 누르기",
+              "note": "가장 익숙함",
+              "text": "작품을 누르면 크게 본다"
+            },
+            {
+              "id": "button",
+              "label": "확대 단추",
+              "note": "눈에 잘 띔",
+              "text": "확대 단추로 크게 본다"
+            }
+          ],
+          "question": "확대는 어떻게 열까요?",
+          "recommended": "tap",
+          "section": "scopeIn",
+          "when": {
+            "decision": "zoom",
+            "options": [
+              "yes"
+            ]
+          },
+          "why": "손에 익은 방식이면 설명 없이 바로 써요."
+        }
+      ],
+      "id": "gallery",
+      "requests": [
+        {
+          "acknowledged": false,
+          "id": "r9",
+          "taken": true,
+          "target": {
+            "id": "i2-0",
+            "kind": "item"
+          },
+          "text": "휴대폰에서는 몇 줄로 보여요?"
+        },
+        {
+          "acknowledged": false,
+          "id": "r11",
+          "taken": false,
+          "target": {
+            "id": "i3-0",
+            "kind": "item"
+          },
+          "text": "방향키 말고 다른 키도 돼요?"
+        },
+        {
+          "acknowledged": false,
+          "id": "r12",
+          "reply": "빌드 설정만 바꾸면 돼서 하루 안에 옮길 수 있어요",
+          "taken": true,
+          "target": {
+            "id": "image-host",
+            "kind": "decision"
+          },
+          "text": "나중에 바꾸기 어렵나요?"
+        },
+        {
+          "acknowledged": true,
+          "id": "r14",
+          "reply": "제외 범위에서 뺐어요",
+          "taken": true,
+          "target": {
+            "id": "i4-0",
+            "kind": "item"
+          },
+          "text": "이건 빼 줘"
+        }
+      ],
+      "revision": 17,
+      "sections": {
+        "acceptance": [],
+        "constraints": [
+          {
+            "by": "ai",
+            "confirmed": false,
+            "id": "decision-image-host",
+            "text": "이미지는 정적 호스팅, 빌드 시 최적화"
+          }
+        ],
+        "purpose": [
+          {
+            "by": "ai",
+            "confirmed": false,
+            "detail": "- 작품 사진이 많아서 빨리 넘겨 보는 것이 중요해요\n- [사진은 CDN 캐시로 미리 줄여 내려줘요]",
+            "id": "i1-0",
+            "text": "작품 200점을 빠르게 훑어보는 개인 갤러리"
+          }
+        ],
+        "scopeIn": [
+          {
+            "by": "ai",
+            "confirmed": false,
+            "detail": "- 쉬운 풀이\n- [기술 구현 방법]",
+            "id": "i2-0",
+            "text": "반응형 격자 레이아웃"
+          },
+          {
+            "by": "me",
+            "confirmed": true,
+            "id": "i3-0",
+            "text": "키보드로 작품 넘기기"
+          }
+        ],
+        "scopeOut": []
+      },
+      "title": "HTML 갤러리 제작",
+      "updatedAt": "1970-01-01T00:00:00.000Z"
+    },
+    "current": 1,
+    "dormant": [
+      "zoom-open"
+    ],
+    "impacts": [
+      {
+        "decision": "zoom",
+        "option": "yes",
+        "sleeps": [],
+        "wakes": [
+          "zoom-open"
+        ]
+      }
+    ],
+    "issues": [
+      {
+        "code": {
+          "count": 1,
+          "kind": "unconfirmed"
+        },
+        "kind": "review",
+        "section": "purpose"
+      },
+      {
+        "code": {
+          "kind": "openDecision",
+          "question": "확대 보기를 넣을까요?"
+        },
+        "kind": "blocking",
+        "section": "scopeIn"
+      },
+      {
+        "code": {
+          "count": 1,
+          "kind": "unconfirmed"
+        },
+        "kind": "review",
+        "section": "scopeIn"
+      },
+      {
+        "code": {
+          "count": 1,
+          "kind": "unconfirmed"
+        },
+        "kind": "review",
+        "section": "constraints"
+      },
+      {
+        "code": {
+          "kind": "openDecision",
+          "question": "어느 정도면 \"다 됐다\"고 볼까요?"
+        },
+        "kind": "blocking",
+        "section": "acceptance"
+      }
+    ],
+    "ready": false,
+    "selfReviewDue": false,
+    "stages": [
+      {
+        "openDecisions": 0,
+        "required": true,
+        "section": "purpose",
+        "status": "review",
+        "unconfirmed": 1
+      },
+      {
+        "openDecisions": 1,
+        "required": true,
+        "section": "scopeIn",
+        "status": "fork",
+        "unconfirmed": 1
+      },
+      {
+        "openDecisions": 0,
+        "required": false,
+        "section": "scopeOut",
+        "status": "clear",
+        "unconfirmed": 0
+      },
+      {
+        "openDecisions": 0,
+        "required": false,
+        "section": "constraints",
+        "status": "review",
+        "unconfirmed": 1
+      },
+      {
+        "openDecisions": 1,
+        "required": true,
+        "section": "acceptance",
+        "status": "fork",
+        "unconfirmed": 0
+      }
+    ]
+  }
+}

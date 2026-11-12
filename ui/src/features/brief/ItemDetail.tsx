@@ -1,3 +1,4 @@
+import type { AnimationEvent, CSSProperties } from 'react'
 import { useText } from '../../copy/index.ts'
 
 /** 자세히 = 설명(`- 일상어`) + 기술(`- [전문 지식]`). 비어 있어도 칸은 남겨 '없음'으로 보인다. */
@@ -52,11 +53,23 @@ function Row({ label, lines }: { label: string; lines: string[] }) {
   )
 }
 
-export function ItemDetail({ detail }: { detail: string | null | undefined }) {
+type Props = {
+  detail: string | null | undefined
+  closing?: boolean
+  order?: number
+  onAnimationEnd?: (e: AnimationEvent) => void
+}
+
+export function ItemDetail({ detail, closing = false, order = 0, onAnimationEnd }: Props) {
   const copy = useText()
   const { explain, tech } = parseDetail(detail)
   return (
-    <dl className="ir-detail">
+    <dl
+      className="ir-detail"
+      data-closing={closing}
+      style={{ '--i': Math.min(order, 8) } as CSSProperties}
+      onAnimationEnd={onAnimationEnd}
+    >
       <Row label={copy.brief.item.explainLabel} lines={explain} />
       <Row label={copy.brief.item.techLabel} lines={tech} />
     </dl>

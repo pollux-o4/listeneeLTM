@@ -24,6 +24,9 @@ pub struct Brief {
     pub sections: BTreeMap<SectionKey, Vec<Item>>,
     #[serde(default)]
     pub decisions: Vec<super::Decision>,
+    /// 사람이 AI에게 남긴 요청(DATA-001). 처리해도 사람이 닫을 때까지 남는다.
+    #[serde(default)]
+    pub requests: Vec<super::Request>,
     /// 최신이 앞. 길이는 `CHANGE_LOG_LIMIT`로 제한.
     #[serde(default)]
     pub changes: Vec<Change>,
@@ -31,6 +34,10 @@ pub struct Brief {
     #[ts(optional, type = "number")]
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub analyzed_revision: Option<u64>,
+    /// AI가 첫 작성 뒤 제품 기준으로 자기 리뷰·개선을 마친 revision(FLOW-001). 한 번만 한다.
+    #[ts(optional, type = "number")]
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub reviewed_revision: Option<u64>,
     /// 복제 원본 지시서 id(FLOW-002).
     #[ts(optional)]
     #[serde(default, skip_serializing_if = "Option::is_none")]
@@ -55,8 +62,10 @@ impl Brief {
             updated_at: now(),
             sections: SECTION_KEYS.into_iter().map(|k| (k, Vec::new())).collect(),
             decisions: Vec::new(),
+            requests: Vec::new(),
             changes: Vec::new(),
             analyzed_revision: None,
+            reviewed_revision: None,
             derived_from: None,
         })
     }
@@ -99,6 +108,21 @@ impl Brief {
             snapshot.updated_at.clone(),
         );
         *self = snapshot;
+    }
+
+    /// 갈림길이 살아 있는가: 조건이 없거나, 앞 갈림길이 살아 있고 조건의 선택지로 정해졌다.
+    /// 조건은 먼저 있던 갈림길만 가리키므로(ask 검증) 재귀가 끝난다.
+    pub fn decision_alive(&self, id: &str) -> bool {
+        let Some(d) = self.decisions.iter().find(|d| d.id == id) else { return false };
+        match &d.when {
+            None => true,
+            Some(when) => {
+                let parent = self.decisions.iter().find(|p| p.id == when.decision);
+                parent.is_some_and(|p| {
+                    p.chosen.as_ref().is_some_and(|c| when.options.contains(c)) && self.decision_alive(&p.id)
+                })
+            }
+        }
     }
 
     pub fn items(&self, key: SectionKey) -> &[Item] {

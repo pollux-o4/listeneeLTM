@@ -1,11 +1,20 @@
 {
   "markdown": {
-    "en": "# HTML 갤러리 제작\n\n## Purpose\n- 작품 200점을 빠르게 훑어보는 개인 갤러리\n  - 작품 사진이 많아서 빨리 넘겨 보는 것이 중요해요\n  - [사진은 CDN 캐시로 미리 줄여 내려줘요]\n\n## In scope\n- 반응형 격자 레이아웃\n  - 쉬운 풀이\n  - [기술 구현 방법]\n- 키보드로 작품 넘기기\n- 작품 확대 보기\n\n## Out of scope\n- 로그인·댓글\n  - 쉬운 풀이\n  - [기술 구현 방법]\n\n## Constraints\n- 이미지는 정적 호스팅, 빌드 시 최적화\n\n## Acceptance criteria\n- Lighthouse 접근성 95 이상 · 첫 화면 1초 내 표시\n",
-    "ko": "# HTML 갤러리 제작\n\n## 목적\n- 작품 200점을 빠르게 훑어보는 개인 갤러리\n  - 작품 사진이 많아서 빨리 넘겨 보는 것이 중요해요\n  - [사진은 CDN 캐시로 미리 줄여 내려줘요]\n\n## 포함 범위\n- 반응형 격자 레이아웃\n  - 쉬운 풀이\n  - [기술 구현 방법]\n- 키보드로 작품 넘기기\n- 작품 확대 보기\n\n## 제외 범위\n- 로그인·댓글\n  - 쉬운 풀이\n  - [기술 구현 방법]\n\n## 제약\n- 이미지는 정적 호스팅, 빌드 시 최적화\n\n## 완료 기준\n- Lighthouse 접근성 95 이상 · 첫 화면 1초 내 표시\n"
+    "en": "# HTML 갤러리 제작\n\n## Purpose\n- 작품 200점을 빠르게 훑어보는 개인 갤러리\n  - 작품 사진이 많아서 빨리 넘겨 보는 것이 중요해요\n  - [사진은 CDN 캐시로 미리 줄여 내려줘요]\n\n## In scope\n- 반응형 격자 레이아웃\n  - 쉬운 풀이\n  - [기술 구현 방법]\n- 키보드로 작품 넘기기\n- 작품 확대 보기\n- 작품을 누르면 크게 본다\n\n## Out of scope\n- 로그인·댓글\n  - 쉬운 풀이\n  - [기술 구현 방법]\n\n## Constraints\n- 이미지는 정적 호스팅, 빌드 시 최적화\n\n## Acceptance criteria\n- Lighthouse 접근성 95 이상 · 첫 화면 1초 내 표시\n",
+    "ko": "# HTML 갤러리 제작\n\n## 목적\n- 작품 200점을 빠르게 훑어보는 개인 갤러리\n  - 작품 사진이 많아서 빨리 넘겨 보는 것이 중요해요\n  - [사진은 CDN 캐시로 미리 줄여 내려줘요]\n\n## 포함 범위\n- 반응형 격자 레이아웃\n  - 쉬운 풀이\n  - [기술 구현 방법]\n- 키보드로 작품 넘기기\n- 작품 확대 보기\n- 작품을 누르면 크게 본다\n\n## 제외 범위\n- 로그인·댓글\n  - 쉬운 풀이\n  - [기술 구현 방법]\n\n## 제약\n- 이미지는 정적 호스팅, 빌드 시 최적화\n\n## 완료 기준\n- Lighthouse 접근성 95 이상 · 첫 화면 1초 내 표시\n"
   },
   "view": {
     "brief": {
       "changes": [
+        {
+          "at": "1970-01-01T00:00:00.000Z",
+          "by": "me",
+          "event": {
+            "count": 1,
+            "kind": "confirmSection"
+          },
+          "revision": 13
+        },
         {
           "at": "1970-01-01T00:00:00.000Z",
           "by": "me",
@@ -37,17 +46,17 @@
           "at": "1970-01-01T00:00:00.000Z",
           "by": "me",
           "event": {
-            "count": 1,
-            "kind": "confirmSection"
+            "count": 3,
+            "kind": "acceptRecommended"
           },
           "revision": 9
         },
         {
           "at": "1970-01-01T00:00:00.000Z",
-          "by": "me",
+          "by": "ai",
           "event": {
-            "count": 2,
-            "kind": "acceptRecommended"
+            "kind": "ask",
+            "question": "확대는 어떻게 열까요?"
           },
           "revision": 8
         },
@@ -185,10 +194,40 @@
           "recommended": "yes",
           "section": "scopeIn",
           "why": "감상에 자주 쓰이지만 범위가 하루 정도 늘어나요."
+        },
+        {
+          "chosen": "tap",
+          "chosenBy": "me",
+          "id": "zoom-open",
+          "options": [
+            {
+              "id": "tap",
+              "label": "작품 누르기",
+              "note": "가장 익숙함",
+              "text": "작품을 누르면 크게 본다"
+            },
+            {
+              "id": "button",
+              "label": "확대 단추",
+              "note": "눈에 잘 띔",
+              "text": "확대 단추로 크게 본다"
+            }
+          ],
+          "question": "확대는 어떻게 열까요?",
+          "recommended": "tap",
+          "section": "scopeIn",
+          "when": {
+            "decision": "zoom",
+            "options": [
+              "yes"
+            ]
+          },
+          "why": "손에 익은 방식이면 설명 없이 바로 써요."
         }
       ],
       "id": "gallery",
-      "revision": 12,
+      "requests": [],
+      "revision": 13,
       "sections": {
         "acceptance": [
           {
@@ -234,6 +273,12 @@
             "confirmed": true,
             "id": "decision-zoom",
             "text": "작품 확대 보기"
+          },
+          {
+            "by": "me",
+            "confirmed": true,
+            "id": "decision-zoom-open",
+            "text": "작품을 누르면 크게 본다"
           }
         ],
         "scopeOut": [
@@ -250,8 +295,20 @@
       "updatedAt": "1970-01-01T00:00:00.000Z"
     },
     "current": 5,
+    "dormant": [],
+    "impacts": [
+      {
+        "decision": "zoom",
+        "option": "later",
+        "sleeps": [
+          "zoom-open"
+        ],
+        "wakes": []
+      }
+    ],
     "issues": [],
     "ready": true,
+    "selfReviewDue": true,
     "stages": [
       {
         "openDecisions": 0,

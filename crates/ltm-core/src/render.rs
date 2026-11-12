@@ -22,7 +22,7 @@ pub fn render_markdown(brief: &Brief, locale: Locale) -> String {
             }
         }
     }
-    let open: Vec<_> = brief.decisions.iter().filter(|d| d.chosen.is_none()).collect();
+    let open: Vec<_> = crate::view::open_alive(brief).collect();
     if !open.is_empty() {
         out.push_str(text.open_decisions);
         for d in open {

@@ -52,7 +52,8 @@ fn headline_violation(text: &str) -> Option<(String, &'static str)> {
 
 /// 자세히: 줄마다 `- ` 목록(들여쓰기 0 또는 2칸 = 두 단계), 전문 용어·약어는 `[ ]` 안에만.
 fn detail_violation(text: &str) -> Option<(String, &'static str)> {
-    const HINT: &str = "write `detail` as short `- ` lines (max 6, one level of `  - ` under them) in plain words; put dev or domain terms only inside [ ]";
+    // 자세히·이유·영향·답이 함께 쓰는 안내라 특정 칸 이름으로 말하지 않는다.
+    const HINT: &str = "use plain words and put dev or domain terms only inside [ ]; in `detail`, write short `- ` lines (max 6, one level of `  - ` under them)";
     let lines: Vec<&str> = text.lines().collect();
     if lines.len() > DETAIL_LINES_MAX {
         return Some((format!("has {} lines, max {DETAIL_LINES_MAX}", lines.len()), HINT));

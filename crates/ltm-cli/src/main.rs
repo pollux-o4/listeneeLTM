@@ -34,6 +34,8 @@ enum Command {
     Check { id: String },
     /// 편집 연산 하나를 적용한다. 예: '{"op":"addItem","section":"purpose","text":"..."}'
     Set { id: String, patch: String },
+    /// 편집 연산 형식(JSON Schema): `set`·`pref set`에 보낼 JSON의 원본
+    Schema,
     /// 직전 변경 되돌리기
     Undo { id: String },
     /// 수신자에게 넘길 최종 지시서 (Markdown)
@@ -66,6 +68,7 @@ async fn main() -> anyhow::Result<()> {
         Command::List => commands::brief::list(&store),
         Command::Check { id } => commands::brief::check(&store, &id),
         Command::Set { id, patch } => commands::brief::set(&store, &id, &patch),
+        Command::Schema => commands::brief::schema(),
         Command::Undo { id } => commands::brief::undo(&store, &id),
         Command::Export { id, lang } => commands::brief::export(&store, &id, lang),
         Command::Pref { command, lang } => commands::pref::run(&store, command, lang),

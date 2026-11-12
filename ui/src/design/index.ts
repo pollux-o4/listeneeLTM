@@ -14,7 +14,9 @@ export {
   useCopy,
   useEditToggle,
 } from './primitives/index.tsx'
+export { useFlip } from './primitives/useFlip.ts'
 export { usePresence } from './primitives/usePresence.ts'
 export { chest } from './sprites/chest.ts'
 export { icons } from './sprites/icons.ts'
 export type { ListeneeMood } from './sprites/listenee.ts'
+export { stageIcons } from './sprites/stages.ts'

@@ -1,5 +1,6 @@
 mod decisions;
 mod items;
+mod requests;
 mod style;
 
 use serde::{Deserialize, Serialize};
@@ -8,7 +9,7 @@ use ts_rs::TS;
 use crate::model::{Actor, Brief, BriefError, ChangeEvent, DecisionOption, now, record};
 
 /// AI(CLI·파일)와 사람(GUI)이 공유하는 편집 연산. 누가 했는지는 적용 시 `Actor`로 받는다.
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, TS)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, TS, schemars::JsonSchema)]
 #[serde(tag = "op", rename_all = "camelCase", rename_all_fields = "camelCase")]
 #[ts(export)]
 pub enum BriefPatch {
@@ -52,9 +53,30 @@ pub enum BriefPatch {
     AcceptRecommended,
     /// AI가 이 지시서에서 취향 분석을 마쳤다(학습 상태, ADR-0008).
     MarkAnalyzed,
+    /// AI가 첫 작성 뒤 제품 기준으로 자기 리뷰·개선을 마쳤다(FLOW-001).
+    MarkReviewed,
+    /// 사람이 항목·갈림길에 AI에게 할 말을 남긴다.
+    Request {
+        target: crate::model::RequestTarget,
+        text: String,
+    },
+    /// AI가 열린 요청을 모두 맡는다(처리 시작). 사람 화면에 '처리 중'으로 보인다.
+    TakeRequests,
+    /// AI가 요청을 처리했다: 답(무엇을 했는지 또는 질문의 답)을 한 줄로 남긴다.
+    ResolveRequest {
+        id: String,
+        reply: String,
+    },
+    /// 사람이 답을 봤다고 표시한다(선택).
+    AcknowledgeRequest {
+        id: String,
+    },
+    RemoveRequest {
+        id: String,
+    },
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, TS)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, TS, schemars::JsonSchema)]
 #[serde(rename_all = "camelCase")]
 #[ts(export)]
 pub struct NewDecision {
@@ -67,6 +89,10 @@ pub struct NewDecision {
     #[serde(default)]
     #[ts(optional)]
     pub decide: Option<bool>,
+    /// 앞 갈림길의 선택에 따라서만 묻는다(DATA-001).
+    #[serde(default)]
+    #[ts(optional)]
+    pub when: Option<crate::model::DecisionWhen>,
 }
 
 #[derive(Debug, thiserror::Error, PartialEq)]
@@ -89,6 +115,12 @@ pub enum PatchError {
     InvalidId(BriefError),
     #[error("rejected: `{field}` {reason}. Fix: {hint}")]
     Style { field: &'static str, reason: String, hint: String },
+    #[error("`when` must point to an existing decision and its options")]
+    InvalidCondition,
+    #[error("decision `{0}` is waiting on an earlier choice")]
+    DormantDecision(String),
+    #[error("request not found: {0}")]
+    UnknownRequest(String),
     #[error("nothing to change")]
     NoOp,
 }
@@ -131,6 +163,15 @@ impl Brief {
                 // 적용 후 revision을 기록해, 이후 변경이 있으면 다시 분석 대상이 된다.
                 self.analyzed_revision = Some(self.revision + 1);
                 Ok(ChangeEvent::Analyzed {})
+            }
+            BriefPatch::Request { target, text } => requests::add(self, target, &text),
+            BriefPatch::TakeRequests => requests::take(self),
+            BriefPatch::ResolveRequest { id, reply } => requests::resolve(self, &id, &reply, by),
+            BriefPatch::AcknowledgeRequest { id } => requests::acknowledge(self, &id),
+            BriefPatch::RemoveRequest { id } => requests::remove(self, &id),
+            BriefPatch::MarkReviewed => {
+                self.reviewed_revision = Some(self.revision + 1);
+                Ok(ChangeEvent::Reviewed {})
             }
         }
     }

@@ -2,7 +2,7 @@ import type { CSSProperties } from 'react'
 import { useText } from '../../copy/index.ts'
 import { chest, type ListeneeMood, Mascot, PixelSprite, SpeechBubble } from '../../design/index.ts'
 import type { StageView } from '../../generated/StageView.ts'
-import { StatusGlyph } from './status.tsx'
+import { StageIcon, StatusMark } from './status.tsx'
 import './quest-path.css'
 
 type Props = {
@@ -53,10 +53,8 @@ export function QuestPath({ stages, current, ready, open, mood, say, onOpen }: P
                 onClick={() => onOpen(i)}
               >
                 <span className="qp-tile" aria-hidden>
-                  <StatusGlyph status={s.status} />
-                  {s.status !== 'fork' && s.unconfirmed > 0 && (
-                    <span className="qp-count">{s.unconfirmed}</span>
-                  )}
+                  <StageIcon section={s.section} status={s.status} />
+                  <StatusMark status={s.status} unconfirmed={s.unconfirmed} />
                 </span>
                 <span className="qp-name">{copy.brief.stage[s.section].label}</span>
               </button>

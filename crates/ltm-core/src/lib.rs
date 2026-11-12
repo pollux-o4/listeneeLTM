@@ -11,13 +11,19 @@ mod view;
 
 pub use edit::{BriefPatch, NewDecision, PatchError};
 pub use model::{
-    Actor, Brief, BriefError, Change, ChangeEvent, Decision, DecisionOption, Item, SECTION_KEYS, SectionKey,
-    validate_id,
+    Actor, Brief, BriefError, Change, ChangeEvent, Decision, DecisionOption, DecisionWhen, Item, Request,
+    RequestTarget, SECTION_KEYS, SectionKey, validate_id,
 };
 pub use prefs::{PrefError, PrefPatch, Preference, Preferences};
 pub use render::render_markdown;
 pub use view::{
-    BriefSummary, BriefView, Issue, IssueCode, IssueKind, LearningStatus, StageStatus, StageView,
+    BriefSummary, BriefView, Issue, IssueCode, IssueKind, LearningStatus, OptionImpact, StageStatus,
+    StageView,
 };
 
 pub use locale::Locale;
+
+/// AI가 `ltm set`·`ltm pref set`에 보낼 편집 연산의 JSON Schema. 원본은 위 타입이라 안내와 실제가 어긋나지 않는다.
+pub fn patch_schemas() -> [(&'static str, schemars::Schema); 2] {
+    [("brief", schemars::schema_for!(BriefPatch)), ("pref", schemars::schema_for!(PrefPatch))]
+}

@@ -22,7 +22,14 @@ export const briefCopy = {
   },
   delivery: {
     ready: '전달 준비 완료',
-    reviewHint: '바로 전달할 수 있어요. 아래는 한 번 봐 두면 좋은 것들이에요.',
+    reviewHint: '확인은 선택이에요. 펼쳐서 맞으면 그 자리에서 ♥를 눌러요.',
+    reviewCount: (count: number) => `확인 전 ${count}`,
+    reviewed: '확인함',
+    openStage: '단계로 가기',
+    aiLine: 'AI 작성 · 확인 전',
+    copied: '복사했어요. AI 작업창에 붙여넣으면 돼요.',
+    copyCommand: '명령 복사',
+    previewMore: (lines: number) => `전체 보기 · ${lines}줄 더`,
     readyHint: '수신자에게 그대로 넘기면 돼요.',
     blockedHint: '아래를 누르면 그 단계로 가요. 초안은 지금도 복사할 수 있어요.',
     blockingPrefix: '막힘: ',
@@ -32,6 +39,7 @@ export const briefCopy = {
     terminalPrefix: '터미널에서는 ',
     exportCommand: (id: string) => `ltm export ${id}`,
     blocked: (count: number) => `전달 전 막힌 곳 ${count}개`,
+    previewLabel: '복사되는 내용',
   },
   item: {
     editLabel: '항목 고치기',
@@ -47,6 +55,30 @@ export const briefCopy = {
     editAction: (text: string) => `“${text}” 고치기`,
     removeLabel: (text: string) => `“${text}” 빼기`,
   },
+  request: {
+    ask: 'AI에게 묻기',
+    askLabel: (text: string) => `“${text}”에 대해 AI에게 묻거나 고쳐 달라기`,
+    inputLabel: 'AI에게 할 말 (Enter로 남기기)',
+    placeholder: '궁금한 점·고칠 점 적기',
+    leave: '남기기',
+    state: { noted: '적어 둠', working: '처리 중', replied: '답함' },
+    waiting: (count: number) => `붙여 넣으면 AI가 맡아요 · 기다리는 요청 ${count}개`,
+    working: (count: number) => `AI가 처리 중 · 남은 ${count}개`,
+    acknowledge: '봤어요',
+    acknowledged: '확인한 답',
+    cancel: '지우기',
+    dismiss: '닫기',
+    trayLabel: 'AI에게 보낼 요청',
+    pending: (count: number) => `AI에게 보낼 요청 ${count}개`,
+    copyAll: '① 복사',
+    pasteStep: '② AI 창에 붙여 넣기',
+    paste: '이제 AI 창에 붙여 넣어 주세요',
+    uncopied: (count: number) => `복사 전 요청 ${count}개`,
+    copied: '복사됨 ✓',
+    message: (title: string, id: string, count: number) =>
+      `LTM 지시서 “${title}”(${id})에 남긴 요청 ${count}개를 처리해 줘.`,
+    photoHint: '화면 자체가 궁금하면 사진을 찍어 AI에게 보내도 돼요',
+  },
   decision: {
     confirm: '좋아요',
     change: '바꾸기',
@@ -55,6 +87,16 @@ export const briefCopy = {
     keep: '그대로 두기',
     confirmLabel: (question: string, label: string) => `“${question}” ${label}(으)로 확인`,
     changeLabel: (question: string) => `“${question}” 바꾸기`,
+    waiting: (question: string, labels: string[]) =>
+      `“${question}”에서 ${labels.map((l) => `‘${l}’`).join(' 또는 ')}을(를) 고르면 정해요`,
+    changedPrefix: '바뀐 점: ',
+    impactPrefix: '고르면: ',
+    sleeps: (question: string, dropped?: string) =>
+      dropped
+        ? `‘${question}’이(가) 잠기고 정한 ‘${dropped}’은(는) 빠져요(다시 열면 돌아와요)`
+        : `‘${question}’이(가) 잠겨요`,
+    wakes: (question: string) => `‘${question}’을(를) 새로 정해요`,
+    undo: '되돌리기',
   },
   stage: {
     purpose: { label: '목적', hint: '무엇을 위해 하는가' },
@@ -76,7 +118,7 @@ export const briefCopy = {
     optionalEmptyHint: '해당하는 내용이 없으면 비워 둬도 돼요.',
     placeholder: '직접 적기',
     add: '추가',
-    reviewHint: (count: number) => `AI가 쓴 ${count}개가 확인 전이에요.`,
+    reviewHint: (count: number) => `AI가 쓴 ${count}개가 확인 전이에요. 맞으면 ♥를 눌러요.`,
     inputLabel: (label: string) => `${label}에 직접 적기`,
   },
   workspace: {

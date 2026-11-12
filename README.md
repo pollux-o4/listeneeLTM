@@ -81,7 +81,7 @@ mise install && pnpm install && mise x -- lefthook install
 ```
 
 ```bash
-pnpm dev         # Rust API(4318) + GUI → http://localhost:5173
+pnpm dev         # 개발: Rust API(4319) + GUI(HMR) → http://localhost:4320 (릴리스 `mise run refresh`는 4318)
 ```
 
 ```bash
