@@ -15,7 +15,7 @@ log="$project/.ltm/ui.log"
 
 mkdir -p "$project"
 [ -d "$project/.git" ] || git -C "$project" init -q
-# 매번 init: AI 안내(.ltm/AGENTS.md)를 새 빌드의 규칙으로 맞춘다. 지시서·노트는 건드리지 않는다.
+# 매번 init: 없는 AI 안내를 생성하고 기존 안내·지시서·노트는 보존한다.
 (cd "$project" && "$bin" init >/dev/null)
 
 if [ -f "$pidfile" ] && kill "$(cat "$pidfile")" 2>/dev/null; then
@@ -25,7 +25,7 @@ fi
 fuser -k "$port/tcp" >/dev/null 2>&1 || true
 
 # exec으로 서브셸을 남기지 않고, setsid로 호출한 터미널·도구와 분리한다(pid 파일 = 서버 pid).
-(cd "$project" && exec setsid "$bin" ui --port "$port" </dev/null >"$log" 2>&1) &
+(cd "$project" && exec setsid "$bin" ui --no-open --port "$port" </dev/null >"$log" 2>&1) &
 echo $! >"$pidfile"
 
 for _ in $(seq 1 50); do

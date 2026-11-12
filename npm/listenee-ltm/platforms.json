@@ -1,0 +1,32 @@
+[
+  {
+    "id": "linux-x64",
+    "os": "linux",
+    "arch": "x64",
+    "package": "@listenee-ltm/linux-x64",
+    "binary": "ltm",
+    "asset": "ltm-linux-x64",
+    "target": "x86_64-unknown-linux-musl",
+    "runner": "ubuntu-24.04"
+  },
+  {
+    "id": "darwin-arm64",
+    "os": "darwin",
+    "arch": "arm64",
+    "package": "@listenee-ltm/darwin-arm64",
+    "binary": "ltm",
+    "asset": "ltm-darwin-arm64",
+    "target": "aarch64-apple-darwin",
+    "runner": "macos-15"
+  },
+  {
+    "id": "win32-x64",
+    "os": "win32",
+    "arch": "x64",
+    "package": "@listenee-ltm/win32-x64",
+    "binary": "ltm.exe",
+    "asset": "ltm-win32-x64.exe",
+    "target": "x86_64-pc-windows-msvc",
+    "runner": "windows-2022"
+  }
+]

@@ -74,19 +74,29 @@ flowchart LR
 
 ## <img src="docs/assets/icons/play.svg" height="24" align="absmiddle"/> 빠른 시작 <a id="start"></a>
 
-> 배포·설치 방식은 아직 정하지 않았습니다. 지금은 소스에서 실행합니다.
+최초 공개 배포 준비 중입니다. 게시 후 프로젝트 폴더에서 실행합니다.
 
 ```bash
-mise install && pnpm install && mise x -- lefthook install
+pnpm add -D listenee-ltm
+pnpm exec ltm init
+pnpm exec ltm ui
 ```
 
-```bash
-pnpm dev         # 개발: Rust API(4319) + GUI(HMR) → http://localhost:4320 (릴리스 `mise run refresh`는 4318)
+`init`은 기존 안내 파일을 보존하며 AI 안내를 등록합니다. `ui`는 브라우저 화면을 엽니다.
+
+**Node·npm 없는 PC**도 단독 실행 파일로 설치할 수 있습니다. Linux x64·macOS arm64:
+
+```sh
+curl -fsSL https://github.com/pollux-o4/listeneeLTM/releases/download/v0.1.0/install.sh | sh && "$HOME/.local/bin/ltm" init && "$HOME/.local/bin/ltm" ui
 ```
 
-```bash
-pnpm storybook   # 컴포넌트·문구 카탈로그 → http://localhost:6016
+Windows x64·PowerShell:
+
+```powershell
+& ([scriptblock]::Create((Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/pollux-o4/listeneeLTM/v0.1.0/scripts/install/install.ps1).Content)); if ($?) { ltm init; if ($LASTEXITCODE -eq 0) { ltm ui } }
 ```
+
+설치 위치·PATH·실패 복구는 `docs/operations/`의 `OPS-001`, 개발 환경은 `tech-spec.md`에서 확인합니다.
 
 <details>
 <summary><b>CLI 명령</b></summary>

@@ -505,7 +505,7 @@ checksum = "5d15f86d12da44cd8d4ec3c73984537eb7f4cadcb9776a575a0a8a05ca11005c"
 
 [[package]]
 name = "ltm-cli"
-version = "0.0.0"
+version = "0.1.0"
 dependencies = [
  "anyhow",
  "axum",
@@ -519,7 +519,7 @@ dependencies = [
 
 [[package]]
 name = "ltm-core"
-version = "0.0.0"
+version = "0.1.0"
 dependencies = [
  "chrono",
  "schemars",
@@ -531,7 +531,7 @@ dependencies = [
 
 [[package]]
 name = "ltm-server"
-version = "0.0.0"
+version = "0.1.0"
 dependencies = [
  "axum",
  "ltm-core",

@@ -55,6 +55,9 @@ enum Command {
     Ui {
         #[arg(long, env = "LTM_PORT", default_value_t = 4318)]
         port: u16,
+        /// 기본 브라우저를 열지 않는다
+        #[arg(long)]
+        no_open: bool,
     },
 }
 
@@ -72,6 +75,6 @@ async fn main() -> anyhow::Result<()> {
         Command::Undo { id } => commands::brief::undo(&store, &id),
         Command::Export { id, lang } => commands::brief::export(&store, &id, lang),
         Command::Pref { command, lang } => commands::pref::run(&store, command, lang),
-        Command::Ui { port } => commands::ui::run(store, &cli.project, port).await,
+        Command::Ui { port, no_open } => commands::ui::run(store, &cli.project, port, no_open).await,
     }
 }

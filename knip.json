@@ -5,6 +5,9 @@
       "entry": ["scripts/*.{ts,mjs}"],
       "ignore": ["prototype/**"],
       "ignoreDependencies": ["galmuri"]
+    },
+    ".": {
+      "entry": ["scripts/{install,release}/*.mjs", "npm/listenee-ltm/bin/*.cjs"]
     }
   },
   "ignoreBinaries": ["mise"]

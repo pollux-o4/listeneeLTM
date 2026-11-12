@@ -1,0 +1,29 @@
+{
+  "name": "listenee-ltm",
+  "version": "0.1.0",
+  "description": "Listen to Me — collaboratively write task briefs with people and AI",
+  "bin": {
+    "ltm": "bin/ltm.cjs"
+  },
+  "files": [
+    "bin/ltm.cjs",
+    "platforms.json"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pollux-o4/listeneeLTM.git",
+    "directory": "npm/listenee-ltm"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "optionalDependencies": {
+    "@listenee-ltm/linux-x64": "0.1.0",
+    "@listenee-ltm/darwin-arm64": "0.1.0",
+    "@listenee-ltm/win32-x64": "0.1.0"
+  }
+}

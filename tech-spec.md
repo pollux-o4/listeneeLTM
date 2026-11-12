@@ -1,11 +1,12 @@
 # Tech Spec · listeneeLTM
 
-내부 개발용 기술 기준. 선택 이유: `ADR-0003`, `ADR-0004`. 제품 의도: `VISION-`.
+내부 개발용 기술 기준. 선택 이유: `ADR-0003`, `ADR-0004`, `ADR-0009`. 제품 의도: `VISION-`.
 
 ## 원칙
 
-- 사용자에게는 **`ltm` 바이너리 하나**만 배포한다. 사용자 PC에 런타임(Node 등)을 요구하지 않는다.
-- Node·pnpm은 UI 개발과 빌드에만 쓴다.
+- 사용자에게는 **`ltm` 바이너리 하나**만 배포한다. 단독 설치에서는 사용자 PC에 런타임(Node 등)을 요구하지 않는다.
+- Node·pnpm은 UI 개발·빌드와 npm 설치 경로에 쓴다. 단독 실행 파일은 Node 없이 동작한다.
+- npm `listenee-ltm`은 플랫폼별 선택 의존성의 바이너리를 실행한다. 배포 산출물·설치 계약은 INSTALL-001.
 - 도메인 타입의 원본은 Rust다. TS 타입은 생성한 것을 쓰며 직접 고치지 않는다.
 
 ## 스택
@@ -51,8 +52,8 @@ ui (React) ◀── ui/src/generated ◀─────────────
 ## 데이터·실행
 
 - `.ltm/briefs/<id>.json`(커밋), `.ltm/preferences.json`(커밋), `.ltm/history/`(되돌리기 스냅샷, `ltm init`이 gitignore). 모두 임시 파일에 쓴 뒤 rename으로 교체하고, 쓰기는 `.ltm/.lock` 잠금 안에서 한다(프로세스 간 변경 유실 방지).
-- `ltm ui [--port 4318]`: GUI와 `/api`(`briefs`, `briefs/{id}`, `briefs/{id}/undo`, `preferences`)를 함께 서비스한다. 루프백 Host와 같은 출처의 쓰기만 받는다.
-- `ltm init`: `.ltm/AGENTS.md`를 쓰고, 프로젝트 AGENTS.md(있으면 CLAUDE.md)에 안내 한 줄을 추가한다. 이미 있거나 CLAUDE.md가 `@AGENTS.md`를 불러오면 건너뛴다.
+- `ltm ui [--port 4318] [--no-open]`: 기본 브라우저를 열고 GUI와 `/api`(`briefs`, `briefs/{id}`, `briefs/{id}/undo`, `preferences`)를 함께 서비스한다. 루프백 Host와 같은 출처의 쓰기만 받는다.
+- `ltm init`: 없는 `.ltm/AGENTS.md`를 만들고, 프로젝트 AGENTS.md(있으면 CLAUDE.md)에 안내 한 줄을 추가한다. 이미 있거나 CLAUDE.md가 `@AGENTS.md`를 불러오면 건너뛴다.
 - `ltm new|list|check|set`: 결과 JSON은 stdout, 안내와 오류는 stderr로 낸다.
 - GUI는 1.5초마다 다시 읽고, revision이 같으면 다시 그리지 않으며, 화면보다 오래된 응답은 버린다. 탭이 숨겨지면 멈춘다.
 - 프로젝트 루트는 `--project` 또는 `LTM_PROJECT_ROOT`(기본 cwd)로 지정한다.
