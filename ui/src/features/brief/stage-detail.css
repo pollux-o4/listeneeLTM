@@ -169,15 +169,31 @@
   display: grid;
   gap: 2px;
 }
-.ir {
+.sd-tools {
+  margin: 0;
   display: flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 36px;
-  padding: 2px 0 2px 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0 16px;
+}
+/* 항목: 이상향(굵게) · 설명(`-`) · 기술설명(`[ ]`)이 같은 왼쪽 선에 맞춰 쌓인다. */
+.ir {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "badge text actions"
+    ". detail .";
+  align-items: start;
+  column-gap: 12px;
+  padding: 6px 0 6px 6px;
   /* 항목이 수백 개여도 화면 밖 줄은 그리지 않는다. */
   content-visibility: auto;
   contain-intrinsic-size: auto 40px;
+}
+.ir > :first-child {
+  grid-area: badge;
+  align-self: start;
+  margin-top: 1px;
 }
 .ir[data-fresh="true"] {
   animation: ltm-rise var(--dur-base) var(--ease-soft) both;
@@ -187,19 +203,55 @@
   background: color-mix(in srgb, var(--c-accent-soft) 35%, transparent);
 }
 .ir-text {
-  flex: 1;
-  min-width: 0;
+  grid-area: text;
+  color: var(--c-text);
+  font-family: var(--font-pixel-bold);
+  line-height: 24px;
   overflow-wrap: anywhere;
 }
-/* 확인 전: 흐린 글자 + 점선 배지(한글에는 기울임꼴이 없어 기울이지 않는다). */
-.ir[data-confirmed="false"] .ir-text {
+/* 자세히: 설명·기술 두 칸이 항상 같은 모양으로 나온다(비면 '없음'). 라벨 열이 이상향 글자 선에 맞는다. */
+.ir-detail {
+  grid-area: detail;
+  margin: 4px 0 0;
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 2px 10px;
+  font-size: var(--fs-small);
+  line-height: 20px;
   color: var(--c-muted);
+  overflow-wrap: anywhere;
+}
+.ir-detail dt {
+  margin: 1px 0 0;
+  padding: 0 5px;
+  justify-self: start;
+  align-self: start;
+  white-space: nowrap;
+  border: var(--px) dashed var(--c-muted);
+  line-height: 16px;
+}
+.ir-detail dd {
+  margin: 0;
+  display: grid;
+  gap: 2px;
+}
+.ir-detail dd[data-empty="true"] {
+  opacity: 0.6;
+}
+/* 문장 속 짧은 전문 용어는 점선 칩 */
+.ir-tech {
+  display: inline-block;
+  margin: 0 2px;
+  padding: 0 5px;
+  outline: var(--px) dashed var(--c-muted);
+  outline-offset: -1px;
+  line-height: 18px;
 }
 .ir-input {
-  flex: 1;
+  grid-area: text;
 }
 .ir-actions {
-  flex: none;
+  grid-area: actions;
   display: flex;
   gap: 2px;
   align-items: center;
@@ -290,14 +342,14 @@
 }
 @media (max-width: 480px) {
   .ir {
-    flex-wrap: wrap;
-  }
-  .ir-text,
-  .ir-input {
-    flex-basis: calc(100% - 48px);
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "badge text"
+      ". detail"
+      ". actions";
   }
   .ir-actions {
-    margin-left: auto;
+    justify-self: end;
   }
   .dc-decided {
     flex-wrap: wrap;

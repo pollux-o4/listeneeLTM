@@ -23,7 +23,22 @@ export const appCopy = {
     themeLabel: (label: string) => `Theme: ${label}. Select to change`,
   },
   screen: {
-    askAi: 'Let’s write a task brief with LTM',
+    askAiWith: (task: string, details: readonly string[]) =>
+      `Let’s write a task brief with LTM${task ? `: ${task}` : ''}${details.length ? ` (must keep: ${details.join(', ')})` : ''}`,
+    taskLabel: 'What do you want to do?',
+    taskPlaceholder: 'e.g. Add social sign-in to login (optional)',
+    detailsShow: '+ Add details',
+    detailsHide: '− Hide details',
+    detailsLegend: 'Must keep (applied in one go)',
+    detailPresets: [
+      'Follow SOLID design',
+      'Smooth motion and effects',
+      'Keep the existing design',
+      'Verify with tests',
+      'Complete enough to skip follow-up questions',
+    ],
+    detailsExtra: 'Your own',
+    detailsExtraPlaceholder: 'e.g. Consider mobile screens too',
     offlineTitle: 'Can’t connect to the LTM server',
     terminalPrefix: 'Make sure ',
     command: 'ltm ui',
@@ -34,7 +49,8 @@ export const appCopy = {
     missingHint: 'It may have been deleted or moved.',
     openOther: 'Open another brief',
     emptyTitle: 'No briefs yet',
-    emptyHint: 'Tell your AI the following. Your brief will appear here.',
+    emptyHint:
+      'Describe the task, then paste the sentence into your AI. Your brief will appear here.',
     copied: 'Copied',
     copyFailed: 'Copy failed',
     copyHint: 'Click to copy',

@@ -329,33 +329,54 @@
     ],
     "app.notice.saveFailed": ["app-screens--save-rejected"],
     "app.notice.undo": ["app-screens--removed"],
-    "app.screen.askAi": [
+    "app.screen.askAiWith": [
       "app-screens--shell-welcome",
       "app-screens--welcome",
       "app-screens--welcome-copied",
-      "app-screens--welcome-copy-failed"
+      "app-screens--welcome-copy-failed",
+      "app-screens--welcome-with-details",
+      "app-screens--welcome-with-task"
     ],
     "app.screen.briefError": ["app-screens--brief-failed"],
     "app.screen.command": ["app-screens--offline"],
-    "app.screen.copied": ["app-screens--welcome-copied"],
+    "app.screen.copied": ["app-screens--welcome-copied", "app-screens--welcome-with-task"],
     "app.screen.copyFailed": ["app-screens--welcome-copy-failed"],
     "app.screen.copyHint": [
       "app-screens--shell-welcome",
       "app-screens--welcome",
       "app-screens--welcome-copied",
-      "app-screens--welcome-copy-failed"
+      "app-screens--welcome-copy-failed",
+      "app-screens--welcome-with-details",
+      "app-screens--welcome-with-task"
+    ],
+    "app.screen.detailPresets.0": ["app-screens--welcome-with-details"],
+    "app.screen.detailPresets.1": ["app-screens--welcome-with-details"],
+    "app.screen.detailPresets.2": ["app-screens--welcome-with-details"],
+    "app.screen.detailPresets.3": ["app-screens--welcome-with-details"],
+    "app.screen.detailPresets.4": ["app-screens--welcome-with-details"],
+    "app.screen.detailsExtra": ["app-screens--welcome-with-details"],
+    "app.screen.detailsExtraPlaceholder": ["app-screens--welcome-with-details"],
+    "app.screen.detailsHide": ["app-screens--welcome-with-details"],
+    "app.screen.detailsLegend": ["app-screens--welcome-with-details"],
+    "app.screen.detailsShow": [
+      "app-screens--welcome-with-details",
+      "app-screens--welcome-with-task"
     ],
     "app.screen.emptyHint": [
       "app-screens--shell-welcome",
       "app-screens--welcome",
       "app-screens--welcome-copied",
-      "app-screens--welcome-copy-failed"
+      "app-screens--welcome-copy-failed",
+      "app-screens--welcome-with-details",
+      "app-screens--welcome-with-task"
     ],
     "app.screen.emptyTitle": [
       "app-screens--shell-welcome",
       "app-screens--welcome",
       "app-screens--welcome-copied",
-      "app-screens--welcome-copy-failed"
+      "app-screens--welcome-copy-failed",
+      "app-screens--welcome-with-details",
+      "app-screens--welcome-with-task"
     ],
     "app.screen.loading": [
       "app-screens--disconnected",
@@ -374,6 +395,22 @@
     "app.screen.notesError": ["app-screens--notes-failed"],
     "app.screen.offlineTitle": ["app-screens--offline"],
     "app.screen.openOther": ["app-screens--brief-failed", "app-screens--not-found"],
+    "app.screen.taskLabel": [
+      "app-screens--shell-welcome",
+      "app-screens--welcome",
+      "app-screens--welcome-copied",
+      "app-screens--welcome-copy-failed",
+      "app-screens--welcome-with-details",
+      "app-screens--welcome-with-task"
+    ],
+    "app.screen.taskPlaceholder": [
+      "app-screens--shell-welcome",
+      "app-screens--welcome",
+      "app-screens--welcome-copied",
+      "app-screens--welcome-copy-failed",
+      "app-screens--welcome-with-details",
+      "app-screens--welcome-with-task"
+    ],
     "app.screen.terminalPrefix": ["app-screens--offline"],
     "app.screen.terminalSuffix": ["app-screens--offline"],
     "app.shell.documentTitle": [
@@ -411,24 +448,7 @@
       "app-screens--shell-notes",
       "app-screens--shell-welcome"
     ],
-    "brief.change": [
-      "app-screens--disconnected",
-      "app-screens--offline-save",
-      "app-screens--read-failed",
-      "app-screens--removed",
-      "app-screens--save-rejected",
-      "app-screens--shell",
-      "app-screens--shell-duplicate",
-      "brief-workspace--blocked-delivery",
-      "brief-workspace--copied",
-      "brief-workspace--copy-failed",
-      "brief-workspace--done",
-      "brief-workspace--edit-item",
-      "brief-workspace--edit-title",
-      "brief-workspace--review",
-      "brief-workspace--started",
-      "brief-workspace--working"
-    ],
+    "brief.change": ["brief-workspace--draft-open", "brief-workspace--draft-toggle"],
     "brief.copyResult.copied": ["brief-workspace--copied"],
     "brief.copyResult.failed": ["brief-workspace--copy-failed"],
     "brief.decision.change": [
@@ -466,6 +486,7 @@
       "brief-decisioncard--open",
       "brief-workspace--acceptance",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--working"
@@ -482,6 +503,7 @@
       "brief-decisioncard--open",
       "brief-workspace--acceptance",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--working"
@@ -493,6 +515,7 @@
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
+      "brief-workspace--draft-open",
       "brief-workspace--review"
     ],
     "brief.delivery.copyDraft": ["brief-workspace--blocked-delivery"],
@@ -501,18 +524,21 @@
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
+      "brief-workspace--draft-open",
       "brief-workspace--review"
     ],
     "brief.delivery.ready": [
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
+      "brief-workspace--draft-open",
       "brief-workspace--review"
     ],
     "brief.delivery.readyHint": [
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
-      "brief-workspace--done"
+      "brief-workspace--done",
+      "brief-workspace--draft-open"
     ],
     "brief.delivery.reviewHint": ["brief-workspace--review"],
     "brief.delivery.reviewPrefix": ["brief-workspace--blocked-delivery", "brief-workspace--review"],
@@ -521,6 +547,7 @@
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
+      "brief-workspace--draft-open",
       "brief-workspace--review"
     ],
     "brief.issue": ["brief-workspace--blocked-delivery", "brief-workspace--review"],
@@ -533,9 +560,13 @@
       "app-screens--shell",
       "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
-      "brief-workspace--review-stage",
+      "brief-workspace--item-detail",
+      "brief-workspace--undo-near-items",
       "brief-workspace--working"
     ],
     "brief.item.confirmLabel": [
@@ -547,9 +578,13 @@
       "app-screens--shell",
       "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
-      "brief-workspace--review-stage",
+      "brief-workspace--item-detail",
+      "brief-workspace--undo-near-items",
       "brief-workspace--working"
     ],
     "brief.item.edit": [
@@ -561,9 +596,14 @@
       "app-screens--shell",
       "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
+      "brief-workspace--item-detail",
       "brief-workspace--review-stage",
+      "brief-workspace--undo-near-items",
       "brief-workspace--working",
       "design-primitives--editing"
     ],
@@ -576,12 +616,46 @@
       "app-screens--shell",
       "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
+      "brief-workspace--item-detail",
       "brief-workspace--review-stage",
+      "brief-workspace--undo-near-items",
       "brief-workspace--working"
     ],
     "brief.item.editLabel": ["brief-workspace--edit-item"],
+    "brief.item.explainLabel": [
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--item-detail"
+    ],
+    "brief.item.less": [
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--item-detail"
+    ],
+    "brief.item.more": [
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--item-detail",
+      "brief-workspace--review-stage",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working"
+    ],
+    "brief.item.none": ["brief-workspace--detail-empty"],
     "brief.item.remove": [
       "app-screens--disconnected",
       "app-screens--offline-save",
@@ -591,9 +665,14 @@
       "app-screens--shell",
       "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
+      "brief-workspace--item-detail",
       "brief-workspace--review-stage",
+      "brief-workspace--undo-near-items",
       "brief-workspace--working"
     ],
     "brief.item.removeLabel": [
@@ -605,16 +684,27 @@
       "app-screens--shell",
       "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
+      "brief-workspace--item-detail",
       "brief-workspace--review-stage",
+      "brief-workspace--undo-near-items",
       "brief-workspace--working"
+    ],
+    "brief.item.techLabel": [
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--item-detail"
     ],
     "brief.narration.complete": [
       "brief-questpath--ready",
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
-      "brief-workspace--done"
+      "brief-workspace--done",
+      "brief-workspace--draft-open"
     ],
     "brief.narration.empty": ["brief-workspace--started"],
     "brief.narration.fork": [
@@ -627,6 +717,7 @@
       "app-screens--shell-duplicate",
       "brief-questpath--working",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--working"
@@ -637,126 +728,14 @@
       "design-primitives--bubble"
     ],
     "brief.narration.review": ["brief-workspace--review"],
-    "brief.paper.complete": [
-      "brief-workspace--copied",
-      "brief-workspace--copy-failed",
-      "brief-workspace--done",
-      "brief-workspace--review"
-    ],
-    "brief.paper.copy": [
-      "brief-workspace--copied",
-      "brief-workspace--copy-failed",
-      "brief-workspace--done",
-      "brief-workspace--review"
-    ],
-    "brief.paper.copyDraft": [
-      "app-screens--disconnected",
-      "app-screens--offline-save",
-      "app-screens--read-failed",
-      "app-screens--removed",
-      "app-screens--save-rejected",
-      "app-screens--shell",
-      "app-screens--shell-duplicate",
-      "brief-workspace--add-item",
-      "brief-workspace--blocked-delivery",
-      "brief-workspace--edit-item",
-      "brief-workspace--edit-title",
-      "brief-workspace--empty",
-      "brief-workspace--started",
-      "brief-workspace--working"
-    ],
-    "brief.paper.draft": [
-      "app-screens--disconnected",
-      "app-screens--offline-save",
-      "app-screens--read-failed",
-      "app-screens--removed",
-      "app-screens--save-rejected",
-      "app-screens--shell",
-      "app-screens--shell-duplicate",
-      "brief-workspace--add-item",
-      "brief-workspace--blocked-delivery",
-      "brief-workspace--edit-item",
-      "brief-workspace--edit-title",
-      "brief-workspace--empty",
-      "brief-workspace--started",
-      "brief-workspace--working"
-    ],
-    "brief.paper.label": [
-      "app-screens--disconnected",
-      "app-screens--offline-save",
-      "app-screens--read-failed",
-      "app-screens--removed",
-      "app-screens--save-rejected",
-      "app-screens--shell",
-      "app-screens--shell-duplicate",
-      "brief-workspace--add-item",
-      "brief-workspace--blocked-delivery",
-      "brief-workspace--copied",
-      "brief-workspace--copy-failed",
-      "brief-workspace--done",
-      "brief-workspace--edit-item",
-      "brief-workspace--edit-title",
-      "brief-workspace--empty",
-      "brief-workspace--review",
-      "brief-workspace--started",
-      "brief-workspace--working"
-    ],
-    "brief.paper.openStage": [
-      "app-screens--disconnected",
-      "app-screens--offline-save",
-      "app-screens--read-failed",
-      "app-screens--removed",
-      "app-screens--save-rejected",
-      "app-screens--shell",
-      "app-screens--shell-duplicate",
-      "brief-workspace--blocked-delivery",
-      "brief-workspace--copied",
-      "brief-workspace--copy-failed",
-      "brief-workspace--done",
-      "brief-workspace--edit-item",
-      "brief-workspace--edit-title",
-      "brief-workspace--review",
-      "brief-workspace--started",
-      "brief-workspace--working"
-    ],
-    "brief.paper.recentChanges": [
-      "app-screens--disconnected",
-      "app-screens--offline-save",
-      "app-screens--read-failed",
-      "app-screens--removed",
-      "app-screens--save-rejected",
-      "app-screens--shell",
-      "app-screens--shell-duplicate",
-      "brief-workspace--blocked-delivery",
-      "brief-workspace--copied",
-      "brief-workspace--copy-failed",
-      "brief-workspace--done",
-      "brief-workspace--edit-item",
-      "brief-workspace--edit-title",
-      "brief-workspace--review",
-      "brief-workspace--started",
-      "brief-workspace--working"
-    ],
-    "brief.paper.recipientHint": [
-      "app-screens--disconnected",
-      "app-screens--offline-save",
-      "app-screens--read-failed",
-      "app-screens--removed",
-      "app-screens--save-rejected",
-      "app-screens--shell",
-      "app-screens--shell-duplicate",
-      "brief-workspace--add-item",
-      "brief-workspace--blocked-delivery",
-      "brief-workspace--copied",
-      "brief-workspace--copy-failed",
-      "brief-workspace--done",
-      "brief-workspace--edit-item",
-      "brief-workspace--edit-title",
-      "brief-workspace--empty",
-      "brief-workspace--review",
-      "brief-workspace--started",
-      "brief-workspace--working"
-    ],
+    "brief.paper.complete": ["brief-workspace--draft-open"],
+    "brief.paper.copy": ["brief-workspace--draft-open"],
+    "brief.paper.copyDraft": ["brief-workspace--draft-toggle"],
+    "brief.paper.draft": ["brief-workspace--draft-toggle"],
+    "brief.paper.label": ["brief-workspace--draft-open", "brief-workspace--draft-toggle"],
+    "brief.paper.openStage": ["brief-workspace--draft-open", "brief-workspace--draft-toggle"],
+    "brief.paper.recentChanges": ["brief-workspace--draft-open", "brief-workspace--draft-toggle"],
+    "brief.paper.recipientHint": ["brief-workspace--draft-open", "brief-workspace--draft-toggle"],
     "brief.path.blocked": [
       "app-screens--disconnected",
       "app-screens--offline-save",
@@ -768,6 +747,7 @@
       "brief-questpath--working",
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--empty",
@@ -789,6 +769,8 @@
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--empty",
@@ -811,6 +793,8 @@
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--empty",
@@ -823,6 +807,7 @@
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
+      "brief-workspace--draft-open",
       "brief-workspace--review"
     ],
     "brief.path.stageLabel": [
@@ -840,6 +825,8 @@
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--empty",
@@ -864,6 +851,8 @@
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--empty",
@@ -890,6 +879,8 @@
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--empty",
@@ -904,6 +895,7 @@
       "brief-workspace--empty",
       "brief-workspace--started"
     ],
+    "brief.stage.hideDetails": ["brief-workspace--details-all"],
     "brief.stage.inputLabel": [
       "app-screens--disconnected",
       "app-screens--offline-save",
@@ -916,12 +908,17 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--empty",
+      "brief-workspace--item-detail",
       "brief-workspace--optional-empty",
       "brief-workspace--review-stage",
       "brief-workspace--started",
+      "brief-workspace--undo-near-items",
       "brief-workspace--working"
     ],
     "brief.stage.next": [
@@ -935,12 +932,17 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--empty",
+      "brief-workspace--item-detail",
       "brief-workspace--optional-empty",
       "brief-workspace--review-stage",
       "brief-workspace--started",
+      "brief-workspace--undo-near-items",
       "brief-workspace--working"
     ],
     "brief.stage.nextTitle": [
@@ -954,12 +956,17 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--empty",
+      "brief-workspace--item-detail",
       "brief-workspace--optional-empty",
       "brief-workspace--review-stage",
       "brief-workspace--started",
+      "brief-workspace--undo-near-items",
       "brief-workspace--working"
     ],
     "brief.stage.optional": ["brief-workspace--constraints", "brief-workspace--optional-empty"],
@@ -976,12 +983,17 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--empty",
+      "brief-workspace--item-detail",
       "brief-workspace--optional-empty",
       "brief-workspace--review-stage",
       "brief-workspace--started",
+      "brief-workspace--undo-near-items",
       "brief-workspace--working"
     ],
     "brief.stage.previous": [
@@ -996,12 +1008,17 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--empty",
+      "brief-workspace--item-detail",
       "brief-workspace--optional-empty",
       "brief-workspace--review-stage",
       "brief-workspace--started",
+      "brief-workspace--undo-near-items",
       "brief-workspace--working"
     ],
     "brief.stage.previousTitle": [
@@ -1016,15 +1033,27 @@
       "brief-workspace--add-item",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--empty",
+      "brief-workspace--item-detail",
       "brief-workspace--optional-empty",
       "brief-workspace--review-stage",
       "brief-workspace--started",
+      "brief-workspace--undo-near-items",
       "brief-workspace--working"
     ],
-    "brief.stage.purpose.hint": ["brief-workspace--add-item", "brief-workspace--empty"],
+    "brief.stage.purpose.hint": [
+      "brief-workspace--add-item",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--empty",
+      "brief-workspace--item-detail",
+      "brief-workspace--undo-near-items"
+    ],
     "brief.stage.purpose.label": [
       "app-screens--disconnected",
       "app-screens--offline-save",
@@ -1039,12 +1068,18 @@
       "brief-workspace--blocked-delivery",
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
       "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--empty",
+      "brief-workspace--item-detail",
       "brief-workspace--review",
       "brief-workspace--started",
+      "brief-workspace--undo-near-items",
       "brief-workspace--working"
     ],
     "brief.stage.reviewHint": ["brief-workspace--review-stage"],
@@ -1057,6 +1092,7 @@
       "app-screens--shell",
       "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--review-stage",
@@ -1078,6 +1114,8 @@
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--empty",
@@ -1102,6 +1140,8 @@
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--empty",
@@ -1110,12 +1150,28 @@
       "brief-workspace--started",
       "brief-workspace--working"
     ],
+    "brief.stage.showDetails": [
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--working"
+    ],
     "brief.status.clear": [
       "brief-questpath--ready",
       "brief-workspace--add-item",
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
+      "brief-workspace--draft-open",
       "brief-workspace--empty",
       "brief-workspace--optional-empty",
       "brief-workspace--review",
@@ -1137,6 +1193,7 @@
       "brief-questpath--working",
       "brief-workspace--acceptance",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--working"
@@ -1152,11 +1209,16 @@
       "brief-questpath--working",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
+      "brief-workspace--item-detail",
       "brief-workspace--review",
       "brief-workspace--review-stage",
       "brief-workspace--started",
+      "brief-workspace--undo-near-items",
       "brief-workspace--working"
     ],
     "brief.workspace.acceptRecommended": [
@@ -1168,6 +1230,7 @@
       "app-screens--shell",
       "app-screens--shell-duplicate",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--working"
@@ -1185,6 +1248,8 @@
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--empty",
@@ -1193,6 +1258,29 @@
       "brief-workspace--working"
     ],
     "brief.workspace.editTitleLabel": ["brief-workspace--edit-title"],
+    "brief.workspace.hideDraft": ["brief-workspace--draft-open", "brief-workspace--draft-toggle"],
+    "brief.workspace.showDraft": [
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--add-item",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--empty",
+      "brief-workspace--review",
+      "brief-workspace--started",
+      "brief-workspace--working"
+    ],
     "brief.workspace.undo": [
       "app-screens--disconnected",
       "app-screens--offline-save",
@@ -1206,11 +1294,14 @@
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--empty",
       "brief-workspace--review",
       "brief-workspace--started",
+      "brief-workspace--undo-near-items",
       "brief-workspace--working"
     ],
     "brief.workspace.undoTitle": [
@@ -1226,18 +1317,22 @@
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
       "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--empty",
       "brief-workspace--review",
       "brief-workspace--started",
+      "brief-workspace--undo-near-items",
       "brief-workspace--working"
     ],
     "common.mascot.happy": [
       "brief-questpath--ready",
       "brief-workspace--copied",
       "brief-workspace--copy-failed",
-      "brief-workspace--done"
+      "brief-workspace--done",
+      "brief-workspace--draft-open"
     ],
     "common.mascot.idle": [
       "app-screens--brief-failed",
@@ -1248,6 +1343,8 @@
       "app-screens--welcome",
       "app-screens--welcome-copied",
       "app-screens--welcome-copy-failed",
+      "app-screens--welcome-with-details",
+      "app-screens--welcome-with-task",
       "brief-workspace--add-item",
       "brief-workspace--empty"
     ],
@@ -1262,6 +1359,7 @@
       "app-screens--shell-duplicate",
       "brief-questpath--working",
       "brief-workspace--blocked-delivery",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
       "brief-workspace--working"
@@ -1286,11 +1384,14 @@
       "brief-decisioncard--decided-by-ai",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
-      "brief-workspace--review",
+      "brief-workspace--item-detail",
       "brief-workspace--review-stage",
-      "brief-workspace--started",
+      "brief-workspace--undo-near-items",
       "brief-workspace--working",
       "design-primitives--origins",
       "preferences-notes--add-without-topic",
@@ -1311,12 +1412,10 @@
       "app-screens--shell-duplicate",
       "app-screens--shell-notes",
       "brief-workspace--blocked-delivery",
-      "brief-workspace--copied",
-      "brief-workspace--copy-failed",
-      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
-      "brief-workspace--review",
       "brief-workspace--review-stage",
       "brief-workspace--working",
       "design-primitives--origins",
@@ -1338,9 +1437,14 @@
       "brief-decisioncard--decided-by-ai",
       "brief-workspace--blocked-delivery",
       "brief-workspace--constraints",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
+      "brief-workspace--item-detail",
       "brief-workspace--review-stage",
+      "brief-workspace--undo-near-items",
       "brief-workspace--working",
       "design-primitives--origins",
       "preferences-notes--add-without-topic",
@@ -1361,14 +1465,11 @@
       "app-screens--shell-duplicate",
       "app-screens--shell-notes",
       "brief-workspace--blocked-delivery",
-      "brief-workspace--copied",
-      "brief-workspace--copy-failed",
-      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
       "brief-workspace--edit-item",
       "brief-workspace--edit-title",
-      "brief-workspace--review",
       "brief-workspace--review-stage",
-      "brief-workspace--started",
       "brief-workspace--working",
       "design-primitives--origins",
       "preferences-notes--add-without-topic",
@@ -1752,6 +1853,14 @@
       "title": "App/Screens",
       "name": "Welcome Copy Failed"
     },
+    "app-screens--welcome-with-details": {
+      "title": "App/Screens",
+      "name": "Welcome With Details"
+    },
+    "app-screens--welcome-with-task": {
+      "title": "App/Screens",
+      "name": "Welcome With Task"
+    },
     "brief-decisioncard--changing": {
       "title": "Brief/DecisionCard",
       "name": "Changing"
@@ -1796,9 +1905,25 @@
       "title": "Brief/Workspace",
       "name": "Copy Failed"
     },
+    "brief-workspace--detail-empty": {
+      "title": "Brief/Workspace",
+      "name": "Detail Empty"
+    },
+    "brief-workspace--details-all": {
+      "title": "Brief/Workspace",
+      "name": "Details All"
+    },
     "brief-workspace--done": {
       "title": "Brief/Workspace",
       "name": "Done"
+    },
+    "brief-workspace--draft-open": {
+      "title": "Brief/Workspace",
+      "name": "Draft Open"
+    },
+    "brief-workspace--draft-toggle": {
+      "title": "Brief/Workspace",
+      "name": "Draft Toggle"
     },
     "brief-workspace--edit-item": {
       "title": "Brief/Workspace",
@@ -1811,6 +1936,10 @@
     "brief-workspace--empty": {
       "title": "Brief/Workspace",
       "name": "Empty"
+    },
+    "brief-workspace--item-detail": {
+      "title": "Brief/Workspace",
+      "name": "Item Detail"
     },
     "brief-workspace--optional-empty": {
       "title": "Brief/Workspace",
@@ -1827,6 +1956,10 @@
     "brief-workspace--started": {
       "title": "Brief/Workspace",
       "name": "Started"
+    },
+    "brief-workspace--undo-near-items": {
+      "title": "Brief/Workspace",
+      "name": "Undo Near Items"
     },
     "brief-workspace--working": {
       "title": "Brief/Workspace",
@@ -2061,6 +2194,52 @@
         }
       }
     ],
+    "app.screen.askAiWith": [
+      {
+        "story": "app-screens--welcome",
+        "args": {
+          "ko": ["", []],
+          "en": ["", []]
+        },
+        "text": {
+          "ko": "LTM으로 과업지시서 써보자",
+          "en": "Let’s write a task brief with LTM"
+        }
+      },
+      {
+        "story": "app-screens--welcome-with-task",
+        "args": {
+          "ko": ["s", []],
+          "en": ["s", []]
+        },
+        "text": {
+          "ko": "LTM으로 과업지시서 써보자: s",
+          "en": "Let’s write a task brief with LTM: s"
+        }
+      },
+      {
+        "story": "app-screens--welcome-with-task",
+        "args": {
+          "ko": ["so", []],
+          "en": ["so", []]
+        },
+        "text": {
+          "ko": "LTM으로 과업지시서 써보자: so",
+          "en": "Let’s write a task brief with LTM: so"
+        }
+      },
+      {
+        "story": "app-screens--welcome-with-task",
+        "args": {
+          "ko": ["soc", []],
+          "en": ["soc", []]
+        },
+        "text": {
+          "ko": "LTM으로 과업지시서 써보자: soc",
+          "en": "Let’s write a task brief with LTM: soc"
+        }
+      }
+    ],
     "app.shell.documentTitle": [
       {
         "story": "app-screens--shell",
@@ -2100,7 +2279,7 @@
     ],
     "brief.change": [
       {
-        "story": "app-screens--shell",
+        "story": "brief-workspace--draft-toggle",
         "args": {
           "ko": [
             {
@@ -2121,7 +2300,7 @@
         }
       },
       {
-        "story": "app-screens--shell",
+        "story": "brief-workspace--draft-toggle",
         "args": {
           "ko": [
             {
@@ -2142,7 +2321,7 @@
         }
       },
       {
-        "story": "app-screens--shell",
+        "story": "brief-workspace--draft-toggle",
         "args": {
           "ko": [
             {
@@ -2163,7 +2342,7 @@
         }
       },
       {
-        "story": "app-screens--shell",
+        "story": "brief-workspace--draft-toggle",
         "args": {
           "ko": [
             {
@@ -2354,14 +2533,14 @@
         }
       },
       {
-        "story": "brief-workspace--review-stage",
+        "story": "brief-workspace--item-detail",
         "args": {
-          "ko": ["검색 결과를 최신순으로 정렬한다"],
-          "en": ["검색 결과를 최신순으로 정렬한다"]
+          "ko": ["작품 200점을 빠르게 훑어보는 개인 갤러리"],
+          "en": ["작품 200점을 빠르게 훑어보는 개인 갤러리"]
         },
         "text": {
-          "ko": "“검색 결과를 최신순으로 정렬한다” 확인",
-          "en": "Confirm “검색 결과를 최신순으로 정렬한다”"
+          "ko": "“작품 200점을 빠르게 훑어보는 개인 갤러리” 확인",
+          "en": "Confirm “작품 200점을 빠르게 훑어보는 개인 갤러리”"
         }
       }
     ],
@@ -2398,6 +2577,17 @@
           "ko": "“검색 결과를 최신순으로 정렬한다” 고치기",
           "en": "Edit “검색 결과를 최신순으로 정렬한다”"
         }
+      },
+      {
+        "story": "brief-workspace--item-detail",
+        "args": {
+          "ko": ["작품 200점을 빠르게 훑어보는 개인 갤러리"],
+          "en": ["작품 200점을 빠르게 훑어보는 개인 갤러리"]
+        },
+        "text": {
+          "ko": "“작품 200점을 빠르게 훑어보는 개인 갤러리” 고치기",
+          "en": "Edit “작품 200점을 빠르게 훑어보는 개인 갤러리”"
+        }
       }
     ],
     "brief.item.removeLabel": [
@@ -2432,6 +2622,17 @@
         "text": {
           "ko": "“검색 결과를 최신순으로 정렬한다” 빼기",
           "en": "Remove “검색 결과를 최신순으로 정렬한다”"
+        }
+      },
+      {
+        "story": "brief-workspace--item-detail",
+        "args": {
+          "ko": ["작품 200점을 빠르게 훑어보는 개인 갤러리"],
+          "en": ["작품 200점을 빠르게 훑어보는 개인 갤러리"]
+        },
+        "text": {
+          "ko": "“작품 200점을 빠르게 훑어보는 개인 갤러리” 빼기",
+          "en": "Remove “작품 200점을 빠르게 훑어보는 개인 갤러리”"
         }
       }
     ],

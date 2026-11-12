@@ -15,6 +15,11 @@ pub fn render_markdown(brief: &Brief, locale: Locale) -> String {
         out.push_str(&format!("\n## {}\n", text.section(key)));
         for item in items {
             out.push_str(&format!("- {}\n", item.text));
+            if let Some(detail) = &item.detail {
+                for line in detail.lines() {
+                    out.push_str(&format!("  {line}\n"));
+                }
+            }
         }
     }
     let open: Vec<_> = brief.decisions.iter().filter(|d| d.chosen.is_none()).collect();

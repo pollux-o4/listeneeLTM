@@ -100,8 +100,35 @@ export const WelcomeCopied: Story = {
   play: async ({ canvasElement }) => {
     const copy = storyCopy()
     const canvas = within(canvasElement)
-    await userEvent.click(canvas.getByRole('button'))
+    await userEvent.click(canvas.getByText(`“${copy.app.screen.askAiWith('', [])}”`))
     await appears(async () => await canvas.findByText(copy.app.screen.copied))
+  },
+}
+/** 할 일을 적으면 그 내용이 담긴 한 줄 문장을 복사한다 */
+export const WelcomeWithTask: Story = {
+  beforeEach: mockClipboard(),
+  play: async ({ canvasElement }) => {
+    const copy = storyCopy()
+    const canvas = within(canvasElement)
+    await userEvent.type(canvas.getByLabelText(copy.app.screen.taskLabel), 'social  login{Enter}')
+    await canvas.findByText(`“${copy.app.screen.askAiWith('social login', [])}”`)
+    await appears(async () => await canvas.findByText(copy.app.screen.copied))
+  },
+}
+/** 세부 조건을 펼쳐 고르고 직접 적으면 문장에 함께 담긴다 */
+export const WelcomeWithDetails: Story = {
+  play: async ({ canvasElement }) => {
+    const s = storyCopy().app.screen
+    const canvas = within(canvasElement)
+    // 목적을 적기 전에는 세부 조건이 잠겨 있다
+    if (canvas.queryByRole('button', { name: s.detailsShow }))
+      throw new Error('details unlocked early')
+    await userEvent.type(canvas.getByLabelText(s.taskLabel), 'social login')
+    await userEvent.click(await canvas.findByRole('button', { name: s.detailsShow }))
+    const [first] = s.detailPresets
+    await userEvent.click(canvas.getByRole('button', { name: first }))
+    await userEvent.type(canvas.getByLabelText(s.detailsExtra), 'mobile')
+    await canvas.findByText(`“${s.askAiWith('social login', [first, 'mobile'])}”`)
   },
 }
 export const WelcomeCopyFailed: Story = {
@@ -109,7 +136,7 @@ export const WelcomeCopyFailed: Story = {
   play: async ({ canvasElement }) => {
     const copy = storyCopy()
     const canvas = within(canvasElement)
-    await userEvent.click(canvas.getByRole('button'))
+    await userEvent.click(canvas.getByText(`“${copy.app.screen.askAiWith('', [])}”`))
     await appears(async () => await canvas.findByText(copy.app.screen.copyFailed))
   },
 }

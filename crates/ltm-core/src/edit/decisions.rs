@@ -1,16 +1,21 @@
 use crate::model::{Actor, Brief, ChangeEvent, Decision, DecisionOption, Item, sentence, validate_id};
 
+use super::style::{Kind, check};
 use super::{NewDecision, PatchError};
 
 /// 선택지는 고르는 순간 항목이 되므로 만들 때 검증한다: id 형식·중복, 라벨과 문장.
-fn checked_options(options: Vec<DecisionOption>) -> Result<Vec<DecisionOption>, PatchError> {
+fn checked_options(options: Vec<DecisionOption>, by: Actor) -> Result<Vec<DecisionOption>, PatchError> {
     let mut out: Vec<DecisionOption> = Vec::with_capacity(options.len());
     for option in options {
         validate_id(&option.id)?;
         if out.iter().any(|existing| existing.id == option.id) {
             return Err(PatchError::DuplicateOption(option.id));
         }
-        out.push(DecisionOption { label: sentence(&option.label)?, text: sentence(&option.text)?, ..option });
+        let (label, text) = (sentence(&option.label)?, sentence(&option.text)?);
+        check("option.label", Kind::Headline, &label, by)?;
+        check("option.text", Kind::Headline, &text, by)?;
+        check("option.note", Kind::Detail, &option.note, by)?;
+        out.push(DecisionOption { label, text, ..option });
     }
     Ok(out)
 }
@@ -25,7 +30,9 @@ pub(super) fn ask(brief: &mut Brief, decision: NewDecision, by: Actor) -> Result
         return Err(PatchError::InvalidDecision);
     }
     let question = sentence(&decision.question)?;
-    let options = checked_options(decision.options)?;
+    check("question", Kind::Headline, &question, by)?;
+    check("why", Kind::Detail, &decision.why, by)?;
+    let options = checked_options(decision.options, by)?;
     let decide = decision.decide.unwrap_or(false);
     let (id, recommended) = (decision.id.clone(), decision.recommended.clone());
     brief.decisions.push(Decision {
@@ -73,6 +80,7 @@ pub(super) fn choose(
     brief.sections.entry(section).or_default().push(Item {
         id: item_id,
         text: selected.text,
+        detail: None,
         by,
         confirmed: by == Actor::Me,
     });

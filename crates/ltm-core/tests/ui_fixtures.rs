@@ -31,16 +31,28 @@ fn opt(id: &str, label: &str, note: &str, text: &str) -> DecisionOption {
 }
 
 fn apply(b: &mut Brief, by: Actor, patch: BriefPatch) {
-    b.apply(patch, by).unwrap();
+    b.apply(patch, by).unwrap_or_else(|e| panic!("{e}"));
 }
 
 fn add(b: &mut Brief, by: Actor, section: SectionKey, text: &str) {
-    apply(b, by, BriefPatch::AddItem { section, text: text.into() });
+    let detail = (by == Actor::Ai).then(|| "- 쉬운 풀이\n- [기술 구현 방법]".to_owned());
+    apply(b, by, BriefPatch::AddItem { section, text: text.into(), detail });
 }
 
 fn gallery() -> Brief {
     let mut b = Brief::new("gallery", "HTML 갤러리 제작").unwrap();
-    add(&mut b, Actor::Ai, SectionKey::Purpose, GALLERY_PURPOSE);
+    apply(
+        &mut b,
+        Actor::Ai,
+        BriefPatch::AddItem {
+            section: SectionKey::Purpose,
+            text: GALLERY_PURPOSE.into(),
+            detail: Some(
+                "- 작품 사진이 많아서 빨리 넘겨 보는 것이 중요해요\n- [사진은 CDN 캐시로 미리 줄여 내려줘요]"
+                    .into(),
+            ),
+        },
+    );
     add(&mut b, Actor::Ai, SectionKey::ScopeIn, "반응형 격자 레이아웃");
     add(&mut b, Actor::Me, SectionKey::ScopeIn, "키보드로 작품 넘기기");
     add(&mut b, Actor::Ai, SectionKey::ScopeOut, "로그인·댓글");
@@ -65,7 +77,7 @@ fn gallery() -> Brief {
             "프로젝트에 서버 코드가 없어 정적 호스팅이 가장 단순하고 무료예요.",
             vec![
                 opt("static", "정적 호스팅", "무료 · 빌드 때 최적화", "이미지는 정적 호스팅, 빌드 시 최적화"),
-                opt("cdn", "이미지 CDN", "빠름 · 월 비용", "이미지는 CDN으로 제공"),
+                opt("cdn", "빠른 전송망", "빠름 · 월 비용", "이미지는 빠른 전송망으로 제공"),
             ],
             "static",
             true,
@@ -104,7 +116,7 @@ fn gallery() -> Brief {
                 opt("yes", "넣기", "+ 하루", "작품 확대 보기"),
                 DecisionOption {
                     section: Some(SectionKey::ScopeOut),
-                    ..opt("later", "다음 버전", "제외 범위로", "확대 보기(다음 버전)")
+                    ..opt("later", "다음 버전", "제외 범위로", "확대 보기는 다음 버전에서 한다")
                 },
             ],
             "yes",
@@ -132,7 +144,11 @@ fn export_ui_fixtures() {
     apply(
         &mut started,
         Actor::Ai,
-        BriefPatch::AddItem { section: SectionKey::Purpose, text: GALLERY_PURPOSE.into() },
+        BriefPatch::AddItem {
+            section: SectionKey::Purpose,
+            text: GALLERY_PURPOSE.into(),
+            detail: Some("- 쉬운 풀이\n- [기술 구현 방법]".into()),
+        },
     );
 
     // 갈림길은 모두 정했고, 한 단계에 AI가 쓴 확인 전 항목이 여럿 남은 상태(단계 일괄 확인 안내가 보인다).
@@ -142,7 +158,9 @@ fn export_ui_fixtures() {
         &mut review,
         Actor::Ai,
         BriefPatch::AddItem {
-            section: SectionKey::ScopeIn, text: "검색 결과를 최신순으로 정렬한다".into()
+            section: SectionKey::ScopeIn,
+            text: "검색 결과를 최신순으로 정렬한다".into(),
+            detail: Some("- 쉬운 풀이\n- [기술 구현 방법]".into()),
         },
     );
 

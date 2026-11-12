@@ -1,5 +1,6 @@
 mod decisions;
 mod items;
+mod style;
 
 use serde::{Deserialize, Serialize};
 use ts_rs::TS;
@@ -17,10 +18,18 @@ pub enum BriefPatch {
     AddItem {
         section: crate::model::SectionKey,
         text: String,
+        /// 자세히(선택). 제목에 못 담는 풀이·조건.
+        #[serde(default)]
+        #[ts(optional)]
+        detail: Option<String>,
     },
+    /// `detail`을 생략하면 그대로 두고, 빈 문자열이면 지운다.
     EditItem {
         id: String,
         text: String,
+        #[serde(default)]
+        #[ts(optional)]
+        detail: Option<String>,
     },
     RemoveItem {
         id: String,
@@ -78,6 +87,8 @@ pub enum PatchError {
     EmptyText,
     #[error(transparent)]
     InvalidId(BriefError),
+    #[error("rejected: `{field}` {reason}. Fix: {hint}")]
+    Style { field: &'static str, reason: String, hint: String },
     #[error("nothing to change")]
     NoOp,
 }
@@ -106,8 +117,10 @@ impl Brief {
     fn apply_inner(&mut self, patch: BriefPatch, by: Actor) -> Result<ChangeEvent, PatchError> {
         match patch {
             BriefPatch::SetTitle { value } => items::set_title(self, &value),
-            BriefPatch::AddItem { section, text } => items::add(self, section, &text, by),
-            BriefPatch::EditItem { id, text } => items::edit(self, &id, &text, by),
+            BriefPatch::AddItem { section, text, detail } => {
+                items::add(self, section, &text, detail.as_deref(), by)
+            }
+            BriefPatch::EditItem { id, text, detail } => items::edit(self, &id, &text, detail.as_deref(), by),
             BriefPatch::RemoveItem { id } => items::remove(self, &id),
             BriefPatch::ConfirmItem { id } => items::confirm(self, &id),
             BriefPatch::ConfirmSection { section } => items::confirm_section(self, section),

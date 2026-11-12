@@ -27,8 +27,16 @@ async fn ai_and_gui_edit_the_same_brief_with_attribution() {
     let root = tempfile::tempdir().unwrap();
     let ai = FileStore::new(root.path());
     ai.create("demo", "Demo").unwrap();
-    ai.patch("demo", BriefPatch::AddItem { section: SectionKey::Purpose, text: "ship".into() }, Actor::Ai)
-        .unwrap();
+    ai.patch(
+        "demo",
+        BriefPatch::AddItem {
+            section: SectionKey::Purpose,
+            text: "ship".into(),
+            detail: Some("- 쉬운 풀이\n- [기술 구현 방법]".into()),
+        },
+        Actor::Ai,
+    )
+    .unwrap();
 
     let app = http::router(FileStore::new(root.path()));
     let (status, view) = call(&app, "GET", "/api/briefs/demo", None).await;
@@ -125,7 +133,11 @@ fn concurrent_writers_do_not_lose_each_others_changes() {
             let store = FileStore::new(root.path());
             let by = if n % 2 == 0 { Actor::Ai } else { Actor::Me };
             std::thread::spawn(move || {
-                let patch = BriefPatch::AddItem { section: SectionKey::Constraints, text: format!("w{n}") };
+                let patch = BriefPatch::AddItem {
+                    section: SectionKey::Constraints,
+                    text: format!("w{n}"),
+                    detail: (by == Actor::Ai).then(|| "- 쉬운 풀이\n- [기술 구현 방법]".to_owned()),
+                };
                 store.patch("demo", patch, by).unwrap();
             })
         })

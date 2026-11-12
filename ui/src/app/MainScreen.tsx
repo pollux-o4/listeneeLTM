@@ -1,9 +1,10 @@
 import { useText } from '../copy/index.ts'
-import { Mascot, PixelPanel, useCopy } from '../design/index.ts'
+import { Mascot, PixelPanel } from '../design/index.ts'
 import { BriefWorkspace } from '../features/brief/BriefWorkspace.tsx'
 import { PreferenceNotes } from '../features/preferences/PreferenceNotes.tsx'
 import type { useWorkspaceData } from './data/useWorkspaceData.ts'
 import { href, type Route } from './route.ts'
+import { WelcomeAsk } from './Welcome.tsx'
 
 type Data = ReturnType<typeof useWorkspaceData>
 
@@ -74,20 +75,10 @@ function Empty({ title, children }: { title: string; children: React.ReactNode }
 /** 처음 연 화면: 다음에 할 한 가지(AI에게 말하기)만 보여준다. */
 function Welcome() {
   const copy = useText()
-  const { state, copy: copyText } = useCopy()
   return (
     <Empty title={copy.app.screen.emptyTitle}>
       <p>{copy.app.screen.emptyHint}</p>
-      <button type="button" className="app-phrase" onClick={() => copyText(copy.app.screen.askAi)}>
-        <span>“{copy.app.screen.askAi}”</span>
-        <span className="ltm-label" aria-live="polite">
-          {state === 'copied'
-            ? copy.app.screen.copied
-            : state === 'failed'
-              ? copy.app.screen.copyFailed
-              : copy.app.screen.copyHint}
-        </span>
-      </button>
+      <WelcomeAsk />
     </Empty>
   )
 }

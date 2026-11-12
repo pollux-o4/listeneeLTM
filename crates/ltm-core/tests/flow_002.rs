@@ -3,8 +3,11 @@ use ltm_core::{Actor, Brief, BriefPatch, LearningStatus, PrefPatch, Preferences,
 
 fn source() -> Brief {
     let mut b = Brief::new("gallery", "갤러리").unwrap();
-    b.apply(BriefPatch::AddItem { section: SectionKey::Purpose, text: "훑어보기".into() }, Actor::Me)
-        .unwrap();
+    b.apply(
+        BriefPatch::AddItem { section: SectionKey::Purpose, text: "훑어보기".into(), detail: None },
+        Actor::Me,
+    )
+    .unwrap();
     b.apply(BriefPatch::MarkAnalyzed, Actor::Ai).unwrap();
     b
 }

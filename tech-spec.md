@@ -64,6 +64,7 @@ ui (React) ◀── ui/src/generated ◀─────────────
 | `mise install && pnpm install && mise x -- lefthook install` | 개발 환경 준비(git hook 포함) |
 | `pnpm storybook` | 컴포넌트 카탈로그 http://localhost:6016 |
 | `pnpm dev` | Rust API(4318) + Vite UI http://localhost:5173 |
+| `mise run refresh [경로]` | 실사용 확인: 릴리스 빌드 → 샌드박스(기본 `~/.cache/listenee-ltm/sandbox`)에서 `ltm ui` 재시작, http://127.0.0.1:4320 (`LTM_PORT`) |
 | `pnpm gen:copy-screens` | 문구별 화면 연결·실제 호출 예시 생성(`pnpm check`에서 누락·변경 검사) |
 | `pnpm gen:types` | Rust 타입·스토리 view·ko/en Markdown → `ui/src/generated` |
 | `pnpm check` | `check:rust` → `check:ui` → `check:repo` (push 전 hook이 실행) |

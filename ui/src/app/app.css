@@ -180,6 +180,7 @@
 .app-empty {
   max-width: 520px;
   margin: 10vh auto 0;
+  padding: 32px 28px;
   display: grid;
   justify-items: center;
   gap: 12px;
@@ -204,7 +205,80 @@
   background: var(--c-bg);
   padding: 2px 6px;
 }
+.app-ask {
+  display: grid;
+  gap: 20px;
+  width: min(100%, 460px);
+  margin-top: 8px;
+  text-align: left;
+}
+.app-ask-field,
+.app-ask-details {
+  display: grid;
+  gap: 8px;
+}
+.app-ask .ltm-input {
+  width: 100%;
+  padding: 10px 12px;
+}
+.app-ask-slot {
+  display: grid;
+  min-height: var(--hit);
+  margin-block: -8px;
+}
+.app-ask-more {
+  justify-self: start;
+  animation: app-ask-unlock var(--dur-slow) var(--ease-spring);
+  padding: 0;
+  font: inherit;
+  font-size: var(--fs-small);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.app-ask-details {
+  margin: 0;
+  padding: 16px;
+  border: 0;
+  background: var(--c-bg);
+  box-shadow: inset 0 0 0 1px var(--c-muted);
+  animation: app-ask-open var(--dur-base) var(--ease-soft);
+}
+.app-ask-details legend {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 4px;
+}
+.app-ask-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.app-ask-extra {
+  resize: vertical;
+}
+@keyframes app-ask-unlock {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+@keyframes app-ask-open {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+.app-ask .app-phrase {
+  justify-self: stretch;
+  padding: 14px 18px;
+  text-align: center;
+}
 .app-phrase {
+  max-width: 100%;
+  overflow-wrap: anywhere;
   display: grid;
   gap: 2px;
   justify-items: center;

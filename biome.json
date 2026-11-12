@@ -4,6 +4,7 @@
     "includes": [
       "**",
       "!**/target",
+      "!**/.ltm",
       "!**/*.md",
       "!**/src/generated",
       "!**/dist",

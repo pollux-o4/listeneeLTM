@@ -1,6 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useId, useState } from 'react'
 import { useText } from '../../copy/index.ts'
-import { InlineEdit, icons, PixelButton, PixelSprite, useEditToggle } from '../../design/index.ts'
+import {
+  InlineEdit,
+  icons,
+  PixelButton,
+  PixelSprite,
+  useEditToggle,
+  usePresence,
+} from '../../design/index.ts'
 import type { BriefPatch } from '../../generated/BriefPatch.ts'
 import type { WorkspaceView } from '../../generated/WorkspaceView.ts'
 import { BriefPaper } from './BriefPaper.tsx'
@@ -28,6 +35,24 @@ export function BriefWorkspace({ view, onPatch, onUndo }: Props) {
   const n = view.stages.length
   const [open, setOpen] = useState(() => Math.min(view.current, n))
   const title = useEditToggle()
+  // 초안은 기본 숨김: 관심 있을 때만 펼친다(점진 공개, UX-001). 영속하지 않는다.
+  const [draftOpen, setDraftOpen] = useState(false)
+  /** 전역 '자세히': 모든 항목의 자세히를 한꺼번에 펼치거나 접는다. */
+  const [detailsOpen, setDetailsOpen] = useState(false)
+  const draft = usePresence(draftOpen)
+  const draftId = useId()
+
+  // 좁은 화면에서는 초안이 단계 카드 아래에 쌓여 화면 밖에서 열린다. 열면 그 자리로 데려간다.
+  useEffect(() => {
+    if (!draftOpen || !window.matchMedia?.('(max-width: 960px)').matches) return
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const frame = requestAnimationFrame(() =>
+      document
+        .getElementById(draftId)
+        ?.scrollIntoView?.({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }),
+    )
+    return () => cancelAnimationFrame(frame)
+  }, [draftOpen, draftId])
   const { mood, say } = narrate(view, copy)
   const openDecisions = view.stages.reduce((sum, s) => sum + s.openDecisions, 0)
   const move = (i: number) => setOpen(Math.max(0, Math.min(n, i)))
@@ -94,6 +119,15 @@ export function BriefWorkspace({ view, onPatch, onUndo }: Props) {
               {copy.brief.workspace.acceptRecommended(openDecisions)}
             </button>
           )}
+          <button
+            type="button"
+            className="ltm-link"
+            aria-expanded={draftOpen}
+            aria-controls={draftId}
+            onClick={() => setDraftOpen((v) => !v)}
+          >
+            {draftOpen ? copy.brief.workspace.hideDraft : copy.brief.workspace.showDraft}
+          </button>
           <PixelButton
             onClick={onUndo}
             disabled={!view.canUndo}
@@ -114,7 +148,7 @@ export function BriefWorkspace({ view, onPatch, onUndo }: Props) {
         onOpen={move}
       />
 
-      <div className="ws-body">
+      <div className="ws-body" data-draft={draft.mounted}>
         {stage ? (
           <StageDetail
             key={stage.section}
@@ -122,6 +156,9 @@ export function BriefWorkspace({ view, onPatch, onUndo }: Props) {
             stage={stage}
             index={open}
             total={n}
+            expandAll={detailsOpen}
+            onToggleAll={() => setDetailsOpen((v) => !v)}
+            onUndo={view.canUndo ? onUndo : undefined}
             onMove={move}
             onPatch={onPatch}
           />
@@ -131,13 +168,22 @@ export function BriefWorkspace({ view, onPatch, onUndo }: Props) {
             onOpenStage={(section) => openWhere((s) => s.section === section)}
           />
         )}
-        <BriefPaper
-          key={view.brief.id}
-          markdown={view.markdown}
-          ready={view.ready}
-          changes={view.brief.changes}
-          onHeading={(label) => openWhere((s) => copy.brief.stage[s.section].label === label)}
-        />
+        {draft.mounted && (
+          <div
+            id={draftId}
+            className="ws-draft"
+            data-closing={draft.closing}
+            onAnimationEnd={draft.onAnimationEnd}
+          >
+            <BriefPaper
+              key={view.brief.id}
+              markdown={view.markdown}
+              ready={view.ready}
+              changes={view.brief.changes}
+              onHeading={(label) => openWhere((s) => copy.brief.stage[s.section].label === label)}
+            />
+          </div>
+        )}
       </div>
     </div>
   )

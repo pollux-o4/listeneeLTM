@@ -15,6 +15,12 @@ type Props = {
   stage: StageView
   index: number
   total: number
+  /** 전역 '자세히'. 바뀌면 항목별로 따로 펼친 상태는 초기화된다. */
+  expandAll?: boolean
+  /** 이 단계 항목들의 '자세히 모두 보기/접기'. */
+  onToggleAll?: () => void
+  /** 마지막 변경을 되돌린다. 행동이 일어나는 목록 곁에 둔다(UX-001). */
+  onUndo?: (() => void) | undefined
   onMove: (index: number) => void
   onPatch: (p: BriefPatch) => Promise<boolean>
 }
@@ -22,7 +28,17 @@ type Props = {
 const derivedId = (decisionId: string) => `decision-${decisionId}`
 
 /** 펼친 한 단계: 갈림길 → 항목 → 직접 적기. 열린 갈림길이 맨 위(지금 할 일 먼저). */
-export function StageDetail({ brief, stage, index, total, onMove, onPatch }: Props) {
+export function StageDetail({
+  brief,
+  stage,
+  index,
+  total,
+  expandAll = false,
+  onToggleAll,
+  onUndo,
+  onMove,
+  onPatch,
+}: Props) {
   const copy = useText()
   const [text, setText] = useState('')
   const items = brief.sections[stage.section] ?? []
@@ -102,10 +118,42 @@ export function StageDetail({ brief, stage, index, total, onMove, onPatch }: Pro
         </p>
       )}
 
+      {((onToggleAll && plain.length > 0) || onUndo) && (
+        <p className="sd-tools">
+          {onToggleAll && plain.length > 0 && (
+            <button
+              type="button"
+              className="ltm-link"
+              aria-pressed={expandAll}
+              onClick={onToggleAll}
+            >
+              {expandAll ? copy.brief.stage.hideDetails : copy.brief.stage.showDetails}
+            </button>
+          )}
+          {onUndo && (
+            <button
+              type="button"
+              className="ltm-link"
+              title={copy.brief.workspace.undoTitle}
+              onClick={onUndo}
+            >
+              {copy.brief.workspace.undo}
+            </button>
+          )}
+        </p>
+      )}
+
       {plain.length > 0 && (
         <ul className="sd-items">
           {plain.map((it) => (
-            <ItemRow key={it.id} item={it} fresh={isFresh(it.id)} onPatch={onPatch} />
+            <ItemRow
+              key={`${it.id}-${expandAll}`}
+              expandAll={expandAll}
+              item={it}
+              fresh={isFresh(it.id)}
+              showConfirm={stage.unconfirmed <= 1}
+              onPatch={onPatch}
+            />
           ))}
         </ul>
       )}

@@ -36,7 +36,7 @@
 | - | - |
 | <img src="docs/assets/icons/map.svg" height="20" align="absmiddle"/> **여정 지도** | 빠진 항목·갈림길·막힌 단계를 화면에서 바로 확인 |
 | <img src="docs/assets/icons/collab.svg" height="20" align="absmiddle"/> **공동 편집** | AI는 CLI로, 사람은 GUI로 같은 지시서를 고치고, 누가 바꿨는지 기록 |
-| <img src="docs/assets/icons/note.svg" height="20" align="absmiddle"/> **취향 노트** | 개인 판단 기준을 규칙이 아닌 데이터로 쌓아 다음 지시서에 반영 |
+| <img src="docs/assets/icons/note.svg" height="20" align="absmiddle"/> **취향 노트** | AI가 작업 중 드러난 판단 기준을 근거와 함께 기록하고 다음 지시서에 반영, 사람은 확인·수정만 |
 | <img src="docs/assets/icons/chest.svg" height="20" align="absmiddle"/> **바이너리 하나** | 사용자 PC에 Node 같은 런타임 불필요, `ltm` 단일 실행 파일 |
 | <img src="docs/assets/icons/plug.svg" height="20" align="absmiddle"/> **호스트 무관** | MCP 등록 없이 셸·파일을 다루는 모든 AI 에이전트에서 동작 |
 
