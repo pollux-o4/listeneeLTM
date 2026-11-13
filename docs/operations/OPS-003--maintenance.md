@@ -14,7 +14,7 @@ Action은 전체 commit SHA로 고정하고 기본 토큰은 읽기 전용이다
 
 파일을 기본 브랜치 main에 반영해야 Dependabot·예약 실행이 활성화된다. 실제 워크플로를 한 번 성공시킨 뒤 아래 상태 검사의 정확한 이름을 선택한다.
 
-1. dev·main 브랜치 ruleset: PR 경유, 필수 CI의 `quality`와 CodeQL의 두 `Analyze` 검사, force push·삭제 금지. 개인 저장소의 승인자 수는 실제 협업 인원에 맞춘다.
+1. 브랜치 ruleset: `main`은 squash PR만·필수 검사(`quality`, 두 `Analyze`), `dev`·`main` 모두 force push·삭제 금지. 승인자 수는 협업 인원에 맞춘다(현재 0).
 2. Actions: 기본 토큰 읽기 전용, fork PR은 첫 기여자의 실행 승인 유지. 임의 Action 사용을 제한한다면 현재 워크플로의 SHA 고정 Action을 허용한다.
 3. Security: dependency graph·Dependabot alerts·security updates·private vulnerability reporting 활성화. Secret scanning·push protection도 활성 상태를 유지한다. CodeQL advanced workflow와 default setup을 중복 실행하지 않는다.
 4. `release`·`npm` 환경: 게시할 `v*` 태그만 허용하고 협업 시 별도 승인자를 지정한다. `v*` 태그 ruleset으로 생성 주체를 제한하고 변경·삭제를 금지한다. npm OIDC 등록은 OPS-002를 따른다.
