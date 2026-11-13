@@ -1,0 +1,257 @@
+.sd-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+/* 항목: 이상향(굵게) · 설명(`-`) · 기술설명(`[ ]`)이 같은 왼쪽 선에 맞춰 쌓인다. */
+.ir {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "badge text actions"
+    ". detail .";
+  align-items: start;
+  column-gap: 12px;
+  padding: 8px 6px;
+  /* 항목이 수백 개여도 화면 밖 줄은 그리지 않는다. */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 40px;
+  position: relative;
+  transition: background-color var(--dur-base) var(--ease-soft);
+}
+.ir > :first-child {
+  grid-area: badge;
+  align-self: start;
+  /* 배지(18px)를 제목 첫 줄(24px) 가운데에 맞춘다. */
+  margin-top: 3px;
+}
+.ir[data-fresh="true"] {
+  animation: ltm-rise var(--dur-base) var(--ease-soft) both;
+}
+.ir:hover,
+.ir:focus-within {
+  background: color-mix(in srgb, var(--c-accent-soft) 35%, transparent);
+}
+.ir-text {
+  grid-area: text;
+  color: var(--c-text);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-weight: 600;
+  line-height: 24px;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+/* 자세히: 설명·기술 두 칸이 항상 같은 모양으로 나온다(비면 '없음'). 라벨 열이 이상향 글자 선에 맞는다. */
+.ir-detail {
+  grid-area: detail;
+  margin: 6px 0 0;
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 6px 10px;
+  font-size: var(--fs-small);
+  line-height: 20px;
+  color: var(--c-muted);
+  overflow-wrap: anywhere;
+  /* UX-001 펼치기·접기: 떠오르며 들어오고 흐려지며 나간다. 모두 펼치기는 30ms씩 차례로(최대 8칸). */
+  animation: ltm-reveal-in var(--dur-base) var(--ease-soft) both;
+  animation-delay: calc(var(--i, 0) * 30ms);
+}
+.ir-detail[data-closing="true"] {
+  /* 접힐 때 자리를 바로 내줘 아래 줄이 흐려짐과 동시에 올라온다(한 박자). */
+  position: absolute;
+  inset-inline: 0;
+  pointer-events: none;
+  animation: ltm-reveal-out var(--dur-fast) ease-in both;
+}
+.ir-detail dt {
+  margin: 0;
+  padding: 0 5px;
+  justify-self: start;
+  align-self: start;
+  white-space: nowrap;
+  border: var(--px) dashed var(--c-muted);
+  /* 테두리 포함 높이 = 내용 한 줄(20px): 라벨 글자가 첫 줄 글자와 같은 선에 놓인다. */
+  line-height: calc(20px - 2 * var(--px));
+}
+.ir-detail dd {
+  margin: 0;
+  display: grid;
+  gap: 2px;
+}
+.ir-detail dd[data-empty="true"] {
+  opacity: 0.6;
+}
+/* 문장 속 짧은 전문 용어는 점선 칩 */
+.ir-tech {
+  display: inline-block;
+  margin: 0 2px;
+  padding: 0 5px;
+  outline: var(--px) dashed var(--c-muted);
+  outline-offset: -1px;
+  line-height: 18px;
+}
+.ir-input {
+  grid-area: text;
+  /* 고치는 동안에도 제목과 같은 글자: 바뀌는 건 밑줄뿐이다. */
+  font-weight: 600;
+  line-height: 24px;
+}
+/* 고치는 동안 줄 도구는 비켜 선다(저장·취소는 입력 아래 키캡). */
+.ir-actions[hidden] {
+  display: none;
+}
+.ir:has(.ir-input) {
+  grid-template-areas:
+    "badge text text"
+    ". detail .";
+}
+.ir-actions {
+  grid-area: actions;
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  min-height: 24px;
+}
+/* 행 도구는 한 발 물러나 있다가 행에 다가가면 또렷해진다(터치 기기는 항상 또렷). */
+@media (hover: hover) {
+  .ir-actions {
+    opacity: 0.55;
+    transition: opacity var(--dur-base) var(--ease-soft);
+  }
+  .ir:hover .ir-actions,
+  .ir:focus-within .ir-actions {
+    opacity: 1;
+  }
+  /* 할 일인 하트는 물러나지 않는다: 확인 전 줄에서 늘 또렷해 무엇을 누를지 보인다. */
+  .ir-actions:has(.ir-confirm) {
+    opacity: 1;
+  }
+  .ir-actions:has(.ir-confirm) > :not(.ir-confirm) {
+    opacity: 0.55;
+    transition: opacity var(--dur-base) var(--ease-soft);
+  }
+  .ir:hover .ir-actions > *,
+  .ir:focus-within .ir-actions > * {
+    opacity: 1;
+  }
+}
+/* 자세히 화살표: 펼치면 위로 뒤집힌다. */
+.ir-more svg {
+  transition: transform var(--dur-base) var(--ease-spring);
+}
+.ir-more[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+.ir-more[aria-expanded="true"] {
+  color: var(--c-accent);
+}
+/* 하트는 누를 곳임을 따뜻한 색으로 알리고, 다가가면 한 번 콩 뛴다. */
+/* 좋아요 전: 흐린 빈 하트(이미 눌린 듯 보이지 않게). 다가가면 따뜻하게 차오른다. */
+.ir-confirm {
+  position: relative;
+}
+.ir-confirm svg + svg {
+  position: absolute;
+  opacity: 0;
+  transform: scale(0.4);
+  transition:
+    opacity var(--dur-fast) ease,
+    transform var(--dur-base) var(--ease-spring);
+}
+.ir-confirm:hover svg + svg,
+.ir-confirm:focus-visible svg + svg {
+  opacity: 1;
+  transform: none;
+}
+/* 누른 순간: 같은 자리에서 하트가 커졌다 빠지고, 도트 여섯 개가 사방으로 튄다. */
+.ir-burst {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--hit);
+  height: var(--hit);
+  color: var(--c-warn);
+  pointer-events: none;
+  animation: ir-burst-hold var(--dur-slow) linear both;
+}
+.ir-burst svg {
+  animation: ir-burst-heart var(--dur-slow) var(--ease-spring) both;
+}
+.ir-burst i {
+  position: absolute;
+  width: var(--px);
+  height: var(--px);
+  background: currentColor;
+  transform: rotate(var(--a)) translateY(0);
+  animation: ir-burst-dot var(--dur-slow) var(--ease-soft) both;
+}
+.ir-burst i:nth-child(odd) {
+  color: var(--c-glow);
+}
+@keyframes ir-burst-hold {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes ir-burst-heart {
+  0% {
+    transform: scale(0.3);
+  }
+  45% {
+    transform: scale(1.5);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1) translateY(calc(var(--px) * -3));
+  }
+}
+@keyframes ir-burst-dot {
+  0% {
+    opacity: 1;
+    transform: rotate(var(--a)) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(var(--a)) translateY(-16px);
+  }
+}
+/* 확인한 순간: 배지가 콩 뛰고 줄이 한 번 따뜻하게 빛난다(transform·opacity만). */
+.ir[data-just-confirmed="true"] > .ltm-origin {
+  animation: ltm-heart var(--dur-slow) var(--ease-spring);
+}
+.ir[data-just-confirmed="true"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: color-mix(in srgb, var(--c-warn) 18%, transparent);
+  animation: ir-glow var(--dur-slow) var(--ease-soft) both;
+}
+@keyframes ir-glow {
+  to {
+    opacity: 0;
+  }
+}
+.ir-confirm:hover,
+.ir-confirm:focus-visible {
+  color: var(--c-warn);
+}
+@media (max-width: 480px) {
+  .ir {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "badge text"
+      ". detail"
+      ". actions";
+  }
+  .ir-actions {
+    justify-self: end;
+  }
+}

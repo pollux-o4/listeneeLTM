@@ -1,0 +1,165 @@
+.bp {
+  position: sticky;
+  top: calc(var(--bar-h, 49px) + 12px);
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  min-width: 0;
+}
+.bp-bar {
+  /* 세로로 길게 쌓인 화면에서도 복사·접기가 늘 손 닿는 곳에 있다. */
+  position: sticky;
+  top: var(--bar-h, 49px);
+  z-index: 2;
+  padding: 6px 0;
+  background: var(--c-bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.bp-tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.bp-bar p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+/* 초안: 점선 / 완성: 채움 (색에만 기대지 않는다) */
+.bp-stamp {
+  font-family: var(--font-pixel-bold);
+  padding: 0 6px;
+  color: var(--c-muted);
+  outline: 1px dashed var(--c-muted);
+}
+.bp-stamp[data-ready="true"] {
+  color: var(--c-on-bright);
+  background: var(--c-ok);
+  outline: 1px solid var(--c-line);
+}
+.bp-copied {
+  margin: 0;
+  justify-self: end;
+  animation: ltm-rise var(--dur-base) var(--ease-soft) both;
+}
+.bp-copied[data-state="failed"] {
+  color: var(--c-warn);
+}
+.bp-sheet {
+  margin: var(--px);
+  background: var(--c-surface);
+  padding: calc(var(--px) * 6);
+  box-shadow:
+    0 0 0 var(--px) var(--c-line),
+    0 calc(var(--px) * 2) 0 var(--px) var(--c-line);
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+  line-height: 24px;
+  background-image: repeating-linear-gradient(
+    transparent 0 23px,
+    color-mix(in srgb, var(--c-accent-soft) 45%, transparent) 23px 24px
+  );
+  background-position: 0 calc(var(--px) * 6);
+  background-attachment: local;
+  max-height: calc(100vh - 300px);
+  min-height: 120px;
+  overflow: auto;
+}
+.bp-line,
+.bp-h1,
+.bp-h2 {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.bp-h1 {
+  font-family: var(--font-pixel-bold);
+}
+.bp-h2 {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  font-family: var(--font-pixel-bold);
+  color: var(--c-accent);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.bp-h2:hover {
+  text-decoration: underline dotted;
+  text-underline-offset: 4px;
+}
+.bp-h2:focus-visible {
+  outline-offset: 0;
+}
+/* Markdown 기호는 흐리게: 내용이 먼저 읽힌다(복사되는 글은 그대로). */
+.bp-mark {
+  color: var(--c-muted);
+  font-family: var(--font-pixel);
+}
+/* 새로 생긴 줄: 한 번 빛났다가 가라앉는다(opacity만 전환). */
+.bp-sheet [data-fresh="true"] {
+  position: relative;
+}
+.bp-sheet [data-fresh="true"]::before {
+  content: "";
+  position: absolute;
+  inset: 0 calc(var(--px) * -2);
+  background: var(--c-glow);
+  opacity: 0;
+  pointer-events: none;
+  animation: bp-flash 1800ms var(--ease-soft);
+}
+@keyframes bp-flash {
+  from {
+    opacity: 0.5;
+  }
+}
+.bp-log {
+  margin-top: 6px;
+  font-size: var(--fs-small);
+  color: var(--c-muted);
+}
+.bp-log summary {
+  cursor: pointer;
+  min-height: var(--hit);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.bp-log summary::before {
+  content: "▸";
+}
+.bp-log[open] summary::before {
+  content: "▾";
+}
+.bp-log ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.bp-log li {
+  display: flex;
+  gap: 9px;
+  align-items: start;
+  overflow-wrap: anywhere;
+}
+.bp-log li:first-child {
+  animation: ltm-rise var(--dur-base) var(--ease-soft) both;
+}
+/* 좁거나 낮은 화면: 내부 스크롤 대신 페이지가 스크롤한다(작은 상자에 휠이 갇히지 않게). */
+@media (max-width: 960px), (max-height: 640px) {
+  .bp {
+    position: static;
+  }
+  .bp-sheet {
+    max-height: none;
+  }
+}

@@ -1,0 +1,21 @@
+# 배포 바이너리 공급망 검사(tech-spec 품질 절).
+[graph]
+all-features = true
+
+[advisories]
+# RustSec 취약점·관리 중단 공지
+ignore = []
+
+[licenses]
+# 단일 바이너리로 재배포하므로 허용 라이선스를 명시한다. 새 라이선스는 검토 후 추가한다.
+allow = ["MIT", "Apache-2.0", "BSD-3-Clause", "Unicode-3.0"]
+confidence-threshold = 0.9
+
+[bans]
+multiple-versions = "warn"
+wildcards = "deny"
+allow-wildcard-paths = true
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"

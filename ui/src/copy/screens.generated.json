@@ -1,0 +1,4235 @@
+{
+  "screens": {
+    "app.drawer.close": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--nothing-to-analyze",
+      "app-briefdrawer--one-brief",
+      "app-briefdrawer--search-many",
+      "app-screens--shell-duplicate"
+    ],
+    "app.drawer.copyTitle": ["app-screens--shell-duplicate"],
+    "app.drawer.duplicate": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--nothing-to-analyze",
+      "app-briefdrawer--one-brief",
+      "app-briefdrawer--search-many",
+      "app-screens--shell-duplicate"
+    ],
+    "app.drawer.duplicateLabel": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--nothing-to-analyze",
+      "app-briefdrawer--one-brief",
+      "app-briefdrawer--search-many",
+      "app-screens--shell-duplicate"
+    ],
+    "app.drawer.filterAll": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--nothing-to-analyze",
+      "app-briefdrawer--one-brief",
+      "app-briefdrawer--search-many",
+      "app-screens--shell-duplicate"
+    ],
+    "app.drawer.filterTodo": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--nothing-to-analyze",
+      "app-briefdrawer--one-brief",
+      "app-briefdrawer--search-many",
+      "app-screens--shell-duplicate"
+    ],
+    "app.drawer.from": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--search-many"
+    ],
+    "app.drawer.lead": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--nothing-to-analyze",
+      "app-briefdrawer--one-brief",
+      "app-briefdrawer--search-many",
+      "app-screens--shell-duplicate"
+    ],
+    "app.drawer.learning.learned": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--nothing-to-analyze",
+      "app-briefdrawer--search-many",
+      "app-screens--shell-duplicate"
+    ],
+    "app.drawer.learning.nothingNew": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--search-many"
+    ],
+    "app.drawer.learning.stale": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--search-many"
+    ],
+    "app.drawer.learning.unanalyzed": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--one-brief",
+      "app-briefdrawer--search-many"
+    ],
+    "app.drawer.learningHint.learned": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--nothing-to-analyze",
+      "app-briefdrawer--search-many",
+      "app-screens--shell-duplicate"
+    ],
+    "app.drawer.learningHint.nothingNew": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--search-many"
+    ],
+    "app.drawer.learningHint.stale": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--search-many"
+    ],
+    "app.drawer.learningHint.unanalyzed": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--one-brief",
+      "app-briefdrawer--search-many"
+    ],
+    "app.drawer.noMatch": ["app-briefdrawer--search-many"],
+    "app.drawer.nothingTodo": ["app-briefdrawer--nothing-to-analyze"],
+    "app.drawer.open": [
+      "app-navigation--dark",
+      "app-navigation--language-selection",
+      "app-navigation--light",
+      "app-navigation--many-briefs",
+      "app-navigation--settings",
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "app-screens--shell-notes",
+      "app-screens--shell-welcome"
+    ],
+    "app.drawer.search": ["app-briefdrawer--many-briefs", "app-briefdrawer--search-many"],
+    "app.drawer.title": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--nothing-to-analyze",
+      "app-briefdrawer--one-brief",
+      "app-briefdrawer--search-many",
+      "app-screens--shell-duplicate"
+    ],
+    "app.drawer.todoSuffix": ["app-navigation--dark", "app-navigation--many-briefs"],
+    "app.navigation.label": [
+      "app-navigation--dark",
+      "app-navigation--language-selection",
+      "app-navigation--light",
+      "app-navigation--many-briefs",
+      "app-navigation--settings",
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "app-screens--shell-notes",
+      "app-screens--shell-welcome"
+    ],
+    "app.navigation.language": ["app-navigation--settings"],
+    "app.navigation.languages.en": ["app-navigation--settings"],
+    "app.navigation.languages.ko": ["app-navigation--settings"],
+    "app.navigation.name": [
+      "app-navigation--dark",
+      "app-navigation--language-selection",
+      "app-navigation--light",
+      "app-navigation--many-briefs",
+      "app-navigation--settings",
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "app-screens--shell-notes",
+      "app-screens--shell-welcome"
+    ],
+    "app.navigation.notes": [
+      "app-navigation--dark",
+      "app-navigation--language-selection",
+      "app-navigation--light",
+      "app-navigation--many-briefs",
+      "app-navigation--settings",
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "app-screens--shell-notes",
+      "app-screens--shell-welcome"
+    ],
+    "app.navigation.pendingSuffix": [
+      "app-navigation--dark",
+      "app-navigation--language-selection",
+      "app-navigation--light",
+      "app-navigation--many-briefs",
+      "app-navigation--settings",
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "app-screens--shell-notes",
+      "app-screens--shell-welcome"
+    ],
+    "app.navigation.ready": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--nothing-to-analyze",
+      "app-briefdrawer--one-brief",
+      "app-briefdrawer--search-many",
+      "app-navigation--light",
+      "app-navigation--many-briefs"
+    ],
+    "app.navigation.settings": [
+      "app-navigation--dark",
+      "app-navigation--language-selection",
+      "app-navigation--light",
+      "app-navigation--many-briefs",
+      "app-navigation--settings",
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "app-screens--shell-notes",
+      "app-screens--shell-welcome"
+    ],
+    "app.navigation.theme.dark": ["app-navigation--settings"],
+    "app.navigation.theme.light": ["app-navigation--settings"],
+    "app.navigation.theme.system": ["app-navigation--settings"],
+    "app.navigation.themeHeading": ["app-navigation--settings"],
+    "app.navigation.working": [
+      "app-briefdrawer--filter-and-duplicate",
+      "app-briefdrawer--many-briefs",
+      "app-briefdrawer--mixed",
+      "app-briefdrawer--search-many",
+      "app-navigation--dark",
+      "app-navigation--many-briefs",
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "app-screens--shell-notes"
+    ],
+    "app.notice.confirmed": ["app-screens--confirmed"],
+    "app.notice.confirmedAll": ["app-screens--confirmed-all"],
+    "app.notice.duplicated": ["app-screens--shell-duplicate"],
+    "app.notice.offlineSave": ["app-screens--offline-save", "design-primitives--save-failed"],
+    "app.notice.removed": ["app-screens--removed"],
+    "app.notice.retry": [
+      "app-screens--offline-save",
+      "app-screens--save-rejected",
+      "design-primitives--save-failed"
+    ],
+    "app.notice.saveFailed": ["app-screens--save-rejected"],
+    "app.notice.undo": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--removed"
+    ],
+    "app.screen.askAiWith": [
+      "app-screens--shell-welcome",
+      "app-screens--welcome",
+      "app-screens--welcome-copied",
+      "app-screens--welcome-copy-failed",
+      "app-screens--welcome-with-details",
+      "app-screens--welcome-with-task"
+    ],
+    "app.screen.briefError": ["app-screens--brief-failed"],
+    "app.screen.command": ["app-screens--offline"],
+    "app.screen.copied": ["app-screens--welcome-copied", "app-screens--welcome-with-task"],
+    "app.screen.copyFailed": ["app-screens--welcome-copy-failed"],
+    "app.screen.copyHint": [
+      "app-screens--shell-welcome",
+      "app-screens--welcome",
+      "app-screens--welcome-copied",
+      "app-screens--welcome-copy-failed",
+      "app-screens--welcome-with-details",
+      "app-screens--welcome-with-task"
+    ],
+    "app.screen.detailPresets.0": ["app-screens--welcome-with-details"],
+    "app.screen.detailPresets.1": ["app-screens--welcome-with-details"],
+    "app.screen.detailPresets.2": ["app-screens--welcome-with-details"],
+    "app.screen.detailPresets.3": ["app-screens--welcome-with-details"],
+    "app.screen.detailPresets.4": ["app-screens--welcome-with-details"],
+    "app.screen.detailsExtra": ["app-screens--welcome-with-details"],
+    "app.screen.detailsExtraPlaceholder": ["app-screens--welcome-with-details"],
+    "app.screen.detailsHide": ["app-screens--welcome-with-details"],
+    "app.screen.detailsLegend": ["app-screens--welcome-with-details"],
+    "app.screen.detailsShow": [
+      "app-screens--welcome-with-details",
+      "app-screens--welcome-with-task"
+    ],
+    "app.screen.emptyHint": [
+      "app-screens--shell-welcome",
+      "app-screens--welcome",
+      "app-screens--welcome-copied",
+      "app-screens--welcome-copy-failed",
+      "app-screens--welcome-with-details",
+      "app-screens--welcome-with-task"
+    ],
+    "app.screen.emptyTitle": [
+      "app-screens--shell-welcome",
+      "app-screens--welcome",
+      "app-screens--welcome-copied",
+      "app-screens--welcome-copy-failed",
+      "app-screens--welcome-with-details",
+      "app-screens--welcome-with-task"
+    ],
+    "app.screen.loading": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--loading",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "app-screens--shell-notes",
+      "app-screens--shell-welcome"
+    ],
+    "app.screen.missingHint": ["app-screens--not-found"],
+    "app.screen.missingTitle": ["app-screens--not-found"],
+    "app.screen.notesError": ["app-screens--notes-failed"],
+    "app.screen.offlineTitle": ["app-screens--offline"],
+    "app.screen.openOther": ["app-screens--brief-failed", "app-screens--not-found"],
+    "app.screen.taskLabel": [
+      "app-screens--shell-welcome",
+      "app-screens--welcome",
+      "app-screens--welcome-copied",
+      "app-screens--welcome-copy-failed",
+      "app-screens--welcome-with-details",
+      "app-screens--welcome-with-task"
+    ],
+    "app.screen.taskPlaceholder": [
+      "app-screens--shell-welcome",
+      "app-screens--welcome",
+      "app-screens--welcome-copied",
+      "app-screens--welcome-copy-failed",
+      "app-screens--welcome-with-details",
+      "app-screens--welcome-with-task"
+    ],
+    "app.screen.terminalPrefix": ["app-screens--offline"],
+    "app.screen.terminalSuffix": ["app-screens--offline"],
+    "app.shell.documentTitle": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "app-screens--shell-notes"
+    ],
+    "app.shell.name": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "app-screens--shell-welcome",
+      "design-primitives--editing"
+    ],
+    "app.shell.notesTitle": ["app-screens--shell-notes"],
+    "app.shell.offline": ["app-screens--disconnected"],
+    "app.shell.readFailed": ["app-screens--read-failed"],
+    "app.shell.skipToContent": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "app-screens--shell-notes",
+      "app-screens--shell-welcome"
+    ],
+    "brief.change": [
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--paper-copied"
+    ],
+    "brief.copyResult.copied": [
+      "app-screens--confirmed-all",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied",
+      "brief-workspace--copied-review",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--paper-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery"
+    ],
+    "brief.copyResult.failed": [
+      "app-screens--confirmed-all",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied",
+      "brief-workspace--copied-review",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--paper-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery"
+    ],
+    "brief.decision.change": [
+      "app-screens--confirmed-all",
+      "brief-decisioncard--changing",
+      "brief-decisioncard--changing-locks-another",
+      "brief-decisioncard--decided-by-ai",
+      "brief-workspace--constraints",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--request-replied",
+      "brief-workspace--review-stage"
+    ],
+    "brief.decision.changedPrefix": ["brief-decisioncard--with-impact"],
+    "brief.decision.changeLabel": [
+      "app-screens--confirmed-all",
+      "brief-decisioncard--changing",
+      "brief-decisioncard--changing-locks-another",
+      "brief-decisioncard--decided-by-ai",
+      "brief-workspace--constraints",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--request-replied",
+      "brief-workspace--review-stage"
+    ],
+    "brief.decision.confirm": [
+      "brief-decisioncard--changing",
+      "brief-decisioncard--decided-by-ai",
+      "brief-workspace--constraints",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--request-replied"
+    ],
+    "brief.decision.confirmLabel": [
+      "brief-decisioncard--changing",
+      "brief-decisioncard--decided-by-ai",
+      "brief-workspace--constraints",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--request-replied"
+    ],
+    "brief.decision.impactPrefix": [
+      "app-screens--confirmed",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-decisioncard--changing-locks-another",
+      "brief-decisioncard--with-impact",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--request-on-item",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--working"
+    ],
+    "brief.decision.keep": [
+      "brief-decisioncard--changing",
+      "brief-decisioncard--changing-locks-another"
+    ],
+    "brief.decision.recommended": [
+      "app-screens--confirmed",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-decisioncard--changing",
+      "brief-decisioncard--changing-locks-another",
+      "brief-decisioncard--open",
+      "brief-decisioncard--with-impact",
+      "brief-workspace--acceptance",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--request-on-item",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--working"
+    ],
+    "brief.decision.sentencePrefix": [
+      "app-screens--confirmed",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-decisioncard--changing",
+      "brief-decisioncard--changing-locks-another",
+      "brief-decisioncard--open",
+      "brief-decisioncard--with-impact",
+      "brief-workspace--acceptance",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--request-on-item",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--working"
+    ],
+    "brief.decision.sleeps": ["brief-decisioncard--changing-locks-another"],
+    "brief.decision.undo": ["brief-decisioncard--with-impact"],
+    "brief.decision.waiting": [
+      "app-screens--confirmed",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-decisioncard--waiting",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--request-on-item",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--working"
+    ],
+    "brief.decision.wakes": [
+      "app-screens--confirmed",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-decisioncard--with-impact",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--request-on-item",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--working"
+    ],
+    "brief.delivery.blocked": ["brief-workspace--blocked-delivery"],
+    "brief.delivery.blockedHint": ["brief-workspace--blocked-delivery"],
+    "brief.delivery.blockingPrefix": ["brief-workspace--blocked-delivery"],
+    "brief.delivery.copied": ["brief-workspace--copied"],
+    "brief.delivery.copy": [
+      "app-screens--confirmed-all",
+      "brief-workspace--copied",
+      "brief-workspace--copied-review",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--paper-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery"
+    ],
+    "brief.delivery.copyCommand": [
+      "app-screens--confirmed-all",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied",
+      "brief-workspace--copied-review",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--paper-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery"
+    ],
+    "brief.delivery.copyDraft": ["brief-workspace--blocked-delivery"],
+    "brief.delivery.exportCommand": [
+      "app-screens--confirmed-all",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied",
+      "brief-workspace--copied-review",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--paper-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery"
+    ],
+    "brief.delivery.openStage": [
+      "brief-workspace--copied-review",
+      "brief-workspace--review-in-delivery"
+    ],
+    "brief.delivery.previewLabel": [
+      "app-screens--confirmed-all",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied",
+      "brief-workspace--copied-review",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--paper-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery"
+    ],
+    "brief.delivery.previewMore": [
+      "app-screens--confirmed-all",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied",
+      "brief-workspace--copied-review",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--paper-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery"
+    ],
+    "brief.delivery.ready": [
+      "app-screens--confirmed-all",
+      "brief-workspace--copied",
+      "brief-workspace--copied-review",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--paper-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery"
+    ],
+    "brief.delivery.readyHint": [
+      "brief-workspace--copied",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--paper-copied"
+    ],
+    "brief.delivery.reviewCount": [
+      "app-screens--confirmed-all",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied-review",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery"
+    ],
+    "brief.delivery.reviewed": ["brief-workspace--review-in-delivery"],
+    "brief.delivery.reviewHint": [
+      "app-screens--confirmed-all",
+      "brief-workspace--copied-review",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery"
+    ],
+    "brief.delivery.reviewPrefix": [
+      "app-screens--confirmed-all",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied-review",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery"
+    ],
+    "brief.delivery.terminalPrefix": [
+      "app-screens--confirmed-all",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied",
+      "brief-workspace--copied-review",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--paper-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery"
+    ],
+    "brief.delivery.unconfirmedLine": [
+      "app-screens--confirmed-all",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied-review",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery"
+    ],
+    "brief.issue": ["brief-workspace--blocked-delivery"],
+    "brief.item.confirm": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--item-detail",
+      "brief-workspace--request-on-item",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--review-stage",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working"
+    ],
+    "brief.item.confirmLabel": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--item-detail",
+      "brief-workspace--request-on-item",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--review-stage",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working"
+    ],
+    "brief.item.edit": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--item-detail",
+      "brief-workspace--request-on-item",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--review-stage",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working",
+      "design-primitives--editing"
+    ],
+    "brief.item.editAction": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--item-detail",
+      "brief-workspace--request-on-item",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--review-stage",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working"
+    ],
+    "brief.item.editLabel": ["brief-workspace--edit-item"],
+    "brief.item.explainLabel": [
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--item-detail"
+    ],
+    "brief.item.less": [
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--item-detail"
+    ],
+    "brief.item.more": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--item-detail",
+      "brief-workspace--request-on-item",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--review-stage",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working"
+    ],
+    "brief.item.none": ["brief-workspace--detail-empty"],
+    "brief.item.remove": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--item-detail",
+      "brief-workspace--request-on-item",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--review-stage",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working"
+    ],
+    "brief.item.removeLabel": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--item-detail",
+      "brief-workspace--request-on-item",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--review-stage",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working"
+    ],
+    "brief.item.techLabel": [
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--item-detail"
+    ],
+    "brief.narration.complete": [
+      "brief-questpath--ready",
+      "brief-workspace--copied",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--paper-copied"
+    ],
+    "brief.narration.empty": ["brief-workspace--started"],
+    "brief.narration.fork": [
+      "app-screens--confirmed",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-questpath--working",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--working"
+    ],
+    "brief.narration.initial": [
+      "brief-workspace--add-item",
+      "brief-workspace--empty",
+      "design-primitives--bubble"
+    ],
+    "brief.narration.review": [
+      "app-screens--confirmed-all",
+      "brief-workspace--copied-review",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery"
+    ],
+    "brief.paper.complete": ["brief-workspace--draft-open", "brief-workspace--paper-copied"],
+    "brief.paper.copy": ["brief-workspace--draft-open", "brief-workspace--paper-copied"],
+    "brief.paper.copyDraft": ["brief-workspace--draft-toggle"],
+    "brief.paper.draft": ["brief-workspace--draft-toggle"],
+    "brief.paper.label": [
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--paper-copied"
+    ],
+    "brief.paper.openStage": [
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--paper-copied"
+    ],
+    "brief.paper.recentChanges": [
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--paper-copied"
+    ],
+    "brief.paper.recipientHint": [
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--paper-copied"
+    ],
+    "brief.path.blocked": [
+      "app-screens--confirmed",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-questpath--working",
+      "brief-workspace--add-item",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--empty",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--started",
+      "brief-workspace--working"
+    ],
+    "brief.path.delivery": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-questpath--ready",
+      "brief-questpath--working",
+      "brief-workspace--add-item",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied",
+      "brief-workspace--copied-review",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--empty",
+      "brief-workspace--paper-copied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--started",
+      "brief-workspace--working"
+    ],
+    "brief.path.label": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-questpath--ready",
+      "brief-questpath--working",
+      "brief-workspace--add-item",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied",
+      "brief-workspace--copied-review",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--empty",
+      "brief-workspace--paper-copied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--started",
+      "brief-workspace--working"
+    ],
+    "brief.path.ready": [
+      "app-screens--confirmed-all",
+      "brief-questpath--ready",
+      "brief-workspace--copied",
+      "brief-workspace--copied-review",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--paper-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery"
+    ],
+    "brief.path.stageLabel": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-questpath--ready",
+      "brief-questpath--working",
+      "brief-workspace--add-item",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied",
+      "brief-workspace--copied-review",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--empty",
+      "brief-workspace--paper-copied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--started",
+      "brief-workspace--working"
+    ],
+    "brief.request.acknowledge": ["brief-workspace--request-replied"],
+    "brief.request.acknowledged": ["brief-workspace--requests", "brief-workspace--requests-copied"],
+    "brief.request.ask": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-decisioncard--changing",
+      "brief-decisioncard--changing-locks-another",
+      "brief-decisioncard--decided-by-ai",
+      "brief-decisioncard--open",
+      "brief-decisioncard--waiting",
+      "brief-decisioncard--with-impact",
+      "brief-workspace--acceptance",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--constraints",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--item-detail",
+      "brief-workspace--request-on-item",
+      "brief-workspace--request-replied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--review-stage",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working"
+    ],
+    "brief.request.askLabel": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-decisioncard--changing",
+      "brief-decisioncard--changing-locks-another",
+      "brief-decisioncard--decided-by-ai",
+      "brief-decisioncard--open",
+      "brief-decisioncard--waiting",
+      "brief-decisioncard--with-impact",
+      "brief-workspace--acceptance",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--constraints",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--item-detail",
+      "brief-workspace--request-on-item",
+      "brief-workspace--request-replied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--review-stage",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working"
+    ],
+    "brief.request.cancel": [
+      "brief-workspace--request-on-item",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied"
+    ],
+    "brief.request.copied": ["brief-workspace--requests"],
+    "brief.request.copyAll": ["brief-workspace--requests", "brief-workspace--requests-copied"],
+    "brief.request.dismiss": [
+      "brief-workspace--request-replied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied"
+    ],
+    "brief.request.inputLabel": ["brief-workspace--request-on-item"],
+    "brief.request.leave": ["brief-workspace--request-on-item"],
+    "brief.request.message": ["brief-workspace--requests"],
+    "brief.request.paste": ["brief-workspace--requests"],
+    "brief.request.pasteStep": ["brief-workspace--requests", "brief-workspace--requests-copied"],
+    "brief.request.pending": ["brief-workspace--requests", "brief-workspace--requests-copied"],
+    "brief.request.photoHint": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-decisioncard--changing",
+      "brief-decisioncard--changing-locks-another",
+      "brief-decisioncard--decided-by-ai",
+      "brief-decisioncard--open",
+      "brief-decisioncard--waiting",
+      "brief-decisioncard--with-impact",
+      "brief-workspace--acceptance",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--constraints",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--item-detail",
+      "brief-workspace--request-on-item",
+      "brief-workspace--request-replied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--review-stage",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working"
+    ],
+    "brief.request.placeholder": ["brief-workspace--request-on-item"],
+    "brief.request.state.noted": [
+      "brief-workspace--request-on-item",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied"
+    ],
+    "brief.request.state.replied": ["brief-workspace--request-replied"],
+    "brief.request.state.working": [
+      "brief-workspace--request-on-item",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied"
+    ],
+    "brief.request.trayLabel": ["brief-workspace--requests", "brief-workspace--requests-copied"],
+    "brief.request.uncopied": ["brief-workspace--requests"],
+    "brief.request.waiting": ["brief-workspace--requests", "brief-workspace--requests-copied"],
+    "brief.request.working": ["brief-workspace--requests", "brief-workspace--requests-copied"],
+    "brief.stage.acceptance.hint": ["brief-workspace--acceptance"],
+    "brief.stage.acceptance.label": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-questpath--ready",
+      "brief-questpath--working",
+      "brief-workspace--acceptance",
+      "brief-workspace--add-item",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied",
+      "brief-workspace--copied-review",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--empty",
+      "brief-workspace--paper-copied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--started",
+      "brief-workspace--working"
+    ],
+    "brief.stage.add": ["brief-workspace--add-item"],
+    "brief.stage.confirmAll": ["app-screens--confirmed-all", "brief-workspace--review-stage"],
+    "brief.stage.constraints.hint": [
+      "brief-workspace--constraints",
+      "brief-workspace--request-replied"
+    ],
+    "brief.stage.constraints.label": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-questpath--ready",
+      "brief-questpath--working",
+      "brief-workspace--add-item",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--constraints",
+      "brief-workspace--copied",
+      "brief-workspace--copied-review",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--empty",
+      "brief-workspace--paper-copied",
+      "brief-workspace--request-replied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--started",
+      "brief-workspace--working"
+    ],
+    "brief.stage.delivery": ["brief-workspace--acceptance"],
+    "brief.stage.deliveryTitle": ["brief-workspace--acceptance"],
+    "brief.stage.emptyHint": [
+      "brief-workspace--add-item",
+      "brief-workspace--empty",
+      "brief-workspace--started"
+    ],
+    "brief.stage.hideDetails": ["brief-workspace--details-all"],
+    "brief.stage.inputLabel": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--acceptance",
+      "brief-workspace--add-item",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--constraints",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--empty",
+      "brief-workspace--item-detail",
+      "brief-workspace--optional-empty",
+      "brief-workspace--request-on-item",
+      "brief-workspace--request-replied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review-stage",
+      "brief-workspace--started",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working"
+    ],
+    "brief.stage.next": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--add-item",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--constraints",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--empty",
+      "brief-workspace--item-detail",
+      "brief-workspace--optional-empty",
+      "brief-workspace--request-on-item",
+      "brief-workspace--request-replied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review-stage",
+      "brief-workspace--started",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working"
+    ],
+    "brief.stage.nextTitle": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--add-item",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--constraints",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--empty",
+      "brief-workspace--item-detail",
+      "brief-workspace--optional-empty",
+      "brief-workspace--request-on-item",
+      "brief-workspace--request-replied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review-stage",
+      "brief-workspace--started",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working"
+    ],
+    "brief.stage.optional": [
+      "brief-workspace--constraints",
+      "brief-workspace--optional-empty",
+      "brief-workspace--request-replied"
+    ],
+    "brief.stage.optionalEmptyHint": ["brief-workspace--optional-empty"],
+    "brief.stage.placeholder": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--acceptance",
+      "brief-workspace--add-item",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--constraints",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--empty",
+      "brief-workspace--item-detail",
+      "brief-workspace--optional-empty",
+      "brief-workspace--request-on-item",
+      "brief-workspace--request-replied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review-stage",
+      "brief-workspace--started",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working"
+    ],
+    "brief.stage.previous": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--acceptance",
+      "brief-workspace--add-item",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--constraints",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--empty",
+      "brief-workspace--item-detail",
+      "brief-workspace--optional-empty",
+      "brief-workspace--request-on-item",
+      "brief-workspace--request-replied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review-stage",
+      "brief-workspace--started",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working"
+    ],
+    "brief.stage.previousTitle": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--acceptance",
+      "brief-workspace--add-item",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--constraints",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--empty",
+      "brief-workspace--item-detail",
+      "brief-workspace--optional-empty",
+      "brief-workspace--request-on-item",
+      "brief-workspace--request-replied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review-stage",
+      "brief-workspace--started",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working"
+    ],
+    "brief.stage.purpose.hint": [
+      "brief-workspace--add-item",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--empty",
+      "brief-workspace--item-detail",
+      "brief-workspace--undo-near-items"
+    ],
+    "brief.stage.purpose.label": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-questpath--ready",
+      "brief-questpath--working",
+      "brief-workspace--add-item",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied",
+      "brief-workspace--copied-review",
+      "brief-workspace--copy-failed",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--empty",
+      "brief-workspace--item-detail",
+      "brief-workspace--paper-copied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--started",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working"
+    ],
+    "brief.stage.reviewHint": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--constraints",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--item-detail",
+      "brief-workspace--request-on-item",
+      "brief-workspace--request-replied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review-stage",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working"
+    ],
+    "brief.stage.scopeIn.hint": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--request-on-item",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review-stage",
+      "brief-workspace--started",
+      "brief-workspace--working"
+    ],
+    "brief.stage.scopeIn.label": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-questpath--ready",
+      "brief-questpath--working",
+      "brief-workspace--add-item",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied",
+      "brief-workspace--copied-review",
+      "brief-workspace--copy-failed",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--empty",
+      "brief-workspace--paper-copied",
+      "brief-workspace--request-on-item",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--review-stage",
+      "brief-workspace--started",
+      "brief-workspace--working"
+    ],
+    "brief.stage.scopeOut.hint": ["brief-workspace--optional-empty"],
+    "brief.stage.scopeOut.label": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-questpath--ready",
+      "brief-questpath--working",
+      "brief-workspace--add-item",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied",
+      "brief-workspace--copied-review",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--empty",
+      "brief-workspace--optional-empty",
+      "brief-workspace--paper-copied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--started",
+      "brief-workspace--working"
+    ],
+    "brief.stage.showDetails": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--working"
+    ],
+    "brief.status.clear": [
+      "app-screens--confirmed-all",
+      "brief-questpath--ready",
+      "brief-workspace--add-item",
+      "brief-workspace--copied",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--empty",
+      "brief-workspace--optional-empty",
+      "brief-workspace--paper-copied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--started"
+    ],
+    "brief.status.empty": [
+      "brief-workspace--add-item",
+      "brief-workspace--empty",
+      "brief-workspace--started"
+    ],
+    "brief.status.fork": [
+      "app-screens--confirmed",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-questpath--working",
+      "brief-workspace--acceptance",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--request-on-item",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--working"
+    ],
+    "brief.status.review": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-questpath--working",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--constraints",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--item-detail",
+      "brief-workspace--request-replied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--review-stage",
+      "brief-workspace--started",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working"
+    ],
+    "brief.workspace.acceptRecommended": [
+      "app-screens--confirmed",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--working"
+    ],
+    "brief.workspace.editTitle": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--add-item",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied",
+      "brief-workspace--copied-review",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--empty",
+      "brief-workspace--paper-copied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--started",
+      "brief-workspace--working"
+    ],
+    "brief.workspace.editTitleLabel": ["brief-workspace--edit-title"],
+    "brief.workspace.hideDraft": [
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--paper-copied"
+    ],
+    "brief.workspace.showDraft": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--add-item",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied",
+      "brief-workspace--copied-review",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--empty",
+      "brief-workspace--paper-copied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--started",
+      "brief-workspace--working"
+    ],
+    "brief.workspace.undo": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--add-item",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied",
+      "brief-workspace--copied-review",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--empty",
+      "brief-workspace--paper-copied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--started",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working"
+    ],
+    "brief.workspace.undoTitle": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-workspace--add-item",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied",
+      "brief-workspace--copied-review",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--empty",
+      "brief-workspace--paper-copied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--started",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working"
+    ],
+    "common.edit.cancel": [
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--request-on-item",
+      "preferences-notes--editing"
+    ],
+    "common.edit.save": [
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "preferences-notes--editing"
+    ],
+    "common.mascot.happy": [
+      "brief-questpath--ready",
+      "brief-workspace--copied",
+      "brief-workspace--copy-failed",
+      "brief-workspace--done",
+      "brief-workspace--draft-open",
+      "brief-workspace--paper-copied"
+    ],
+    "common.mascot.idle": [
+      "app-screens--brief-failed",
+      "app-screens--not-found",
+      "app-screens--notes-failed",
+      "app-screens--offline",
+      "app-screens--shell-welcome",
+      "app-screens--welcome",
+      "app-screens--welcome-copied",
+      "app-screens--welcome-copy-failed",
+      "app-screens--welcome-with-details",
+      "app-screens--welcome-with-task",
+      "brief-workspace--add-item",
+      "brief-workspace--empty"
+    ],
+    "common.mascot.listening": [
+      "app-screens--confirmed-all",
+      "brief-workspace--copied-review",
+      "brief-workspace--review",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--started"
+    ],
+    "common.mascot.thinking": [
+      "app-screens--confirmed",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "brief-questpath--working",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--working"
+    ],
+    "common.notice.close": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--offline-save",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell-duplicate",
+      "design-primitives--save-failed"
+    ],
+    "common.origin.ai": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "app-screens--shell-notes",
+      "brief-decisioncard--changing",
+      "brief-decisioncard--decided-by-ai",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--constraints",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--item-detail",
+      "brief-workspace--request-on-item",
+      "brief-workspace--request-replied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--review-stage",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working",
+      "design-primitives--origins",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "common.origin.me": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "app-screens--shell-notes",
+      "brief-decisioncard--changing-locks-another",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--paper-copied",
+      "brief-workspace--request-on-item",
+      "brief-workspace--request-replied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review-stage",
+      "brief-workspace--working",
+      "design-primitives--origins",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "common.origin.unconfirmed": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "app-screens--shell-notes",
+      "brief-decisioncard--changing",
+      "brief-decisioncard--decided-by-ai",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--constraints",
+      "brief-workspace--copied-review",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--detail-empty",
+      "brief-workspace--details-all",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--item-detail",
+      "brief-workspace--request-on-item",
+      "brief-workspace--request-replied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--review-stage",
+      "brief-workspace--undo-near-items",
+      "brief-workspace--working",
+      "design-primitives--origins",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "common.origin.written": [
+      "app-screens--confirmed",
+      "app-screens--confirmed-all",
+      "app-screens--disconnected",
+      "app-screens--offline-save",
+      "app-screens--read-failed",
+      "app-screens--removed",
+      "app-screens--save-rejected",
+      "app-screens--shell",
+      "app-screens--shell-duplicate",
+      "app-screens--shell-notes",
+      "brief-decisioncard--changing-locks-another",
+      "brief-workspace--blocked-delivery",
+      "brief-workspace--cross-section-decision",
+      "brief-workspace--draft-open",
+      "brief-workspace--draft-toggle",
+      "brief-workspace--edit-item",
+      "brief-workspace--edit-title",
+      "brief-workspace--paper-copied",
+      "brief-workspace--request-on-item",
+      "brief-workspace--request-replied",
+      "brief-workspace--requests",
+      "brief-workspace--requests-copied",
+      "brief-workspace--review-in-delivery",
+      "brief-workspace--review-stage",
+      "brief-workspace--working",
+      "design-primitives--origins",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.add": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--empty",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.children": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.childrenPending": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.confirm": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.confirmLabel": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.defaultTopic": ["preferences-notes--add-without-topic"],
+    "preferences.notes.edit": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.editAction": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.editLabel": ["preferences-notes--editing"],
+    "preferences.notes.emptyHint": ["preferences-notes--empty"],
+    "preferences.notes.emptyTitle": ["preferences-notes--empty"],
+    "preferences.notes.evidence": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.evidenceLabel": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.expand": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.lead": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--empty",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.manualEvidence": ["preferences-notes--add-without-topic"],
+    "preferences.notes.pending": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.restore": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.restoreLabel": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.retire": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.retired": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.retireLabel": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.showAll": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.sources": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.statementLabel": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--empty",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.statementPlaceholder": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--empty",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.title": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--empty",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.topicLabel": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--empty",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.topicPlaceholder": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--empty",
+      "preferences-notes--many-notes",
+      "preferences-notes--one-note",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.ungroup": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ],
+    "preferences.notes.ungroupLabel": [
+      "app-screens--shell-notes",
+      "preferences-notes--add-without-topic",
+      "preferences-notes--editing",
+      "preferences-notes--many-notes",
+      "preferences-notes--pending-only",
+      "preferences-notes--principle-toggle",
+      "preferences-notes--with-notes"
+    ]
+  },
+  "stories": {
+    "app-briefdrawer--filter-and-duplicate": {
+      "title": "App/BriefDrawer",
+      "name": "Filter And Duplicate"
+    },
+    "app-briefdrawer--many-briefs": {
+      "title": "App/BriefDrawer",
+      "name": "Many Briefs"
+    },
+    "app-briefdrawer--mixed": {
+      "title": "App/BriefDrawer",
+      "name": "Mixed"
+    },
+    "app-briefdrawer--nothing-to-analyze": {
+      "title": "App/BriefDrawer",
+      "name": "Nothing To Analyze"
+    },
+    "app-briefdrawer--one-brief": {
+      "title": "App/BriefDrawer",
+      "name": "One Brief"
+    },
+    "app-briefdrawer--search-many": {
+      "title": "App/BriefDrawer",
+      "name": "Search Many"
+    },
+    "app-navigation--dark": {
+      "title": "App/Navigation",
+      "name": "Dark"
+    },
+    "app-navigation--language-selection": {
+      "title": "App/Navigation",
+      "name": "Language Selection"
+    },
+    "app-navigation--light": {
+      "title": "App/Navigation",
+      "name": "Light"
+    },
+    "app-navigation--many-briefs": {
+      "title": "App/Navigation",
+      "name": "Many Briefs"
+    },
+    "app-navigation--settings": {
+      "title": "App/Navigation",
+      "name": "Settings"
+    },
+    "app-screens--brief-failed": {
+      "title": "App/Screens",
+      "name": "Brief Failed"
+    },
+    "app-screens--confirmed": {
+      "title": "App/Screens",
+      "name": "Confirmed"
+    },
+    "app-screens--confirmed-all": {
+      "title": "App/Screens",
+      "name": "Confirmed All"
+    },
+    "app-screens--disconnected": {
+      "title": "App/Screens",
+      "name": "Disconnected"
+    },
+    "app-screens--loading": {
+      "title": "App/Screens",
+      "name": "Loading"
+    },
+    "app-screens--not-found": {
+      "title": "App/Screens",
+      "name": "Not Found"
+    },
+    "app-screens--notes-failed": {
+      "title": "App/Screens",
+      "name": "Notes Failed"
+    },
+    "app-screens--offline": {
+      "title": "App/Screens",
+      "name": "Offline"
+    },
+    "app-screens--offline-save": {
+      "title": "App/Screens",
+      "name": "Offline Save"
+    },
+    "app-screens--read-failed": {
+      "title": "App/Screens",
+      "name": "Read Failed"
+    },
+    "app-screens--removed": {
+      "title": "App/Screens",
+      "name": "Removed"
+    },
+    "app-screens--save-rejected": {
+      "title": "App/Screens",
+      "name": "Save Rejected"
+    },
+    "app-screens--shell": {
+      "title": "App/Screens",
+      "name": "Shell"
+    },
+    "app-screens--shell-duplicate": {
+      "title": "App/Screens",
+      "name": "Shell Duplicate"
+    },
+    "app-screens--shell-notes": {
+      "title": "App/Screens",
+      "name": "Shell Notes"
+    },
+    "app-screens--shell-welcome": {
+      "title": "App/Screens",
+      "name": "Shell Welcome"
+    },
+    "app-screens--welcome": {
+      "title": "App/Screens",
+      "name": "Welcome"
+    },
+    "app-screens--welcome-copied": {
+      "title": "App/Screens",
+      "name": "Welcome Copied"
+    },
+    "app-screens--welcome-copy-failed": {
+      "title": "App/Screens",
+      "name": "Welcome Copy Failed"
+    },
+    "app-screens--welcome-with-details": {
+      "title": "App/Screens",
+      "name": "Welcome With Details"
+    },
+    "app-screens--welcome-with-task": {
+      "title": "App/Screens",
+      "name": "Welcome With Task"
+    },
+    "brief-decisioncard--changing": {
+      "title": "Brief/DecisionCard",
+      "name": "Changing"
+    },
+    "brief-decisioncard--changing-locks-another": {
+      "title": "Brief/DecisionCard",
+      "name": "Changing Locks Another"
+    },
+    "brief-decisioncard--decided-by-ai": {
+      "title": "Brief/DecisionCard",
+      "name": "Decided By Ai"
+    },
+    "brief-decisioncard--open": {
+      "title": "Brief/DecisionCard",
+      "name": "Open"
+    },
+    "brief-decisioncard--waiting": {
+      "title": "Brief/DecisionCard",
+      "name": "Waiting"
+    },
+    "brief-decisioncard--with-impact": {
+      "title": "Brief/DecisionCard",
+      "name": "With Impact"
+    },
+    "brief-questpath--ready": {
+      "title": "Brief/QuestPath",
+      "name": "Ready"
+    },
+    "brief-questpath--working": {
+      "title": "Brief/QuestPath",
+      "name": "Working"
+    },
+    "brief-workspace--acceptance": {
+      "title": "Brief/Workspace",
+      "name": "Acceptance"
+    },
+    "brief-workspace--add-item": {
+      "title": "Brief/Workspace",
+      "name": "Add Item"
+    },
+    "brief-workspace--blocked-delivery": {
+      "title": "Brief/Workspace",
+      "name": "Blocked Delivery"
+    },
+    "brief-workspace--constraints": {
+      "title": "Brief/Workspace",
+      "name": "Constraints"
+    },
+    "brief-workspace--copied": {
+      "title": "Brief/Workspace",
+      "name": "Copied"
+    },
+    "brief-workspace--copied-review": {
+      "title": "Brief/Workspace",
+      "name": "Copied Review"
+    },
+    "brief-workspace--copy-failed": {
+      "title": "Brief/Workspace",
+      "name": "Copy Failed"
+    },
+    "brief-workspace--cross-section-decision": {
+      "title": "Brief/Workspace",
+      "name": "Cross Section Decision"
+    },
+    "brief-workspace--detail-empty": {
+      "title": "Brief/Workspace",
+      "name": "Detail Empty"
+    },
+    "brief-workspace--details-all": {
+      "title": "Brief/Workspace",
+      "name": "Details All"
+    },
+    "brief-workspace--done": {
+      "title": "Brief/Workspace",
+      "name": "Done"
+    },
+    "brief-workspace--draft-open": {
+      "title": "Brief/Workspace",
+      "name": "Draft Open"
+    },
+    "brief-workspace--draft-toggle": {
+      "title": "Brief/Workspace",
+      "name": "Draft Toggle"
+    },
+    "brief-workspace--edit-item": {
+      "title": "Brief/Workspace",
+      "name": "Edit Item"
+    },
+    "brief-workspace--edit-title": {
+      "title": "Brief/Workspace",
+      "name": "Edit Title"
+    },
+    "brief-workspace--empty": {
+      "title": "Brief/Workspace",
+      "name": "Empty"
+    },
+    "brief-workspace--item-detail": {
+      "title": "Brief/Workspace",
+      "name": "Item Detail"
+    },
+    "brief-workspace--optional-empty": {
+      "title": "Brief/Workspace",
+      "name": "Optional Empty"
+    },
+    "brief-workspace--paper-copied": {
+      "title": "Brief/Workspace",
+      "name": "Paper Copied"
+    },
+    "brief-workspace--request-on-item": {
+      "title": "Brief/Workspace",
+      "name": "Request On Item"
+    },
+    "brief-workspace--request-replied": {
+      "title": "Brief/Workspace",
+      "name": "Request Replied"
+    },
+    "brief-workspace--requests": {
+      "title": "Brief/Workspace",
+      "name": "Requests"
+    },
+    "brief-workspace--requests-copied": {
+      "title": "Brief/Workspace",
+      "name": "Requests Copied"
+    },
+    "brief-workspace--review": {
+      "title": "Brief/Workspace",
+      "name": "Review"
+    },
+    "brief-workspace--review-in-delivery": {
+      "title": "Brief/Workspace",
+      "name": "Review In Delivery"
+    },
+    "brief-workspace--review-stage": {
+      "title": "Brief/Workspace",
+      "name": "Review Stage"
+    },
+    "brief-workspace--started": {
+      "title": "Brief/Workspace",
+      "name": "Started"
+    },
+    "brief-workspace--undo-near-items": {
+      "title": "Brief/Workspace",
+      "name": "Undo Near Items"
+    },
+    "brief-workspace--working": {
+      "title": "Brief/Workspace",
+      "name": "Working"
+    },
+    "design-primitives--bubble": {
+      "title": "Design/Primitives",
+      "name": "Bubble"
+    },
+    "design-primitives--editing": {
+      "title": "Design/Primitives",
+      "name": "Editing"
+    },
+    "design-primitives--origins": {
+      "title": "Design/Primitives",
+      "name": "Origins"
+    },
+    "design-primitives--save-failed": {
+      "title": "Design/Primitives",
+      "name": "Save Failed"
+    },
+    "preferences-notes--add-without-topic": {
+      "title": "Preferences/Notes",
+      "name": "Add Without Topic"
+    },
+    "preferences-notes--editing": {
+      "title": "Preferences/Notes",
+      "name": "Editing"
+    },
+    "preferences-notes--empty": {
+      "title": "Preferences/Notes",
+      "name": "Empty"
+    },
+    "preferences-notes--many-notes": {
+      "title": "Preferences/Notes",
+      "name": "Many Notes"
+    },
+    "preferences-notes--one-note": {
+      "title": "Preferences/Notes",
+      "name": "One Note"
+    },
+    "preferences-notes--pending-only": {
+      "title": "Preferences/Notes",
+      "name": "Pending Only"
+    },
+    "preferences-notes--principle-toggle": {
+      "title": "Preferences/Notes",
+      "name": "Principle Toggle"
+    },
+    "preferences-notes--with-notes": {
+      "title": "Preferences/Notes",
+      "name": "With Notes"
+    }
+  },
+  "examples": {
+    "app.drawer.copyTitle": [
+      {
+        "story": "app-screens--shell-duplicate",
+        "args": {
+          "ko": ["HTML 갤러리 제작"],
+          "en": ["HTML 갤러리 제작"]
+        },
+        "text": {
+          "ko": "HTML 갤러리 제작 (사본)",
+          "en": "HTML 갤러리 제작 (copy)"
+        }
+      }
+    ],
+    "app.drawer.duplicateLabel": [
+      {
+        "story": "app-briefdrawer--mixed",
+        "args": {
+          "ko": ["HTML 갤러리 제작"],
+          "en": ["HTML 갤러리 제작"]
+        },
+        "text": {
+          "ko": "“HTML 갤러리 제작” 복제해서 새로 시작",
+          "en": "Duplicate “HTML 갤러리 제작” to start fresh"
+        }
+      },
+      {
+        "story": "app-briefdrawer--mixed",
+        "args": {
+          "ko": ["Gallery v2"],
+          "en": ["Gallery v2"]
+        },
+        "text": {
+          "ko": "“Gallery v2” 복제해서 새로 시작",
+          "en": "Duplicate “Gallery v2” to start fresh"
+        }
+      },
+      {
+        "story": "app-briefdrawer--mixed",
+        "args": {
+          "ko": ["Gallery v3"],
+          "en": ["Gallery v3"]
+        },
+        "text": {
+          "ko": "“Gallery v3” 복제해서 새로 시작",
+          "en": "Duplicate “Gallery v3” to start fresh"
+        }
+      },
+      {
+        "story": "app-briefdrawer--mixed",
+        "args": {
+          "ko": ["Landing page"],
+          "en": ["Landing page"]
+        },
+        "text": {
+          "ko": "“Landing page” 복제해서 새로 시작",
+          "en": "Duplicate “Landing page” to start fresh"
+        }
+      }
+    ],
+    "app.drawer.from": [
+      {
+        "story": "app-briefdrawer--mixed",
+        "args": {
+          "ko": ["HTML 갤러리 제작"],
+          "en": ["HTML 갤러리 제작"]
+        },
+        "text": {
+          "ko": "원본: HTML 갤러리 제작",
+          "en": "From: HTML 갤러리 제작"
+        }
+      },
+      {
+        "story": "app-briefdrawer--many-briefs",
+        "args": {
+          "ko": ["Brief 1"],
+          "en": ["Brief 1"]
+        },
+        "text": {
+          "ko": "원본: Brief 1",
+          "en": "From: Brief 1"
+        }
+      }
+    ],
+    "app.drawer.learning.learned": [
+      {
+        "story": "app-briefdrawer--mixed",
+        "args": {
+          "ko": [3],
+          "en": [3]
+        },
+        "text": {
+          "ko": "배운 것 3",
+          "en": "Learned 3"
+        }
+      },
+      {
+        "story": "app-briefdrawer--many-briefs",
+        "args": {
+          "ko": [4],
+          "en": [4]
+        },
+        "text": {
+          "ko": "배운 것 4",
+          "en": "Learned 4"
+        }
+      },
+      {
+        "story": "app-screens--shell-duplicate",
+        "args": {
+          "ko": [2],
+          "en": [2]
+        },
+        "text": {
+          "ko": "배운 것 2",
+          "en": "Learned 2"
+        }
+      }
+    ],
+    "app.notice.duplicated": [
+      {
+        "story": "app-screens--shell-duplicate",
+        "args": {
+          "ko": ["HTML 갤러리 제작 (사본)"],
+          "en": ["HTML 갤러리 제작 (copy)"]
+        },
+        "text": {
+          "ko": "“HTML 갤러리 제작 (사본)”(으)로 복제했어요. 항목은 다시 확인해 주세요.",
+          "en": "Duplicated as “HTML 갤러리 제작 (copy)”. Please review its items."
+        }
+      }
+    ],
+    "app.notice.saveFailed": [
+      {
+        "story": "app-screens--save-rejected",
+        "args": {
+          "ko": ["지시서를 읽을 수 없어요"],
+          "en": ["Couldn’t load this brief"]
+        },
+        "text": {
+          "ko": "저장하지 못했어요 (지시서를 읽을 수 없어요).",
+          "en": "Couldn’t save (Couldn’t load this brief)."
+        }
+      }
+    ],
+    "app.screen.askAiWith": [
+      {
+        "story": "app-screens--welcome",
+        "args": {
+          "ko": ["", []],
+          "en": ["", []]
+        },
+        "text": {
+          "ko": "LTM으로 과업지시서 써보자",
+          "en": "Let’s write a task brief with LTM"
+        }
+      },
+      {
+        "story": "app-screens--welcome-with-task",
+        "args": {
+          "ko": ["s", []],
+          "en": ["s", []]
+        },
+        "text": {
+          "ko": "LTM으로 과업지시서 써보자: s",
+          "en": "Let’s write a task brief with LTM: s"
+        }
+      },
+      {
+        "story": "app-screens--welcome-with-task",
+        "args": {
+          "ko": ["so", []],
+          "en": ["so", []]
+        },
+        "text": {
+          "ko": "LTM으로 과업지시서 써보자: so",
+          "en": "Let’s write a task brief with LTM: so"
+        }
+      },
+      {
+        "story": "app-screens--welcome-with-task",
+        "args": {
+          "ko": ["soc", []],
+          "en": ["soc", []]
+        },
+        "text": {
+          "ko": "LTM으로 과업지시서 써보자: soc",
+          "en": "Let’s write a task brief with LTM: soc"
+        }
+      }
+    ],
+    "app.shell.documentTitle": [
+      {
+        "story": "app-screens--shell",
+        "args": {
+          "ko": ["HTML 갤러리 제작"],
+          "en": ["HTML 갤러리 제작"]
+        },
+        "text": {
+          "ko": "HTML 갤러리 제작 · Listen to Me",
+          "en": "HTML 갤러리 제작 · Listen to Me"
+        }
+      },
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": ["취향 노트"],
+          "en": ["Preference notes"]
+        },
+        "text": {
+          "ko": "취향 노트 · Listen to Me",
+          "en": "Preference notes · Listen to Me"
+        }
+      }
+    ],
+    "app.shell.readFailed": [
+      {
+        "story": "app-screens--read-failed",
+        "args": {
+          "ko": ["지시서를 읽을 수 없어요"],
+          "en": ["Couldn’t load this brief"]
+        },
+        "text": {
+          "ko": "최신 상태를 읽지 못했어요: 지시서를 읽을 수 없어요",
+          "en": "Couldn’t load latest state: Couldn’t load this brief"
+        }
+      }
+    ],
+    "brief.change": [
+      {
+        "story": "brief-workspace--draft-toggle",
+        "args": {
+          "ko": [
+            {
+              "kind": "ask",
+              "question": "확대는 어떻게 열까요?"
+            }
+          ],
+          "en": [
+            {
+              "kind": "ask",
+              "question": "확대는 어떻게 열까요?"
+            }
+          ]
+        },
+        "text": {
+          "ko": "갈림길 \"확대는 어떻게 열까요?\"",
+          "en": "Added decision: 확대는 어떻게 열까요?"
+        }
+      },
+      {
+        "story": "brief-workspace--draft-toggle",
+        "args": {
+          "ko": [
+            {
+              "kind": "ask",
+              "question": "확대 보기를 넣을까요?"
+            }
+          ],
+          "en": [
+            {
+              "kind": "ask",
+              "question": "확대 보기를 넣을까요?"
+            }
+          ]
+        },
+        "text": {
+          "ko": "갈림길 \"확대 보기를 넣을까요?\"",
+          "en": "Added decision: 확대 보기를 넣을까요?"
+        }
+      },
+      {
+        "story": "brief-workspace--draft-toggle",
+        "args": {
+          "ko": [
+            {
+              "kind": "ask",
+              "question": "어느 정도면 \"다 됐다\"고 볼까요?"
+            }
+          ],
+          "en": [
+            {
+              "kind": "ask",
+              "question": "어느 정도면 \"다 됐다\"고 볼까요?"
+            }
+          ]
+        },
+        "text": {
+          "ko": "갈림길 \"어느 정도면 \"다 됐다\"고 볼까요?\"",
+          "en": "Added decision: 어느 정도면 \"다 됐다\"고 볼까요?"
+        }
+      },
+      {
+        "story": "brief-workspace--draft-toggle",
+        "args": {
+          "ko": [
+            {
+              "kind": "decideRecommended",
+              "question": "이미지를 어디에 둘까요?"
+            }
+          ],
+          "en": [
+            {
+              "kind": "decideRecommended",
+              "question": "이미지를 어디에 둘까요?"
+            }
+          ]
+        },
+        "text": {
+          "ko": "\"이미지를 어디에 둘까요?\" 추천대로 정함",
+          "en": "Accepted recommendation: 이미지를 어디에 둘까요?"
+        }
+      }
+    ],
+    "brief.decision.changeLabel": [
+      {
+        "story": "app-screens--confirmed-all",
+        "args": {
+          "ko": ["확대 보기를 넣을까요?"],
+          "en": ["확대 보기를 넣을까요?"]
+        },
+        "text": {
+          "ko": "“확대 보기를 넣을까요?” 바꾸기",
+          "en": "Change decision for “확대 보기를 넣을까요?”"
+        }
+      },
+      {
+        "story": "app-screens--confirmed-all",
+        "args": {
+          "ko": ["확대는 어떻게 열까요?"],
+          "en": ["확대는 어떻게 열까요?"]
+        },
+        "text": {
+          "ko": "“확대는 어떻게 열까요?” 바꾸기",
+          "en": "Change decision for “확대는 어떻게 열까요?”"
+        }
+      },
+      {
+        "story": "brief-workspace--constraints",
+        "args": {
+          "ko": ["이미지를 어디에 둘까요?"],
+          "en": ["이미지를 어디에 둘까요?"]
+        },
+        "text": {
+          "ko": "“이미지를 어디에 둘까요?” 바꾸기",
+          "en": "Change decision for “이미지를 어디에 둘까요?”"
+        }
+      }
+    ],
+    "brief.decision.confirmLabel": [
+      {
+        "story": "brief-workspace--constraints",
+        "args": {
+          "ko": ["이미지를 어디에 둘까요?", "정적 호스팅"],
+          "en": ["이미지를 어디에 둘까요?", "정적 호스팅"]
+        },
+        "text": {
+          "ko": "“이미지를 어디에 둘까요?” 정적 호스팅(으)로 확인",
+          "en": "Confirm “정적 호스팅” for “이미지를 어디에 둘까요?”"
+        }
+      },
+      {
+        "story": "brief-workspace--cross-section-decision",
+        "args": {
+          "ko": ["확대 보기를 넣을까요?", "다음 버전"],
+          "en": ["확대 보기를 넣을까요?", "다음 버전"]
+        },
+        "text": {
+          "ko": "“확대 보기를 넣을까요?” 다음 버전(으)로 확인",
+          "en": "Confirm “다음 버전” for “확대 보기를 넣을까요?”"
+        }
+      }
+    ],
+    "brief.decision.sleeps": [
+      {
+        "story": "brief-decisioncard--changing-locks-another",
+        "args": {
+          "ko": ["확대는 어떻게 열까요?", "작품 누르기"],
+          "en": ["확대는 어떻게 열까요?", "작품 누르기"]
+        },
+        "text": {
+          "ko": "‘확대는 어떻게 열까요?’이(가) 잠기고 정한 ‘작품 누르기’은(는) 빠져요(다시 열면 돌아와요)",
+          "en": "“확대는 어떻게 열까요?” locks and your “작품 누르기” is set aside (it returns if reopened)"
+        }
+      }
+    ],
+    "brief.decision.waiting": [
+      {
+        "story": "app-screens--shell",
+        "args": {
+          "ko": ["확대 보기를 넣을까요?", ["넣기"]],
+          "en": ["확대 보기를 넣을까요?", ["넣기"]]
+        },
+        "text": {
+          "ko": "“확대 보기를 넣을까요?”에서 ‘넣기’을(를) 고르면 정해요",
+          "en": "Asked once you pick “넣기” in “확대 보기를 넣을까요?”"
+        }
+      }
+    ],
+    "brief.decision.wakes": [
+      {
+        "story": "app-screens--shell",
+        "args": {
+          "ko": ["확대는 어떻게 열까요?"],
+          "en": ["확대는 어떻게 열까요?"]
+        },
+        "text": {
+          "ko": "‘확대는 어떻게 열까요?’을(를) 새로 정해요",
+          "en": "“확대는 어떻게 열까요?” opens to decide"
+        }
+      }
+    ],
+    "brief.delivery.blocked": [
+      {
+        "story": "brief-workspace--blocked-delivery",
+        "args": {
+          "ko": [2],
+          "en": [2]
+        },
+        "text": {
+          "ko": "전달 전 막힌 곳 2개",
+          "en": "2 issues blocking delivery"
+        }
+      }
+    ],
+    "brief.delivery.exportCommand": [
+      {
+        "story": "app-screens--confirmed-all",
+        "args": {
+          "ko": ["gallery"],
+          "en": ["gallery"]
+        },
+        "text": {
+          "ko": "ltm export gallery",
+          "en": "ltm export gallery"
+        }
+      },
+      {
+        "story": "brief-workspace--copied-review",
+        "args": {
+          "ko": ["gallery-copy"],
+          "en": ["gallery-copy"]
+        },
+        "text": {
+          "ko": "ltm export gallery-copy",
+          "en": "ltm export gallery-copy"
+        }
+      }
+    ],
+    "brief.delivery.previewMore": [
+      {
+        "story": "app-screens--confirmed-all",
+        "args": {
+          "ko": [21],
+          "en": [21]
+        },
+        "text": {
+          "ko": "전체 보기 · 21줄 더",
+          "en": "See all · 21 more lines"
+        }
+      },
+      {
+        "story": "brief-workspace--done",
+        "args": {
+          "ko": [18],
+          "en": [18]
+        },
+        "text": {
+          "ko": "전체 보기 · 18줄 더",
+          "en": "See all · 18 more lines"
+        }
+      },
+      {
+        "story": "brief-workspace--blocked-delivery",
+        "args": {
+          "ko": [17],
+          "en": [17]
+        },
+        "text": {
+          "ko": "전체 보기 · 17줄 더",
+          "en": "See all · 17 more lines"
+        }
+      }
+    ],
+    "brief.delivery.reviewCount": [
+      {
+        "story": "app-screens--confirmed-all",
+        "args": {
+          "ko": [1],
+          "en": [1]
+        },
+        "text": {
+          "ko": "확인 전 1",
+          "en": "1 to review"
+        }
+      },
+      {
+        "story": "app-screens--confirmed-all",
+        "args": {
+          "ko": [2],
+          "en": [2]
+        },
+        "text": {
+          "ko": "확인 전 2",
+          "en": "2 to review"
+        }
+      },
+      {
+        "story": "brief-workspace--copied-review",
+        "args": {
+          "ko": [5],
+          "en": [5]
+        },
+        "text": {
+          "ko": "확인 전 5",
+          "en": "5 to review"
+        }
+      }
+    ],
+    "brief.issue": [
+      {
+        "story": "brief-workspace--blocked-delivery",
+        "args": {
+          "ko": [
+            {
+              "kind": "openDecision",
+              "question": "확대 보기를 넣을까요?"
+            },
+            "포함 범위"
+          ],
+          "en": [
+            {
+              "kind": "openDecision",
+              "question": "확대 보기를 넣을까요?"
+            },
+            "In scope"
+          ]
+        },
+        "text": {
+          "ko": "정할 것: 확대 보기를 넣을까요?",
+          "en": "Decision needed: 확대 보기를 넣을까요?"
+        }
+      },
+      {
+        "story": "brief-workspace--blocked-delivery",
+        "args": {
+          "ko": [
+            {
+              "kind": "openDecision",
+              "question": "어느 정도면 \"다 됐다\"고 볼까요?"
+            },
+            "완료 기준"
+          ],
+          "en": [
+            {
+              "kind": "openDecision",
+              "question": "어느 정도면 \"다 됐다\"고 볼까요?"
+            },
+            "Acceptance criteria"
+          ]
+        },
+        "text": {
+          "ko": "정할 것: 어느 정도면 \"다 됐다\"고 볼까요?",
+          "en": "Decision needed: 어느 정도면 \"다 됐다\"고 볼까요?"
+        }
+      }
+    ],
+    "brief.item.confirmLabel": [
+      {
+        "story": "app-screens--shell",
+        "args": {
+          "ko": ["반응형 격자 레이아웃"],
+          "en": ["반응형 격자 레이아웃"]
+        },
+        "text": {
+          "ko": "“반응형 격자 레이아웃” 확인",
+          "en": "Confirm “반응형 격자 레이아웃”"
+        }
+      },
+      {
+        "story": "app-screens--confirmed-all",
+        "args": {
+          "ko": ["검색 결과를 최신순으로 정렬한다"],
+          "en": ["검색 결과를 최신순으로 정렬한다"]
+        },
+        "text": {
+          "ko": "“검색 결과를 최신순으로 정렬한다” 확인",
+          "en": "Confirm “검색 결과를 최신순으로 정렬한다”"
+        }
+      },
+      {
+        "story": "brief-workspace--review-in-delivery",
+        "args": {
+          "ko": ["작품 200점을 빠르게 훑어보는 개인 갤러리"],
+          "en": ["작품 200점을 빠르게 훑어보는 개인 갤러리"]
+        },
+        "text": {
+          "ko": "“작품 200점을 빠르게 훑어보는 개인 갤러리” 확인",
+          "en": "Confirm “작품 200점을 빠르게 훑어보는 개인 갤러리”"
+        }
+      },
+      {
+        "story": "brief-workspace--copied-review",
+        "args": {
+          "ko": ["키보드로 작품 넘기기"],
+          "en": ["키보드로 작품 넘기기"]
+        },
+        "text": {
+          "ko": "“키보드로 작품 넘기기” 확인",
+          "en": "Confirm “키보드로 작품 넘기기”"
+        }
+      }
+    ],
+    "brief.item.editAction": [
+      {
+        "story": "app-screens--shell",
+        "args": {
+          "ko": ["반응형 격자 레이아웃"],
+          "en": ["반응형 격자 레이아웃"]
+        },
+        "text": {
+          "ko": "“반응형 격자 레이아웃” 고치기",
+          "en": "Edit “반응형 격자 레이아웃”"
+        }
+      },
+      {
+        "story": "app-screens--shell",
+        "args": {
+          "ko": ["키보드로 작품 넘기기"],
+          "en": ["키보드로 작품 넘기기"]
+        },
+        "text": {
+          "ko": "“키보드로 작품 넘기기” 고치기",
+          "en": "Edit “키보드로 작품 넘기기”"
+        }
+      },
+      {
+        "story": "app-screens--confirmed-all",
+        "args": {
+          "ko": ["검색 결과를 최신순으로 정렬한다"],
+          "en": ["검색 결과를 최신순으로 정렬한다"]
+        },
+        "text": {
+          "ko": "“검색 결과를 최신순으로 정렬한다” 고치기",
+          "en": "Edit “검색 결과를 최신순으로 정렬한다”"
+        }
+      },
+      {
+        "story": "brief-workspace--review-in-delivery",
+        "args": {
+          "ko": ["작품 200점을 빠르게 훑어보는 개인 갤러리"],
+          "en": ["작품 200점을 빠르게 훑어보는 개인 갤러리"]
+        },
+        "text": {
+          "ko": "“작품 200점을 빠르게 훑어보는 개인 갤러리” 고치기",
+          "en": "Edit “작품 200점을 빠르게 훑어보는 개인 갤러리”"
+        }
+      }
+    ],
+    "brief.item.removeLabel": [
+      {
+        "story": "app-screens--shell",
+        "args": {
+          "ko": ["반응형 격자 레이아웃"],
+          "en": ["반응형 격자 레이아웃"]
+        },
+        "text": {
+          "ko": "“반응형 격자 레이아웃” 빼기",
+          "en": "Remove “반응형 격자 레이아웃”"
+        }
+      },
+      {
+        "story": "app-screens--shell",
+        "args": {
+          "ko": ["키보드로 작품 넘기기"],
+          "en": ["키보드로 작품 넘기기"]
+        },
+        "text": {
+          "ko": "“키보드로 작품 넘기기” 빼기",
+          "en": "Remove “키보드로 작품 넘기기”"
+        }
+      },
+      {
+        "story": "app-screens--confirmed-all",
+        "args": {
+          "ko": ["검색 결과를 최신순으로 정렬한다"],
+          "en": ["검색 결과를 최신순으로 정렬한다"]
+        },
+        "text": {
+          "ko": "“검색 결과를 최신순으로 정렬한다” 빼기",
+          "en": "Remove “검색 결과를 최신순으로 정렬한다”"
+        }
+      },
+      {
+        "story": "brief-workspace--review-in-delivery",
+        "args": {
+          "ko": ["작품 200점을 빠르게 훑어보는 개인 갤러리"],
+          "en": ["작품 200점을 빠르게 훑어보는 개인 갤러리"]
+        },
+        "text": {
+          "ko": "“작품 200점을 빠르게 훑어보는 개인 갤러리” 빼기",
+          "en": "Remove “작품 200점을 빠르게 훑어보는 개인 갤러리”"
+        }
+      }
+    ],
+    "brief.narration.empty": [
+      {
+        "story": "brief-workspace--started",
+        "args": {
+          "ko": ["포함 범위"],
+          "en": ["In scope"]
+        },
+        "text": {
+          "ko": "“포함 범위” 단계가 비어 있어요. AI에게 맡기거나 직접 적어 주세요.",
+          "en": "The “In scope” stage is empty. Ask your AI to fill it in, or write it yourself."
+        }
+      }
+    ],
+    "brief.narration.fork": [
+      {
+        "story": "app-screens--shell",
+        "args": {
+          "ko": ["포함 범위", 1],
+          "en": ["In scope", 1]
+        },
+        "text": {
+          "ko": "“포함 범위”에서 정할 게 1개 있어요.",
+          "en": "1 decision to make in “In scope”."
+        }
+      }
+    ],
+    "brief.narration.review": [
+      {
+        "story": "app-screens--confirmed-all",
+        "args": {
+          "ko": [5],
+          "en": [5]
+        },
+        "text": {
+          "ko": "전달할 수 있어요. 확인 전인 5개는 한 번 봐 주세요.",
+          "en": "Ready to deliver. Take a look at the 5 unconfirmed items first."
+        }
+      },
+      {
+        "story": "brief-workspace--copied-review",
+        "args": {
+          "ko": [9],
+          "en": [9]
+        },
+        "text": {
+          "ko": "전달할 수 있어요. 확인 전인 9개는 한 번 봐 주세요.",
+          "en": "Ready to deliver. Take a look at the 9 unconfirmed items first."
+        }
+      }
+    ],
+    "brief.path.stageLabel": [
+      {
+        "story": "app-screens--shell",
+        "args": {
+          "ko": [1, "목적", "확인 전 있음", 1],
+          "en": [1, "Purpose", "Unconfirmed", 1]
+        },
+        "text": {
+          "ko": "1단계 목적: 확인 전 있음, 확인 전 1개",
+          "en": "Stage 1, Purpose: Unconfirmed, 1 unconfirmed item"
+        }
+      },
+      {
+        "story": "app-screens--shell",
+        "args": {
+          "ko": [2, "포함 범위", "정할 것 있음", 1],
+          "en": [2, "In scope", "Decision needed", 1]
+        },
+        "text": {
+          "ko": "2단계 포함 범위: 정할 것 있음, 확인 전 1개",
+          "en": "Stage 2, In scope: Decision needed, 1 unconfirmed item"
+        }
+      },
+      {
+        "story": "app-screens--shell",
+        "args": {
+          "ko": [3, "제외 범위", "확인 전 있음", 1],
+          "en": [3, "Out of scope", "Unconfirmed", 1]
+        },
+        "text": {
+          "ko": "3단계 제외 범위: 확인 전 있음, 확인 전 1개",
+          "en": "Stage 3, Out of scope: Unconfirmed, 1 unconfirmed item"
+        }
+      },
+      {
+        "story": "app-screens--shell",
+        "args": {
+          "ko": [4, "제약", "확인 전 있음", 1],
+          "en": [4, "Constraints", "Unconfirmed", 1]
+        },
+        "text": {
+          "ko": "4단계 제약: 확인 전 있음, 확인 전 1개",
+          "en": "Stage 4, Constraints: Unconfirmed, 1 unconfirmed item"
+        }
+      }
+    ],
+    "brief.request.askLabel": [
+      {
+        "story": "app-screens--shell",
+        "args": {
+          "ko": ["확대 보기를 넣을까요?"],
+          "en": ["확대 보기를 넣을까요?"]
+        },
+        "text": {
+          "ko": "“확대 보기를 넣을까요?”에 대해 AI에게 묻거나 고쳐 달라기",
+          "en": "Ask your AI about “확대 보기를 넣을까요?” or to change it"
+        }
+      },
+      {
+        "story": "app-screens--shell",
+        "args": {
+          "ko": ["확대는 어떻게 열까요?"],
+          "en": ["확대는 어떻게 열까요?"]
+        },
+        "text": {
+          "ko": "“확대는 어떻게 열까요?”에 대해 AI에게 묻거나 고쳐 달라기",
+          "en": "Ask your AI about “확대는 어떻게 열까요?” or to change it"
+        }
+      },
+      {
+        "story": "app-screens--shell",
+        "args": {
+          "ko": ["반응형 격자 레이아웃"],
+          "en": ["반응형 격자 레이아웃"]
+        },
+        "text": {
+          "ko": "“반응형 격자 레이아웃”에 대해 AI에게 묻거나 고쳐 달라기",
+          "en": "Ask your AI about “반응형 격자 레이아웃” or to change it"
+        }
+      },
+      {
+        "story": "app-screens--shell",
+        "args": {
+          "ko": ["키보드로 작품 넘기기"],
+          "en": ["키보드로 작품 넘기기"]
+        },
+        "text": {
+          "ko": "“키보드로 작품 넘기기”에 대해 AI에게 묻거나 고쳐 달라기",
+          "en": "Ask your AI about “키보드로 작품 넘기기” or to change it"
+        }
+      }
+    ],
+    "brief.request.message": [
+      {
+        "story": "brief-workspace--requests",
+        "args": {
+          "ko": ["HTML 갤러리 제작", "gallery", 2],
+          "en": ["HTML 갤러리 제작", "gallery", 2]
+        },
+        "text": {
+          "ko": "LTM 지시서 “HTML 갤러리 제작”(gallery)에 남긴 요청 2개를 처리해 줘.",
+          "en": "Handle the 2 requests I left on LTM brief “HTML 갤러리 제작” (gallery)."
+        }
+      }
+    ],
+    "brief.request.pending": [
+      {
+        "story": "brief-workspace--requests",
+        "args": {
+          "ko": [2],
+          "en": [2]
+        },
+        "text": {
+          "ko": "AI에게 보낼 요청 2개",
+          "en": "2 requests for your AI"
+        }
+      }
+    ],
+    "brief.request.uncopied": [
+      {
+        "story": "brief-workspace--requests",
+        "args": {
+          "ko": [1],
+          "en": [1]
+        },
+        "text": {
+          "ko": "복사 전 요청 1개",
+          "en": "1 not copied yet"
+        }
+      }
+    ],
+    "brief.request.waiting": [
+      {
+        "story": "brief-workspace--requests",
+        "args": {
+          "ko": [1],
+          "en": [1]
+        },
+        "text": {
+          "ko": "붙여 넣으면 AI가 맡아요 · 기다리는 요청 1개",
+          "en": "Paste it and your AI picks it up · 1 waiting"
+        }
+      }
+    ],
+    "brief.request.working": [
+      {
+        "story": "brief-workspace--requests",
+        "args": {
+          "ko": [1],
+          "en": [1]
+        },
+        "text": {
+          "ko": "AI가 처리 중 · 남은 1개",
+          "en": "Your AI is on it · 1 left"
+        }
+      }
+    ],
+    "brief.stage.inputLabel": [
+      {
+        "story": "app-screens--shell",
+        "args": {
+          "ko": ["포함 범위"],
+          "en": ["In scope"]
+        },
+        "text": {
+          "ko": "포함 범위에 직접 적기",
+          "en": "Add an item to In scope"
+        }
+      },
+      {
+        "story": "brief-workspace--empty",
+        "args": {
+          "ko": ["목적"],
+          "en": ["Purpose"]
+        },
+        "text": {
+          "ko": "목적에 직접 적기",
+          "en": "Add an item to Purpose"
+        }
+      },
+      {
+        "story": "brief-workspace--optional-empty",
+        "args": {
+          "ko": ["제외 범위"],
+          "en": ["Out of scope"]
+        },
+        "text": {
+          "ko": "제외 범위에 직접 적기",
+          "en": "Add an item to Out of scope"
+        }
+      },
+      {
+        "story": "brief-workspace--constraints",
+        "args": {
+          "ko": ["제약"],
+          "en": ["Constraints"]
+        },
+        "text": {
+          "ko": "제약에 직접 적기",
+          "en": "Add an item to Constraints"
+        }
+      }
+    ],
+    "brief.stage.reviewHint": [
+      {
+        "story": "app-screens--shell",
+        "args": {
+          "ko": [1],
+          "en": [1]
+        },
+        "text": {
+          "ko": "1개가 확인 전이에요. 맞으면 ♥를 눌러요.",
+          "en": "1 unconfirmed item. Tap ♥ if it looks right."
+        }
+      },
+      {
+        "story": "app-screens--confirmed-all",
+        "args": {
+          "ko": [2],
+          "en": [2]
+        },
+        "text": {
+          "ko": "2개가 확인 전이에요. 맞으면 ♥를 눌러요.",
+          "en": "2 unconfirmed items. Tap ♥ if it looks right."
+        }
+      }
+    ],
+    "brief.workspace.acceptRecommended": [
+      {
+        "story": "app-screens--shell",
+        "args": {
+          "ko": [2],
+          "en": [2]
+        },
+        "text": {
+          "ko": "남은 갈림길 2개 추천대로",
+          "en": "Accept recommended for 2 remaining decisions"
+        }
+      }
+    ],
+    "preferences.notes.children": [
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": [2],
+          "en": [2]
+        },
+        "text": {
+          "ko": "기준 2",
+          "en": "2 preferences"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [4],
+          "en": [4]
+        },
+        "text": {
+          "ko": "기준 4",
+          "en": "4 preferences"
+        }
+      },
+      {
+        "story": "preferences-notes--pending-only",
+        "args": {
+          "ko": [3],
+          "en": [3]
+        },
+        "text": {
+          "ko": "기준 3",
+          "en": "3 preferences"
+        }
+      }
+    ],
+    "preferences.notes.childrenPending": [
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": [2],
+          "en": [2]
+        },
+        "text": {
+          "ko": "확인할 것 2",
+          "en": "2 to confirm"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [3],
+          "en": [3]
+        },
+        "text": {
+          "ko": "확인할 것 3",
+          "en": "3 to confirm"
+        }
+      }
+    ],
+    "preferences.notes.confirmLabel": [
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": ["자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다"],
+          "en": ["자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다"]
+        },
+        "text": {
+          "ko": "“자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다” 맞아요",
+          "en": "Confirm “자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다”"
+        }
+      },
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": ["업계 관행으로 자명한 선택은 묻지 말고 정한 뒤 알린다"],
+          "en": ["업계 관행으로 자명한 선택은 묻지 말고 정한 뒤 알린다"]
+        },
+        "text": {
+          "ko": "“업계 관행으로 자명한 선택은 묻지 말고 정한 뒤 알린다” 맞아요",
+          "en": "Confirm “업계 관행으로 자명한 선택은 묻지 말고 정한 뒤 알린다”"
+        }
+      },
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": ["되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다"],
+          "en": ["되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다"]
+        },
+        "text": {
+          "ko": "“되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다” 맞아요",
+          "en": "Confirm “되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다”"
+        }
+      },
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": ["부드러운 모션이되 프레임 저하는 없어야 한다"],
+          "en": ["부드러운 모션이되 프레임 저하는 없어야 한다"]
+        },
+        "text": {
+          "ko": "“부드러운 모션이되 프레임 저하는 없어야 한다” 맞아요",
+          "en": "Confirm “부드러운 모션이되 프레임 저하는 없어야 한다”"
+        }
+      }
+    ],
+    "preferences.notes.editAction": [
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": ["업계 관행으로 자명한 선택은 묻지 말고 정한 뒤 알린다"],
+          "en": ["업계 관행으로 자명한 선택은 묻지 말고 정한 뒤 알린다"]
+        },
+        "text": {
+          "ko": "“업계 관행으로 자명한 선택은 묻지 말고 정한 뒤 알린다” 고치기",
+          "en": "Edit “업계 관행으로 자명한 선택은 묻지 말고 정한 뒤 알린다”"
+        }
+      },
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": ["되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다"],
+          "en": ["되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다"]
+        },
+        "text": {
+          "ko": "“되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다” 고치기",
+          "en": "Edit “되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다”"
+        }
+      },
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": ["어느 단계에서든 되돌아갈 수 있어야 한다"],
+          "en": ["어느 단계에서든 되돌아갈 수 있어야 한다"]
+        },
+        "text": {
+          "ko": "“어느 단계에서든 되돌아갈 수 있어야 한다” 고치기",
+          "en": "Edit “어느 단계에서든 되돌아갈 수 있어야 한다”"
+        }
+      },
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": ["부드러운 모션이되 프레임 저하는 없어야 한다"],
+          "en": ["부드러운 모션이되 프레임 저하는 없어야 한다"]
+        },
+        "text": {
+          "ko": "“부드러운 모션이되 프레임 저하는 없어야 한다” 고치기",
+          "en": "Edit “부드러운 모션이되 프레임 저하는 없어야 한다”"
+        }
+      }
+    ],
+    "preferences.notes.evidence": [
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": [2],
+          "en": [2]
+        },
+        "text": {
+          "ko": "근거 2",
+          "en": "Evidence: 2"
+        }
+      },
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": [1],
+          "en": [1]
+        },
+        "text": {
+          "ko": "근거 1",
+          "en": "Evidence: 1"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [6],
+          "en": [6]
+        },
+        "text": {
+          "ko": "근거 6",
+          "en": "Evidence: 6"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [5],
+          "en": [5]
+        },
+        "text": {
+          "ko": "근거 5",
+          "en": "Evidence: 5"
+        }
+      }
+    ],
+    "preferences.notes.evidenceLabel": [
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": [3],
+          "en": [3]
+        },
+        "text": {
+          "ko": "근거 3개",
+          "en": "3 pieces of evidence"
+        }
+      },
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": [2],
+          "en": [2]
+        },
+        "text": {
+          "ko": "근거 2개",
+          "en": "2 pieces of evidence"
+        }
+      },
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": [1],
+          "en": [1]
+        },
+        "text": {
+          "ko": "근거 1개",
+          "en": "1 piece of evidence"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [20],
+          "en": [20]
+        },
+        "text": {
+          "ko": "근거 20개",
+          "en": "20 pieces of evidence"
+        }
+      }
+    ],
+    "preferences.notes.expand": [
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": ["자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다"],
+          "en": ["자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다"]
+        },
+        "text": {
+          "ko": "“자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다” 하위 기준 보기",
+          "en": "Show preferences under “자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다”"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [
+            "Principle for decisions: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ],
+          "en": [
+            "Principle for decisions: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ]
+        },
+        "text": {
+          "ko": "“Principle for decisions: with a deliberately long title that has to wrap or truncate gracefully on narrow screens” 하위 기준 보기",
+          "en": "Show preferences under “Principle for decisions: with a deliberately long title that has to wrap or truncate gracefully on narrow screens”"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [
+            "Principle for docs: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ],
+          "en": [
+            "Principle for docs: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ]
+        },
+        "text": {
+          "ko": "“Principle for docs: with a deliberately long title that has to wrap or truncate gracefully on narrow screens” 하위 기준 보기",
+          "en": "Show preferences under “Principle for docs: with a deliberately long title that has to wrap or truncate gracefully on narrow screens”"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [
+            "Principle for motion: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ],
+          "en": [
+            "Principle for motion: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ]
+        },
+        "text": {
+          "ko": "“Principle for motion: with a deliberately long title that has to wrap or truncate gracefully on narrow screens” 하위 기준 보기",
+          "en": "Show preferences under “Principle for motion: with a deliberately long title that has to wrap or truncate gracefully on narrow screens”"
+        }
+      }
+    ],
+    "preferences.notes.pending": [
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": [4],
+          "en": [4]
+        },
+        "text": {
+          "ko": "확인할 취향 4개",
+          "en": "4 preferences to confirm"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [27],
+          "en": [27]
+        },
+        "text": {
+          "ko": "확인할 취향 27개",
+          "en": "27 preferences to confirm"
+        }
+      },
+      {
+        "story": "preferences-notes--one-note",
+        "args": {
+          "ko": [1],
+          "en": [1]
+        },
+        "text": {
+          "ko": "확인할 취향 1개",
+          "en": "1 preference to confirm"
+        }
+      }
+    ],
+    "preferences.notes.restoreLabel": [
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": ["결과물은 작업 흐름과 별개로 다시 볼 수 있어야 한다"],
+          "en": ["결과물은 작업 흐름과 별개로 다시 볼 수 있어야 한다"]
+        },
+        "text": {
+          "ko": "“결과물은 작업 흐름과 별개로 다시 볼 수 있어야 한다” 다시 적용",
+          "en": "Restore “결과물은 작업 흐름과 별개로 다시 볼 수 있어야 한다”"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": ["retired 0"],
+          "en": ["retired 0"]
+        },
+        "text": {
+          "ko": "“retired 0” 다시 적용",
+          "en": "Restore “retired 0”"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": ["retired 1"],
+          "en": ["retired 1"]
+        },
+        "text": {
+          "ko": "“retired 1” 다시 적용",
+          "en": "Restore “retired 1”"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": ["retired 2"],
+          "en": ["retired 2"]
+        },
+        "text": {
+          "ko": "“retired 2” 다시 적용",
+          "en": "Restore “retired 2”"
+        }
+      }
+    ],
+    "preferences.notes.retired": [
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": [1],
+          "en": [1]
+        },
+        "text": {
+          "ko": "내려놓은 기준 1",
+          "en": "1 retired preference"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [6],
+          "en": [6]
+        },
+        "text": {
+          "ko": "내려놓은 기준 6",
+          "en": "6 retired preferences"
+        }
+      }
+    ],
+    "preferences.notes.retireLabel": [
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": ["업계 관행으로 자명한 선택은 묻지 말고 정한 뒤 알린다"],
+          "en": ["업계 관행으로 자명한 선택은 묻지 말고 정한 뒤 알린다"]
+        },
+        "text": {
+          "ko": "“업계 관행으로 자명한 선택은 묻지 말고 정한 뒤 알린다” 내려놓기",
+          "en": "Retire “업계 관행으로 자명한 선택은 묻지 말고 정한 뒤 알린다”"
+        }
+      },
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": ["되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다"],
+          "en": ["되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다"]
+        },
+        "text": {
+          "ko": "“되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다” 내려놓기",
+          "en": "Retire “되돌리기 쉬운 선택은 추천대로 정해 두고 바꿀 수 있게 한다”"
+        }
+      },
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": ["어느 단계에서든 되돌아갈 수 있어야 한다"],
+          "en": ["어느 단계에서든 되돌아갈 수 있어야 한다"]
+        },
+        "text": {
+          "ko": "“어느 단계에서든 되돌아갈 수 있어야 한다” 내려놓기",
+          "en": "Retire “어느 단계에서든 되돌아갈 수 있어야 한다”"
+        }
+      },
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": ["부드러운 모션이되 프레임 저하는 없어야 한다"],
+          "en": ["부드러운 모션이되 프레임 저하는 없어야 한다"]
+        },
+        "text": {
+          "ko": "“부드러운 모션이되 프레임 저하는 없어야 한다” 내려놓기",
+          "en": "Retire “부드러운 모션이되 프레임 저하는 없어야 한다”"
+        }
+      }
+    ],
+    "preferences.notes.ungroupLabel": [
+      {
+        "story": "app-screens--shell-notes",
+        "args": {
+          "ko": ["자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다"],
+          "en": ["자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다"]
+        },
+        "text": {
+          "ko": "“자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다” 묶음 풀기",
+          "en": "Ungroup “자명하고 되돌리기 쉬운 결정은 AI가 정하고 알린다”"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [
+            "Principle for decisions: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ],
+          "en": [
+            "Principle for decisions: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ]
+        },
+        "text": {
+          "ko": "“Principle for decisions: with a deliberately long title that has to wrap or truncate gracefully on narrow screens” 묶음 풀기",
+          "en": "Ungroup “Principle for decisions: with a deliberately long title that has to wrap or truncate gracefully on narrow screens”"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [
+            "Principle for docs: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ],
+          "en": [
+            "Principle for docs: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ]
+        },
+        "text": {
+          "ko": "“Principle for docs: with a deliberately long title that has to wrap or truncate gracefully on narrow screens” 묶음 풀기",
+          "en": "Ungroup “Principle for docs: with a deliberately long title that has to wrap or truncate gracefully on narrow screens”"
+        }
+      },
+      {
+        "story": "preferences-notes--many-notes",
+        "args": {
+          "ko": [
+            "Principle for motion: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ],
+          "en": [
+            "Principle for motion: with a deliberately long title that has to wrap or truncate gracefully on narrow screens"
+          ]
+        },
+        "text": {
+          "ko": "“Principle for motion: with a deliberately long title that has to wrap or truncate gracefully on narrow screens” 묶음 풀기",
+          "en": "Ungroup “Principle for motion: with a deliberately long title that has to wrap or truncate gracefully on narrow screens”"
+        }
+      }
+    ]
+  }
+}

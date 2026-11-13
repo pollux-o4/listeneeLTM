@@ -1,0 +1,19 @@
+# 커밋 전: 몇 초 안에 끝나는 검사만. push 전: 전체 검사.
+pre-commit:
+  parallel: true
+  jobs:
+    - name: secrets
+      run: mise x -- gitleaks git --staged --redact --no-banner -l warn .
+    - name: biome
+      glob: "*.{ts,tsx,js,mjs,json,css}"
+      run: pnpm exec biome check --error-on-warnings --no-errors-on-unmatched {staged_files}
+    - name: rustfmt
+      glob: "*.rs"
+      run: cargo fmt --check
+    - name: typos
+      run: mise x -- typos --force-exclude {staged_files}
+
+pre-push:
+  jobs:
+    - name: check
+      run: pnpm check

@@ -1,0 +1,65 @@
+.ws {
+  display: grid;
+  gap: calc(var(--px) * 6);
+  align-content: start;
+}
+.ws-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 24px;
+}
+.ws-title-row {
+  flex: 1 1 280px;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ws-title,
+.ws-title-input {
+  margin: 0;
+  font-family: var(--font-pixel-bold);
+  font-size: var(--fs-pixel-lg);
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: 0.02em;
+}
+.ws-title {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+.ws-title-input {
+  flex: 1;
+  padding: 0 6px;
+}
+.ws-actions {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  /* 버튼 아래 그림자만큼 */
+  padding-bottom: calc(var(--px) * 2);
+}
+.ws-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: calc(var(--px) * 8);
+  align-items: start;
+}
+/* 초안은 기본 숨김: 펼치면 오른쪽 열, 좁으면 아래로. 퇴장이 끝날 때까지 열을 유지해 튀지 않는다. */
+@media (min-width: 961px) {
+  .ws-body[data-draft="true"] {
+    grid-template-columns: minmax(0, 1.4fr) minmax(300px, 1fr);
+  }
+}
+.ws-draft {
+  min-width: 0;
+  /* 위에 붙는 앱 막대에 첫 줄이 가리지 않게 */
+  scroll-margin-top: 72px;
+  animation: ltm-rise var(--dur-base) var(--ease-soft) both;
+}
+.ws-draft[data-closing="true"] {
+  animation: ltm-out var(--dur-fast) ease-in both;
+}

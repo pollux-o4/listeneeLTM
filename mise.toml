@@ -1,0 +1,19 @@
+[settings]
+idiomatic_version_file_enable_tools = ["rust"]
+
+[tools]
+node = "24.12.0"
+pnpm = "11.19.0"
+# 품질 도구(tech-spec 품질 절). 릴리스 2주 이상 지난 버전으로 고정한다.
+lefthook = "2.2.2"
+gitleaks = "8.30.1"
+typos = "1.51.1"
+actionlint = "1.7.12"
+shellcheck = "0.11.0"
+cargo-deny = "0.20.2"
+"github:bnjbvr/cargo-machete" = "0.9.2"
+"github:nextest-rs/nextest" = { version = "cargo-nextest-0.9.150", bin = "cargo-nextest" }
+
+[tasks.refresh]
+description = "실사용 ltm 갱신: 빌드 후 샌드박스 프로젝트에서 다시 띄우기 (포트 LTM_PORT, 기본 4318)"
+run = "bash scripts/refresh.sh"

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://unpkg.com/knip@6.43.0/schema.json",
+  "workspaces": {
+    "ui": {
+      "entry": ["scripts/*.{ts,mjs}"],
+      "ignore": ["prototype/**"],
+      "ignoreDependencies": ["galmuri"]
+    },
+    ".": {
+      "entry": [
+        "scripts/{install,release}/*.mjs",
+        "npm/listenee-ltm/bin/*.cjs",
+        "scripts/release/smoke/probe.mjs"
+      ]
+    }
+  },
+  "ignoreBinaries": ["mise"]
+}

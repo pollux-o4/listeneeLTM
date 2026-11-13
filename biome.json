@@ -1,0 +1,36 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.6.6/schema.json",
+  "files": {
+    "includes": [
+      "ui/**",
+      "scripts/**",
+      "npm/**",
+      "*.json",
+      "!**/target",
+      "!**/.ltm",
+      "!**/*.md",
+      "!**/src/generated",
+      "!**/dist",
+      "!**/storybook-static",
+      "!**/node_modules"
+    ]
+  },
+  "formatter": {
+    "indentStyle": "space",
+    "lineWidth": 100
+  },
+  "linter": {
+    "rules": {
+      "preset": "recommended",
+      "style": {
+        "noDescendingSpecificity": "off"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "semicolons": "asNeeded"
+    }
+  }
+}

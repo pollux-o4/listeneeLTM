@@ -1,0 +1,219 @@
+/* 전달 */
+.dp-preview {
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+.dp-sheet {
+  --dp-lines: 7;
+  margin: 0;
+  padding: 12px 14px;
+  /* 줄 단위로 자른다: 반쯤 보이는 줄이 없게 높이를 줄 수에 맞춘다. */
+  max-height: calc(24px * var(--dp-lines) + 24px);
+  overflow: hidden;
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+  line-height: 24px;
+  white-space: pre;
+  color: var(--c-text);
+  background: var(--c-surface);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-line) 50%, transparent);
+}
+/* 더 있을 때만 마지막 줄을 흐려 이어짐을 보인다. */
+.dp-sheet[data-more="true"] {
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 40px), transparent);
+}
+.dp-line {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 -6px;
+  padding: 0 6px;
+  transition: background-color var(--dur-base) var(--ease-soft);
+}
+/* 확인 전 줄: 옅은 바탕 + 왼쪽 표식(색만으로 구분하지 않는다). */
+.dp-line[data-unconfirmed] {
+  background: color-mix(in srgb, var(--c-accent-soft) 22%, transparent);
+  box-shadow: inset 2px 0 0 var(--c-accent-soft);
+}
+.dp-more {
+  justify-self: start;
+}
+.dp-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+.dp-list .ltm-link {
+  gap: 9px;
+  white-space: normal;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  color: var(--c-text);
+}
+.dp-list .ltm-link > span[aria-hidden] {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+}
+.dp-list li[data-kind="blocking"] .ltm-link > span[aria-hidden] {
+  color: var(--c-warn);
+}
+.dp-list li[data-kind="review"] .ltm-link > span[aria-hidden] {
+  color: var(--c-muted);
+}
+.dp-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  padding-bottom: calc(var(--px) * 2);
+}
+.dp-alt {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+  color: var(--c-muted);
+}
+.dp-cmd {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 8px;
+  border: 0;
+  font: inherit;
+  color: var(--c-text);
+  background: var(--c-surface);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-line) 60%, transparent);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) var(--ease-soft),
+    box-shadow var(--dur-fast) var(--ease-soft);
+}
+.dp-cmd:hover {
+  box-shadow: inset 0 0 0 1px var(--c-accent-soft);
+}
+.dp-cmd code {
+  font: inherit;
+}
+.dp-cmd-state {
+  display: inline-grid;
+  place-items: center;
+  min-width: 12px;
+  color: var(--c-muted);
+}
+.dp-cmd-state[data-state="copied"] {
+  color: var(--c-ok);
+  animation: dp-pop var(--dur-base) var(--ease-soft);
+}
+.dp-result {
+  flex-basis: 100%;
+  min-height: 1lh;
+}
+.dp-result[data-state="copied"] {
+  color: var(--c-ok);
+  animation: dp-rise var(--dur-base) var(--ease-soft);
+}
+@keyframes dp-pop {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+}
+@keyframes dp-rise {
+  from {
+    transform: translateY(4px);
+    opacity: 0;
+  }
+}
+
+/* 확인 묶음: 단계별 접이식 */
+.rg-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  border-top: 1px solid color-mix(in srgb, var(--c-line) 40%, transparent);
+}
+.rg {
+  border-bottom: 1px solid color-mix(in srgb, var(--c-line) 40%, transparent);
+}
+.rg-head {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 4px;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  color: var(--c-text);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease-soft);
+}
+.rg-head:hover {
+  background: color-mix(in srgb, var(--c-surface) 45%, transparent);
+}
+.rg-chevron {
+  display: inline-grid;
+  color: var(--c-muted);
+  transform: rotate(-90deg);
+  transition: transform var(--dur-base) var(--ease-soft);
+}
+.rg[data-open="true"] .rg-chevron {
+  transform: none;
+}
+.rg-count {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+  padding: 2px 8px;
+  color: var(--c-text);
+  background: color-mix(in srgb, var(--c-accent-soft) 30%, transparent);
+  transition:
+    color var(--dur-base) var(--ease-soft),
+    background-color var(--dur-base) var(--ease-soft);
+}
+.rg-count[data-done="true"] {
+  color: var(--c-ok);
+  background: transparent;
+}
+.rg[data-done="true"] .rg-label {
+  color: var(--c-muted);
+}
+.rg-body {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  animation: ltm-reveal-in var(--dur-base) var(--ease-soft) both;
+}
+.rg-body[data-closing="true"] {
+  /* 자리를 바로 내줘 아래 묶음이 흐려짐과 한 박자에 올라온다(자세히 접기와 같은 규칙). */
+  position: absolute;
+  inset-inline: 0;
+  pointer-events: none;
+  animation: ltm-reveal-out var(--dur-fast) ease-in both;
+}
+.rg {
+  position: relative;
+}
+.rg-stage {
+  justify-self: end;
+  margin-bottom: 10px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rg-body,
+  .rg-body[data-closing="true"] {
+    animation: none;
+  }
+  .rg-chevron,
+  .dp-line {
+    transition: none;
+  }
+}

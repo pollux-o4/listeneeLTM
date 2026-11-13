@@ -1,0 +1,81 @@
+/* Pixel UI 토큰. 원시값 → 의미값 2단계. 컴포넌트는 의미값만 쓴다. */
+@import "galmuri/dist/galmuri.css";
+
+:root {
+  /* 원시 팔레트: 'Dusk Ear' 16색 */
+  --p-ink: #1d1b2f;
+  --p-night: #2c2a47;
+  --p-plum: #4b3d6b;
+  --p-violet: #7466a8;
+  --p-mist: #b9acd8;
+  --p-cream: #f6ecd8;
+  --p-paper: #fffaf0;
+  --p-peach: #f4b08a;
+  --p-coral: #e2735e;
+  --p-honey: #f6ca66;
+  --p-moss: #82b47c;
+  --p-teal: #4d9c9c;
+  --p-sky: #92cfe3;
+  --p-rose: #e9a0b8;
+  --p-dust: #d8cbb4;
+  --p-stone: #8e8496;
+
+  /* 픽셀 단위: 모든 크기는 정수 배수 */
+  --px: 3px;
+
+  /* 모션 */
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 160ms;
+  --dur-base: 320ms;
+  --dur-slow: 640ms;
+
+  /* 글꼴 */
+  --font-pixel: "Galmuri11", monospace;
+  --font-pixel-bold: "Galmuri11 Bold", "Galmuri11", monospace;
+  --font-body: system-ui, sans-serif;
+}
+
+/* 의미 토큰: 라이트 */
+:root,
+[data-theme="light"] {
+  --c-bg: var(--p-cream);
+  --c-surface: var(--p-paper);
+  --c-line: var(--p-ink);
+  --c-text: var(--p-ink);
+  --c-muted: #675d73; /* cream 위 4.5:1 이상 */
+  --c-accent: #5f5196; /* violet을 텍스트 대비 4.5:1로 어둡게 */
+  --c-accent-soft: var(--p-mist);
+  --c-ok: var(--p-moss);
+  --c-warn: var(--p-coral);
+  --c-glow: var(--p-honey);
+  --c-shadow: var(--p-dust);
+}
+
+[data-theme="dark"] {
+  --c-bg: var(--p-ink);
+  --c-surface: var(--p-night);
+  --c-line: var(--p-mist);
+  --c-text: var(--p-cream);
+  --c-muted: #a89fb2;
+  --c-accent: var(--p-sky);
+  --c-accent-soft: var(--p-plum);
+  --c-ok: var(--p-moss);
+  --c-warn: var(--p-peach);
+  --c-glow: var(--p-honey);
+  --c-shadow: #000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --c-bg: var(--p-ink);
+    --c-surface: var(--p-night);
+    --c-line: var(--p-mist);
+    --c-text: var(--p-cream);
+    --c-muted: #a89fb2;
+    --c-accent: var(--p-sky);
+    --c-accent-soft: var(--p-plum);
+    --c-warn: var(--p-peach);
+    --c-shadow: #000;
+  }
+}

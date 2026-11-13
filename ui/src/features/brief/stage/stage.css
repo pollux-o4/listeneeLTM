@@ -1,0 +1,120 @@
+.sd {
+  display: grid;
+  gap: 18px;
+}
+.sd-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+/* 길의 타일과 같은 표식: 지금 펼친 단계의 상태를 모양·색·글자로 다시 보여준다. */
+.sd-status {
+  position: relative;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  font-family: var(--font-pixel-bold);
+  font-size: var(--fs-pixel-lg);
+  line-height: 1;
+  background: var(--c-surface);
+  box-shadow: 0 0 0 var(--px) var(--c-line);
+}
+.sd-status[data-status="clear"] {
+  background: color-mix(in srgb, var(--c-ok) 30%, var(--c-surface));
+  box-shadow: 0 0 0 var(--px) var(--c-ok);
+}
+.sd-status[data-status="empty"] {
+  box-shadow: 0 0 0 var(--px) var(--c-warn);
+}
+.sd-title {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  display: grid;
+  font-weight: 400;
+  word-break: keep-all;
+}
+.sd-nav {
+  display: flex;
+  gap: 12px;
+  padding-bottom: calc(var(--px) * 2);
+}
+
+/* 항목 */
+/* 단계 도구막대: 왼쪽 상태 · 오른쪽 일괄 도구. 점선 띠 하나로 목록 머리를 이룬다. */
+.sd-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 12px;
+  padding: 0 0 0 9px;
+  border-left: var(--px) dotted var(--c-muted);
+}
+.sd-bar-status {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.sd-bar-tools {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+}
+.sd-confirm-all {
+  gap: 6px;
+  padding: 0 9px;
+  margin-right: 6px;
+}
+.sd-confirm-all:hover {
+  color: var(--c-warn);
+}
+.sd-confirm-all:hover svg {
+  animation: ltm-heart var(--dur-base) var(--ease-spring);
+}
+.sd-empty {
+  margin: 0;
+  color: var(--c-muted);
+}
+.sd-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+}
+.sd-add {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 6px;
+  border-bottom: var(--px) dotted var(--c-muted);
+}
+.sd-add:focus-within {
+  border-bottom: var(--px) solid var(--c-accent);
+}
+.sd-add-plus {
+  font-family: var(--font-pixel);
+  font-size: var(--fs-pixel);
+  color: var(--c-muted);
+}
+.sd-add input {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  color: var(--c-text);
+  background: transparent;
+  border: 0;
+  padding: 6px 0;
+}
+.sd-add input::placeholder {
+  color: var(--c-muted);
+  opacity: 1;
+}
+/* 입력 중 표시는 줄(밑줄 색)이 맡는다. */
+.sd-add input:focus-visible {
+  outline: none;
+}

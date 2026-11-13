@@ -1,0 +1,90 @@
+{
+  "markdown": {
+    "en": "# 새 지시서\n",
+    "ko": "# 새 지시서\n"
+  },
+  "view": {
+    "brief": {
+      "changes": [],
+      "decisions": [],
+      "id": "new-brief",
+      "requests": [],
+      "revision": 0,
+      "sections": {
+        "acceptance": [],
+        "constraints": [],
+        "purpose": [],
+        "scopeIn": [],
+        "scopeOut": []
+      },
+      "title": "새 지시서",
+      "updatedAt": "1970-01-01T00:00:00.000Z"
+    },
+    "current": 0,
+    "decisionItems": {},
+    "dormant": [],
+    "impacts": [],
+    "issues": [
+      {
+        "code": {
+          "kind": "emptyStage"
+        },
+        "kind": "blocking",
+        "section": "purpose"
+      },
+      {
+        "code": {
+          "kind": "emptyStage"
+        },
+        "kind": "blocking",
+        "section": "scopeIn"
+      },
+      {
+        "code": {
+          "kind": "emptyStage"
+        },
+        "kind": "blocking",
+        "section": "acceptance"
+      }
+    ],
+    "ready": false,
+    "selfReviewDue": false,
+    "stages": [
+      {
+        "openDecisions": 0,
+        "required": true,
+        "section": "purpose",
+        "status": "empty",
+        "unconfirmed": 0
+      },
+      {
+        "openDecisions": 0,
+        "required": true,
+        "section": "scopeIn",
+        "status": "empty",
+        "unconfirmed": 0
+      },
+      {
+        "openDecisions": 0,
+        "required": false,
+        "section": "scopeOut",
+        "status": "clear",
+        "unconfirmed": 0
+      },
+      {
+        "openDecisions": 0,
+        "required": false,
+        "section": "constraints",
+        "status": "clear",
+        "unconfirmed": 0
+      },
+      {
+        "openDecisions": 0,
+        "required": true,
+        "section": "acceptance",
+        "status": "empty",
+        "unconfirmed": 0
+      }
+    ]
+  }
+}

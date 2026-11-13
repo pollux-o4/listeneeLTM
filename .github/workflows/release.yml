@@ -1,0 +1,249 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+    # workflow_dispatch requires this workflow on the default branch first.
+    branches: ["codex/release-dry-run/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  quality:
+    uses: ./.github/workflows/ci.yml
+
+  prepare:
+    needs: quality
+    timeout-minutes: 10
+    runs-on: ubuntu-24.04
+    outputs:
+      version: ${{ steps.metadata.outputs.version }}
+      matrix: ${{ steps.metadata.outputs.matrix }}
+      node-version: ${{ steps.tools.outputs.node-version }}
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Read configured Node version
+        id: tools
+        run: |
+          python3 - <<'PY'
+          import os
+          import tomllib
+          with open('mise.toml', 'rb') as config:
+              version = tomllib.load(config)['tools']['node']
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              print(f'node-version={version}', file=output)
+          PY
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+        with:
+          node-version: ${{ steps.tools.outputs.node-version }}
+          package-manager-cache: false
+      - name: Check public release licensing
+        run: node scripts/release/preflight.mjs
+      - name: Validate version and generate platform matrix
+        id: metadata
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import { appendFileSync } from 'node:fs'
+          import platforms from './npm/listenee-ltm/platforms.json' with { type: 'json' }
+          import { releaseVersion } from './scripts/release/version.mjs'
+          const tag = process.env.GITHUB_REF_TYPE === 'tag' ? process.env.GITHUB_REF_NAME : undefined
+          const version = await releaseVersion(tag)
+          appendFileSync(process.env.GITHUB_OUTPUT, `version=${version}\nmatrix=${JSON.stringify({ include: platforms })}\n`)
+          NODE
+
+  build:
+    needs: prepare
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
+    defaults:
+      run:
+        shell: bash
+    env:
+      TARGET: ${{ matrix.target }}
+      BINARY: ${{ matrix.binary }}
+      ASSET: ${{ matrix.asset }}
+      VERSION: ${{ needs.prepare.outputs.version }}
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+        with:
+          node-version: ${{ needs.prepare.outputs.node-version }}
+          package-manager-cache: false
+      - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4.2.0; packageManager version
+      - run: pnpm install --frozen-lockfile
+      - name: Packaging tests
+        run: node --test scripts/release/*.test.mjs
+      - name: Unix installer tests
+        if: runner.os != 'Windows'
+        run: node --test scripts/install/*.test.mjs
+      - name: Install musl linker
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes musl-tools
+          echo 'CARGO_TARGET_X86_64_UNKNOWN_LINUX_MUSL_LINKER=musl-gcc' >> "$GITHUB_ENV"
+      - name: Link static C runtime on Linux and Windows
+        if: runner.os != 'macOS'
+        run: |
+          echo 'RUSTFLAGS=-C target-feature=+crt-static' >> "$GITHUB_ENV"
+      - name: Build embedded UI and release binary
+        run: |
+          pnpm build:ui
+          test -s ui/dist/index.html
+          # Resolve the pinned toolchain and components from rust-toolchain.toml.
+          unset RUSTUP_TOOLCHAIN
+          rustup show
+          rustup target add "$TARGET"
+          cargo build --locked --release -p ltm-cli --target "$TARGET"
+      - name: Verify Linux binary is static
+        if: runner.os == 'Linux'
+        run: |
+          file "target/$TARGET/release/$BINARY" | grep -E 'statically linked|static-pie linked'
+          if readelf -l "target/$TARGET/release/$BINARY" | grep -q INTERP; then
+            echo 'Unexpected dynamic interpreter' >&2
+            exit 1
+          fi
+          if readelf -d "target/$TARGET/release/$BINARY" | grep -q NEEDED; then
+            echo 'Unexpected shared library dependency' >&2
+            exit 1
+          fi
+      - name: Linux binary Docker smoke
+        if: runner.os == 'Linux'
+        timeout-minutes: 10
+        env:
+          LTM_CONTAINER_BINARY: target/${{ matrix.target }}/release/${{ matrix.binary }}
+          LTM_CONTAINER_VERSION: ${{ needs.prepare.outputs.version }}
+        run: |
+          test -s "$LTM_CONTAINER_BINARY"
+          test -n "$LTM_CONTAINER_VERSION"
+          node --test scripts/release/container-smoke.test.mjs
+      - name: Binary smoke (init preservation, CLI edit/export, embedded UI, API edit/undo)
+        run: node scripts/release/smoke.mjs "target/$TARGET/release/$BINARY" "$VERSION"
+      - name: Windows init file locking and replacement tests
+        if: runner.os == 'Windows'
+        run: env -u RUSTUP_TOOLCHAIN cargo test --locked -p ltm-cli --test install_001 --target "$TARGET"
+      - name: Windows installer with actual executable
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: powershell -NoProfile -File scripts/install/test-install.ps1 -Binary "target/${{ matrix.target }}/release/ltm.exe"
+      - name: Stage standalone executable
+        run: |
+          mkdir -p release-bin
+          cp "target/$TARGET/release/$BINARY" "release-bin/$ASSET"
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: binary-${{ matrix.id }}
+          path: release-bin/*
+          if-no-files-found: error
+
+  package:
+    timeout-minutes: 15
+    needs: [prepare, build]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+        with:
+          node-version: ${{ needs.prepare.outputs.node-version }}
+          package-manager-cache: false
+      - uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8.0.0
+        with:
+          pattern: binary-*
+          merge-multiple: true
+          path: release-assets
+      - name: Stage and pack public npm packages
+        env:
+          VERSION: ${{ needs.prepare.outputs.version }}
+        run: |
+          node scripts/release/stage.mjs release-assets npm/dist "v$VERSION"
+          node scripts/release/pack.mjs npm/dist release-assets
+      - name: Packed npm Docker smoke
+        timeout-minutes: 10
+        env:
+          LTM_CONTAINER_ASSETS: release-assets
+          LTM_CONTAINER_VERSION: ${{ needs.prepare.outputs.version }}
+        run: |
+          test -d "$LTM_CONTAINER_ASSETS"
+          test -n "$LTM_CONTAINER_VERSION"
+          node --test scripts/release/container-smoke.test.mjs
+      - name: Add installers and SHA256SUMS
+        run: |
+          cp scripts/install/install.sh scripts/install/install.ps1 release-assets/
+          cd release-assets
+          sha256sum -- ltm-* install.sh install.ps1 *.tgz > SHA256SUMS
+          sha256sum --check SHA256SUMS
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: release-assets
+          path: release-assets/*
+          if-no-files-found: error
+
+  github-release:
+    timeout-minutes: 10
+    environment: release
+    if: github.event_name == 'push' && github.ref_type == 'tag'
+    needs: package
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8.0.0
+        with:
+          name: release-assets
+          path: release-assets
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          cd release-assets
+          sha256sum --check SHA256SUMS
+          gh release create "$RELEASE_TAG" ./* --verify-tag --generate-notes
+
+  npm-publish:
+    timeout-minutes: 15
+    # shortcut: npm names/ownership are unverified, confirm them and trusted publishers before enabling LTM_NPM_PUBLISH.
+    if: github.event_name == 'push' && github.ref_type == 'tag' && vars.LTM_NPM_PUBLISH == 'true'
+    needs: [prepare, github-release]
+    runs-on: ubuntu-24.04
+    environment: npm
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+        with:
+          node-version: ${{ needs.prepare.outputs.node-version }} # Trusted publishing requires npm >=11.5.1.
+          package-manager-cache: false
+      - uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8.0.0
+        with:
+          name: release-assets
+          path: release-assets
+      - name: Publish platform packages, then launcher (OIDC and provenance)
+        env:
+          VERSION: ${{ needs.prepare.outputs.version }}
+        run: |
+          cd release-assets
+          sha256sum --check SHA256SUMS
+          # shortcut: 부분 게시 후에는 남은 패키지만 수동 게시, 무인 복구가 필요해지면 무결성 검증 기반 재개 구현
+          for tarball in listenee-ltm-*-*.tgz; do
+            npm publish "$tarball" --access public --provenance --ignore-scripts
+          done
+          npm publish "listenee-ltm-$VERSION.tgz" --access public --provenance --ignore-scripts

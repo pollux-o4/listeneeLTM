@@ -1,0 +1,9 @@
+[files]
+extend-exclude = ["*.png", "ui/src/generated", "ui/prototype", "*.lock", "pnpm-lock.yaml", "docs/assets", "docs/legal/THIRD_PARTY_NOTICES.txt", "docs/legal/vendor"]
+
+[default.extend-identifiers]
+# preference-notes CSS 클래스 접두어
+pn = "pn"
+
+[default.extend-words]
+pn = "pn"
