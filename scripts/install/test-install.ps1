@@ -6,14 +6,13 @@ $installer = Join-Path $PSScriptRoot 'install.ps1'
 $root = Join-Path ([IO.Path]::GetTempPath()) ([IO.Path]::GetRandomFileName())
 $oldUserPath = [Environment]::GetEnvironmentVariable('Path', 'User')
 $oldProcessPath = $env:Path
-$script:badChecksum = $false
-$script:networkFailure = $false
+$fixtureState = @{ BadChecksum = $false; NetworkFailure = $false }
 function Invoke-WebRequest {
     param([switch]$UseBasicParsing, [string]$Uri, [string]$OutFile)
-    if ($script:networkFailure) { throw 'Simulated network failure' }
+    if ($fixtureState.NetworkFailure) { throw 'Simulated network failure' }
     if ($Uri.EndsWith('/SHA256SUMS')) {
         $hash = (Get-FileHash -Algorithm SHA256 $sourceBinary).Hash.ToLowerInvariant()
-        if ($script:badChecksum) { $hash = '0' * 64 }
+        if ($fixtureState.BadChecksum) { $hash = '0' * 64 }
         Set-Content -Path $OutFile -Value "$hash  ltm-win32-x64.exe"
         return
     }
@@ -36,8 +35,8 @@ try {
     if ((Get-FileHash $installed).Hash -ne (Get-FileHash $sourceBinary).Hash) { throw 'Replacement failed' }
     if (@(Get-ChildItem $destination).Count -ne 1) { throw 'Replacement left temporary files' }
     foreach ($failure in @('checksum', 'network')) {
-        $script:badChecksum = $failure -eq 'checksum'
-        $script:networkFailure = $failure -eq 'network'
+        $fixtureState.BadChecksum = $failure -eq 'checksum'
+        $fixtureState.NetworkFailure = $failure -eq 'network'
         $rejected = $false
         try { & $installer -InstallDir $destination } catch { $rejected = $true }
         if (-not $rejected) { throw "Expected $failure rejection" }
