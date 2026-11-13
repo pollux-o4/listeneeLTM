@@ -101,11 +101,13 @@ test('installed launcher resolves a binary without lifecycle scripts', async (t)
   await writeFile(join(binDir, platform.binary), 'fixture')
   const module = join(directory, 'bin/ltm.cjs')
   assert.equal(
-    execFileSync(
-      process.execPath,
-      ['-e', `console.log(require(${JSON.stringify(module)}).resolveBinary())`],
-      { encoding: 'utf8' },
-    ).trim(),
+    await realpath(
+      execFileSync(
+        process.execPath,
+        ['-e', `console.log(require(${JSON.stringify(module)}).resolveBinary())`],
+        { encoding: 'utf8' },
+      ).trim(),
+    ),
     await realpath(join(binDir, platform.binary)),
   )
 })
