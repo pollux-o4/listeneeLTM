@@ -12,7 +12,7 @@
 ![rust](https://img.shields.io/badge/Rust-2024-5b4a9b?style=for-the-badge&logo=rust&logoColor=white)
 ![react](https://img.shields.io/badge/React-19-5b4a9b?style=for-the-badge&logo=react&logoColor=white)
 ![storybook](https://img.shields.io/badge/Storybook-10-5b4a9b?style=for-the-badge&logo=storybook&logoColor=white)
-![binary](https://img.shields.io/badge/single%20binary-~2MB-7fb77e?style=for-the-badge)
+![binary](https://img.shields.io/badge/distribution-single%20binary-7fb77e?style=for-the-badge)
 
 [작동 방식](#how) · [빠른 시작](#start) · [구조](#structure) · [문서](#docs)
 
@@ -30,15 +30,15 @@
 
 > "LTM으로 과업지시서 써보자"
 
-평소 쓰는 AI 대화창에서 이 한마디면 됩니다. AI가 프로젝트 맥락을 반영한 초안을 GUI에 채우고, 사람과 AI가 **같은 데이터를 함께 편집**합니다.
+프로젝트의 셸·파일에 접근하고 안내 파일을 읽을 수 있는 AI 에이전트에서 시작합니다. AI가 프로젝트 맥락을 반영한 초안을 GUI에 채우고, 사람과 AI가 **같은 데이터를 함께 편집**합니다.
 
 | 기능 | 설명 |
 | - | - |
 | <img src="docs/assets/icons/map.svg" height="20" align="absmiddle"/> **여정 지도** | 빠진 항목·갈림길·막힌 단계를 화면에서 바로 확인 |
 | <img src="docs/assets/icons/collab.svg" height="20" align="absmiddle"/> **공동 편집** | AI는 CLI로, 사람은 GUI로 같은 지시서를 고치고, 누가 바꿨는지 기록 |
 | <img src="docs/assets/icons/note.svg" height="20" align="absmiddle"/> **취향 노트** | AI가 작업 중 드러난 판단 기준을 근거와 함께 기록하고 다음 지시서에 반영, 사람은 확인·수정만 |
-| <img src="docs/assets/icons/chest.svg" height="20" align="absmiddle"/> **바이너리 하나** | 사용자 PC에 Node 같은 런타임 불필요, `ltm` 단일 실행 파일 |
-| <img src="docs/assets/icons/plug.svg" height="20" align="absmiddle"/> **호스트 무관** | MCP 등록 없이 셸·파일을 다루는 모든 AI 에이전트에서 동작 |
+| <img src="docs/assets/icons/chest.svg" height="20" align="absmiddle"/> **바이너리 하나** | GUI가 포함된 `ltm` 단일 실행 파일, 단독 실행에는 Node·Rust 불필요 |
+| <img src="docs/assets/icons/plug.svg" height="20" align="absmiddle"/> **CLI 연결** | MCP 등록 없이 사용, AI 호스트의 셸·프로젝트 파일 접근 권한 필요 |
 
 ## <img src="docs/assets/icons/window.svg" height="24" align="absmiddle"/> 화면
 
@@ -74,29 +74,44 @@ flowchart LR
 
 ## <img src="docs/assets/icons/play.svg" height="24" align="absmiddle"/> 빠른 시작 <a id="start"></a>
 
-최초 공개 배포 준비 중입니다. 게시 후 프로젝트 폴더에서 실행합니다.
+**현재: 소스에서 빌드해 사용합니다.** `0.1.0`은 초기 릴리스 후보이며, npm 패키지와 GitHub Release는 아직 공개되지 않았습니다.
 
-```bash
-pnpm add -D listenee-ltm
-pnpm exec ltm init
-pnpm exec ltm ui
-```
-
-`init`은 기존 안내 파일을 보존하며 AI 안내를 등록합니다. `ui`는 브라우저 화면을 엽니다.
-
-**Node·npm 없는 PC**도 단독 실행 파일로 설치할 수 있습니다. Linux x64·macOS arm64:
+빌드에는 mise와 OS용 C/C++ 빌드 도구가 필요합니다. Rust 버전·구성 요소는 `rust-toolchain.toml`, Node·pnpm·검사 도구는 `mise.toml`을 따릅니다. Linux·macOS 셸 예시:
 
 ```sh
-curl -fsSL https://github.com/pollux-o4/listeneeLTM/releases/download/v0.1.0/install.sh | sh && "$HOME/.local/bin/ltm" init && "$HOME/.local/bin/ltm" ui
+git clone --branch dev https://github.com/pollux-o4/listeneeLTM.git
+cd listeneeLTM
+mise install
+mise x -- pnpm install --frozen-lockfile
+mise x -- pnpm build
+./target/release/ltm init
+./target/release/ltm ui
 ```
 
-Windows x64·PowerShell:
+Windows PowerShell에서는 마지막 두 명령의 실행 파일 경로를 `.\target\release\ltm.exe`로 바꿉니다.
 
-```powershell
-& ([scriptblock]::Create((Invoke-WebRequest -UseBasicParsing https://raw.githubusercontent.com/pollux-o4/listeneeLTM/v0.1.0/scripts/install/install.ps1).Content)); if ($?) { ltm init; if ($LASTEXITCODE -eq 0) { ltm ui } }
+다른 프로젝트에서 쓰려면 `--project <프로젝트 경로>`를 지정합니다.
+
+`init`은 기존 안내 파일을 보존하며 AI 안내를 등록합니다. `ui`는 브라우저 화면을 엽니다. 자동으로 열지 않으려면 `ui --no-open`을 쓰고 `http://127.0.0.1:4318`에 접속합니다.
+
+<details>
+<summary><b>공개 후 설치 방법 — 현재는 사용할 수 없습니다</b></summary>
+
+지원 대상은 **Linux x64(musl)·macOS arm64·Windows x64**입니다.
+
+- **npm 경로:** Node.js 18 이상이 필요하며 Rust는 필요 없습니다. 패키지 공개 후 프로젝트 폴더에서 실행합니다.
+
+```sh
+npm install --save-dev listenee-ltm@0.1.0
+npx ltm init
+npx ltm ui
 ```
 
-설치 위치·PATH·실패 복구는 `docs/operations/`의 `OPS-001`, 개발 환경은 `tech-spec.md`에서 확인합니다.
+- **단독 실행 파일:** GitHub Release 공개 후 OS에 맞는 파일을 받습니다. Node·npm·Rust 없이 실행합니다. GUI에는 브라우저가 필요합니다.
+
+설치 위치·PATH·실패 복구는 `docs/operations/`의 `OPS-001`에서 확인합니다. 공개 전에는 설치 스크립트·다운로드 URL로 설치할 수 없습니다.
+
+</details>
 
 <details>
 <summary><b>CLI 명령</b></summary>
@@ -106,7 +121,8 @@ Windows x64·PowerShell:
 | `ltm init` | AI 안내 등록 |
 | `ltm new · list · check · set · undo · export` | 지시서 작성·검사·되돌리기·내보내기 |
 | `ltm pref show · json · set` | 취향 노트 |
-| `ltm ui [--port 4318]` | GUI 실행(127.0.0.1 전용) |
+| `ltm ui [--port 4318] [--no-open]` | GUI 실행(127.0.0.1 전용), `--no-open`은 브라우저 자동 열기 생략 |
+| `ltm licenses` | 실행 파일에 포함된 의존성의 저작권·라이선스 고지 |
 
 프로젝트 루트는 `--project` 또는 `LTM_PROJECT_ROOT`(기본 현재 폴더)로 지정합니다.
 
@@ -117,10 +133,33 @@ Windows x64·PowerShell:
 
 | 명령 | 용도 |
 | - | - |
-| `pnpm check` | Rust·UI·저장소 검사 전체 (push 전 자동 실행) |
+| `pnpm check` | Rust·UI·배포·저장소 검사 전체 (push 전 자동 실행) |
 | `pnpm gen:types` | Rust 타입·스토리 데이터 → `ui/src/generated` |
 | `pnpm gen:copy-screens` | 문구 → 화면 연결 생성 |
-| `pnpm build` | UI 빌드 후 `target/release/ltm` |
+| `pnpm gen:notices` | 잠금 의존성·Rust 표준 라이브러리·정적 런타임의 고지 갱신 |
+| `pnpm build` | UI 빌드 후 `target/release/ltm`(Windows는 `ltm.exe`) |
+
+</details>
+
+<details>
+<summary><b>릴리스 검증</b></summary>
+
+`0.1.0` 최초 공개 전에 다음 검사를 **게시 없는 dry-run(모의 릴리스)**으로 수행합니다. 통과 여부는 워크플로의 실제 실행 결과로 확인합니다.
+
+| 검증 환경 | 확인할 내용 |
+| - | - |
+| Linux `scratch` 컨테이너 | 런타임·공유 라이브러리 없는 환경에서 단독 실행 파일의 CLI·내장 UI/API 동작 |
+| Node만 있는 npm 설치 환경 | Rust·C/C++ 빌드 도구 없이 로컬 npm 산출물 설치·실행 |
+| Linux x64·macOS arm64·Windows x64 네이티브 환경 | 각 OS에서 빌드·설치·CLI·내장 UI/API를 검사하는 비게시 dry-run |
+
+개발자용 Docker 검사 인터페이스입니다. `BINARY`는 Linux x64 실행 파일, `ASSETS`는 npm tarball이 있는 폴더, `VERSION`은 검사할 버전입니다.
+
+```sh
+node scripts/release/container-smoke.mjs binary BINARY VERSION
+node scripts/release/container-smoke.mjs npm ASSETS VERSION
+```
+
+Docker는 이 개발자용 검사에만 필요하며, 최종 사용자의 실행 요건에는 포함되지 않습니다. 원격 검증 결과와 산출물은 [Release 워크플로](https://github.com/pollux-o4/listeneeLTM/actions/workflows/release.yml)에서 확인합니다. 버전·릴리스 운영은 `OPS-002`, 유지보수·보안 검사는 `OPS-003`을 검색합니다.
 
 </details>
 
@@ -155,6 +194,6 @@ ui (React) ◀── ui/src/generated ◀─────────────
 
 ## <img src="docs/assets/icons/flask.svg" height="24" align="absmiddle"/> 상태
 
-초기 개발 중입니다. API·파일 형식·명령은 바뀔 수 있습니다.
+`0.1.0` 초기 릴리스 후보입니다. `0.x`의 공개 API(CLI 명령·옵션·JSON 출력, HTTP API)와 `.ltm` 저장 형식·설치 요구사항·지원 플랫폼은 바뀔 수 있습니다. 버전 변경과 이전 안내 기준은 `OPS-002`를 따릅니다.
 
 프로젝트 라이선스는 [MIT](LICENSE)입니다. 포함된 의존성의 고지는 `ltm licenses`로 확인합니다.

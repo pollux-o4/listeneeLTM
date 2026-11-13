@@ -26,6 +26,6 @@ Action은 전체 commit SHA로 고정하고 기본 토큰은 읽기 전용이다
 - 의존성 PR: 변경 이력·취약점 공지 확인 → `pnpm check` → 릴리스 dry run. Storybook 관련 변경은 `pnpm --filter @listenee-ltm/ui build-storybook`도 실행한다.
 - Rust·Node·pnpm·mise 도구 고정 버전은 수동 검토한다. npm 플랫폼 의존성 버전은 릴리스 staging이 workspace 버전에 맞춘다. 별도로 게시하지 않는다.
 - `pnpm gen:notices`로 의존성 고지를 갱신하고 diff를 검토한다. `ltm licenses`와 npm tarball에 같은 고지가 들어가는지 배포 smoke에서 확인한다.
-- 공개 버전의 결함은 새 patch 버전으로 수정한다. 기존 npm 버전·태그를 덮어쓰지 않는다. 부분 게시 복구는 OPS-002를 따른다.
+- 공개 버전의 결함 수정·부분 게시 복구는 OPS-002의 버전·복구 규칙을 따른다.
 
 기준: [GitHub Actions 보안](https://docs.github.com/en/actions/reference/security/secure-use), [CodeQL 빌드 모드](https://docs.github.com/en/code-security/concepts/code-scanning/codeql/codeql-for-compiled-languages), [npm Trusted Publisher](https://docs.npmjs.com/trusted-publishers/).

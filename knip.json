@@ -7,7 +7,11 @@
       "ignoreDependencies": ["galmuri"]
     },
     ".": {
-      "entry": ["scripts/{install,release}/*.mjs", "npm/listenee-ltm/bin/*.cjs"]
+      "entry": [
+        "scripts/{install,release}/*.mjs",
+        "npm/listenee-ltm/bin/*.cjs",
+        "scripts/release/smoke/probe.mjs"
+      ]
     }
   },
   "ignoreBinaries": ["mise"]

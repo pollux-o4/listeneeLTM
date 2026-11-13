@@ -1,5 +1,7 @@
+[settings]
+idiomatic_version_file_enable_tools = ["rust"]
+
 [tools]
-rust = "1.99.1"
 node = "24.12.0"
 pnpm = "11.19.0"
 # 품질 도구(tech-spec 품질 절). 릴리스 2주 이상 지난 버전으로 고정한다.

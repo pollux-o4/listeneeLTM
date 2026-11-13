@@ -32,6 +32,13 @@ jobs:
         with:
           version: "2026.10.21"
           cache: false
+      - name: Install and verify project Rust components
+        run: |
+          # mise's override hides the components declared in rust-toolchain.toml.
+          env -u RUSTUP_TOOLCHAIN rustup show
+          rustup component list --installed
+          cargo fmt --version
+          cargo clippy --version
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
         with:
           node-version: ${{ fromJSON(steps.mise.outputs.versions).node[0].version }}

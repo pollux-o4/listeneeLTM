@@ -13,7 +13,7 @@
 
 | 영역 | 선택 |
 | - | - |
-| 툴체인 | `mise.toml`(rust·node·pnpm·품질 도구), `rust-toolchain.toml` |
+| 툴체인 | `mise.toml`(Node·pnpm·품질 도구), `rust-toolchain.toml`(Rust 버전·구성 요소, mise도 이 파일을 읽음) |
 | 백엔드 | Rust 2024, cargo workspace |
 | AI 연결 | `ltm` CLI(JSON 출력) + `.ltm/AGENTS.md` 안내, MCP 없음(ADR-0004) |
 | HTTP | `axum` + `tokio`, 127.0.0.1 전용 |
@@ -27,7 +27,7 @@
 | CI·유지보수 | GitHub Actions CI·CodeQL(JS/TS·Rust)·Dependabot, 운영 기준 OPS-003 |
 | git hook | `lefthook`: 커밋 전 gitleaks·biome·rustfmt·typos(바뀐 파일), push 전 `pnpm check` |
 
-버전은 `Cargo.toml`·`ui/package.json`·`mise.toml`에서 고정한다. `cargo-deny` 허용 라이선스는 `deny.toml`이 원본이다. pnpm `minimumReleaseAge` 정책에 막히면 이전 버전을 고른다(예외 등록 금지).
+제품 버전은 `Cargo.toml`, UI 의존성은 `ui/package.json`, 개발 도구는 `mise.toml`에서 고정한다. Rust 툴체인은 `rust-toolchain.toml`만 갱신한다. `cargo-deny` 허용 라이선스는 `deny.toml`이 원본이다. pnpm `minimumReleaseAge` 정책에 막히면 이전 버전을 고른다(예외 등록 금지).
 
 ## 구조 (의존 방향 →)
 
