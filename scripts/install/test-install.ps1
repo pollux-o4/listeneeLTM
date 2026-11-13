@@ -33,6 +33,8 @@ try {
     $installed = Join-Path $destination 'ltm.exe'
     if ((Get-FileHash $installed).Hash -ne (Get-FileHash $sourceBinary).Hash) { throw 'Install failed' }
     & $installer -InstallDir $destination
+    if ((Get-FileHash $installed).Hash -ne (Get-FileHash $sourceBinary).Hash) { throw 'Replacement failed' }
+    if (@(Get-ChildItem $destination).Count -ne 1) { throw 'Replacement left temporary files' }
     foreach ($failure in @('checksum', 'network')) {
         $script:badChecksum = $failure -eq 'checksum'
         $script:networkFailure = $failure -eq 'network'

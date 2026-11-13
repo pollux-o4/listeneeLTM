@@ -30,7 +30,8 @@ try {
     $destination = Join-Path $InstallDir 'ltm.exe'
     if (Test-Path $destination) {
         if ((Get-Item $destination).PSIsContainer) { throw 'Destination is a directory' }
-        [IO.File]::Replace($binary, $destination, $null)
+        # PowerShell 5.1 converts $null to an empty path; preserve a true null string.
+        [IO.File]::Replace($binary, $destination, [System.Management.Automation.Language.NullString]::Value)
     } else {
         [IO.File]::Move($binary, $destination)
     }

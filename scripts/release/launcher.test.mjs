@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { execFileSync, spawn } from 'node:child_process'
 import { once } from 'node:events'
-import { cp, mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
+import { cp, mkdir, mkdtemp, realpath, rm, symlink, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { test } from 'node:test'
@@ -90,8 +90,11 @@ test('missing executable fails with a clear error', (t) => {
 })
 
 test('installed launcher resolves a binary without lifecycle scripts', async (t) => {
-  const directory = await workspace(t)
-  await cp(new URL('../../npm/listenee-ltm/', import.meta.url), directory, { recursive: true })
+  const root = await workspace(t)
+  const packageDir = join(root, 'package')
+  const directory = process.platform === 'win32' ? packageDir : join(root, 'alias')
+  await cp(new URL('../../npm/listenee-ltm/', import.meta.url), packageDir, { recursive: true })
+  if (directory !== packageDir) await symlink(packageDir, directory, 'dir')
   const platform = launcher.selectPlatform()
   const binDir = join(directory, 'node_modules', platform.package, 'bin')
   await mkdir(binDir, { recursive: true })
@@ -103,6 +106,6 @@ test('installed launcher resolves a binary without lifecycle scripts', async (t)
       ['-e', `console.log(require(${JSON.stringify(module)}).resolveBinary())`],
       { encoding: 'utf8' },
     ).trim(),
-    join(binDir, platform.binary),
+    await realpath(join(binDir, platform.binary)),
   )
 })
