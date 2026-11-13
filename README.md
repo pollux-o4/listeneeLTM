@@ -74,7 +74,7 @@ flowchart LR
 
 ## <img src="docs/assets/icons/play.svg" height="24" align="absmiddle"/> 빠른 시작 <a id="start"></a>
 
-**현재: 소스에서 빌드해 사용합니다.** `0.1.0`은 초기 릴리스 후보이며, npm 패키지와 GitHub Release는 아직 공개되지 않았습니다.
+**현재는 소스에서 빌드해 사용합니다.** npm 패키지와 단독 실행 파일은 아직 공개되지 않았습니다.
 
 빌드에는 mise와 OS용 C/C++ 빌드 도구가 필요합니다. Rust 버전·구성 요소는 `rust-toolchain.toml`, Node·pnpm·검사 도구는 `mise.toml`을 따릅니다. Linux·macOS 셸 예시:
 
@@ -109,7 +109,7 @@ npx ltm ui
 
 - **단독 실행 파일:** GitHub Release 공개 후 OS에 맞는 파일을 받습니다. Node·npm·Rust 없이 실행합니다. GUI에는 브라우저가 필요합니다.
 
-설치 위치·PATH·실패 복구는 `docs/operations/`의 `OPS-001`에서 확인합니다. 공개 전에는 설치 스크립트·다운로드 URL로 설치할 수 없습니다.
+설치 위치·PATH·실패 복구는 [설치 안내](docs/operations/OPS-001--installation.md)에서 확인합니다. 공개 전에는 설치 스크립트·다운로드 URL로 설치할 수 없습니다.
 
 </details>
 
@@ -159,7 +159,7 @@ node scripts/release/container-smoke.mjs binary BINARY VERSION
 node scripts/release/container-smoke.mjs npm ASSETS VERSION
 ```
 
-Docker는 이 개발자용 검사에만 필요하며, 최종 사용자의 실행 요건에는 포함되지 않습니다. 원격 검증 결과와 산출물은 [Release 워크플로](https://github.com/pollux-o4/listeneeLTM/actions/workflows/release.yml)에서 확인합니다. 버전·릴리스 운영은 `OPS-002`, 유지보수·보안 검사는 `OPS-003`을 검색합니다.
+Docker는 이 개발자용 검사에만 필요하며, 최종 사용자의 실행 요건에는 포함되지 않습니다. 원격 검증 결과와 산출물은 [Release 워크플로](https://github.com/pollux-o4/listeneeLTM/actions/workflows/release.yml)에서 확인합니다.
 
 </details>
 
@@ -194,6 +194,6 @@ ui (React) ◀── ui/src/generated ◀─────────────
 
 ## <img src="docs/assets/icons/flask.svg" height="24" align="absmiddle"/> 상태
 
-`0.1.0` 초기 릴리스 후보입니다. `0.x`의 공개 API(CLI 명령·옵션·JSON 출력, HTTP API)와 `.ltm` 저장 형식·설치 요구사항·지원 플랫폼은 바뀔 수 있습니다. 버전 변경과 이전 안내 기준은 `OPS-002`를 따릅니다.
+초기 개발 단계로, 업데이트 시 명령과 저장 형식이 바뀔 수 있습니다.
 
 프로젝트 라이선스는 [MIT](LICENSE)입니다. 포함된 의존성의 고지는 `ltm licenses`로 확인합니다.

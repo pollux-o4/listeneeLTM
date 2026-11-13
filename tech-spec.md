@@ -23,7 +23,7 @@
 | UI 카탈로그 | Storybook 10 (react-vite) |
 | 품질·Rust | `cargo fmt`·`clippy -D warnings`, `cargo-nextest`(테스트), `cargo-machete`(안 쓰는 의존성) |
 | 품질·UI | Biome, `tsc`, `knip`(안 쓰는 export·파일·의존성), 경계·문구 검사 스크립트 |
-| 품질·저장소 | `typos`(오타), `cargo-deny`(취약점·라이선스·출처, `deny.toml`), `gitleaks`(Git 이력 비밀값), `pnpm audit`(JS 취약점), `actionlint`(Actions) |
+| 품질·저장소 | `typos`(오타), `cargo-deny`(취약점·라이선스·출처, `deny.toml`), `gitleaks`(Git 이력 비밀값), `pnpm audit`(JS 취약점), `actionlint`·ShellCheck(Actions·워크플로 셸) |
 | CI·유지보수 | GitHub Actions CI·CodeQL(JS/TS·Rust)·Dependabot, 운영 기준 OPS-003 |
 | git hook | `lefthook`: 커밋 전 gitleaks·biome·rustfmt·typos(바뀐 파일), push 전 `pnpm check` |
 

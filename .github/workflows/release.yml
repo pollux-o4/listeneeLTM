@@ -186,7 +186,7 @@ jobs:
         run: |
           cp scripts/install/install.sh scripts/install/install.ps1 release-assets/
           cd release-assets
-          sha256sum ltm-* install.sh install.ps1 *.tgz > SHA256SUMS
+          sha256sum -- ltm-* install.sh install.ps1 *.tgz > SHA256SUMS
           sha256sum --check SHA256SUMS
       - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         with:
