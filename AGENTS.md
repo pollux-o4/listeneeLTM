@@ -1,6 +1,6 @@
 # AGENTS · listeneeLTM
 
-공통 규칙: `/home/pollux-o4/.codex/init-rules/`의 RULE-CORE·ADR·SPEC·TEST·OPS. 이 파일은 프로젝트 고유 규칙만 둔다.
+공통 규칙: [`.init_rules/`](.init_rules/README.md)의 RULE-CORE·ADR·SPEC·TEST·OPS. 이 파일은 프로젝트 고유 규칙만 둔다.
 
 ## 제품 한 줄
 

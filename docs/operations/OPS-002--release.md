@@ -41,22 +41,11 @@ cd release-assets
 sha256sum --check SHA256SUMS
 ```
 
-## 최초 npm 게시 준비
+## npm 게시
 
-- `listenee-ltm`과 `@listenee-ltm` 범위의 게시 권한을 확보한다. 현재 이름 조회 결과는 예약을 보장하지 않는다.
-- npm 로그인과 2단계 인증 등록은 소유자가 수행한다. 게시·설정 변경에는 보안 키 인증이 필요하다. 비밀번호·인증 토큰은 저장소에 기록하지 않는다.
-- 최초 패키지는 검증된 동일 릴리스 tarball로 플랫폼 3개 → 런처 순서로 게시한다. 최초 게시 전에는 존재하지 않는 패키지의 Trusted Publisher를 설정할 수 없으므로 로컬 인증으로 시작한다.
+태그 릴리스는 GitHub Release를 만든 뒤, npm 게시가 활성화된 저장소에서 플랫폼 3개 → 런처 순서로 OIDC·provenance 게시한다. 권한이 있는 유지보수 담당자가 게시 환경을 설정한다. 워크플로와 변수는 `.github/workflows/release.yml`이 원본이다.
 
-```sh
-npm publish listenee-ltm-linux-x64-0.1.0.tgz --access public --ignore-scripts
-npm publish listenee-ltm-darwin-arm64-0.1.0.tgz --access public --ignore-scripts
-npm publish listenee-ltm-win32-x64-0.1.0.tgz --access public --ignore-scripts
-npm publish listenee-ltm-0.1.0.tgz --access public --ignore-scripts
-```
-
-각 패키지의 npm 설정에서 Trusted Publisher를 GitHub `pollux-o4/listeneeLTM`, 워크플로 `release.yml`, 환경 `npm`으로 등록하고 직접 게시 권한을 허용한다. GitHub에도 `npm` 환경을 만든다. 네 패키지 모두 저장 결과와 허용 범위를 확인한 후 저장소 변수 `LTM_NPM_PUBLISH=true`를 켠다. 새 Trusted Publisher는 최초 OIDC 게시로 검증되기 전까지 2일 후 만료되므로 다음 릴리스 직전에 상태를 확인하고, 만료됐다면 다시 등록한다. 검증만을 위한 버전을 만들거나 이미 공개한 버전을 재게시하지 않는다. 이후 태그 배포는 OIDC·provenance로 게시하며 저장된 npm 토큰이 필요 없다. 요구 버전·설정 세부는 [npm 공식 안내](https://docs.npmjs.com/trusted-publishers/)를 따른다.
-
-- `npm publish` 성공 메시지 뒤에도 서버 검사 중에는 `0.0.0-stage` 임시 버전만 보일 수 있다. 실제 버전 조회와 tarball 무결성이 확인될 때까지 설치 가능으로 안내하지 않는다. 소유자의 Staged Packages에 승인 대기 버전이 있으면 내용을 확인하고 2FA로 승인한다. 같은 버전을 반복 업로드하지 않는다.
+공개 버전은 레지스트리에서 조회되고 tarball 무결성이 확인돼야 완료다. 서버 검사나 소유자 승인이 남아 있으면 같은 버전을 반복 업로드하지 않는다. 인증·Trusted Publisher 설정은 [npm 공식 안내](https://docs.npmjs.com/trusted-publishers/)를 따른다.
 
 ## 공개 릴리스와 다른 PC 확인
 
@@ -70,10 +59,3 @@ git push origin v0.1.0
 다른 노트북의 빈 폴더에서 OPS-001의 한 줄 설치를 실행한다. 브라우저가 열리고, AI의 CLI 작성 → GUI 수정 → `ltm export`가 같은 데이터에 반영되어야 설치 완료로 판정한다. Windows·macOS의 보안 정책으로 실행이 차단되는지도 실제 PC에서 확인한다.
 
 실패 시 아티팩트·실패 단계부터 확인한다. 이미 게시된 npm 버전은 덮어쓸 수 없다. 부분 게시라면 완료된 패키지는 재게시하지 말고 빠진 패키지부터 이어간다. 코드 변경이 필요하면 새 버전으로 다시 빌드한다. GitHub Release가 이미 있으면 해당 게시 작업 전체를 다시 실행하지 않는다.
-
-## 0.1.0 공개 검증 기록
-
-- 제품 커밋: `87dccfd109ab36dab7fc9d5beaaeb843d0ac41b5`, 태그 `v0.1.0`. GitHub Release 실행 `43376791899`의 세 OS 빌드·설치·실행과 패키징 통과.
-- 최초 npm 4개는 소유자 2FA로 수동 게시했다. 레지스트리 SHA-512 integrity가 같은 Release tarball과 일치한다. 이 버전은 OIDC 게시 검증 결과가 아니다.
-- 공개 Release URL의 Unix 설치기 → CLI·내장 UI/API 편집·되돌리기 통과. 실제 브라우저 제목·목적 수정 → CLI export 반영 확인.
-- 인증 정보·Rust 없는 Node Docker에서 공개 레지스트리 설치(`--ignore-scripts`) 후 네트워크를 끊고 CLI·내장 UI/API 편집·되돌리기 통과. 공개 npm 설치 실증은 Linux x64이며, macOS·Windows는 네이티브 CI 실행으로 확인했다.
