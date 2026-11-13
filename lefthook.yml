@@ -3,7 +3,7 @@ pre-commit:
   parallel: true
   jobs:
     - name: secrets
-      run: mise x -- gitleaks git --staged --no-banner -l warn .
+      run: mise x -- gitleaks git --staged --redact --no-banner -l warn .
     - name: biome
       glob: "*.{ts,tsx,js,mjs,json,css}"
       run: pnpm exec biome check --error-on-warnings --no-errors-on-unmatched {staged_files}

@@ -18,8 +18,10 @@ try {
       cwd: project,
       encoding: 'utf8',
       timeout: 15_000,
+      maxBuffer: 8 * 1024 * 1024,
     })
   if (version) assert.equal(run('--version').trim(), `ltm ${version}`)
+  assert.match(run('licenses'), /galmuri/)
   run('init')
   assert.match(await readFile(join(project, '.ltm/AGENTS.md'), 'utf8'), /ltm/)
   const preserved = ['AGENTS.md', '.ltm/AGENTS.md', '.ltm/.gitignore']
@@ -79,9 +81,15 @@ try {
   const path = `${address}/api/briefs/release-smoke`
   const read = await get('/api/briefs/release-smoke')
   assert.equal((await read.json()).brief.title, 'CLI edited')
+  const crossOrigin = await fetch(`${path}/undo`, {
+    method: 'POST',
+    headers: { origin: 'http://localhost:4320' },
+    signal: AbortSignal.timeout(5000),
+  })
+  assert.equal(crossOrigin.status, 403)
   const edited = await fetch(path, {
     method: 'PATCH',
-    headers: { 'content-type': 'application/json' },
+    headers: { 'content-type': 'application/json', origin: address },
     body: JSON.stringify({ op: 'setTitle', value: 'GUI API edited' }),
     signal: AbortSignal.timeout(5000),
   })

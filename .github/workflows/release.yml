@@ -13,7 +13,12 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  quality:
+    uses: ./.github/workflows/ci.yml
+
   prepare:
+    needs: quality
+    timeout-minutes: 10
     runs-on: ubuntu-24.04
     outputs:
       version: ${{ steps.metadata.outputs.version }}
@@ -26,6 +31,9 @@ jobs:
         with:
           node-version: "24.12.0"
           package-manager-cache: false
+      - name: Check public release licensing
+        if: github.event_name == 'push' && github.ref_type == 'tag'
+        run: node scripts/release/preflight.mjs
       - name: Validate version and generate platform matrix
         id: metadata
         shell: bash
@@ -118,6 +126,7 @@ jobs:
           if-no-files-found: error
 
   package:
+    timeout-minutes: 15
     needs: [prepare, build]
     runs-on: ubuntu-24.04
     steps:
@@ -139,6 +148,7 @@ jobs:
         run: |
           node scripts/release/stage.mjs release-assets npm/dist "v$VERSION"
           node scripts/release/pack.mjs npm/dist release-assets
+          node scripts/release/npm-smoke.mjs release-assets "$VERSION"
       - name: Add installers and SHA256SUMS
         run: |
           cp scripts/install/install.sh scripts/install/install.ps1 release-assets/
@@ -152,7 +162,9 @@ jobs:
           if-no-files-found: error
 
   github-release:
-    if: github.ref_type == 'tag'
+    timeout-minutes: 10
+    environment: release
+    if: github.event_name == 'push' && github.ref_type == 'tag'
     needs: package
     runs-on: ubuntu-24.04
     permissions:
@@ -173,8 +185,9 @@ jobs:
           gh release create "$RELEASE_TAG" ./* --verify-tag --generate-notes
 
   npm-publish:
+    timeout-minutes: 15
     # shortcut: npm names/ownership are unverified, confirm them and trusted publishers before enabling LTM_NPM_PUBLISH.
-    if: github.ref_type == 'tag' && vars.LTM_NPM_PUBLISH == 'true'
+    if: github.event_name == 'push' && github.ref_type == 'tag' && vars.LTM_NPM_PUBLISH == 'true'
     needs: [prepare, github-release]
     runs-on: ubuntu-24.04
     environment: npm
@@ -196,6 +209,7 @@ jobs:
         run: |
           cd release-assets
           sha256sum --check SHA256SUMS
+          # shortcut: 부분 게시 후에는 남은 패키지만 수동 게시, 무인 복구가 필요해지면 무결성 검증 기반 재개 구현
           for tarball in listenee-ltm-*-*.tgz; do
             npm publish "$tarball" --access public --provenance --ignore-scripts
           done

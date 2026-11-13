@@ -15,6 +15,8 @@ export async function pack(stagedDir, outputDir) {
   for (const [directory, expected] of packages) {
     const cwd = resolve(stagedDir, directory)
     const manifest = JSON.parse(await readFile(resolve(cwd, 'package.json'), 'utf8'))
+    expected.push('THIRD_PARTY_NOTICES.txt')
+    if (manifest.license) expected.push('LICENSE')
     assert.equal(manifest.scripts, undefined, 'Packages must not need lifecycle scripts')
     for (const path of expected) assert.ok((await stat(resolve(cwd, path))).size > 0, path)
     // npm's JS entry point avoids invoking a shell or a .cmd shim on Windows.

@@ -10,8 +10,6 @@ ignore = []
 # 단일 바이너리로 재배포하므로 허용 라이선스를 명시한다. 새 라이선스는 검토 후 추가한다.
 allow = ["MIT", "Apache-2.0", "BSD-3-Clause", "Unicode-3.0"]
 confidence-threshold = 0.9
-# shortcut: 프로젝트 라이선스 미정이라 비공개(publish = false) 자체 크레이트는 검사에서 뺀다, 배포 라이선스 결정 시 license 필드와 함께 해제
-private = { ignore = true }
 
 [bans]
 multiple-versions = "warn"

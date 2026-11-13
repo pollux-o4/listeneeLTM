@@ -14,9 +14,18 @@ export async function stage(version, binariesDir, outputDir) {
   for (const platform of platforms) {
     assert.ok((await stat(resolve(binariesDir, platform.asset))).size > 0, platform.asset)
   }
+  const notices = new URL('../../docs/legal/THIRD_PARTY_NOTICES.txt', import.meta.url)
+  const license = new URL('../../LICENSE', import.meta.url)
+  assert.ok((await stat(notices)).size > 0, 'Generate third-party notices before staging')
+  if (template.license) assert.ok((await stat(license)).size > 0, 'Project LICENSE is required')
+  const copyNotices = async (directory) => {
+    await copyFile(notices, resolve(directory, 'THIRD_PARTY_NOTICES.txt'))
+    if (template.license) await copyFile(license, resolve(directory, 'LICENSE'))
+  }
   await mkdir(outputDir, { recursive: true })
   const launcherDir = resolve(outputDir, template.name)
   await cp(source, launcherDir, { recursive: true, errorOnExist: true, force: false })
+  await copyNotices(launcherDir)
   const launcher = {
     ...template,
     version,
@@ -36,12 +45,14 @@ export async function stage(version, binariesDir, outputDir) {
       description: `${template.name} binary for ${platform.id}`,
       os: [platform.os],
       cpu: [platform.arch],
-      files: [`bin/${platform.binary}`],
+      files: [`bin/${platform.binary}`, 'LICENSE', 'THIRD_PARTY_NOTICES.txt'],
+      license: template.license,
       repository: template.repository,
       publishConfig: template.publishConfig,
     }
     await writeFile(resolve(directory, 'package.json'), `${JSON.stringify(manifest, null, 2)}\n`)
     await copyFile(new URL('README.md', source), resolve(directory, 'README.md'))
+    await copyNotices(directory)
   }
 }
 

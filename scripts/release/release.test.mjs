@@ -27,6 +27,9 @@ test('stage and npm pack contain all four packages and reject missing binaries',
   await stage('0.1.0', input, output)
   const manifest = JSON.parse(await readFile(join(output, 'listenee-ltm/package.json'), 'utf8'))
   assert.equal(manifest.version, '0.1.0')
+  assert.equal(manifest.license, 'MIT')
+  const license = await readFile(new URL('../../LICENSE', import.meta.url), 'utf8')
+  assert.equal(await readFile(join(output, 'listenee-ltm/LICENSE'), 'utf8'), license)
   assert.deepEqual(
     manifest.optionalDependencies,
     Object.fromEntries(platforms.map((p) => [p.package, '0.1.0'])),
@@ -36,6 +39,12 @@ test('stage and npm pack contain all four packages and reject missing binaries',
       await readFile(join(output, platform.id, 'package.json'), 'utf8'),
     )
     assert.equal(binaryManifest.name, platform.package)
+    assert.equal(binaryManifest.license, manifest.license)
+    assert.equal(await readFile(join(output, platform.id, 'LICENSE'), 'utf8'), license)
+    assert.match(
+      await readFile(join(output, platform.id, 'THIRD_PARTY_NOTICES.txt'), 'utf8'),
+      /galmuri/,
+    )
     assert.deepEqual(binaryManifest.os, [platform.os])
     assert.deepEqual(binaryManifest.cpu, [platform.arch])
     assert.equal(

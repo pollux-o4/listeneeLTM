@@ -156,3 +156,5 @@ ui (React) ◀── ui/src/generated ◀─────────────
 ## <img src="docs/assets/icons/flask.svg" height="24" align="absmiddle"/> 상태
 
 초기 개발 중입니다. API·파일 형식·명령은 바뀔 수 있습니다.
+
+프로젝트 라이선스는 [MIT](LICENSE)입니다. 포함된 의존성의 고지는 `ltm licenses`로 확인합니다.

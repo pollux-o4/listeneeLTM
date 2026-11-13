@@ -17,14 +17,18 @@ fn is_loopback(authority: &str) -> bool {
 /// 이 서버는 사용자 본인의 브라우저 탭만 상대한다. 다른 웹사이트가 사용자의 브라우저를 통해
 /// 지시서를 읽거나(DNS 리바인딩) 바꾸는(교차 출처 요청) 것을 막는다.
 /// - Host는 루프백 이름이어야 한다.
-/// - 쓰기 요청의 Origin은 없거나(CLI·도구) 루프백이어야 한다.
+/// - 쓰기 요청의 Origin은 없거나(CLI·도구) 같은 HTTP 출처여야 한다.
 pub(super) async fn local_only(req: Request, next: Next) -> Response {
     let allowed = {
         let header_str = |name| req.headers().get(name).and_then(|v| v.to_str().ok());
-        let host_ok = header_str(header::HOST).is_none_or(is_loopback);
+        let host = header_str(header::HOST);
+        let host_ok = host.is_none_or(is_loopback);
         let origin_ok = req.method() == Method::GET
-            || header_str(header::ORIGIN)
-                .is_none_or(|o| o.split_once("://").is_some_and(|(_, authority)| is_loopback(authority)));
+            || header_str(header::ORIGIN).is_none_or(|origin| {
+                origin.strip_prefix("http://").is_some_and(|authority| {
+                    is_loopback(authority) && host.is_some_and(|host| host.eq_ignore_ascii_case(authority))
+                })
+            });
         host_ok && origin_ok
     };
     if allowed {
@@ -69,6 +73,28 @@ mod tests {
             status("POST", &[("host", "localhost:4318"), ("origin", "https://evil.example")]).await,
             StatusCode::FORBIDDEN
         );
+    }
+
+    #[tokio::test]
+    async fn allows_same_origin_writes() {
+        for method in ["POST", "PATCH"] {
+            assert_eq!(
+                status(method, &[("host", "localhost:4318"), ("origin", "http://localhost:4318")]).await,
+                StatusCode::NO_CONTENT
+            );
+        }
+    }
+
+    #[tokio::test]
+    async fn rejects_other_loopback_origins() {
+        for origin in ["http://localhost:4320", "http://127.0.0.1:4318", "https://localhost:4318", "null"] {
+            assert_eq!(
+                status("POST", &[("host", "localhost:4318"), ("origin", origin)]).await,
+                StatusCode::FORBIDDEN,
+                "unexpectedly allowed {origin}"
+            );
+        }
+        assert_eq!(status("POST", &[("origin", "http://localhost:4318")]).await, StatusCode::FORBIDDEN);
     }
 
     #[tokio::test]

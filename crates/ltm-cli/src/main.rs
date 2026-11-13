@@ -36,6 +36,8 @@ enum Command {
     Set { id: String, patch: String },
     /// 편집 연산 형식(JSON Schema): `set`·`pref set`에 보낼 JSON의 원본
     Schema,
+    /// 실행 파일에 포함된 제3자 저작권·라이선스 고지
+    Licenses,
     /// 직전 변경 되돌리기
     Undo { id: String },
     /// 수신자에게 넘길 최종 지시서 (Markdown)
@@ -72,6 +74,10 @@ async fn main() -> anyhow::Result<()> {
         Command::Check { id } => commands::brief::check(&store, &id),
         Command::Set { id, patch } => commands::brief::set(&store, &id, &patch),
         Command::Schema => commands::brief::schema(),
+        Command::Licenses => {
+            print!("{}", include_str!("../../../docs/legal/THIRD_PARTY_NOTICES.txt"));
+            Ok(())
+        }
         Command::Undo { id } => commands::brief::undo(&store, &id),
         Command::Export { id, lang } => commands::brief::export(&store, &id, lang),
         Command::Pref { command, lang } => commands::pref::run(&store, command, lang),

@@ -12,21 +12,23 @@
     "dev:api": "cargo run -q -p ltm-cli -- ui --project . --port 4319 --no-open",
     "dev:ui": "pnpm --filter @listenee-ltm/ui dev",
     "build:ui": "pnpm --filter @listenee-ltm/ui build",
-    "build": "pnpm build:ui && cargo build --release -p ltm-cli",
+    "build": "pnpm build:ui && cargo build --locked --release -p ltm-cli",
     "gen:types": "cargo test -q -p ltm-core",
     "check": "pnpm check:rust && pnpm check:ui && pnpm check:distribution && pnpm check:repo",
     "format": "cargo fmt && biome check --write .",
     "prototype": "pnpm --filter @listenee-ltm/ui exec vite --open /prototype/pixel-ui/",
     "gen:readme-icons": "node ui/scripts/gen-readme-icons.ts",
     "gen:copy-screens": "pnpm --filter @listenee-ltm/ui gen:copy-screens",
-    "check:rust": "cargo fmt --check && cargo clippy --all-targets -q -- -D warnings && mise x -- cargo nextest run --cargo-quiet --status-level fail && mise x -- cargo machete",
+    "check:rust": "cargo fmt --check && cargo clippy --locked --all-targets -q -- -D warnings && mise x -- cargo nextest run --locked --cargo-quiet --status-level fail && mise x -- cargo machete",
     "check:ui": "biome check --error-on-warnings . && tsc -p ui && node ui/scripts/check-boundaries.mjs && node ui/scripts/check-copy.mjs && node ui/scripts/check-formatters.mjs && knip --no-progress && pnpm --filter @listenee-ltm/ui check:copy-screens",
-    "check:repo": "mise x -- typos && mise x -- cargo deny check -s && mise x -- gitleaks git --no-banner -l warn .",
-    "check:distribution": "node --test scripts/install/*.test.mjs scripts/release/*.test.mjs"
+    "check:repo": "mise x -- typos && mise x -- cargo deny check -s && mise x -- gitleaks git --log-opts=--all --redact --no-banner -l warn . && pnpm audit --audit-level moderate && mise x -- actionlint",
+    "check:distribution": "node --test scripts/install/*.test.mjs scripts/release/*.test.mjs && node scripts/release/notices.mjs --check",
+    "gen:notices": "node scripts/release/notices.mjs"
   },
   "devDependencies": {
     "@biomejs/biome": "2.6.6",
     "knip": "6.43.0",
     "typescript": "7.0.2"
-  }
+  },
+  "license": "MIT"
 }

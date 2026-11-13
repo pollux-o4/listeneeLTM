@@ -1,4 +1,10 @@
 packages:
   - ui
+# 신규 npm 버전은 하루 관찰 후 도입한다(분 단위).
+minimumReleaseAge: 1440
 allowBuilds:
   esbuild: true
+# shortcut: Storybook 10.6의 docgen 플러그인이 취약한 glob 13을 요구함, 상위 의존성이 수정되면 제거
+# GHSA-3g3m-2fjr-6pw4; Storybook 빌드로 API 호환성을 검증한다.
+overrides:
+  '@joshwooding/vite-plugin-react-docgen-typescript>glob': 14.0.2

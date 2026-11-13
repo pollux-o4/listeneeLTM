@@ -7,7 +7,9 @@
   },
   "files": [
     "bin/ltm.cjs",
-    "platforms.json"
+    "platforms.json",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.txt"
   ],
   "engines": {
     "node": ">=18"
@@ -25,5 +27,6 @@
     "@listenee-ltm/linux-x64": "0.1.0",
     "@listenee-ltm/darwin-arm64": "0.1.0",
     "@listenee-ltm/win32-x64": "0.1.0"
-  }
+  },
+  "license": "MIT"
 }

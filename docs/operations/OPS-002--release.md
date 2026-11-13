@@ -4,12 +4,13 @@
 
 ## 산출물 검증
 
-1. 변경을 검토하고 `pnpm check`를 통과시킨다. 설치 스크립트의 기본 버전·README 설치 URL도 배포 버전과 맞춘다.
-2. 워크플로를 저장소에 반영한 뒤 `Release`를 브랜치에서 수동 실행한다. `workflow_dispatch`는 빌드·검증·패키징만 수행하며 공개 게시하지 않는다.
-3. `release-assets` 아티팩트를 받는다. 세 OS의 실행 파일, 설치 스크립트, npm tarball 4개, `SHA256SUMS`가 있어야 한다. 각 OS 작업은 빈 프로젝트 초기화·지시서 작성·내장 UI/API와 설치 테스트를 검증한다.
+1. 프로젝트 라이선스는 MIT다. 원문 `LICENSE`와 Cargo·npm `license` 메타데이터가 일치하는지 확인한다. `pnpm gen:notices`로 의존성 고지를 갱신·검토한다. 태그 게시 사전 검사는 라이선스·고지 누락을 거부한다.
+2. 변경을 검토하고 `pnpm check`를 통과시킨다. 설치 스크립트의 기본 버전·README 설치 URL도 배포 버전과 맞춘다.
+3. 워크플로를 저장소에 반영한 뒤 `Release`를 브랜치에서 수동 실행한다. `workflow_dispatch`는 태그를 선택해도 빌드·검증·패키징만 수행한다. 공개 게시는 태그 push에서만 수행한다. CI·CodeQL 및 저장소 보호 설정은 OPS-003을 따른다.
+4. `release-assets` 아티팩트를 받는다. 세 OS의 실행 파일, 설치 스크립트, npm tarball 4개, `SHA256SUMS`가 있어야 한다. npm tarball마다 의존성 고지(공개 배포 시 프로젝트 LICENSE 포함)가 있어야 하며, 단독 실행 파일의 `ltm licenses`도 고지 원문을 출력해야 한다. 각 OS 작업은 빈 프로젝트 초기화·지시서 작성·내장 UI/API와 설치 테스트를 검증한다.
 
 ```sh
-gh workflow run release.yml --ref main
+gh workflow run release.yml --ref dev
 gh run download <실행-id> --name release-assets --dir release-assets
 cd release-assets
 sha256sum --check SHA256SUMS
