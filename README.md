@@ -74,12 +74,29 @@ flowchart LR
 
 ## <img src="docs/assets/icons/play.svg" height="24" align="absmiddle"/> 빠른 시작 <a id="start"></a>
 
-**현재는 소스에서 빌드해 사용합니다.** npm 패키지와 단독 실행 파일은 아직 공개되지 않았습니다.
+지원 대상은 **Linux x64·macOS Apple Silicon·Windows x64**입니다.
 
-빌드에는 mise와 OS용 C/C++ 빌드 도구가 필요합니다. Rust 버전·구성 요소는 `rust-toolchain.toml`, Node·pnpm·검사 도구는 `mise.toml`을 따릅니다. Linux·macOS 셸 예시:
+프로젝트 폴더에서 설치하고 실행합니다. npm 설치에는 Node.js 18 이상이 필요합니다.
 
 ```sh
-git clone --branch dev https://github.com/pollux-o4/listeneeLTM.git
+npm install --save-dev listenee-ltm@0.1.0
+npx ltm init
+npx ltm ui
+```
+
+`init`은 기존 안내 파일을 보존하며 AI 안내를 등록합니다. `ui`는 브라우저 화면을 엽니다. AI도 프로젝트에서 `npx ltm`으로 호출합니다. 플랫폼 실행 파일을 함께 설치해야 하므로 optional dependencies를 끄지 않습니다.
+
+**Node 없이 사용하려면** [0.1.0 실행 파일](https://github.com/pollux-o4/listeneeLTM/releases/tag/v0.1.0)을 받거나 [설치 안내](docs/operations/OPS-001--installation.md)를 따릅니다. Rust·Docker는 사용자 설치 요건에 포함되지 않습니다.
+
+다른 프로젝트를 열 때는 `--project <프로젝트 경로>`, 브라우저를 자동으로 열지 않을 때는 `ui --no-open`을 사용합니다. 기본 주소는 `http://127.0.0.1:4318`입니다.
+
+<details>
+<summary><b>소스에서 빌드</b></summary>
+
+mise와 OS용 C/C++ 빌드 도구가 필요합니다. Rust 버전·구성 요소는 `rust-toolchain.toml`, Node·pnpm·검사 도구는 `mise.toml`을 따릅니다.
+
+```sh
+git clone --branch v0.1.0 https://github.com/pollux-o4/listeneeLTM.git
 cd listeneeLTM
 mise install
 mise x -- pnpm install --frozen-lockfile
@@ -88,28 +105,7 @@ mise x -- pnpm build
 ./target/release/ltm ui
 ```
 
-Windows PowerShell에서는 마지막 두 명령의 실행 파일 경로를 `.\target\release\ltm.exe`로 바꿉니다.
-
-다른 프로젝트에서 쓰려면 `--project <프로젝트 경로>`를 지정합니다.
-
-`init`은 기존 안내 파일을 보존하며 AI 안내를 등록합니다. `ui`는 브라우저 화면을 엽니다. 자동으로 열지 않으려면 `ui --no-open`을 쓰고 `http://127.0.0.1:4318`에 접속합니다.
-
-<details>
-<summary><b>공개 후 설치 방법 — 현재는 사용할 수 없습니다</b></summary>
-
-지원 대상은 **Linux x64(musl)·macOS arm64·Windows x64**입니다.
-
-- **npm 경로:** Node.js 18 이상이 필요하며 Rust는 필요 없습니다. 패키지 공개 후 프로젝트 폴더에서 실행합니다.
-
-```sh
-npm install --save-dev listenee-ltm@0.1.0
-npx ltm init
-npx ltm ui
-```
-
-- **단독 실행 파일:** GitHub Release 공개 후 OS에 맞는 파일을 받습니다. Node·npm·Rust 없이 실행합니다. GUI에는 브라우저가 필요합니다.
-
-설치 위치·PATH·실패 복구는 [설치 안내](docs/operations/OPS-001--installation.md)에서 확인합니다. 공개 전에는 설치 스크립트·다운로드 URL로 설치할 수 없습니다.
+Windows PowerShell에서는 실행 파일 경로를 `.\target\release\ltm.exe`로 바꿉니다.
 
 </details>
 
@@ -144,13 +140,13 @@ npx ltm ui
 <details>
 <summary><b>릴리스 검증</b></summary>
 
-`0.1.0` 최초 공개 전에 다음 검사를 **게시 없는 dry-run(모의 릴리스)**으로 수행합니다. 통과 여부는 워크플로의 실제 실행 결과로 확인합니다.
+릴리스는 세 OS의 빌드·설치 검사와 Docker 호환성 검사를 거칩니다. 검증 결과는 [Release 워크플로](https://github.com/pollux-o4/listeneeLTM/actions/workflows/release.yml)에서 확인합니다.
 
 | 검증 환경 | 확인할 내용 |
 | - | - |
 | Linux `scratch` 컨테이너 | 런타임·공유 라이브러리 없는 환경에서 단독 실행 파일의 CLI·내장 UI/API 동작 |
 | Node만 있는 npm 설치 환경 | Rust·C/C++ 빌드 도구 없이 로컬 npm 산출물 설치·실행 |
-| Linux x64·macOS arm64·Windows x64 네이티브 환경 | 각 OS에서 빌드·설치·CLI·내장 UI/API를 검사하는 비게시 dry-run |
+| Linux x64·macOS arm64·Windows x64 네이티브 환경 | 각 OS에서 빌드·설치·CLI·내장 UI/API 검사 |
 
 개발자용 Docker 검사 인터페이스입니다. `BINARY`는 Linux x64 실행 파일, `ASSETS`는 npm tarball이 있는 폴더, `VERSION`은 검사할 버전입니다.
 

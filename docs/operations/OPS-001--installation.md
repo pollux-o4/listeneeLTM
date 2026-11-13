@@ -4,7 +4,7 @@
 
 ## 프로젝트에 npm으로 설치
 
-최초 공개 배포 전에는 아래 레지스트리·Release 명령을 사용할 수 없다. 배포 담당자는 OPS-002 절차로 먼저 게시한다.
+공개 패키지 `listenee-ltm`을 설치한다. npm 경로에는 Node.js 18 이상이 필요하며, 단독 실행 파일에는 Node·Rust가 필요 없다.
 
 ```sh
 pnpm add -D listenee-ltm
