@@ -29,6 +29,8 @@ export function ReviewGroup({ label, items, onOpenStage, onPatch }: Props) {
   const ids = useReviewIds(items)
   const rows = ids.flatMap((id) => items.filter((i) => i.id === id))
   const left = rows.filter((i) => !i.confirmed).length
+  const countLabel =
+    left === 0 ? copy.brief.delivery.reviewed : copy.brief.delivery.reviewCount(left)
   const [open, setOpen] = useState(false)
   const body = usePresence(open)
 
@@ -37,6 +39,7 @@ export function ReviewGroup({ label, items, onOpenStage, onPatch }: Props) {
       <button
         type="button"
         className="rg-head"
+        aria-label={`${label} ${countLabel}`}
         aria-expanded={open}
         aria-controls={body.mounted ? bodyId : undefined}
         onClick={() => setOpen((v) => !v)}
@@ -46,7 +49,7 @@ export function ReviewGroup({ label, items, onOpenStage, onPatch }: Props) {
         </span>
         <span className="rg-label">{label}</span>
         <span className="rg-count" data-done={left === 0}>
-          {left === 0 ? copy.brief.delivery.reviewed : copy.brief.delivery.reviewCount(left)}
+          {countLabel}
         </span>
       </button>
       {body.mounted && (
