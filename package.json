@@ -26,8 +26,8 @@
     "gen:notices": "node scripts/release/notices.mjs"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.6.6",
-    "knip": "6.44.2",
+    "@biomejs/biome": "2.6.8",
+    "knip": "6.45.1",
     "typescript": "7.0.2"
   },
   "license": "MIT"
